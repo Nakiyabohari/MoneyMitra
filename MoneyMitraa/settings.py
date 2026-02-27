@@ -137,3 +137,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# ==============================
+# Gemini AI Configuration
+# ==============================
+
+GROQ_API_KEY = "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"
