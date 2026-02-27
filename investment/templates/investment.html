@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Investments - MoneyMitra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/investment.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="back-circle">
+        <span onclick="goBack()">←</span>
+    </div>
+
+    <h2>Investments</h2>
+
+    <div class="info-box">
+        Investing regularly helps your money grow over time.
+        Start small and increase gradually.
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <h3 class="section-title">Choose Investment Type</h3>
+
+        <div class="investment-types">
+            <div class="invest-card active"
+                 onclick="selectType('Mutual Funds', this)">
+                <h4>Mutual Funds</h4>
+                <p>Diversified portfolio</p>
+            </div>
+
+            <div class="invest-card"
+                 onclick="selectType('ETFs', this)">
+                <h4>ETFs</h4>
+                <p>Index tracking</p>
+            </div>
+        </div>
+
+        <input type="hidden"
+               name="investment_type"
+               id="investmentType"
+               value="Mutual Funds">
+
+        <div class="amount-card">
+            <p>Monthly Investment Amount</p>
+            <div class="amount-input">
+                ₹ <input type="number"
+                         name="monthly_amount"
+                         required>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <strong>Why invest monthly?</strong>
+            <ul>
+                <li>Build wealth steadily</li>
+                <li>Reduce risk</li>
+                <li>Create discipline</li>
+            </ul>
+        </div>
+
+        <!-- Ask AI Button -->
+        <button type="button"
+                class="outline-btn"
+                onclick="toggleMitraChat()">
+            ✨ Ask Mitra AI
+        </button>
+
+        <button type="submit" class="btn">
+            Save Investment Plan
+        </button>
+
+    </form>
+</div>
+
+
+<!-- ================= SIDEBAR CHAT ================= -->
+
+<div id="mitraChatWrapper" class="mitra-sidebar">
+
+    <div class="mitra-header">
+        Mitra AI
+        <span class="close-btn"
+              onclick="toggleMitraChat()">×</span>
+    </div>
+
+    <div id="chatBox" class="mitra-chatbox"></div>
+
+    <div class="mitra-input-area">
+        <input type="text"
+               id="chatInput"
+               placeholder="Ask Mitra AI something...">
+        <button type="button"
+                onclick="sendChatMessage()">
+            Send
+        </button>
+    </div>
+
+</div>
+
+
+<script src="{% static 'js/investment.js' %}"></script>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>
