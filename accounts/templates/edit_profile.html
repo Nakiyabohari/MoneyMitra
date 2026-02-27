@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Profile</title>
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+<h2>Edit Profile</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<label>Phone</label>
+<input type="text" name="phone" value="{{ profile.phone }}">
+
+<label>Gender</label>
+<select name="gender">
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select>
+
+<label>Profile Photo</label>
+<input type="file" name="profile_photo">
+
+<button type="submit">Save Changes</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

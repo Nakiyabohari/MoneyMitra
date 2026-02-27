@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile</title>
+
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+
+</head>
+<body>
+
+<div class="profile-container">
+
+    <div class="page-header">
+        <a href="{% url 'dashboard' %}" class="back-btn">←</a>
+        <h2>Profile</h2>
+    </div>
+
+    <div class="profile-summary-card">
+
+        {% if profile.profile_photo %}
+            <img src="{{ profile.profile_photo.url }}" class="profile-img">
+        {% else %}
+            <div class="profile-avatar">👤</div>
+        {% endif %}
+
+        <h3>{{ profile.full_name }}</h3>
+        <p>{{ request.user.email }}</p>
+
+    </div>
+
+    <ul class="profile-menu">
+        <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+        <li><a href="#">Change Salary</a></li>
+        <li><a href="#">Manage Savings</a></li>
+    </ul>
+
+    <a href="{% url 'logout' %}">
+        <button class="logout-btn">Logout</button>
+    </a>
+
+</div>
+
+<script src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>

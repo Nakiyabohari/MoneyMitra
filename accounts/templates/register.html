@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Account</title>
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+<div class="container">
+
+<h1>Create Account</h1>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text" name="full_name" placeholder="Full Name" required>
+<input type="text" name="occupation" placeholder="Occupation" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="password" name="password" placeholder="Password" required>
+
+<button class="btn">Sign Up</button>
+</form>
+
+<p>Already have account?
+<a href="{% url 'login' %}">Login</a>
+</p>
+<script src="{% static 'js/register.js' %}"></script>
+
+</div>
+</body>
+</html>

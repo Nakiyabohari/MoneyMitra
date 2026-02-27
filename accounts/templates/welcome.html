@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoneyMitra</title>
+
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+</head>
+
+<body class="welcome-body">
+
+<div class="screen">
+    <div class="content">
+
+        <!-- Logo -->
+        <div class="logo">
+            <img src="{% static 'images/logo3.jpeg' %}" alt="MoneyMitra Logo">
+        </div>
+
+        <!-- Title -->
+        <h1>MoneyMitra</h1>
+        <p class="tagline">Manage your money, stress free</p>
+
+        <!-- Illustration -->
+        <div class="illustration">
+            <img src="{% static 'images/image2.jpeg' %}" alt="Finance Illustration">
+        </div>
+
+        <!-- Button -->
+        <a href="{% url 'login' %}" class="cta-link">
+            <button class="cta">Get Started</button>
+        </a>
+
+    </div>
+</div>
+
+<script src="{% static 'js/welcome.js' %}"></script>
+
+</body>
+</html>

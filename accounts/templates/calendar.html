@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calendar - MoneyMitra</title>
+
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+
+</head>
+<body>
+
+<div class="container calendar-page">
+
+    <!-- HEADER -->
+    <div class="cal-header">
+        <div class="back-btn"
+            onclick="window.location.href='{% url 'dashboard' %}'">
+            ←
+        </div>
+        <h2>Calendar</h2>
+    </div>
+
+    <!-- CALENDAR CARD -->
+    <div class="calendar-box">
+
+        <div class="month-nav">
+            <button id="prev">‹</button>
+
+            <div class="month-title">
+                <h3 id="monthYear"></h3>
+                <p>Select a date</p>
+            </div>
+
+            <button id="next">›</button>
+        </div>
+
+        <!-- WEEK DAYS -->
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+
+        <!-- DAYS -->
+        <div class="days" id="calendarDays"></div>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/calendar.js' %}"></script>
+</body>
+</html>

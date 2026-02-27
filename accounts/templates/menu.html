@@ -1,0 +1,42 @@
+<div class="menu-overlay" id="menu-overlay" onclick="close_menu()"></div>
+
+<div class="drawer-panel" id="drawer-panel">
+
+    <div class="drawer-header">
+        <h2>Menu</h2>
+        <span class="close-button" onclick="close_menu()">✕</span>
+    </div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'profile' %}')">
+        <div class="menu-left">
+            <div class="menu-icon">🔄</div>
+            <span>Transaction History</span>
+        </div>
+        <div class="menu-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'profile' %}')">
+        <div class="menu-left">
+            <div class="menu-icon">📊</div>
+            <span>Budget Analytics</span>
+        </div>
+        <div class="menu-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'calendar' %}')">
+        <div class="menu-left">
+            <div class="menu-icon">🎯</div>
+            <span>Savings Goals</span>
+        </div>
+        <div class="menu-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'calculator' %}')">
+        <div class="menu-left">
+            <div class="menu-icon">📄</div>
+            <span>Expense Reports</span>
+        </div>
+        <div class="menu-arrow">→</div>
+    </div>
+
+</div>
