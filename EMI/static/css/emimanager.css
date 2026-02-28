@@ -1,0 +1,124 @@
+body {
+    align-items: flex-start !important;
+    padding: 20px 0;
+}
+
+.container {
+    height: 90vh !important;
+    overflow-y: auto !important;
+    padding-bottom: 40px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.icon-btn.plus {
+    background: var(--primary);
+    color: white;
+}
+
+/* Total Card */
+.total-card {
+    background: linear-gradient(135deg, var(--primary), #7E6BFF);
+    padding: 25px;
+    border-radius: 25px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* EMI Cards */
+.emi-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.emi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.emi-amount {
+    margin: 15px 0 10px;
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #e6e4f5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary);
+}
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+
+/* Desktop View
+@media (min-width: 768px) {
+
+    body {
+        align-items: flex-start;
+        padding: 40px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 900px;
+        margin: auto;
+        height: auto !important;
+    }
+
+    .emi-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .emi-card h2 {
+        margin: 0;
+    }
+
+    .progress-bar {
+        width: 200px;
+    }
+} */
