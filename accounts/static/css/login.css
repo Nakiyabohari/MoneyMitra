@@ -1,0 +1,83 @@
+/* ===== PAGE BACKGROUND ===== */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(145deg, #e9e6ff, #f5f4ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ===== LOGIN CARD ===== */
+.container {
+    width: 100%;
+    max-width: 380px;
+    background: #f0f0ff;
+    padding: 40px 30px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow:
+        15px 15px 30px rgba(166, 159, 255, 0.25),
+        -15px -15px 30px rgba(255, 255, 255, 0.9);
+}
+
+/* ===== TITLE ===== */
+.container h1 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #2f2d4a;
+}
+
+/* ===== INPUT FIELDS ===== */
+.container input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    border: none;
+    background: #f0f0ff;
+    box-shadow:
+        inset 6px 6px 12px rgba(166, 159, 255, 0.25),
+        inset -6px -6px 12px rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    outline: none;
+}
+
+.container input:focus {
+    box-shadow:
+        inset 4px 4px 8px rgba(166, 159, 255, 0.3),
+        inset -4px -4px 8px rgba(255, 255, 255, 1);
+}
+
+/* ===== BUTTON ===== */
+.btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 28px;
+    border: none;
+    background: linear-gradient(135deg, #8c82ff, #6c63ff);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.5);
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* ===== REGISTER LINK ===== */
+.container p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.container a {
+    color: #6c63ff;
+    text-decoration: none;
+    font-weight: 500;
+}

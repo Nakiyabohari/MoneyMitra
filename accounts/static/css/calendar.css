@@ -1,0 +1,149 @@
+/* ===============================
+   CALENDAR PAGE - MODERN UI
+================================ */
+
+/* Page Layout */
+.calendar-page{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* Header */
+.cal-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.cal-header h2{
+    font-size:22px;
+    font-weight:600;
+}
+
+/* Back Button */
+.back-btn{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:var(--primary-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:20px;
+    color:var(--primary);
+    transition:0.2s ease;
+}
+
+.back-btn:hover{
+    transform:scale(1.08);
+}
+
+/* Calendar Card */
+.calendar-box{
+    background:#ffffff;
+    border-radius:30px;
+    padding:25px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.06);
+}
+
+/* Month Navigation */
+.month-nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+/* Month Title */
+.month-title{
+    text-align:center;
+}
+
+.month-title h3{
+    font-size:20px;
+    font-weight:600;
+    color:var(--dark);
+}
+
+.month-title p{
+    font-size:14px;
+    color:var(--primary);
+    margin-top:4px;
+}
+
+/* Navigation Arrows */
+.month-nav span{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--primary-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.2s ease;
+}
+
+.month-nav span:hover{
+    transform:scale(1.08);
+}
+
+/* Weekdays + Days Grid */
+.weekdays,
+.days{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    text-align:center;
+    gap:8px;
+}
+
+/* Weekday Names */
+.weekdays{
+    color:var(--primary);
+    font-weight:600;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+/* Day Cells */
+.days div{
+    aspect-ratio:1 / 1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.2s ease;
+}
+
+/* Hover Effect */
+.days div:hover{
+    background:var(--primary-light);
+}
+
+/* Today Style */
+.today{
+    background:var(--primary-light);
+}
+
+/* Selected Date Style */
+.selected{
+    background:var(--primary);
+    color:white;
+}
+
+/* Optional Outline Selection Instead */
+/*
+.selected{
+    border:2px solid var(--primary);
+}
+*/
+
+/* Smooth animation */
+.days div{
+    transition:all 0.2s ease;
+}

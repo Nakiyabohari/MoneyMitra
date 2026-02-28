@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Transaction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+</head>
+
+<body>
+
+<!-- Floating Button -->
+<button class="floating-button" onclick="openSheet()">+</button>
+
+<!-- Overlay -->
+<div class="page-overlay" onclick="closeSheet()"></div>
+
+<!-- Bottom Sheet -->
+<div class="bottom-sheet" id="bottom-sheet">
+    
+    <div class="drag-line"></div>
+    <div class="sheet-title">Add Transaction</div>
+
+    <div class="option-grid">
+
+        <div class="option-card" onclick="goTo('/add-expense/')">
+            <div class="option-icon">💳</div>
+            <div class="option-text">Add Expense</div>
+        </div>
+
+        <div class="option-card" onclick="goTo('/add-income/')">
+            <div class="option-icon">💵</div>
+            <div class="option-text">Add Income</div>
+        </div>
+
+        <div class="option-card" onclick="goTo('/add-investment/')">
+            <div class="option-icon">📈</div>
+            <div class="option-text">Add Investment</div>
+        </div>
+
+        <div class="option-card" onclick="goTo('/add-emi/')">
+            <div class="option-icon">💰</div>
+            <div class="option-text">Add EMI</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- External JS -->
+<script src="js/addbutton.js"></script>
+
+</body>
+</html>

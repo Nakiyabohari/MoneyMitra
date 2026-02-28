@@ -1,0 +1,162 @@
+/* ================= BODY BACKGROUND ================= */
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #dcd8f5, #cfcbe9);
+}
+
+/* ================= MAIN MOBILE CARD ================= */
+
+.app-container {
+    max-width: 380px;
+    margin: 30px auto;
+    padding: 25px;
+    background: #efedf7;
+    border-radius: 30px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= TOP SECTION ================= */
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-small {
+    color: #6b6b7a;
+    font-size: 14px;
+    margin: 0;
+}
+
+.welcome-name {
+    font-size: 24px;
+    margin: 5px 0 0;
+    font-weight: 700;
+}
+
+/* ================= ICONS ================= */
+
+.top-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.circle-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e6e4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 16px;
+}
+
+.circle-icon:hover {
+    transform: translateY(-3px);
+}
+
+.menu-btn {
+    background: linear-gradient(135deg, #6c63ff, #5a52e0);
+    color: white;
+}
+
+/* ================= BALANCE CARD ================= */
+
+.balance-card {
+    margin-top: 25px;
+    background: linear-gradient(135deg, #6c63ff, #7d74f2);
+    color: white;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.balance-card p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.balance-card h1 {
+    margin: 10px 0 5px;
+    font-size: 34px;
+}
+
+.balance-card span {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+/* ================= SECTION TITLE ================= */
+
+.section-title {
+    margin-top: 28px;
+    font-weight: 700;
+    color: #2e2e52;
+}
+
+/* ================= OVERVIEW GRID ================= */
+
+.overview-grid {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.overview-card {
+    background: #e2e0f0;
+    padding: 18px;
+    border-radius: 18px;
+}
+
+.overview-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.overview-card h4 {
+    margin: 8px 0 0;
+    font-size: 18px;
+}
+
+/* ================= QUICK ACTION ================= */
+
+.quick-action {
+    margin-top: 15px;
+    background: #dcd9ed;
+    padding: 16px;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.quick-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* ================= FLOATING ADD BUTTON ================= */
+
+.fab {
+    position: fixed;
+    right: 40px;
+    bottom: 35px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c63ff, #5a52e0);
+    color: white;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 35px rgba(108, 99, 255, 0.4);
+    cursor: pointer;
+}

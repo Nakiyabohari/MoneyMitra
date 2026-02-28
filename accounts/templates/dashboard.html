@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - MoneyMitra</title>
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+    <!-- MENU + ADD BUTTON CSS -->
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/addbutton.css' %}">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- TOP SECTION -->
+    <div class="top-section">
+        <div>
+            <p class="welcome-small">Welcome back,</p>
+            <h2 class="welcome-name">{{ profile.full_name }}</h2>
+        </div>
+
+        <div class="top-icons">
+
+            <div class="circle-icon"
+                onclick="location.href='{% url 'calculator' %}'">
+                🧮
+            </div>
+
+            <div class="circle-icon"
+                onclick="location.href='{% url 'calendar' %}'">
+                📅
+            </div>
+
+            <div class="circle-icon"
+                onclick="location.href='{% url 'profile' %}'">
+                👤
+            </div>
+
+            <!-- PURPLE MENU BUTTON -->
+            <div class="circle-icon menu-btn"
+                onclick="open_menu()">
+                ☰
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- BALANCE CARD -->
+    <div class="balance-card">
+        <p>Available Balance</p>
+        <h1>₹{{ available_balance }}</h1>
+        <span>• After EMI deduction</span>
+    </div>
+
+
+    <!-- OVERVIEW -->
+    <h3 class="section-title">Overview</h3>
+
+    <div class="overview-grid">
+
+        <div class="overview-card">
+            <p>Monthly Salary</p>
+            <h4>₹{{ profile.monthly_salary }}</h4>
+        </div>
+
+        <div class="overview-card">
+            <p>Savings</p>
+            <h4>₹{{ profile.savings }}</h4>
+        </div>
+
+        <div class="overview-card">
+            <p>Investments</p>
+            <h4>₹{{ profile.investments }}</h4>
+        </div>
+
+        <div class="overview-card">
+            <p>EMI</p>
+            <h4>₹{{ profile.emi }}</h4>
+        </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+    <h3 class="section-title">Quick Actions</h3>
+
+    <div class="quick-action"
+        onclick="location.href='{% url 'profile' %}'">
+        Manage Savings →
+    </div>
+
+    <div class="quick-action"
+        onclick="location.href='{% url 'investment' %}'">
+        Investment Options →
+    </div>
+
+    <div class="quick-action"
+        onclick="location.href='{% url 'calendar' %}'">
+        Manage EMIs →
+    </div>
+
+</div>
+
+
+<!-- INCLUDE MENU -->
+{% include 'menu.html' %}
+
+<!-- INCLUDE ADD BUTTON -->
+{% include 'addbutton.html' %}
+
+
+<!-- JS FILES (ORDER MATTERS) -->
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/addbutton.js' %}"></script>
+
+</body>
+</html>
