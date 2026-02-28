@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #5f5bff, #7a6bff, #6a7bff);
+}
+
+/* Card */
+.card {
+    width: 380px;
+    background: #f4f5fb;
+    padding: 28px;
+    border-radius: 22px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #e6e7fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2d2d2d;
+}
+
+/* Labels */
+label {
+    font-size: 14px;
+    color: #6a6aff;
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+/* Inputs */
+.input-box {
+    background: #e9eafc;
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+}
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 15px;
+    color: #333;
+}
+
+.input-box textarea {
+    resize: none;
+    height: 60px;
+}
+
+.icon {
+    margin-right: 8px;
+    color: #6a6aff;
+}
+
+/* Button */
+button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #6a5cff, #7d6bff);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+button:active {
+    transform: scale(0.98);
+}

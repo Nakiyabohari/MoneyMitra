@@ -1,0 +1,118 @@
+body{
+  margin:0;
+  background:#ececf3;
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  width:380px;
+  background:#f4f4f8;
+  border-radius:30px;
+  padding:25px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+
+h2{
+  text-align:center;
+  color:#2d2a6e;
+  margin-bottom:25px;
+}
+
+.section-title{
+  font-size:14px;
+  color:#6c6c8a;
+  margin-bottom:8px;
+}
+
+.select-group{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+select{
+  flex:1;
+  padding:10px;
+  border-radius:12px;
+  border:none;
+  background:#e3e3f5;
+  font-size:14px;
+}
+
+.button-group{
+  display:flex;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.btn{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:15px;
+  font-weight:600;
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.download{
+  background:linear-gradient(135deg,#6c63ff,#4b46d4);
+}
+
+.share{
+  background:linear-gradient(135deg,#19c37d,#10a36d);
+}
+
+.card{
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:18px;
+}
+
+.income{
+  background:#d7f1e2;
+  color:#046c4e;
+}
+
+.expense{
+  background:#f8d7da;
+  color:#7a1c1c;
+}
+
+.balance{
+  background:#d4edda;
+  color:#0f5132;
+}
+
+.transactions{
+  background:#e0e0f3;
+  text-align:center;
+}
+
+.card h3{
+  margin:0 0 10px 0;
+  font-size:16px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  margin:6px 0;
+  font-size:14px;
+}
+
+.total{
+  font-weight:600;
+  margin-top:10px;
+  border-top:1px solid rgba(0,0,0,0.1);
+  padding-top:8px;
+}
+
+.big-amount{
+  font-size:26px;
+  font-weight:700;
+}

@@ -1,0 +1,113 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:linear-gradient(120deg,#dcd6f7,#f8f9ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:380px;
+    background:#f5f6fb;
+    border-radius:30px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    overflow-y:auto;
+}
+
+/* Header */
+.header{
+    display:flex;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h2{
+    flex:1;
+    text-align:center;
+    font-size:22px;
+    font-weight:600;
+}
+
+.back-btn{
+    font-size:20px;
+    cursor:pointer;
+}
+
+/* Green Card */
+.amount-card{
+    background:#20b07c;
+    color:#fff;
+    padding:25px;
+    border-radius:25px;
+    margin-bottom:25px;
+}
+
+.amount-card small{
+    font-size:14px;
+    opacity:0.9;
+}
+
+.amount-card h1{
+    font-size:36px;
+    margin-top:8px;
+}
+
+/* Labels */
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:500;
+    margin-top:15px;
+    color:#555;
+}
+
+/* Inputs */
+input, select, textarea{
+    width:100%;
+    padding:12px 15px;
+    border-radius:18px;
+    border:none;
+    background:#e9e9f5;
+    outline:none;
+    font-size:14px;
+}
+
+textarea{
+    resize:none;
+    height:90px;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:14px;
+    margin-top:30px;
+    border:none;
+    border-radius:25px;
+    background:#20b07c;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#179a6b;
+}
+
+/* Success message */
+.success{
+    text-align:center;
+    color:green;
+    margin-top:10px;
+    display:none;
+}

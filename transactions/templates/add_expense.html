@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<title>Add Expense</title>
+
+
+<style>
+
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+    <div class="header">
+        <div class="back-btn" onclick="goBack()">←</div>
+        <div class="title">Add Expense</div>
+    </div>
+
+    <!-- Amount -->
+    <label>Amount</label>
+    <div class="input-box">
+        <span class="icon">₹</span>
+        <input type="number" id="amount" placeholder="0.00">
+    </div>
+
+    <!-- Category -->
+    <label>Category</label>
+    <div class="input-box">
+        <select id="category">
+            <option value="">Select Category</option>
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Entertainment</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+    <!-- Date -->
+    <label>Date</label>
+    <div class="input-box">
+        <span class="icon">📅</span>
+        <input type="date" id="date">
+    </div>
+
+    <!-- Payment -->
+    <label>Payment Type</label>
+    <div class="input-box">
+        <select id="payment">
+            <option value="">Select Payment Type</option>
+            <option>Cash</option>
+            <option>UPI</option>
+            <option>Credit Card</option>
+            <option>Debit Card</option>
+            <option>Net Banking</option>
+        </select>
+    </div>
+
+    <!-- Notes -->
+    <label>Notes (Optional)</label>
+    <div class="input-box">
+        <textarea id="notes" placeholder="Write a note..."></textarea>
+    </div>
+
+    <button onclick="saveExpense()">Save Expense</button>
+
+</div>
+
+<script src="{% static 'js/add_expense.js' %}"></script>
+
+</body>
+</html>
