@@ -7,19 +7,14 @@
 <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
 <link rel="stylesheet" href="{% static 'css/global.css' %}">
 <title>Add Expense</title>
-
-
-<style>
-
-</style>
-
 </head>
+
 <body>
 
 <div class="card">
 
     <div class="header">
-        <div class="back-btn" onclick="goBack()">←</div>
+        <div class="back-btn">←</div>
         <div class="title">Add Expense</div>
     </div>
 
@@ -27,54 +22,61 @@
     <label>Amount</label>
     <div class="input-box">
         <span class="icon">₹</span>
-        <input type="number" id="amount" placeholder="0.00">
+        <input type="number" name="amount" placeholder="0.00" required>
     </div>
 
-    <!-- Category -->
+    <!-- Category Dropdown -->
     <label>Category</label>
     <div class="input-box">
-        <select id="category">
+        <select name="category" required>
             <option value="">Select Category</option>
-            <option>Food</option>
-            <option>Transport</option>
-            <option>Shopping</option>
-            <option>Bills</option>
-            <option>Entertainment</option>
-            <option>Other</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Other">Other</option>
         </select>
+    </div>
+
+    <!-- Custom Category Field -->
+    <label>If Other, Enter Custom Category</label>
+    <div class="input-box">
+        <input 
+            type="text" 
+            name="custom_category" 
+            placeholder="Enter custom category (optional)">
     </div>
 
     <!-- Date -->
     <label>Date</label>
     <div class="input-box">
         <span class="icon">📅</span>
-        <input type="date" id="date">
+        <input type="date" name="date" required>
     </div>
 
     <!-- Payment -->
     <label>Payment Type</label>
     <div class="input-box">
-        <select id="payment">
+        <select name="payment" required>
             <option value="">Select Payment Type</option>
-            <option>Cash</option>
-            <option>UPI</option>
-            <option>Credit Card</option>
-            <option>Debit Card</option>
-            <option>Net Banking</option>
+            <option value="Cash">Cash</option>
+            <option value="UPI">UPI</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="Net Banking">Net Banking</option>
         </select>
     </div>
 
     <!-- Notes -->
     <label>Notes (Optional)</label>
     <div class="input-box">
-        <textarea id="notes" placeholder="Write a note..."></textarea>
+        <textarea name="notes" placeholder="Write a note..."></textarea>
     </div>
 
-    <button onclick="saveExpense()">Save Expense</button>
+    <button type="submit">Save Expense</button>
 
 </div>
-
-<script src="{% static 'js/add_expense.js' %}"></script>
 
 </body>
 </html>
