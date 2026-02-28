@@ -70,3 +70,4 @@ def mitra_ai(request):
         return JsonResponse({
             "reply": "Mitra AI is temporarily unavailable."
         })
+    
