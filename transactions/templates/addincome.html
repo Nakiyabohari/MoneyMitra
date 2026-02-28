@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/addincome.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<title>Add Income</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="back-btn">←</div>
+        <h2>Add Income</h2>
+    </div>
+
+    <div class="amount-card">
+        <small>Income Amount</small>
+        <h1 id="displayAmount">₹0</h1>
+    </div>
+
+    <form id="incomeForm" method="POST">
+        {% csrf_token %}
+
+        <!-- Amount -->
+        <label>Amount</label>
+        <input type="number" name="amount" placeholder="₹ 0.00" required>
+
+        <!-- Income Source -->
+        <label>Income Source</label>
+        <select name="income_source" required>
+            <option value="">Select Income Source</option>
+            <option value="Salary">Salary</option>
+            <option value="Freelancing">Freelancing</option>
+            <option value="Business">Business</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- Custom Income Source -->
+        <label>If Other, Enter Custom Source</label>
+        <input 
+            type="text" 
+            name="custom_income_source" 
+            placeholder="Enter custom income source (optional)">
+
+        <!-- Payment Method -->
+        <label>Payment Method</label>
+        <select name="payment_method" required>
+            <option value="">Select Payment Method</option>
+            <option value="Cash">Cash</option>
+            <option value="UPI">UPI</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="Card">Card</option>
+        </select>
+
+        <!-- Notes -->
+        <label>Notes (Optional)</label>
+        <textarea name="notes" placeholder="Add any additional notes..."></textarea>
+
+        <button type="submit">Save Income</button>
+
+    </form>
+
+</div>
+
+<script src="{% static 'js/addincome.js' %}"></script>
+
+</body>
+</html>

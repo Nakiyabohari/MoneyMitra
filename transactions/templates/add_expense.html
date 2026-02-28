@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<title>Add Expense</title>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="header">
+        <div class="back-btn">←</div>
+        <div class="title">Add Expense</div>
+    </div>
+
+    <!-- Amount -->
+    <label>Amount</label>
+    <div class="input-box">
+        <span class="icon">₹</span>
+        <input type="number" name="amount" placeholder="0.00" required>
+    </div>
+
+    <!-- Category Dropdown -->
+    <label>Category</label>
+    <div class="input-box">
+        <select name="category" required>
+            <option value="">Select Category</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <!-- Custom Category Field -->
+    <label>If Other, Enter Custom Category</label>
+    <div class="input-box">
+        <input 
+            type="text" 
+            name="custom_category" 
+            placeholder="Enter custom category (optional)">
+    </div>
+
+    <!-- Date -->
+    <label>Date</label>
+    <div class="input-box">
+        <span class="icon">📅</span>
+        <input type="date" name="date" required>
+    </div>
+
+    <!-- Payment -->
+    <label>Payment Type</label>
+    <div class="input-box">
+        <select name="payment" required>
+            <option value="">Select Payment Type</option>
+            <option value="Cash">Cash</option>
+            <option value="UPI">UPI</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="Net Banking">Net Banking</option>
+        </select>
+    </div>
+
+    <!-- Notes -->
+    <label>Notes (Optional)</label>
+    <div class="input-box">
+        <textarea name="notes" placeholder="Write a note..."></textarea>
+    </div>
+
+    <button type="submit">Save Expense</button>
+
+</div>
+
+</body>
+</html>
