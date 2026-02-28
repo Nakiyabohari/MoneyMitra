@@ -1,51 +1,56 @@
-/* ===============================
-   CALENDAR PAGE - MODERN UI
-================================ */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#ececec;
+}
 
-/* Page Layout */
+/* Center Page */
 .calendar-page{
+    min-height:100vh;
     display:flex;
-    flex-direction:column;
-    gap:25px;
-}
-
-/* Header */
-.cal-header{
-    display:flex;
+    justify-content:center;
     align-items:center;
-    gap:15px;
 }
 
-.cal-header h2{
-    font-size:22px;
-    font-weight:600;
+/* Big Rounded Container */
+.cal-container{
+    width:380px;
+    height:650px;
+    background:#f3f3f3;
+    border-radius:40px;
+    padding:40px 20px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
 }
 
 /* Back Button */
 .back-btn{
+    position:absolute;
+    top:30px;
+    left:30px;
     width:45px;
     height:45px;
     border-radius:50%;
-    background:var(--primary-light);
+    background:#e9e8ff;
     display:flex;
     align-items:center;
     justify-content:center;
-    cursor:pointer;
     font-size:20px;
-    color:var(--primary);
-    transition:0.2s ease;
-}
-
-.back-btn:hover{
-    transform:scale(1.08);
+    color:#5c55f5;
+    cursor:pointer;
 }
 
 /* Calendar Card */
 .calendar-box{
-    background:#ffffff;
-    border-radius:30px;
-    padding:25px;
-    box-shadow:0 12px 30px rgba(0,0,0,0.06);
+    width:100%;
+    max-width:320px;
+    background:white;
+    border-radius:25px;
+    padding:25px 20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
 }
 
 /* Month Navigation */
@@ -56,94 +61,77 @@
     margin-bottom:20px;
 }
 
+.month-nav button{
+    background:#e9e8ff;
+    border:none;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    color:#5c55f5;
+}
+
 /* Month Title */
 .month-title{
     text-align:center;
 }
 
-.month-title h3{
-    font-size:20px;
-    font-weight:600;
-    color:var(--dark);
+.month-title h2{
+    margin:0;
 }
 
 .month-title p{
+    margin:3px 0 0;
     font-size:14px;
-    color:var(--primary);
-    margin-top:4px;
+    color:#5c55f5;
 }
 
-/* Navigation Arrows */
-.month-nav span{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:var(--primary-light);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    cursor:pointer;
-    transition:0.2s ease;
-}
-
-.month-nav span:hover{
-    transform:scale(1.08);
-}
-
-/* Weekdays + Days Grid */
-.weekdays,
-.days{
+/* Weekdays */
+.weekdays{
     display:grid;
     grid-template-columns:repeat(7,1fr);
     text-align:center;
-    gap:8px;
+    font-weight:bold;
+    font-size:13px;
+    color:#5c55f5;
+    margin-bottom:15px;
 }
 
-/* Weekday Names */
-.weekdays{
-    color:var(--primary);
-    font-weight:600;
-    font-size:14px;
-    margin-bottom:10px;
+/* Days Grid */
+.days{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
 }
 
-/* Day Cells */
+/* Single Day */
 .days div{
-    aspect-ratio:1 / 1;
+    width:35px;
+    height:35px;
     display:flex;
     align-items:center;
     justify-content:center;
     border-radius:50%;
-    font-weight:500;
+    margin:auto;
     cursor:pointer;
-    transition:0.2s ease;
+    transition:0.2s;
 }
 
-/* Hover Effect */
 .days div:hover{
-    background:var(--primary-light);
+    background:#e9e8ff;
 }
 
-/* Today Style */
+/* Today Highlight */
 .today{
-    background:var(--primary-light);
-}
-
-/* Selected Date Style */
-.selected{
-    background:var(--primary);
+    background:#5c55f5;
     color:white;
 }
 
-/* Optional Outline Selection Instead */
-/*
-.selected{
-    border:2px solid var(--primary);
-}
-*/
-
-/* Smooth animation */
-.days div{
-    transition:all 0.2s ease;
+/* Today Text */
+.today-text{
+    margin-top:15px;
+    text-align:center;
+    color:#5c55f5;
+    font-size:13px;
 }
