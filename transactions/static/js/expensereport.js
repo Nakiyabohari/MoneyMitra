@@ -83,3 +83,78 @@ function downloadPDF() {
   // ===== SAVE =====
   doc.save(`MoneyMitra_Report_${month}_${year}.pdf`);
 }
+/* ===============================
+   AUTO GENERATE MONTHS
+================================= */
+
+const monthSelect = document.getElementById("month");
+const months = [
+  "January","February","March","April","May","June",
+  "July","August","September","October","November","December"
+];
+
+months.forEach((month, index) => {
+  const option = document.createElement("option");
+  option.value = index + 1;
+  option.textContent = month;
+
+  if (index === new Date().getMonth()) {
+    option.selected = true;
+  }
+
+  monthSelect.appendChild(option);
+});
+
+
+/* ===============================
+   AUTO GENERATE YEARS
+================================= */
+
+const yearSelect = document.getElementById("year");
+const currentYear = new Date().getFullYear();
+
+for (let i = currentYear - 10; i <= currentYear + 5; i++) {
+  const option = document.createElement("option");
+  option.value = i;
+  option.textContent = i;
+
+  if (i === currentYear) {
+    option.selected = true;
+  }
+
+  yearSelect.appendChild(option);
+}
+
+
+/* ===============================
+   SHARE FUNCTION
+================================= */
+
+function shareReport() {
+
+  const container = document.querySelector(".container");
+
+  html2canvas(container).then(canvas => {
+    canvas.toBlob(blob => {
+
+      const file = new File([blob], "Expense_Report.png", { type: "image/png" });
+
+      if (navigator.share) {
+        navigator.share({
+          title: "Expense Report",
+          text: "Here is my expense report.",
+          files: [file]
+        }).catch(error => console.log(error));
+      } else {
+        alert("Sharing is not supported on this browser. Please use mobile.");
+      }
+
+    });
+  });
+
+}
+
+
+/* ===============================
+   GO BACK FUNCTION
+================================= */
