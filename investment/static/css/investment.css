@@ -24,7 +24,9 @@ body {
 .main-wrapper {
     display: flex;
     justify-content: center;
-    padding: 60px 20px;
+    align-items: flex-start;   /* important */
+    padding: 40px 20px;
+    min-height: 100vh;
 }
 
 /* ===============================
@@ -39,13 +41,14 @@ body {
     display: flex;
     gap: 40px;
     padding: 25px;
+    align-items: stretch;
 }
 
 /* ===============================
    LEFT SECTION
 ================================ */
 .left-section {
-    flex: 1.4;
+    flex: 1.2;
     padding: 50px;
     background: #ffffff;
     border-radius: 24px;
@@ -61,6 +64,7 @@ body {
     border-radius: 24px;
     display: flex;
     flex-direction: column;
+    max-height: 85vh;     /* important */
 }
 
 /* ===============================
@@ -83,7 +87,6 @@ body {
     margin: 25px 0;
     overflow-y: auto;
     padding-right: 8px;
-    scroll-behavior: smooth;
 }
 
 /* Scrollbar */
