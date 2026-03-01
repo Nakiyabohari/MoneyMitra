@@ -1,134 +1,195 @@
-/* ====================================
-   VARIABLES
-==================================== */
 :root {
     --primary: #6C5CE7;
     --secondary: #7E6BFF;
     --primary-light: #ECEAFF;
-    --bg: #F6F4FF;
-    --dark: #1E1B2E;
+    --bg-soft: #f8f7ff;
 }
 
-/* ====================================
-   RESET
-==================================== */
+/* GLOBAL RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: linear-gradient(135deg, #f6f4ff, #eceaff);
+}
+
+/* ===============================
+   CENTER WRAPPER
+================================ */
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   /* important */
+    padding: 40px 20px;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    transition: 0.4s ease;
 }
 
-/* Blur when chat opens */
-body.chat-open .container {
-    filter: blur(8px);
-    transform: scale(0.97);
-}
-
-body.chat-open {
-    overflow: hidden;
-}
-
-/* ====================================
-   CONTAINER
-==================================== */
-.container {
-    width: 95%;
-    max-width: 820px;
-    margin: 70px 0;
-    background: #fff;
-    padding: 60px;
+/* ===============================
+   BIG CARD (SPLIT LAYOUT)
+================================ */
+.main-card {
+    width: 100%;
+    max-width: 1300px;
+    background: white;
     border-radius: 32px;
-    box-shadow: 0 35px 80px rgba(0,0,0,0.08);
-    transition: 0.4s ease;
-}
-
-/* Space between all sections */
-.container > * {
-    margin-bottom: 30px;
-}
-
-/* ====================================
-   HEADINGS
-==================================== */
-h2, h3, .mitra-header {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
-
-h2 {
-    font-size: 28px;
-}
-
-.section-title {
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-/* ====================================
-   BACK BUTTON
-==================================== */
-.back-circle {
-    width: 46px;
-    height: 46px;
-    background: var(--primary-light);
-    border-radius: 50%;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.08);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--primary);
-    transition: 0.3s;
+    gap: 40px;
+    padding: 25px;
+    align-items: stretch;
 }
 
-.back-circle:hover {
-    transform: scale(1.1);
+/* ===============================
+   LEFT SECTION
+================================ */
+.left-section {
+    flex: 1.2;
+    padding: 50px;
+    background: #ffffff;
+    border-radius: 24px;
 }
 
-/* ====================================
-   INFO BOX
-==================================== */
-.info-box {
-    background: var(--primary-light);
-    padding: 22px;
+/* ===============================
+   RIGHT SECTION (AI)
+================================ */
+.right-section {
+    flex: 1;
+    background: var(--bg-soft);
+    padding: 40px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;     /* important */
+}
+
+/* ===============================
+   MITRA HEADER
+================================ */
+.mitra-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 18px;
     border-radius: 20px;
-    font-size: 15px;
-    line-height: 1.6;
+    font-weight: 600;
+    box-shadow: 0 15px 35px rgba(108,92,231,0.3);
 }
 
-/* ====================================
+/* ===============================
+   CHAT AREA
+================================ */
+.mitra-chatbox {
+    flex: 1;
+    margin: 25px 0;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Scrollbar */
+.mitra-chatbox::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mitra-chatbox::-webkit-scrollbar-thumb {
+    background: rgba(108,92,231,0.4);
+    border-radius: 10px;
+}
+
+/* Chat bubbles */
+.chat-bubble {
+    padding: 14px 18px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    max-width: 75%;
+    font-size: 14px;
+    animation: fadeUp 0.3s ease;
+}
+
+.chat-user {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    margin-left: auto;
+}
+
+.chat-bot {
+    background: white;
+    border: 1px solid #eee;
+}
+
+/* Fade animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   CHAT INPUT AREA
+================================ */
+.mitra-input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.mitra-input-area input {
+    flex: 1;
+    padding: 14px;
+    border-radius: 14px;
+    border: 2px solid #ddd;
+}
+
+.mitra-input-area input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(108,92,231,0.15);
+}
+
+.mitra-input-area button {
+    padding: 14px 20px;
+    border-radius: 14px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mitra-input-area button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(108,92,231,0.4);
+}
+
+/* ===============================
    INVESTMENT CARDS
-==================================== */
+================================ */
 .investment-types {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .invest-card {
     flex: 1;
-    min-width: 180px;
     padding: 24px;
-    border-radius: 24px;
-    background: #fafafa;
+    border-radius: 20px;
     border: 1px solid #eee;
     cursor: pointer;
-    transition: all 0.3s ease;
+    background: #fafafa;
 }
 
 .invest-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 .invest-card.active {
@@ -137,45 +198,41 @@ h2 {
     border: none;
 }
 
-/* ====================================
+/* ===============================
    AMOUNT CARD
-==================================== */
+================================ */
 .amount-card {
+    margin-top: 25px;
     padding: 25px;
-    border-radius: 24px;
+    border-radius: 20px;
     border: 1px solid #eee;
     background: #fff;
-}
-
-.amount-input {
-    margin-top: 12px;
 }
 
 .amount-input input {
     width: 100%;
     padding: 16px;
-    border-radius: 16px;
+    border-radius: 14px;
     border: 2px solid #ddd;
-    font-size: 18px;
-    transition: 0.3s;
+    font-size: 16px;
 }
 
 .amount-input input:focus {
+    outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 4px rgba(108,92,231,0.15);
-    outline: none;
 }
 
-/* ====================================
+/* ===============================
    BUTTONS
-==================================== */
+================================ */
 .btn, .outline-btn {
     width: 100%;
-    padding: 18px;
-    border-radius: 50px;
+    padding: 16px;
+    border-radius: 40px;
+    margin-top: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(.4,0,.2,1);
 }
 
 .btn {
@@ -186,173 +243,36 @@ h2 {
 
 .btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 25px 40px rgba(108,92,231,0.35);
+    box-shadow: 0 25px 45px rgba(108,92,231,0.4);
 }
 
 .outline-btn {
-    border: 2px solid var(--primary);
     background: white;
+    border: 2px solid var(--primary);
     color: var(--primary);
 }
 
 .outline-btn:hover {
     background: var(--primary-light);
-    transform: translateY(-4px);
-}
-
-/* ====================================
-   SIDEBAR
-==================================== */
-.mitra-sidebar {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    max-width: 430px;
-    height: 100vh;
-    background: white;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-    transition: right 0.4s cubic-bezier(.77,0,.18,1);
-    box-shadow: -10px 0 50px rgba(0,0,0,0.15);
-    border-top-left-radius: 28px;
-    border-bottom-left-radius: 28px;
-}
-
-.mitra-sidebar.active {
-    right: 0;
-}
-
-.mitra-header {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 20px;
-    border-radius: 20px;
-    font-size: 18px;
-}
-
-/* ====================================
-   CHAT
-==================================== */
-.mitra-chatbox {
-    flex: 1;
-    margin: 25px 0;
-    overflow-y: auto;
-}
-
-.chat-bubble {
-    padding: 16px 20px;
-    border-radius: 22px;
-    margin-bottom: 14px;
-    max-width: 75%;
-    font-size: 15px;
-    line-height: 1.7;
-    animation: slideUp 0.35s ease;
-}
-
-.chat-user {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    margin-left: auto;
-}
-
-.chat-bot {
-    background: var(--primary-light);
-    color: #222;
-}
-
-/* Slide animation */
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ====================================
-   TYPING INDICATOR
-==================================== */
-.typing-bubble {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 14px 18px;
-    border-radius: 22px;
-    background: var(--primary-light);
-    width: fit-content;
-    animation: slideUp 0.3s ease;
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    background: #666;
-    border-radius: 50%;
-    animation: blink 1.4s infinite both;
-}
-
-.dot:nth-child(2) { animation-delay: 0.2s; }
-.dot:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes blink {
-    0% { opacity: 0.2; transform: translateY(0); }
-    20% { opacity: 1; transform: translateY(-4px); }
-    100% { opacity: 0.2; transform: translateY(0); }
-}
-
-/* ====================================
-   INPUT AREA
-==================================== */
-.mitra-input-area {
-    display: flex;
-    gap: 12px;
-}
-
-.mitra-input-area input {
-    flex: 1;
-    padding: 14px;
-    border-radius: 16px;
-    border: 2px solid #ddd;
-    transition: 0.3s;
-}
-
-.mitra-input-area input:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(108,92,231,0.15);
-    outline: none;
-}
-
-.mitra-input-area button {
-    padding: 14px 22px;
-    border-radius: 16px;
-    border: none;
-    background: var(--primary);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.mitra-input-area button:hover {
     transform: translateY(-3px);
 }
 
-/* ====================================
-   RESPONSIVE
-==================================== */
-@media (max-width: 768px) {
-    .container {
-        padding: 35px 25px;
-        margin: 40px 0;
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 900px) {
+
+    .main-card {
+        flex-direction: column;
+        gap: 0;
+        padding: 15px;
     }
 
-    .mitra-sidebar {
-        border-radius: 0;
+    .left-section {
+        padding: 40px 25px;
+    }
+
+    .right-section {
+        display: none;
     }
 }
