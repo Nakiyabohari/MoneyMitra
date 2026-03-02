@@ -24,11 +24,17 @@ class EmiManagerForm(forms.ModelForm):
 
             'start_date': forms.DateInput(attrs={
                 'class': 'form-input',
-                'type': 'date'
+                'type': 'text',
+                'placeholder': 'Start Date (dd-mm-yyyy)',
+                'onfocus': "(this.type='date')",
+                'onblur': "if(!this.value)this.type='text'"
             }),
 
             'end_date': forms.DateInput(attrs={
                 'class': 'form-input',
-                'type': 'date'
+                'type': 'text',
+                'placeholder': 'End Date (dd-mm-yyyy)',
+                'onfocus': "(this.type='date')",
+                'onblur': "if(!this.value)this.type='text'"
             }),
         }
