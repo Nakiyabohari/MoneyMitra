@@ -1,66 +1,189 @@
+/* ===============================
+   BACKGROUND
+================================ */
+
 .welcome-body {
-    height: 100vh;
-    background: linear-gradient(135deg, #e6e2ff, #f4f1ff);
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#e6e2ff,#f4f1ff);
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Poppins', sans-serif;
 }
 
-/* MAIN CARD */
+/* ===============================
+   SCREEN WRAPPER
+================================ */
+
 .screen {
     width: 100%;
-    max-width: 400px;
-    background: #ffffff;
-    border-radius: 30px;
-    padding: 40px 25px;
-    text-align: center;
-    box-shadow: 0 30px 60px rgba(108, 99, 255, 0.15);
+    max-width: 1200px;
+    padding: 40px;
 }
 
-/* LOGO */
+/* ===============================
+   HERO LAYOUT
+================================ */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+/* ===============================
+   LEFT SIDE
+================================ */
+
+.hero-left {
+    flex: 1;
+}
+
+/* ===============================
+   LOGO (MERGED WITH BACKGROUND)
+================================ */
+
+.logo {
+    display: inline-block;
+    padding: 6px;
+    background: linear-gradient(135deg,#e6e2ff,#f4f1ff);
+    margin-bottom: 25px;
+}
+
 .logo img {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    object-fit: cover;
-    margin-bottom: 20px;
+    width: 110px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    mix-blend-mode: multiply;
 }
 
-/* TITLE */
+/* ===============================
+   TITLE & TAGLINE
+================================ */
+
 h1 {
+    font-size: 64px;
     margin: 10px 0;
-    font-size: 28px;
-    font-weight: 700;
-    color: #2e2e52;
+    color: #2d1e5f;
 }
 
 .tagline {
+    font-size: 20px;
+    color: #6c63ff;
+    margin-bottom: 40px;
+}
+
+/* ===============================
+   FEATURES
+================================ */
+
+.features {
+    margin-bottom: 40px;
+}
+
+.feature {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.tick {
+    color: #6c63ff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.feature strong {
+    color: #2d1e5f;
+}
+
+.feature small {
+    display: block;
+    font-size: 14px;
     color: #777;
-    margin-bottom: 30px;
 }
 
-/* ILLUSTRATION */
-.illustration img {
-    width: 180px;
-    margin: 20px 0 40px;
-}
+/* ===============================
+   BUTTON
+================================ */
 
-/* BUTTON */
 .cta {
-    width: 100%;
-    height: 56px;
-    border-radius: 28px;
+    padding: 16px 40px;
+    border-radius: 30px;
     border: none;
     font-size: 18px;
     font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(135deg, #7c6af2, #6a5ae0);
+    color: white;
+    background: linear-gradient(135deg,#7c6af2,#6a5ae0);
     cursor: pointer;
-    transition: 0.3s ease;
     box-shadow: 0 15px 35px rgba(124,106,242,0.4);
+    transition: 0.3s ease;
 }
 
 .cta:hover {
     transform: translateY(-3px);
+}
+
+.trusted {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #999;
+}
+
+/* ===============================
+   RIGHT SIDE
+================================ */
+
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.illustration-box {
+    width: 420px;
+    height: 420px;
+    background: white;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 40px 80px rgba(108,99,255,0.2);
+}
+
+.illustration-box img {
+    width: 260px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media(max-width: 900px){
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .feature {
+        justify-content: center;
+    }
+
+    .illustration-box {
+        width: 280px;
+        height: 280px;
+    }
+
+    .illustration-box img {
+        width: 200px;
+    }
 }
