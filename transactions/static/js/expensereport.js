@@ -1,160 +1,105 @@
+function generatePDFBlob(){
 
-function goBack() {
-  window.history.back();
-}
-function downloadPDF() {
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
 
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF("p", "mm", "a4");
+const month = document.getElementById("monthSelect").value;
+const year = document.getElementById("yearSelect").value;
+const today = new Date().toLocaleDateString("en-GB");
 
-  const month = document.getElementById("month").value;
-  const year = document.getElementById("year").value;
+let y = 20;
 
-  const today = new Date();
-  const formattedDate =
-    String(today.getDate()).padStart(2, '0') + "/" +
-    String(today.getMonth() + 1).padStart(2, '0') + "/" +
-    today.getFullYear();
+doc.setFontSize(22);
+doc.text("MoneyMitra",105,y,{align:"center"});
+y+=12;
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  let y = 20;
+doc.setFontSize(18);
+doc.text("Expense Report",105,y,{align:"center"});
+y+=15;
 
-  // ===== HEADER =====
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(22);
-  doc.text("MoneyMitra", pageWidth / 2, y, { align: "center" });
+doc.setFontSize(12);
+doc.text(`Period: ${month} ${year}`,20,y);
+doc.text(`Date: ${today}`,190,y,{align:"right"});
+y+=10;
 
-  y += 10;
-  doc.setFontSize(16);
-  doc.text("Monthly Expense Report", pageWidth / 2, y, { align: "center" });
+doc.text("INCOME",20,y);
+y+=10;
 
-  y += 15;
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-
-  doc.text(`Report Period: ${month} ${year}`, 20, y);
-  doc.text(`Generated on: ${formattedDate}`, pageWidth - 20, y, { align: "right" });
-
-  y += 5;
-  doc.line(20, y, pageWidth - 20, y);
-
-  // ===== INCOME SUMMARY =====
-  y += 15;
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(14);
-  doc.text("INCOME SUMMARY", 20, y);
-
-  y += 10;
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(13);
-
-  doc.text("Monthly Salary", 20, y);
-  doc.text("Rs.78,97,89,789", pageWidth - 20, y, { align: "right" });
-
-  y += 10;
-  doc.text("Other Income", 20, y);
-  doc.text("Rs.0", pageWidth - 20, y, { align: "right" });
-
-  y += 10;
-  doc.text("Total Income", 20, y);
-  doc.text("Rs.78,97,89,789", pageWidth - 20, y, { align: "right" });
-
-  // ===== EXPENSE SUMMARY =====
-  y += 20;
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(14);
-  doc.text("EXPENSE SUMMARY", 20, y);
-
-  y += 10;
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(13);
-
-  doc.text("Total Expenses", 20, y);
-  doc.text("Rs.0", pageWidth - 20, y, { align: "right" });
-
-  y += 10;
-  doc.text("Investments", 20, y);
-  doc.text("Rs.0", pageWidth - 20, y, { align: "right" });
-
-  y += 10;
-  doc.text("Net Balance", 20, y);
-  doc.text("Rs.78,97,89,789", pageWidth - 20, y, { align: "right" });
-
-  // ===== SAVE =====
-  doc.save(`MoneyMitra_Report_${month}_${year}.pdf`);
-}
-/* ===============================
-   AUTO GENERATE MONTHS
-================================= */
-
-const monthSelect = document.getElementById("month");
-const months = [
-  "January","February","March","April","May","June",
-  "July","August","September","October","November","December"
-];
-
-months.forEach((month, index) => {
-  const option = document.createElement("option");
-  option.value = index + 1;
-  option.textContent = month;
-
-  if (index === new Date().getMonth()) {
-    option.selected = true;
-  }
-
-  monthSelect.appendChild(option);
+incomes.forEach(income=>{
+  doc.text(income.source,20,y);
+  doc.text("Rs "+income.amount,190,y,{align:"right"});
+  y+=10;
 });
 
+doc.text("Total Income",20,y);
+doc.text("Rs "+totalIncome,190,y,{align:"right"});
+y+=15;
 
-/* ===============================
-   AUTO GENERATE YEARS
-================================= */
+doc.text("EXPENSE",20,y);
+y+=10;
 
-const yearSelect = document.getElementById("year");
-const currentYear = new Date().getFullYear();
+expenses.forEach(expense=>{
+  doc.text(expense.category,20,y);
+  doc.text("Rs "+expense.amount,190,y,{align:"right"});
+  y+=10;
+});
 
-for (let i = currentYear - 10; i <= currentYear + 5; i++) {
-  const option = document.createElement("option");
-  option.value = i;
-  option.textContent = i;
+doc.text("Total Expense",20,y);
+doc.text("Rs "+totalExpense,190,y,{align:"right"});
+y+=15;
 
-  if (i === currentYear) {
-    option.selected = true;
-  }
+doc.text("Balance",20,y);
+doc.text("Rs "+balance,190,y,{align:"right"});
 
-  yearSelect.appendChild(option);
+return doc.output("blob");
 }
 
 
-/* ===============================
-   SHARE FUNCTION
-================================= */
 
-function shareReport() {
+function downloadPDF(){
 
-  const container = document.querySelector(".container");
+const blob = generatePDFBlob();
 
-  html2canvas(container).then(canvas => {
-    canvas.toBlob(blob => {
+const month = document.getElementById("monthSelect").value;
+const year = document.getElementById("yearSelect").value;
 
-      const file = new File([blob], "Expense_Report.png", { type: "image/png" });
+const fileName = `MoneyMitra_${month}_${year}.pdf`;
 
-      if (navigator.share) {
-        navigator.share({
-          title: "Expense Report",
-          text: "Here is my expense report.",
-          files: [file]
-        }).catch(error => console.log(error));
-      } else {
-        alert("Sharing is not supported on this browser. Please use mobile.");
-      }
-
-    });
-  });
+const link = document.createElement("a");
+link.href = URL.createObjectURL(blob);
+link.download = fileName;
+link.click();
 
 }
 
 
-/* ===============================
-   GO BACK FUNCTION
-================================= */
+
+async function sharePDF(){
+
+const blob = generatePDFBlob();
+
+const month = document.getElementById("monthSelect").value;
+const year = document.getElementById("yearSelect").value;
+
+const file = new File(
+[blob],
+`MoneyMitra_${month}_${year}.pdf`,
+{ type:"application/pdf" }
+);
+
+if(navigator.canShare &&
+navigator.canShare({files:[file]})){
+
+await navigator.share({
+title:"MoneyMitra Report",
+text:"My Expense Report",
+files:[file]
+});
+
+}
+else{
+downloadPDF();
+alert("Sharing not supported. File downloaded.");
+}
+
+}
