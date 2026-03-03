@@ -1,40 +1,26 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ===============================
+   MOBILE FIRST
+================================ */
 
 body {
-    background: #e9e9ef;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: "Segoe UI", sans-serif;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 20px 15px;
 }
 
-/* Outer Mobile Wrapper */
-.phone-wrapper {
+/* Container */
+.container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-/* Mobile Screen */
-.phone-container {
-    width: 380px;
-    background: #f8f8fb;
-    border-radius: 35px;
-    padding: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    max-width: 420px;
+    margin: auto;
 }
 
 /* Header */
 .header {
-    position: relative;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    position: relative;
 }
 
 .header h2 {
@@ -42,68 +28,55 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-size: 20px;
-    color: #2d2d2d;
 }
+
+/* Back button */
 .circle-btn {
     width: 38px;
     height: 38px;
-    background: #aba4e7a6;
-    color: rgb(28, 27, 27);
+    background: var(--primary-light);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    cursor: pointer;
-
-}
-a{
     text-decoration: none;
-    color: white;
+    color: var(--dark);
 }
+
 /* Total Card */
 .total-card {
-    background: linear-gradient(135deg, #6c5ce7, #8e7bff);
-    padding: 20px;
-    border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary), #7E6BFF);
+    padding: 22px;
+    border-radius: 22px;
     color: white;
     margin-bottom: 25px;
 }
 
-.total-card p {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-.total-card h1 {
-    font-size: 28px;
-    margin-top: 5px;
-}
-
 /* Form Card */
 .form-card {
-    background: white;
-    padding: 20px;
+    background: #ffffff;
+    padding: 22px;
     border-radius: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
 .form-card h3 {
-    margin-bottom: 15px;
-    color: #2d2d2d;
+    margin-bottom: 20px;
 }
 
 /* Labels */
 label {
     font-size: 13px;
-    color: #555;
-    display: block;
     margin-bottom: 5px;
+    display: block;
 }
 
 /* Inputs */
-input {
+input,
+select,
+textarea {
     width: 100%;
-    padding: 12px 15px;
+    padding: 13px 16px;
     border-radius: 15px;
     border: 1px solid #ddd;
     margin-bottom: 15px;
@@ -111,14 +84,10 @@ input {
     outline: none;
 }
 
-input:focus {
-    border-color: #6c5ce7;
-}
-
-/* Two fields row */
+/* Double field */
 .double-field {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
 .double-field div {
@@ -126,12 +95,12 @@ input:focus {
 }
 
 /* Button */
-button {
+.btn {
     width: 100%;
-    padding: 13px;
-    border: none;
+    padding: 14px;
     border-radius: 25px;
-    background: linear-gradient(135deg, #6c5ce7, #8e7bff);
+    border: none;
+    background: linear-gradient(135deg, var(--primary), #7E6BFF);
     color: white;
     font-weight: 600;
     cursor: pointer;
@@ -139,6 +108,52 @@ button {
     transition: 0.3s ease;
 }
 
-button:hover {
+.btn:hover {
     opacity: 0.9;
+}
+
+
+/* ===============================
+   DESKTOP VIEW
+================================ */
+
+@media (min-width: 992px) {
+
+    body {
+        align-items: flex-start !important;
+        padding: 50px 20px;
+    }
+
+    .container {
+        max-width: 850px;   /* NOT too wide */
+        width: 100%;
+    }
+
+    .total-card {
+        padding: 35px;
+        border-radius: 30px;
+    }
+
+    .total-card h1 {
+        font-size: 42px;
+    }
+
+    .form-card {
+        padding: 40px;
+        border-radius: 30px;
+    }
+
+    .form-card h3 {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    .double-field {
+        gap: 25px;
+    }
+
+    .btn {
+        margin-top: 25px;
+        font-size: 16px;
+    }
 }

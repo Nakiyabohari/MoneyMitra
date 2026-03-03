@@ -1,15 +1,52 @@
+/* ===============================
+   FIX: SCROLL INSIDE CONTAINER
+================================ */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     align-items: flex-start !important;
-    padding: 20px 0;
+    padding: 20px 10px;
+    overflow: hidden;   /* ❌ No page scroll */
 }
+
+/* ===============================
+   CONTAINER WITH SIDE SCROLL
+================================ */
 
 .container {
-    height: 90vh !important;
-    overflow-y: auto !important;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+
+    height: 90vh;           /* 🔥 Important */
+    overflow-y: auto;       /* 🔥 Scroll inside container */
+    overflow-x: hidden;
+
+    padding: 20px;
     padding-bottom: 40px;
+
+    background: #f8f8fb;    /* same background feel */
+    border-radius: 25px;
 }
 
-/* Header */
+/* Optional: Smooth scrollbar look */
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #7E6BFF;
+    border-radius: 10px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -35,7 +72,10 @@ body {
     color: white;
 }
 
-/* Total Card */
+/* ===============================
+   TOTAL CARD
+================================ */
+
 .total-card {
     background: linear-gradient(135deg, var(--primary), #7E6BFF);
     padding: 25px;
@@ -44,7 +84,15 @@ body {
     margin-bottom: 30px;
 }
 
-/* EMI Cards */
+/* Section Title */
+.section-title {
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   EMI CARD
+================================ */
+
 .emi-card {
     background: #ffffff;
     padding: 20px;
@@ -64,12 +112,8 @@ body {
     height: 35px;
     border-radius: 50%;
     background: var(--primary-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 14px;
-    color: var(--primary);
+    border: none;
+    cursor: pointer;
 }
 
 .emi-amount {
@@ -89,36 +133,48 @@ body {
     height: 100%;
     background: var(--primary);
 }
+
 /* ===============================
-   RESPONSIVE DESIGN
+   DESKTOP VIEW
 ================================ */
 
-/* Desktop View
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 
     body {
-        align-items: flex-start;
         padding: 40px;
     }
 
     .container {
-        width: 100%;
-        max-width: 900px;
-        margin: auto;
-        height: auto !important;
+        max-width: 1200px;
+        height: 90vh;     /* 🔥 Keep scroll inside */
     }
 
     .emi-card {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: inline-block;
+        width: 48%;
+        vertical-align: top;
+        margin-right: 2%;
+        margin-bottom: 25px;
     }
 
-    .emi-card h2 {
-        margin: 0;
+    .emi-card:nth-of-type(2n) {
+        margin-right: 0;
+    }
+
+    .total-card {
+        padding: 40px;
+        border-radius: 30px;
+    }
+
+    .total-card h1 {
+        font-size: 42px;
+    }
+
+    .emi-amount {
+        font-size: 24px;
     }
 
     .progress-bar {
-        width: 200px;
+        height: 8px;
     }
-} */
+}

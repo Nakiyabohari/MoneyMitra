@@ -1,33 +1,55 @@
 
-// Set today's date default
-document.getElementById("date").valueAsDate = new Date();
+function handleCategoryChange() {
+    const select = document.getElementById("categorySelect");
+    const selectBox = document.getElementById("categorySelectBox");
+    const inputBox = document.getElementById("categoryInputBox");
 
-function goBack() {
-    alert("Back button clicked");
+    if (select.value === "custom") {
+        selectBox.classList.add("hidden");
+        inputBox.classList.remove("hidden");
+        document.getElementById("categoryInput").focus();
+    }
 }
 
-function saveExpense() {
+// When user presses Enter
+function handleCustomEnter(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        finalizeCustomCategory();
+    }
+}
 
-    const expense = {
-        amount: document.getElementById("amount").value,
-        category: document.getElementById("category").value,
-        date: document.getElementById("date").value,
-        payment: document.getElementById("payment").value,
-        notes: document.getElementById("notes").value
-    };
+function finalizeCustomCategory() {
+    const input = document.getElementById("categoryInput");
+    const value = input.value.trim();
+    const select = document.getElementById("categorySelect");
+    const selectBox = document.getElementById("categorySelectBox");
+    const inputBox = document.getElementById("categoryInputBox");
 
-    if (!expense.amount || !expense.category || !expense.payment) {
-        alert("Please fill required fields");
+    if (value === "") {
+        // If empty → go back to dropdown
+        inputBox.classList.add("hidden");
+        selectBox.classList.remove("hidden");
+        select.value = "";
         return;
     }
 
-    console.log("Expense Saved:", expense);
+    // Remove existing custom options (avoid duplicates)
+    const existingOption = document.getElementById("dynamicCustomOption");
+    if (existingOption) {
+        existingOption.remove();
+    }
 
-    alert("Expense Saved Successfully!👍🏻🤩");
+    // Create new option
+    const newOption = document.createElement("option");
+    newOption.value = value;
+    newOption.text = value;
+    newOption.selected = true;
+    newOption.id = "dynamicCustomOption";
 
-    // Clear form
-    document.getElementById("amount").value = "";
-    document.getElementById("category").value = "";
-    document.getElementById("payment").value = "";
-    document.getElementById("notes").value = "";
+    select.appendChild(newOption);
+
+    // Switch back to dropdown
+    inputBox.classList.add("hidden");
+    selectBox.classList.remove("hidden");
 }

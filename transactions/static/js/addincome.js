@@ -1,53 +1,57 @@
-const amountInput = document.getElementById("amountInput");
-const displayAmount = document.getElementById("displayAmount");
-const form = document.getElementById("incomeForm");
-const successMsg = document.getElementById("successMsg");
-
-/* Live amount update */
-amountInput.addEventListener("input", function(){
-    let value = amountInput.value;
-    if(value === "" || value <= 0){
-        displayAmount.textContent = "₹0";
-    } else {
-        displayAmount.textContent = "₹" + parseFloat(value).toLocaleString("en-IN");
-    }
+/* Live amount display */
+document.getElementById("amountInput").addEventListener("input", function () {
+    const value = this.value || 0;
+    document.getElementById("displayAmount").innerText = "₹" + value;
 });
 
-/* Form Submit */
-form.addEventListener("submit", function(e){
-    e.preventDefault();
+/* Handle dropdown change */
+function handleSourceChange() {
+    const select = document.getElementById("incomeSourceSelect");
+    const selectBox = document.getElementById("sourceSelectBox");
+    const inputBox = document.getElementById("sourceInputBox");
 
-    const amount = amountInput.value;
-    const source = document.getElementById("sourceInput").value;
-    const payment = document.getElementById("paymentInput").value;
+    if (select.value === "Other") {
+        selectBox.classList.add("hidden");
+        inputBox.classList.remove("hidden");
+        document.getElementById("customSourceInput").focus();
+    }
+}
 
-    if(amount <= 0){
-        alert("Please enter valid amount");
+/* When user presses Enter */
+function handleCustomEnter(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        finalizeCustomSource();
+    }
+}
+
+/* Finalize custom source */
+function finalizeCustomSource() {
+    const input = document.getElementById("customSourceInput");
+    const value = input.value.trim();
+    const select = document.getElementById("incomeSourceSelect");
+    const selectBox = document.getElementById("sourceSelectBox");
+    const inputBox = document.getElementById("sourceInputBox");
+
+    if (value === "") {
+        inputBox.classList.add("hidden");
+        selectBox.classList.remove("hidden");
+        select.value = "";
         return;
     }
 
-    if(source === "" || payment === ""){
-        alert("Please select all required fields");
-        return;
-    }
+    // Remove previous dynamic option if exists
+    const oldOption = document.getElementById("dynamicIncomeOption");
+    if (oldOption) oldOption.remove();
 
-    // Example: Save to localStorage
-    let incomes = JSON.parse(localStorage.getItem("incomes")) || [];
-    incomes.push({
-        amount,
-        source,
-        payment,
-        notes: document.getElementById("notesInput").value,
-        date: new Date().toLocaleDateString()
-    });
+    const newOption = document.createElement("option");
+    newOption.value = value;
+    newOption.text = value;
+    newOption.selected = true;
+    newOption.id = "dynamicIncomeOption";
 
-    localStorage.setItem("incomes", JSON.stringify(incomes));
+    select.appendChild(newOption);
 
-    successMsg.style.display = "block";
-    form.reset();
-    displayAmount.textContent = "₹0";
-
-    setTimeout(() => {
-        successMsg.style.display = "none";
-    }, 2000);
-});
+    inputBox.classList.add("hidden");
+    selectBox.classList.remove("hidden");
+}

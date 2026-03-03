@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Income</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/income.css' %}">
+</head>
+
+<body>
+
+<div class="page-wrapper">
+    <div class="app-card">
+
+        <!-- ✅ PROGRESS BAR -->
+        <div class="progress-bar">
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+        </div>
+
+        <h1>Enter your monthly income</h1>
+        <p class="subtitle">
+            This helps us track your expenses and suggest savings
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="salary-card">
+                <label>Monthly Salary</label>
+                <div class="salary-box">
+                    <span class="rupee">₹</span>
+                    <input type="text" id="salaryDisplay" class="salary-input" placeholder="0">
+                    <input type="hidden" name="salary" id="salaryReal">
+                </div>
+            </div>
+
+            <div class="info-box">
+                <span class="info-icon">i</span>
+                <p>
+                    Your income information is stored securely and used only to calculate your budget
+                </p>
+            </div>
+
+            <button type="submit" class="continue-btn">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+<script src="{% static 'js/income.js' %}"></script>
+
+</body>
+</html>

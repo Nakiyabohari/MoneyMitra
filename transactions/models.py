@@ -10,7 +10,7 @@ class Income_model(models.Model):
 class Expense_model(models.Model):
     expense_amount = models.IntegerField()
     category = models.CharField(max_length=100)
-    date = models.IntegerField()
+    date = models.DateField()   # ✅ FIXED
     expense_payment_method = models.CharField(max_length=100)
     notes = models.CharField(max_length=100)
 

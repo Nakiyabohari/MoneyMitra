@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>EMI Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" href="{% static 'css/emimanager.css' %}">
@@ -37,6 +36,7 @@
                 <h4>{{ i.emi_name }}</h4>
                 <p>{{ i.duration }} months</p>
             </div>
+
             <form method="post" action="{% url 'delete_emi' i.id %}">
                 {% csrf_token %}
                 <button type="submit" class="delete-btn">🗑</button>
