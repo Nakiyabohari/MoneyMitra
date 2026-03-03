@@ -2,32 +2,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Create Account</title>
+    <title>Create Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 
 <body>
-<div class="container">
 
-<h1>Create Account</h1>
+<div class="main-wrapper">
+    <div class="register-container">
 
-<form method="POST">
-{% csrf_token %}
+        <h1>Create Account</h1>
+        <p class="subtitle">Sign up to get started</p>
 
-<input type="text" name="full_name" placeholder="Full Name" required>
-<input type="text" name="occupation" placeholder="Occupation" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="password" name="password" placeholder="Password" required>
+        <form method="POST">
+            {% csrf_token %}
 
-<button class="btn">Sign Up</button>
-</form>
+            <label>Full Name</label>
+            <input type="text" name="full_name" placeholder="Enter your full name" required>
 
-<p>Already have account?
-<a href="{% url 'login' %}">Login</a>
-</p>
-<script src="{% static 'js/register.js' %}"></script>
+            <label>Occupation</label>
+            <input type="text" name="occupation" placeholder="Enter your occupation" required>
 
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <p class="bottom-text">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+
+    </div>
 </div>
+
+<script src="{% static 'js/register.js' %}"></script>
 </body>
 </html>

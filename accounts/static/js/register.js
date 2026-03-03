@@ -38,15 +38,9 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
     });
-
-    function showError(input, message){
-        const error = document.createElement("div");
-        error.classList.add("error-msg");
-        error.style.color = "red";
-        error.style.fontSize = "13px";
-        error.style.marginTop = "5px";
-        error.innerText = message;
-        input.parentNode.appendChild(error);
-    }
-
-});
+function showError(input, message){
+    const error = document.createElement("div");
+    error.classList.add("error-msg");
+    error.innerText = message;
+    input.insertAdjacentElement("afterend", error);
+}
