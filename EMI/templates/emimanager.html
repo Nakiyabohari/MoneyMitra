@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/emimanager.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <a href="" class="icon-btn">←</a>
+        <h2>EMI Manager</h2>
+        <a href="{% url 'addemi' %}" class="icon-btn plus">+</a>
+    </div>
+
+    <!-- Total EMI Card -->
+    <div class="total-card">
+        <p>Total Monthly EMI</p>
+        <h1 id="totalEmi">₹{{ total|floatformat:0 }}</h1>
+    </div>
+
+    <h3 class="section-title">Active EMIs</h3>
+
+    {% for i in u %}
+    <div class="emi-card">
+
+        <div class="emi-top">
+            <div>
+                <h4>{{ i.emi_name }}</h4>
+                <p>{{ i.duration }} months</p>
+            </div>
+
+            <form method="post" action="{% url 'delete_emi' i.id %}">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">🗑</button>
+            </form>
+        </div>
+
+        <h2 class="emi-amount">₹{{ i.monthly_amount }}/month</h2>
+
+        <div class="progress-bar">
+            <div class="progress" style="width: {{ i.duration|floatformat:0 }}%;"></div>
+        </div>
+
+    </div>
+    {% empty %}
+        <p>No EMI added yet.</p>
+    {% endfor %}
+
+</div>
+
+<script src="{% static 'js/emimanager.js' %}"></script>
+
+</body>
+</html>

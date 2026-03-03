@@ -1,149 +1,259 @@
-/* ===============================
-   CALENDAR PAGE - MODERN UI
-================================ */
+/* =====================================
+   BACKGROUND
+===================================== */
 
-/* Page Layout */
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:linear-gradient(135deg,#ebe8ff,#e2defa);
+    min-height:100vh;
+}
+
+/* =====================================
+   PAGE WRAPPER
+===================================== */
+
 .calendar-page{
     display:flex;
-    flex-direction:column;
-    gap:25px;
-}
-
-/* Header */
-.cal-header{
-    display:flex;
+    justify-content:center;
     align-items:center;
-    gap:15px;
+    min-height:100vh;
+    padding:30px 20px;
 }
 
-.cal-header h2{
-    font-size:22px;
-    font-weight:600;
+/* =====================================
+   MAIN CARD
+===================================== */
+
+.cal-container{
+    width:100%;
+    max-width:700px;
+    background:#f3f1ff;
+    border-radius:40px;
+    padding:50px 40px;
+    box-shadow:
+        25px 25px 60px rgba(166,159,255,0.25),
+        -25px -25px 60px rgba(255,255,255,0.95);
+    position:relative;
 }
 
-/* Back Button */
+/* =====================================
+   BACK BUTTON
+===================================== */
+
 .back-btn{
+    position:absolute;
+    top:30px;
+    left:30px;
     width:45px;
     height:45px;
-    border-radius:50%;
-    background:var(--primary-light);
+    border-radius:16px;
+    background:#e9e8ff;
     display:flex;
     align-items:center;
     justify-content:center;
-    cursor:pointer;
     font-size:20px;
-    color:var(--primary);
-    transition:0.2s ease;
+    color:#6c63ff;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(108,99,255,0.2);
 }
 
-.back-btn:hover{
-    transform:scale(1.08);
-}
+/* =====================================
+   CALENDAR CONTENT
+===================================== */
 
-/* Calendar Card */
 .calendar-box{
-    background:#ffffff;
-    border-radius:30px;
-    padding:25px;
-    box-shadow:0 12px 30px rgba(0,0,0,0.06);
+    max-width:520px;
+    margin:auto;
 }
 
-/* Month Navigation */
+/* =====================================
+   MONTH NAVIGATION
+===================================== */
+
 .month-nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    margin-bottom:30px;
 }
 
-/* Month Title */
+.month-nav button{
+    background:#e9e8ff;
+    border:none;
+    width:45px;
+    height:45px;
+    border-radius:16px;
+    cursor:pointer;
+    font-size:18px;
+    color:#6c63ff;
+    box-shadow:0 6px 15px rgba(108,99,255,0.15);
+}
+
+/* =====================================
+   MONTH TITLE
+===================================== */
+
 .month-title{
     text-align:center;
 }
 
-.month-title h3{
-    font-size:20px;
-    font-weight:600;
-    color:var(--dark);
+.month-title h2{
+    margin:0;
+    font-size:30px;
+    font-weight:700;
+    color:#2d1e5f;
 }
 
 .month-title p{
+    margin:4px 0 0;
     font-size:14px;
-    color:var(--primary);
-    margin-top:4px;
+    color:#6c63ff;
 }
 
-/* Navigation Arrows */
-.month-nav span{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:var(--primary-light);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    cursor:pointer;
-    transition:0.2s ease;
-}
+/* =====================================
+   WEEKDAYS
+===================================== */
 
-.month-nav span:hover{
-    transform:scale(1.08);
-}
-
-/* Weekdays + Days Grid */
-.weekdays,
-.days{
+.weekdays{
     display:grid;
     grid-template-columns:repeat(7,1fr);
     text-align:center;
-    gap:8px;
-}
-
-/* Weekday Names */
-.weekdays{
-    color:var(--primary);
     font-weight:600;
-    font-size:14px;
-    margin-bottom:10px;
+    font-size:13px;
+    color:#6c63ff;
+    margin-bottom:20px;
 }
 
-/* Day Cells */
+/* =====================================
+   DAYS GRID
+===================================== */
+
+.days{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:18px;
+}
+
+/* SINGLE DAY */
+
 .days div{
-    aspect-ratio:1 / 1;
+    height:52px;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:50%;
-    font-weight:500;
+    border-radius:18px;
+    background:#ebe9ff;
     cursor:pointer;
+    font-weight:500;
     transition:0.2s ease;
+    box-shadow:
+        6px 6px 18px rgba(166,159,255,0.25),
+        -6px -6px 18px rgba(255,255,255,0.9);
 }
 
 /* Hover Effect */
+
 .days div:hover{
-    background:var(--primary-light);
+    transform:translateY(-3px);
 }
 
-/* Today Style */
-.today{
-    background:var(--primary-light);
-}
+/* TODAY PURPLE */
 
-/* Selected Date Style */
-.selected{
-    background:var(--primary);
+.days .today{
+    background:linear-gradient(135deg,#8c82ff,#6c63ff);
     color:white;
+    font-weight:600;
+    box-shadow:0 12px 25px rgba(108,99,255,0.4);
 }
 
-/* Optional Outline Selection Instead */
-/*
-.selected{
-    border:2px solid var(--primary);
-}
-*/
+/* Active Click */
 
-/* Smooth animation */
-.days div{
-    transition:all 0.2s ease;
+.days div.active{
+    background:linear-gradient(135deg,#8c82ff,#6c63ff);
+    color:white;
+    box-shadow:0 12px 25px rgba(108,99,255,0.4);
+}
+
+/* =====================================
+   TODAY TEXT
+===================================== */
+
+.today-text{
+    margin-top:35px;
+    text-align:center;
+    color:#6c63ff;
+    font-size:14px;
+    font-weight:500;
+}
+
+.today-text::before{
+    content:'●';
+    margin-right:6px;
+    color:#6c63ff;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+/* Tablet */
+
+@media(max-width:768px){
+
+    .calendar-page{
+        padding:20px 15px;
+    }
+
+    .cal-container{
+        max-width:100%;
+        width:100%;
+        padding:35px 25px;
+        border-radius:28px;
+    }
+
+    .calendar-box{
+        max-width:100%;
+    }
+
+    .month-title h2{
+        font-size:24px;
+    }
+
+    .days{
+        gap:14px;
+    }
+
+    .days div{
+        height:48px;
+        font-size:15px;
+    }
+
+    .month-nav button{
+        width:40px;
+        height:40px;
+    }
+}
+
+/* Small Mobile */
+
+@media(max-width:480px){
+
+    .calendar-page{
+        padding:15px;
+    }
+
+    .cal-container{
+        padding:25px 18px;
+        border-radius:24px;
+    }
+
+    .days{
+        gap:12px;
+    }
+
+    .days div{
+        height:42px;
+        font-size:14px;
+    }
 }

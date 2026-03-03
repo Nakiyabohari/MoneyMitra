@@ -1,0 +1,180 @@
+/* ===============================
+   FIX: SCROLL INSIDE CONTAINER
+================================ */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    align-items: flex-start !important;
+    padding: 20px 10px;
+    overflow: hidden;   /* ❌ No page scroll */
+}
+
+/* ===============================
+   CONTAINER WITH SIDE SCROLL
+================================ */
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+
+    height: 90vh;           /* 🔥 Important */
+    overflow-y: auto;       /* 🔥 Scroll inside container */
+    overflow-x: hidden;
+
+    padding: 20px;
+    padding-bottom: 40px;
+
+    background: #f8f8fb;    /* same background feel */
+    border-radius: 25px;
+}
+
+/* Optional: Smooth scrollbar look */
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #7E6BFF;
+    border-radius: 10px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.icon-btn.plus {
+    background: var(--primary);
+    color: white;
+}
+
+/* ===============================
+   TOTAL CARD
+================================ */
+
+.total-card {
+    background: linear-gradient(135deg, var(--primary), #7E6BFF);
+    padding: 25px;
+    border-radius: 25px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* Section Title */
+.section-title {
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   EMI CARD
+================================ */
+
+.emi-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.emi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    border: none;
+    cursor: pointer;
+}
+
+.emi-amount {
+    margin: 15px 0 10px;
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #e6e4f5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary);
+}
+
+/* ===============================
+   DESKTOP VIEW
+================================ */
+
+@media (min-width: 992px) {
+
+    body {
+        padding: 40px;
+    }
+
+    .container {
+        max-width: 1200px;
+        height: 90vh;     /* 🔥 Keep scroll inside */
+    }
+
+    .emi-card {
+        display: inline-block;
+        width: 48%;
+        vertical-align: top;
+        margin-right: 2%;
+        margin-bottom: 25px;
+    }
+
+    .emi-card:nth-of-type(2n) {
+        margin-right: 0;
+    }
+
+    .total-card {
+        padding: 40px;
+        border-radius: 30px;
+    }
+
+    .total-card h1 {
+        font-size: 42px;
+    }
+
+    .emi-amount {
+        font-size: 24px;
+    }
+
+    .progress-bar {
+        height: 8px;
+    }
+}

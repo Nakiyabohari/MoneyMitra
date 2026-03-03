@@ -10,21 +10,6 @@ function selectType(type, element) {
     element.classList.add("active");
 }
 
-/* SIDEBAR TOGGLE */
-function toggleMitraChat() {
-    const chat = document.getElementById("mitraChatWrapper");
-
-    chat.classList.toggle("active");
-    document.body.classList.toggle("chat-open");
-
-    setTimeout(() => {
-        const input = document.getElementById("chatInput");
-        if (chat.classList.contains("active")) {
-            input.focus();
-        }
-    }, 300);
-}
-
 /* CSRF */
 function getCookie(name) {
     let cookieValue = null;
@@ -62,19 +47,14 @@ function addMessageToChat(message, sender) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-/* SEND MESSAGE */
+/* TYPING INDICATOR */
 function showTypingIndicator() {
     const chatBox = document.getElementById("chatBox");
 
     const typingDiv = document.createElement("div");
-    typingDiv.classList.add("typing-bubble");
+    typingDiv.classList.add("chat-bubble", "chat-bot");
     typingDiv.id = "typingIndicator";
-
-    typingDiv.innerHTML = `
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    `;
+    typingDiv.innerText = "Mitra AI is typing...";
 
     chatBox.appendChild(typingDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -85,10 +65,12 @@ function removeTypingIndicator() {
     if (typing) typing.remove();
 }
 
+/* SEND MESSAGE */
 function sendChatMessage() {
 
     const input = document.getElementById("chatInput");
     const message = input.value.trim();
+
     if (!message) return;
 
     addMessageToChat(message, "user");
@@ -96,29 +78,18 @@ function sendChatMessage() {
 
     showTypingIndicator();
 
-    const startTime = Date.now();
-
     fetch("/investment/mitra-ai/", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             "X-CSRFToken": getCookie("csrftoken")
         },
-        body: `amount=${encodeURIComponent(message)}`
+        body: `message=${encodeURIComponent(message)}`
     })
     .then(response => response.json())
     .then(data => {
-
-        const elapsed = Date.now() - startTime;
-        const minDelay = 2000; // 2 seconds minimum
-
-        const remainingTime = minDelay - elapsed;
-
-        setTimeout(() => {
-            removeTypingIndicator();
-            addMessageToChat(data.reply, "bot");
-        }, remainingTime > 0 ? remainingTime : 0);
-
+        removeTypingIndicator();
+        addMessageToChat(data.reply, "bot");
     })
     .catch(error => {
         removeTypingIndicator();
@@ -126,7 +97,8 @@ function sendChatMessage() {
         console.error(error);
     });
 }
-/* ENTER KEY */
+
+/* ENTER KEY SUPPORT */
 document.addEventListener("DOMContentLoaded", function() {
     const input = document.getElementById("chatInput");
 

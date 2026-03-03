@@ -23,16 +23,19 @@ def investment_view(request):
 
 
 # ==============================
-# MITRA AI VIEW
+# MITRA AI VIEW (FINAL WORKING)
+# ==============================
+# ==============================
+# MITRA AI VIEW (FINAL WORKING)
 # ==============================
 def mitra_ai(request):
 
     if request.method != "POST":
         return JsonResponse({"reply": "Invalid request method."})
 
-    user_message = request.POST.get("amount")
+    user_message = request.POST.get("message")
 
-    if not user_message:
+    if not user_message or user_message.strip() == "":
         return JsonResponse({"reply": "Ask me something 😊"})
 
     try:
@@ -41,24 +44,27 @@ def mitra_ai(request):
             base_url="https://api.groq.com/openai/v1"
         )
 
+        system_prompt = """
+You are MoneyMitra AI, a financial assistant for Indian students.
+
+IMPORTANT RULES:
+- Use only the exact numbers provided by the user.
+- Never modify numbers.
+- If user says 900, it means 900 (NOT 9000).
+- Repeat investment values before giving advice.
+- Be accurate over creative.
+- Keep response clear and practical.
+- Currency is Indian Rupees (₹).
+- If information is incomplete, ask a follow-up question.
+"""
+
         response = client.chat.completions.create(
             model="llama-3.1-8b-instant",
+            temperature=0.3,  # lower = more accurate
             messages=[
-                {
-                    "role": "system",
-                    "content": """
-                    You are Mitra AI, a smart and friendly Indian financial assistant.
-                    Speak naturally like ChatGPT.
-                    Keep replies helpful, practical and slightly conversational.
-                    Avoid robotic formatting.
-                    """
-                },
-                {
-                    "role": "user",
-                    "content": user_message
-                }
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message}
             ],
-            temperature=0.9   # 🔥 makes it more human
         )
 
         ai_text = response.choices[0].message.content.strip()
@@ -70,4 +76,3 @@ def mitra_ai(request):
         return JsonResponse({
             "reply": "Mitra AI is temporarily unavailable."
         })
-    

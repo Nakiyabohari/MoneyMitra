@@ -27,7 +27,44 @@
 <div class="back-btn" onclick="history.back()">←</div>
 
 <h2>Add Income</h2>
+        <!-- Amount -->
+        <label>Amount</label>
+        <input type="number" name="amount" placeholder="₹ 0.00" required>
 
+        <!-- Income Source -->
+        <label>Income Source</label>
+        <select name="income_source" required>
+            <option value="">Select Income Source</option>
+            <option value="Salary">Salary</option>
+            <option value="Freelancing">Freelancing</option>
+            <option value="Business">Business</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- Custom Income Source -->
+        <label>If Other, Enter Custom Source</label>
+        <input
+            type="text"
+            name="custom_income_source"
+            placeholder="Enter custom income source (optional)">
+
+        <!-- Payment Method -->
+        <label>Payment Method</label>
+        <select name="payment_method" required>
+            <option value="">Select Payment Method</option>
+            <option value="Cash">Cash</option>
+            <option value="UPI">UPI</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="Card">Card</option>
+        </select>
+
+        <!-- Notes -->
+        <label>Notes (Optional)</label>
+        <textarea name="notes" placeholder="Add any additional notes..."></textarea>
+
+        <button type="submit">Save Income</button>
+
+    </form>
 </div>
 
 
