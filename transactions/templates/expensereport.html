@@ -1,77 +1,199 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Expense Reports</title>
+
 <link rel="stylesheet" href="{% static 'css/expensereport.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
 
-<!-- jsPDF CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+</style>
 </head>
+
 <body>
 
-<div class="container">
-  
-  <h2 style="display:flex; align-items:center; justify-content:center; gap:10px; position:relative;">
-    <span onclick="goBack()" style="position:absolute; left:0; cursor:pointer; font-size:20px;">←</span>
-    Expense Reports
-  </h2>
+<div class="container" id="reportContent">
 
-  <div class="section-title">Select Period</div>
-  <div class="select-group">
+<div class="header">
+  <div class="back" onclick="history.back()">←</div>
+  <h2>Expense Reports</h2>
+</div>
 
-    <!-- Month Dropdown (Auto Generated) -->
-    <select id="month"></select>
+<!-- SELECT PERIOD -->
+<div class="period-section">
 
-    <!-- Year Dropdown (Auto Generated) -->
-    <select id="year"></select>
-
+  <div class="period-title">
+    <span>📅</span>
+    <span>Select Period</span>
   </div>
 
-  <div class="button-group">
-    <button class="btn download" onclick="downloadPDF()">Download</button>
-    <button class="btn share" onclick="shareReport()">Share</button>
-  </div>
+  <div class="select-box">
 
-  <div class="card income">
-    <h3>Income Summary</h3>
-    <div class="row"><span>Monthly Salary</span><span id="salary">₹7,67,67,678</span></div>
-    <div class="row"><span>Other Income</span><span>₹0</span></div>
-    <div class="row total"><span>Total Income</span><span>₹7,67,67,678</span></div>
-  </div>
+    <select id="monthSelect">
+      {% for m in months %}
+      <option value="{{ m }}">{{ m }}</option>
+      {% endfor %}
+    </select>
 
-  <div class="card expense">
-    <h3>Expense Summary</h3>
-    <div class="row"><span>Total Expenses</span><span>₹0</span></div>
-    <div class="row"><span>Savings Goal</span><span>₹0</span></div>
-    <div class="row"><span>Investments</span><span>₹0</span></div>
-    <div class="row"><span>EMI Payments</span><span>₹0</span></div>
-  </div>
+    <select id="yearSelect">
+      {% for y in years %}
+      <option value="{{ y }}">{{ y }}</option>
+      {% endfor %}
+    </select>
 
-  <div class="card balance">
-    <div>Net Balance</div>
-    <div class="big-amount">₹7,67,67,678</div>
-    <div>Surplus</div>
-  </div>
-
-  <div class="card transactions">
-    <div>Total Transactions</div>
-    <div class="big-amount">0</div>
   </div>
 
 </div>
 
-<!-- html2canvas -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- BUTTONS -->
+<div class="buttons">
 
+  <button class="btn download" onclick="downloadPDF()">
+    Download
+  </button>
+
+  <button class="btn share" onclick="sharePDF()">
+    Share
+  </button>
+
+</div>
+
+
+<!-- INCOME SUMMARY -->
+<div class="card income">
+
+<h3>Income Summary</h3>
+
+{% for income in incomes %}
+<div class="row">
+  <span>{{ income.income_source }}</span>
+  <span>₹{{ income.amount }}</span>
+</div>
+{% empty %}
+<div>No income records</div>
+{% endfor %}
+
+<div class="row total">
+  <span>Total Income</span>
+  <span>₹{{ total_income }}</span>
+</div>
+
+</div>
+
+
+<!-- EXPENSE SUMMARY -->
+<div class="card expense">
+
+<h3>Expense Summary</h3>
+
+{% for expense in expenses %}
+<div class="row">
+  <span>{{ expense.category }}</span>
+  <span>₹{{ expense.expense_amount }}</span>
+</div>
+{% empty %}
+<div>No expense records</div>
+{% endfor %}
+
+<div class="row total">
+  <span>Total Expense</span>
+  <span>₹{{ total_expense }}</span>
+</div>
+
+</div>
+
+
+<!-- NET BALANCE -->
+<div class="card balance">
+
+<div>Net Balance</div>
+
+<div class="big">
+₹{{ balance }}
+</div>
+
+<div>
+{% if balance >= 0 %}
+Surplus
+{% else %}
+Deficit
+{% endif %}
+</div>
+
+</div>
+
+
+<!-- CATEGORY BREAKDOWN -->
+<div class="card">
+
+<h3>Category Breakdown</h3>
+
+{% if total_expense > 0 %}
+
+{% for expense in expenses %}
+
+{% widthratio expense.expense_amount total_expense 100 as percent %}
+
+<div class="row">
+<span>{{ expense.category }}</span>
+<span>{{ percent }}%</span>
+</div>
+
+<div class="progress">
+<div class="progress-bar" style="width:{{ percent }}%"></div>
+</div>
+
+{% endfor %}
+
+{% else %}
+<div>No expenses</div>
+{% endif %}
+
+</div>
+
+
+<!-- TOTAL TRANSACTIONS -->
+<div class="card balance">
+
+<div>Total Transactions</div>
+
+<div class="big">
+{{ total_transactions }}
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- PDF LIBRARY -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- 🔥 PASS DJANGO DATA TO JS -->
 <script>
+<<<<<<< HEAD
+  const incomes = [
+    {% for income in incomes %}
+    {
+      source: "{{ income.income_source|escapejs }}",
+      amount: "{{ income.amount }}"
+    },
+    {% endfor %}
+  ];
+
+  const expenses = [
+    {% for expense in expenses %}
+    {
+      category: "{{ expense.category|escapejs }}",
+      amount: "{{ expense.expense_amount }}"
+    },
+    {% endfor %}
+  ];
+=======
 /* ===============================
   AUTO GENERATE MONTHS
 ================================= */
@@ -151,8 +273,16 @@ function shareReport() {
 function goBack() {
   window.history.back();
 }
+>>>>>>> 821e6a3ce6c26beef8c82db054116aa28b3ace5e
 
+  const totalIncome = "{{ total_income }}";
+  const totalExpense = "{{ total_expense }}";
+  const balance = "{{ balance }}";
 </script>
+
+<!-- ✅ YOUR EXTERNAL JS FILE -->
+<script src="{% static 'js/expensereport.js' %}"></script>
+
 
 </body>
 </html>
