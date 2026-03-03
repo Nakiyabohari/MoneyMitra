@@ -301,7 +301,8 @@ body {
         font-size: 18px;
     }
 
-    .mitra-chatbox {
+    .mitra-chat
+    box {
         flex: 1;
         overflow-y: auto;
         margin: 20px 0;
