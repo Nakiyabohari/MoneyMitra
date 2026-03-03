@@ -2,10 +2,13 @@
    MOBILE FIRST
 ================================ */
 
+/* Background color added here */
 body {
+    background-color: #d1baff40;  /* ← your image color */
     align-items: flex-start !important;
     justify-content: center !important;
     padding: 20px 15px;
+    min-height: 100vh;
 }
 
 /* Container */
@@ -57,7 +60,7 @@ body {
     background: #ffffff;
     padding: 22px;
     border-radius: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
 .form-card h3 {
@@ -82,6 +85,7 @@ textarea {
     margin-bottom: 15px;
     font-size: 14px;
     outline: none;
+    background: #f9f9ff;
 }
 
 /* Double field */
@@ -125,7 +129,7 @@ textarea {
     }
 
     .container {
-        max-width: 850px;   /* NOT too wide */
+        max-width: 850px;
         width: 100%;
     }
 

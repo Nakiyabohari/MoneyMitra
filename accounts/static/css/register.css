@@ -1,58 +1,100 @@
-/* ===== PAGE BACKGROUND ===== */
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(145deg, #e9e6ff, #f5f4ff);
+}
+
+/* ===== CENTER WRAPPER ===== */
+.main-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;   /* prevent edge touching on mobile */
+    padding: 20px;
 }
 
-/* ===== REGISTER CARD ===== */
-.container {
+/* ===== REGISTER CONTAINER ===== */
+.register-container {
     width: 100%;
-    max-width: 500px;   /* increased from 420px */
-    background: #f0f0ff;
-    padding: 50px 40px; /* bigger spacing */
-    border-radius: 32px;
-    text-align: center;
-    box-shadow:
-        20px 20px 40px rgba(166, 159, 255, 0.25),
-        -20px -20px 40px rgba(255, 255, 255, 0.9);
-    transition: 0.3s ease;
+    max-width: 400px;
+    transition: all 0.4s ease;
+}
+
+/* ===== DESKTOP SOFT BOX ===== */
+@media (min-width: 768px) {
+    .register-container {
+        background: #f0f0ff;
+        padding: 55px 45px;
+        border-radius: 30px;
+
+        box-shadow:
+            20px 20px 40px rgba(166, 159, 255, 0.25),
+            -20px -20px 40px rgba(255, 255, 255, 0.9);
+    }
+
+    /* 🔥 GLOW EFFECT ON HOVER */
+    .register-container:hover {
+        transform: translateY(-6px);
+
+        box-shadow:
+            0 0 25px rgba(108, 99, 255, 0.35),
+            20px 20px 40px rgba(166, 159, 255, 0.25),
+            -20px -20px 40px rgba(255, 255, 255, 0.9);
+    }
 }
 
 /* ===== TITLE ===== */
-.container h1 {
-    margin-bottom: 35px;
-    font-weight: 700;
+.register-container h1 {
     font-size: 28px;
+    font-weight: 700;
     color: #2f2d4a;
+    margin-bottom: 6px;
 }
 
-/* ===== INPUT FIELDS ===== */
-.container input {
+.subtitle {
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+/* ===== LABEL ===== */
+label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ===== INPUT ===== */
+.register-container input {
     width: 100%;
-    padding: 18px;   /* bigger inputs */
+    padding: 16px 18px;
     margin-bottom: 20px;
-    border-radius: 22px;
+    border-radius: 20px;
     border: none;
-    background: #f0f0ff;
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
+    background: #f0f0ff;
 
     box-shadow:
         inset 6px 6px 12px rgba(166, 159, 255, 0.25),
         inset -6px -6px 12px rgba(255, 255, 255, 0.9);
+
     transition: 0.3s ease;
 }
 
-.container input:focus {
+/* Input focus glow */
+.register-container input:focus {
     box-shadow:
         inset 4px 4px 8px rgba(166, 159, 255, 0.35),
-        inset -4px -4px 8px rgba(255, 255, 255, 1);
+        inset -4px -4px 8px rgba(255, 255, 255, 1),
+        0 0 8px rgba(108, 99, 255, 0.3);
 }
 
 /* ===== BUTTON ===== */
@@ -61,80 +103,44 @@ body {
     padding: 18px;
     border-radius: 30px;
     border: none;
-    background: linear-gradient(135deg, #8c82ff, #6c63ff);
+    background: linear-gradient(135deg, #6c63ff, #8c82ff);
     color: white;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 12px;
+    margin-top: 10px;
+
     box-shadow: 0 15px 30px rgba(108, 99, 255, 0.5);
     transition: 0.3s ease;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(108, 99, 255, 0.65);
+    box-shadow: 0 20px 40px rgba(108, 99, 255, 0.6);
 }
 
 /* ===== BOTTOM TEXT ===== */
-.container p {
-    margin-top: 22px;
-    font-size: 15px;
+.bottom-text {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
     color: #777;
 }
 
-.container a {
+.bottom-text a {
     color: #6c63ff;
     font-weight: 600;
     text-decoration: none;
 }
 
-.container a:hover {
+.bottom-text a:hover {
     text-decoration: underline;
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
-
-/* Tablet */
-@media (max-width: 768px) {
-
-    .container {
-        max-width: 420px;
-        padding: 40px 30px;
-    }
-
-    .container h1 {
-        font-size: 24px;
-    }
-
-    .container input {
-        padding: 16px;
-        font-size: 15px;
-    }
-
-    .btn {
-        padding: 16px;
-        font-size: 16px;
-    }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-
-    body {
-        align-items: flex-start;   /* nicer mobile behavior */
-        padding: 30px 15px;
-    }
-
-    .container {
-        max-width: 100%;
-        padding: 35px 25px;
-        border-radius: 26px;
-    }
-
-    .container h1 {
-        font-size: 22px;
-    }
+/* ===== ERROR MESSAGE ===== */
+.error-msg {
+    color: red;
+    font-size: 13px;
+    margin-top: -12px;
+    margin-bottom: 12px;
 }
