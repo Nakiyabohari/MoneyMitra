@@ -12,3 +12,4 @@ class MonthlySavings(models.Model):
 
     def __str__(self):
         return f"Savings: {self.amount}"
+
