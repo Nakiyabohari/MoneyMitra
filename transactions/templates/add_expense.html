@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 <title>Add Expense</title>
 </head>
 
@@ -13,8 +12,12 @@
 
 <div class="card">
 
+<form method="POST">
+{% csrf_token %}
+
+    <!-- Header -->
     <div class="header">
-        <div class="back-btn">←</div>
+        <div class="back-btn" onclick="history.back()">←</div>
         <div class="title">Add Expense</div>
     </div>
 
@@ -22,24 +25,35 @@
     <label>Amount</label>
     <div class="input-box">
         <span class="icon">₹</span>
-        <input type="number" name="amount" placeholder="0.00" required>
+        <input type="number" name="expense_amount" placeholder="0.00" step="0.01" required>
     </div>
 
-    <!-- Category Dropdown -->
+    <!-- Category -->
     <label>Category</label>
-    <div class="input-box">
-        <select name="category" required>
+    <div class="field hoverable">
+        <select id="categorySelect" name="category" onchange="handleCategoryChange()" required>
             <option value="">Select Category</option>
-            <option value="Food">Food</option>
-            <option value="Transport">Transport</option>
             <option value="Shopping">Shopping</option>
-            <option value="Bills">Bills</option>
+            <option value="Food">Food</option>
             <option value="Entertainment">Entertainment</option>
-            <option value="Other">Other</option>
+            <option value="Travel">Travel</option>
+            <option value="Bills">Bills</option>
+            <option value="custom">➕ Custom Category</option>
         </select>
     </div>
 
-    <!-- Custom Category Field -->
+    <!-- Custom Category Input (Hidden by default) -->
+    <div class="field hoverable hidden" id="categoryInputBox">
+        <input
+            type="text"
+            id="categoryInput"
+            placeholder="Enter custom category"
+            onkeydown="handleCustomEnter(event)"
+            onblur="finalizeCustomCategory()"
+        >
+    </div>
+
+    <!-- Optional Custom Category Field -->
     <label>If Other, Enter Custom Category</label>
     <div class="input-box">
         <input
@@ -58,7 +72,7 @@
     <!-- Payment -->
     <label>Payment Type</label>
     <div class="input-box">
-        <select name="payment" required>
+        <select name="expense_payment_method" required>
             <option value="">Select Payment Type</option>
             <option value="Cash">Cash</option>
             <option value="UPI">UPI</option>
@@ -76,7 +90,10 @@
 
     <button type="submit">Save Expense</button>
 
+</form>
 </div>
+
+<script src="{% static 'js/add_expense.js' %}"></script>
 
 </body>
 </html>

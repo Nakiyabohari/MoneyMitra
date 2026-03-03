@@ -111,3 +111,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+function toggleMitraChat() {
+    if (window.innerWidth <= 768) {
+        document.querySelector(".right-section")
+                .classList.add("show-chat");
+        document.body.classList.add("showing-chat");
+    }
+}
+
+function closeMitraChat() {
+    document.querySelector(".right-section")
+            .classList.remove("show-chat");
+    document.body.classList.remove("showing-chat");
+}

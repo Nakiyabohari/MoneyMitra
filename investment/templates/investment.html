@@ -3,119 +3,111 @@
 <html>
 <head>
     <title>Investments - MoneyMitra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/investment.css' %}">
+    <link rel="stylesheet" href="{% static 'css/investment-desktop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/investment-mobile.css' %}" media="(max-width: 768px)">
 </head>
+
 <body>
+    <div class="main-wrapper">
+        <div class="main-card">
 
-<div class="main-wrapper">
+            <!-- LEFT SECTION -->
+            <div class="left-section">
 
-    <div class="main-card">
+                <!-- Header -->
+                <div class="page-header">
+                    <button class="back-btn" onclick="goBack()">&#8592;</button>
+                    <h2>Investment Planning</h2>
+                </div>
 
-        <!-- LEFT SECTION -->
-        <div class="left-section">
+                <p class="info-text">
+                    Investing regularly helps your money grow over time.
+                    Start small and increase gradually.
+                </p>
 
-            <div class="back-circle">
-                <span onclick="goBack()">←</span>
-            </div>
-
-            <h2>Investment Planning</h2>
-
-            <div class="info-box">
-                Investing regularly helps your money grow over time.
-                Start small and increase gradually.
-            </div>
-
-            <form method="POST">
-                {% csrf_token %}
-
-                <h3 class="section-title">Choose Investment Type</h3>
+                <h3>Choose Investment Type</h3>
 
                 <div class="investment-types">
                     <div class="invest-card active"
-                        onclick="selectType('Mutual Funds', this)">
+                         onclick="selectType('Mutual Funds', this)">
                         <h4>Mutual Funds</h4>
                         <p>Diversified portfolio</p>
                     </div>
 
                     <div class="invest-card"
-                        onclick="selectType('ETFs', this)">
+                         onclick="selectType('ETFs', this)">
                         <h4>ETFs</h4>
                         <p>Index tracking</p>
                     </div>
                 </div>
 
-                <input type="hidden"
-                    name="investment_type"
-                    id="investmentType"
-                    value="Mutual Funds">
-
                 <div class="amount-card">
                     <p>Monthly Investment Amount</p>
                     <div class="amount-input">
-                        ₹ <input type="number"
-                                name="monthly_amount"
-                                required>
+                        ₹ <input type="number">
                     </div>
                 </div>
 
-                <div class="info-box">
-                    <strong>Why invest monthly?</strong>
-                    <ul>
-                        <li>Build wealth steadily</li>
-                        <li>Reduce risk</li>
-                        <li>Create discipline</li>
-                    </ul>
-                </div>
-
-                <button type="button"
-                        class="outline-btn"
-                        onclick="toggleMitraChat()">
+                <button class="outline-btn" onclick="toggleMitraChat()">
                     ✨ Ask Mitra AI
                 </button>
 
-                <button type="button"
-                    class="btn"
-                    onclick="window.location.href='{% url 'dashboard' %}'">
+                <button class="btn">
                     Save Investment Plan
                 </button>
 
-            </form>
-
-        </div>
-
-        <!-- RIGHT SECTION -->
-        <div class="right-section">
-
-            <div class="mitra-header">
-                MoneyMitra AI
             </div>
 
-            <div id="chatBox" class="mitra-chatbox"></div>
+            <!-- RIGHT SECTION (CHAT) -->
+            <div class="right-section">
 
-            <div class="mitra-input-area">
-                <input type="text"
-                    id="chatInput"
-                    placeholder="Ask about investments...">
-                <button type="button"
-                        onclick="sendChatMessage()">
-                    Send
-                </button>
+                <div class="mitra-header">
+                    MoneyMitra AI
+                    <span onclick="closeMitraChat()">✕</span>
+                </div>
+
+                <div id="chatBox" class="mitra-chatbox"></div>
+
+                <div class="mitra-input-area">
+                    <input type="text"
+                           id="chatInput"
+                           placeholder="Ask about investments...">
+
+                    <button type="button"
+                            onclick="sendChatMessage()">
+                        Send
+                    </button>
+                </div>
+
             </div>
 
         </div>
-
     </div>
 
-</div>
+    <script src="{% static 'js/investment.js' %}"></script>
 
-<script src="{% static 'js/investment.js' %}"></script>
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
 
+        function toggleMitraChat() {
+            if (window.innerWidth <= 768) {
+                document
+                    .querySelector(".right-section")
+                    .classList.add("show-chat");
+            }
+        }
+
+        function closeMitraChat() {
+            document
+                .querySelector(".right-section")
+                .classList.remove("show-chat");
+        }
+    </script>
 </body>
+</html>
