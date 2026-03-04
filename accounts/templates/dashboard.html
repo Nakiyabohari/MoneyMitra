@@ -34,13 +34,10 @@
             <a href="{% url 'calculator' %}" class="circle-icon">🧮</a>
             <a href="{% url 'calendar' %}" class="circle-icon">📅</a>
             <a href="{% url 'profile' %}" class="circle-icon">👤</a>
-
-            <!-- Menu still JS controlled -->
             <div class="circle-icon menu-btn" onclick="open_menu()">☰</div>
         </div>
 
     </div>
-
 
     <!-- ================= BALANCE ================= -->
 
@@ -51,7 +48,6 @@
             <span>• After EMI deduction</span>
         </div>
     </div>
-
 
     <!-- ================= CONTENT ROW ================= -->
 
@@ -114,14 +110,13 @@
 
     </div>
 
+    <!-- ✅ ADD BUTTON NOW INSIDE CONTAINER -->
+    {% include 'addbutton.html' %}
+
 </div>
 
-
-<!-- ================= INCLUDE EXTRA FILES ================= -->
-
+<!-- Menu can stay outside -->
 {% include 'menu.html' %}
-{% include 'addbutton.html' %}
-
 
 <!-- ================= SCRIPTS ================= -->
 
