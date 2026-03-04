@@ -1,0 +1,255 @@
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:'Plus Jakarta Sans', sans-serif;
+background:#F3F1FF;
+}
+
+/* PAGE */
+
+.budget-page{
+width:90%;
+max-width:1200px;
+margin:auto;
+padding-top:40px;
+}
+
+/* HEADER */
+
+.page-header{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:10px;
+}
+
+.page-header h1{
+color:#2C2A5E;
+font-size:32px;
+font-weight:700;
+margin:0;
+}
+
+.page-header p{
+color:#7A78A6;
+font-size:15px;
+margin-top:4px;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+text-decoration:none;
+font-size:20px;
+color:#6C5CE7;
+background:#ECEAFF;
+width:42px;
+height:42px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+transition:0.2s;
+}
+
+.back-btn:hover{
+background:#DCD9FF;
+}
+
+/* MAIN LAYOUT */
+
+.budget-container{
+margin-top:30px;
+display:flex;
+gap:30px;
+align-items:flex-start;
+}
+
+/* FORM CARD */
+
+.budget-form-card{
+width:320px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 4px 20px rgba(0,0,0,0.03);
+}
+
+.budget-form-card h2{
+margin-top:0;
+color:#2C2A5E;
+}
+
+/* FORM LABELS */
+
+.budget-form-card label{
+color:#6C5CE7;
+font-weight:600;
+font-size:14px;
+margin-bottom:6px;
+display:block;
+margin-top:14px;
+}
+
+/* INPUT */
+
+.salary-input{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:#F2F1FF;
+margin-bottom:10px;
+}
+
+/* ADD BUTTON */
+
+.add-budget-btn{
+margin-top:15px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+color:white;
+font-weight:500;
+background:linear-gradient(45deg,#6C5CE7,#7E6BFF);
+cursor:pointer;
+transition:0.2s;
+}
+
+.add-budget-btn:hover{
+transform:translateY(-1px);
+}
+
+/* BUDGET LIST */
+
+.budget-list{
+flex:1;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:22px;
+}
+
+/* CARD */
+
+.budget-card{
+background:white;
+padding:22px;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+gap:14px;
+transition:0.2s ease;
+}
+
+.budget-card:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* CARD HEADER */
+
+.budget-card-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.budget-card-header h3{
+margin:0;
+font-size:18px;
+color:#2C2A5E;
+}
+
+/* STATUS */
+
+.status{
+color:#6C5CE7;
+font-size:14px;
+font-weight:500;
+}
+
+/* DELETE ICON */
+
+.delete-icon{
+cursor:pointer;
+font-size:16px;
+opacity:0.5;
+transition:0.2s;
+}
+
+.delete-icon:hover{
+opacity:1;
+}
+
+/* CARD INFO */
+
+.budget-info{
+display:flex;
+justify-content:space-between;
+margin-top:6px;
+}
+
+.budget-info p{
+margin:0;
+font-size:13px;
+color:#7A78A6;
+}
+
+.budget-info h4{
+margin-top:4px;
+font-size:18px;
+color:#2C2A5E;
+}
+
+/* LIMIT AMOUNT */
+
+.limit h4{
+color:#6C5CE7;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar{
+height:10px;
+background:#ECECEC;
+border-radius:10px;
+overflow:hidden;
+margin-top:6px;
+}
+
+.progress{
+height:100%;
+width:20%;
+background:linear-gradient(90deg,#6C5CE7,#7E6BFF);
+border-radius:10px;
+}
+
+/* SAVE BUTTON */
+
+.save-container{
+margin-top:40px;
+display:flex;
+justify-content:flex-end;
+}
+
+.save-btn{
+padding:14px 30px;
+border:none;
+border-radius:28px;
+color:white;
+font-weight:500;
+background:linear-gradient(45deg,#6C5CE7,#7E6BFF);
+cursor:pointer;
+width:220px;
+transition:0.2s;
+}
+
+.save-btn:hover{
+transform:translateY(-1px);
+box-shadow:0 6px 20px rgba(108,92,231,0.25);
+}

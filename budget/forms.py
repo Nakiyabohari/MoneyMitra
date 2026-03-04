@@ -54,22 +54,48 @@ class SavingsGoalForm(forms.ModelForm):
 
 
 # 4️⃣ Category Form (with monthly budget)
+CATEGORY_CHOICES = [
+    ("Food & Dining", "Food & Dining"),
+    ("Transportation", "Transportation"),
+    ("Utilities", "Utilities"),
+    ("Entertainment", "Entertainment"),
+    ("Shopping", "Shopping"),
+    ("Health", "Health"),
+    ("Education", "Education"),
+    ("Others", "Others"),
+    ("Custom", "Custom"),
+]
+
+
 class CategoryForm(forms.ModelForm):
+
+    name = forms.ChoiceField(
+        choices=CATEGORY_CHOICES,
+        widget=forms.Select(attrs={
+            'class': 'salary-input',
+            'id': 'categorySelect'
+        })
+    )
+
+    custom_name = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'salary-input',
+            'placeholder': 'Enter category name',
+            'id': 'customCategory'
+        })
+    )
+
     class Meta:
         model = Category
-        fields = ['name', 'type', 'budget_amount', 'month']
+        fields = ['name', 'budget_amount', 'month']
+
         widgets = {
-            'name': forms.TextInput(attrs={
-                'class': 'salary-input',
-                'placeholder': 'Category name'
-            }),
-            'type': forms.Select(attrs={
-                'class': 'salary-input'
-            }),
             'budget_amount': forms.NumberInput(attrs={
                 'class': 'salary-input',
                 'placeholder': 'Budget amount'
             }),
+
             'month': forms.DateInput(attrs={
                 'type': 'date',
                 'class': 'salary-input'

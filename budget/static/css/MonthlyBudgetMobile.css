@@ -1,0 +1,54 @@
+@media (max-width:768px){
+
+.budget-page{
+width:92%;
+}
+
+/* STACK FORM + CARDS */
+
+.budget-container{
+display:flex;
+flex-direction:column;
+}
+
+/* FORM */
+
+.budget-form-card{
+width:100%;
+margin-bottom:20px;
+}
+
+/* CARD LIST */
+
+.budget-list{
+width:100%;
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+/* CARD FULL WIDTH */
+
+.budget-card{
+width:100% !important;
+max-width:100%;
+}
+
+/* SAVE BUTTON */
+
+.save-container{
+margin-top: 30px;
+bottom:20px;
+right:20px;
+}
+
+.save-btn{
+    width: 100%;
+}
+
+
+.back-btn{
+left:0;
+top:-10px;
+}
+}
