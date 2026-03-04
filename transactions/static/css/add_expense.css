@@ -217,3 +217,47 @@ button{
     max-width:1000px;
 }
 }
+
+/* Make category field relative */
+#categorySelectBox {
+    position: relative;
+}
+
+/* Position custom input on top of select */
+#categoryInputBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#categoryInputBox input {
+    width: 100%;
+}
+
+/* Category Same Line Replacement */
+.category-wrapper {
+    position: relative;
+}
+
+#categoryInputBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.category-wrapper {
+    position: relative;
+}
+
+#categoryInputBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
