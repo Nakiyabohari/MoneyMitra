@@ -102,38 +102,40 @@ def add_expense(request):
 
 
 
-from django.shortcuts import render
+
 
 def expensereport(request):
+
     incomes = Income_model.objects.all()
     expenses = Expense_model.objects.all()
 
+    # totals
     total_income = sum(i.amount for i in incomes)
     total_expense = sum(e.expense_amount for e in expenses)
+
     balance = total_income - total_expense
 
-    grand_total = total_income + total_expense
-
-    # Attach percentage to each income
-    for income in incomes:
-        if grand_total > 0:
-            income.percent = (income.amount / grand_total) * 100
-        else:
-            income.percent = 0
-
-    # Attach percentage to each expense
-    for expense in expenses:
-        if grand_total > 0:
-            expense.percent = (expense.expense_amount / grand_total) * 100
-        else:
-            expense.percent = 0
-
+    # month + year dropdown
     months = [
         "January","February","March","April","May","June",
         "July","August","September","October","November","December"
     ]
 
     years = list(range(2026, 2051))
+
+    # income percentage
+    for income in incomes:
+        if total_income > 0:
+            income.percent = (income.amount / total_income) * 100
+        else:
+            income.percent = 0
+
+    # expense percentage
+    for expense in expenses:
+        if total_expense > 0:
+            expense.percent = (expense.expense_amount / total_expense) * 100
+        else:
+            expense.percent = 0
 
     total_transactions = incomes.count() + expenses.count()
 
