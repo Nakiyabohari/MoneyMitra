@@ -29,15 +29,16 @@ class SavingsGoal(models.Model):
     target_amount = models.DecimalField(max_digits=12, decimal_places=2)
     current_amount = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     deadline = models.DateField()
+    color = models.CharField(max_length=20, default="#6c63ff")   # ⭐ NEW
 
+    @property
     def progress(self):
         if self.target_amount > 0:
-            return (self.current_amount / self.target_amount) * 100
+            return round((self.current_amount / self.target_amount) * 100,1)
         return 0
 
     def __str__(self):
         return self.title
-
 
 # 4️⃣ Category (Now Includes Budget + Month)
 class Category(models.Model):

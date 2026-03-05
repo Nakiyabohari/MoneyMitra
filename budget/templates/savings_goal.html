@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Savings Goals</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/savings_goal.css' %}">
+
+</head>
+
+<body>
+
+<div class="mobile-container">
+
+<!-- HEADER -->
+<div class="header">
+
+<div class="left-header">
+
+<button class="back-btn" onclick="goBack()">←</button>
+
+<div class="title">Savings Goals</div>
+
+</div>
+
+<div class="add-btn" onclick="openModal()">+</div>
+
+</div>
+
+
+<!-- TOTAL PROGRESS -->
+{% if goals %}
+<div class="total-card">
+
+<div>
+<p>Total Progress</p>
+<h2>₹{{ total_saved|floatformat:0 }}</h2>
+<span>of ₹{{ total_target|floatformat:0 }}</span>
+</div>
+
+<div class="total-percent">
+{{ total_percent|floatformat:1 }}%
+</div>
+
+<div class="total-bar">
+<div class="total-fill" style="width:{{ total_percent }}%"></div>
+</div>
+
+</div>
+{% endif %}
+
+
+<!-- GOALS -->
+<div id="goalsList">
+
+{% for goal in goals %}
+
+<div class="goal-card">
+
+<!-- HEADER -->
+<div class="goal-header">
+
+<div>
+<div class="goal-name">{{ goal.title }}</div>
+<div class="goal-date">{{ goal.deadline|date:"Y-m-d" }}</div>
+</div>
+
+<div class="delete-btn" onclick="deleteGoal({{ goal.id }})">
+🗑
+</div>
+
+</div>
+
+
+<!-- AMOUNT -->
+<div class="amount-row">
+
+<strong style="color:{{ goal.color }}">
+₹{{ goal.current_amount|floatformat:0 }}
+</strong>
+
+<span>
+of ₹{{ goal.target_amount|floatformat:0 }}
+</span>
+
+</div>
+
+
+<!-- PROGRESS -->
+<div class="goal-bar">
+<div class="goal-fill"
+style="width:{{ goal.progress }}%; background:{{ goal.color }}">
+</div>
+</div>
+
+
+<div class="progress-text" style="color:{{ goal.color }}">
+{{ goal.progress|floatformat:1 }}% achieved
+</div>
+
+
+<!-- QUICK BUTTONS -->
+<div class="quick-buttons">
+
+<button onclick="addMoney({{ goal.id }},500)">+₹500</button>
+
+<button onclick="addMoney({{ goal.id }},1000)">+₹1000</button>
+
+<button onclick="addMoney({{ goal.id }},5000)">+₹5000</button>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+
+
+<!-- MODAL -->
+<div class="modal-overlay" id="goalModal">
+
+<div class="modal">
+
+<div class="modal-header">
+<h3>Create New Goal</h3>
+<span onclick="closeModal()">×</span>
+</div>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="hidden" name="color" id="goalColor" value="#6c63ff">
+
+<label>Goal Name</label>
+{{ form.title }}
+
+<label>Target Amount</label>
+<div class="input-rupee">
+<span>₹</span>
+{{ form.target_amount }}
+</div>
+
+<label>Current Amount (Optional)</label>
+<div class="input-rupee">
+<span>₹</span>
+{{ form.current_amount }}
+</div>
+
+<label>Deadline</label>
+{{ form.deadline }}
+
+<label>Choose Color</label>
+
+<div class="color-options">
+
+<div class="color purple active" onclick="selectColor(this,'#6c63ff')"></div>
+
+<div class="color red" onclick="selectColor(this,'#ef4444')"></div>
+
+<div class="color green" onclick="selectColor(this,'#10b981')"></div>
+
+<div class="color blue" onclick="selectColor(this,'#3b82f6')"></div>
+
+<div class="color orange" onclick="selectColor(this,'#f59e0b')"></div>
+
+</div>
+
+<button class="create-btn" type="submit">
+Create Goal
+</button>
+
+</form>
+
+</div>
+</div>
+
+
+<script src="{% static 'js/savings_goal.js' %}"></script>
+
+</body>
+</html>

@@ -32,26 +32,33 @@ class MonthlySavingsForm(forms.ModelForm):
 class SavingsGoalForm(forms.ModelForm):
     class Meta:
         model = SavingsGoal
-        fields = ['title', 'target_amount', 'current_amount', 'deadline']
+        fields = ['title', 'target_amount', 'current_amount', 'deadline', 'color']
+
         widgets = {
+
             'title': forms.TextInput(attrs={
                 'class': 'salary-input',
                 'placeholder': 'Goal name'
             }),
+
             'target_amount': forms.NumberInput(attrs={
                 'class': 'salary-input',
                 'placeholder': 'Target amount'
             }),
+
             'current_amount': forms.NumberInput(attrs={
                 'class': 'salary-input',
                 'placeholder': 'Current saved amount'
             }),
+
             'deadline': forms.DateInput(attrs={
                 'type': 'date',
                 'class': 'salary-input'
-            })
-        }
+            }),
 
+            # ⭐ important
+            'color': forms.HiddenInput()
+        }
 
 # 4️⃣ Category Form (with monthly budget)
 class CategoryForm(forms.ModelForm):
