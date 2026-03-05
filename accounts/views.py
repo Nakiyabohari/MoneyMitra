@@ -44,9 +44,29 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('income')
 
     return render(request, 'login.html')
+
+from django.shortcuts import render, redirect
+
+#Income
+def income(request):
+    if request.method == "POST":
+        salary = request.POST.get("salary")
+
+        # save income here if you have model
+        # example:
+        # Income.objects.create(user=request.user, amount=salary)
+
+        return redirect('dashboard')   # go to saving page
+
+    return render(request, "income.html")
+
+
+#Add income
+def add_income(request):
+    return render(request, "add_income.html")   
 
 
 # DASHBOARD
@@ -63,6 +83,36 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard.html', context)
+
+#EMI Manager
+@login_required
+def emimanager(request):
+    return render(request, 'emimanager.html')
+
+#Monthly Budget
+@login_required
+def MonthlyBudget(request):
+    return render(request, 'MonthlyBudget.html')
+
+#Budget Analysis
+@login_required
+def BudgetAnalysis(request):
+    return render(request, 'BudgetAnalysis.html')
+
+#Savings Goals
+@login_required
+def savings_goal(request):
+    return render(request, 'savings_goal.html')
+
+#Expense Report
+@login_required
+def expense_report(request):
+    return render(request, 'expense_report.html')
+
+#Add Expense
+@login_required
+def add_expense(request):
+    return render(request, 'add_expense.html')
 
 
 

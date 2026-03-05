@@ -76,6 +76,7 @@ h1 {
     color: #666;
 }
 
+/* ===== SALARY BOX ===== */
 .salary-box {
     margin-top: 15px;
     display: flex;
@@ -84,10 +85,14 @@ h1 {
     color: #6c63ff;
 }
 
+/* RUPEE SYMBOL */
 .rupee {
     margin-right: 10px;
+    font-size: 32px;
+    font-weight: bold;
 }
 
+/* SALARY INPUT */
 .salary-input {
     border: none;
     background: none;
@@ -95,6 +100,13 @@ h1 {
     font-weight: bold;
     outline: none;
     width: 100%;
+}
+
+/* Remove number arrows */
+.salary-input::-webkit-inner-spin-button,
+.salary-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* ===== INFO BOX ===== */
@@ -124,7 +136,7 @@ h1 {
 }
 
 /* ===== BUTTON ===== */
-.continue-btn {
+.add-income-btn {
     width: 100%;
     padding: 16px;
     border: none;
@@ -138,7 +150,7 @@ h1 {
     transition: all .25s ease;
 }
 
-.continue-btn:hover {
+.add-income-btn:hover {
     transform: translateY(-3px);
 }
 
