@@ -1,0 +1,74 @@
+/* ===============================
+   DESKTOP DASHBOARD LAYOUT
+================================ */
+
+@media (min-width: 900px){
+
+.analytics-page{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+
+/* SUMMARY CARDS */
+
+.summary-cards{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+margin-bottom:35px;
+}
+
+
+/* CHART GRID */
+
+.analytics-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+align-items:stretch;
+margin-bottom:35px;
+}
+
+
+/* CHART CARD */
+
+.chart-card{
+background:white;
+border-radius:20px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+height:360px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+
+/* CHART SIZE CONTROL */
+
+.chart-card canvas{
+width:100% !important;
+height:100% !important;
+}
+
+
+/* PIE CHART LIMIT */
+
+#categoryChart{
+max-width:300px;
+max-height:300px;
+margin:auto;
+}
+
+
+/* TOP SPENDING */
+
+.top-spending{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+}

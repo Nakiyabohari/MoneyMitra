@@ -11,65 +11,67 @@
 <body>
 
 <div class="card">
-
 <form method="POST">
 {% csrf_token %}
 
-    <!-- Header -->
     <div class="header">
         <div class="back-btn" onclick="history.back()">←</div>
         <div class="title">Add Expense</div>
     </div>
 
-    <!-- Amount -->
     <label>Amount</label>
     <div class="input-box">
         <span class="icon">₹</span>
         <input type="number" name="expense_amount" placeholder="0.00" step="0.01" required>
     </div>
 
-    <!-- Category -->
     <label>Category</label>
-    <div class="field hoverable">
-        <select id="categorySelect" name="category" onchange="handleCategoryChange()" required>
-            <option value="">Select Category</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Food">Food</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Travel">Travel</option>
-            <option value="Bills">Bills</option>
-            <option value="custom">➕ Custom Category</option>
-        </select>
-    </div>
 
-    <!-- Custom Category Input (Hidden by default) -->
-    <div class="field hoverable hidden" id="categoryInputBox">
-        <input
-            type="text"
-            id="categoryInput"
-            placeholder="Enter custom category"
-            onkeydown="handleCustomEnter(event)"
-            onblur="finalizeCustomCategory()"
-        >
-    </div>
+    <div class="category-wrapper">
 
-    <!-- Optional Custom Category Field -->
-    <label>If Other, Enter Custom Category</label>
-    <div class="input-box">
-        <input
-            type="text"
-            name="custom_category"
-            placeholder="Enter custom category (optional)">
-    </div>
+        <!-- Select -->
+<div class="field hoverable" id="categoryField">
 
-    <!-- Date -->
+<<<<<<< HEAD
+    <select id="categorySelect" name="category" required>
+=======
+        <!-- Custom Input -->
+        <div class="field hoverable hidden" id="categoryInputBox">
+            <input
+                type="text"
+                id="categoryInput"
+                name="custom_category"   <!-- ✅ THIS WAS MISSING -->
+              
+        </div>
+>>>>>>> 16112782e4b6fc5569032a4790c95d4832bba355
+
+        <option value="">Select Category</option>
+
+        {% for cat in categories %}
+        <option value="{{ cat.id }}">{{ cat.name }}</option>
+        {% endfor %}
+
+        <option value="custom">➕ Custom Category</option>
+
+    </select>
+
+</div>
+
+<!-- Custom Input -->
+<div class="field hoverable hidden" id="categoryInputBox">
+    <input
+        type="text"
+        id="categoryInput"
+        placeholder="Enter custom category"
+    >
+</div>
+
     <label>Date</label>
     <div class="input-box">
         <span class="icon">📅</span>
         <input type="date" name="date" required>
     </div>
 
-    <!-- Payment -->
     <label>Payment Type</label>
     <div class="input-box">
         <select name="expense_payment_method" required>
@@ -82,7 +84,6 @@
         </select>
     </div>
 
-    <!-- Notes -->
     <label>Notes (Optional)</label>
     <div class="input-box">
         <textarea name="notes" placeholder="Write a note..."></textarea>

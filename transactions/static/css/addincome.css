@@ -249,3 +249,7 @@ button{
 display:none;
 
 }
+#sourceWrapper select,
+#sourceWrapper input {
+  width: 100%;
+}
