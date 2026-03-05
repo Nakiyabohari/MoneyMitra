@@ -14,4 +14,28 @@ urlpatterns = [
     # NEW
     path('calculator/', views.calculator, name='calculator'),
     path('calendar/', views.calendar_view, name='calendar'),
+
+    # Income
+    path('income/', views.income, name='income'),
+
+    # Add Income
+    path('add-income/', views.add_income, name='add_income'),
+
+    #emi manager
+    path('emimanager/', views.emimanager, name='emimanager'),
+
+    #Monthly Budget
+    path('MonthlyBudget/', views.MonthlyBudget, name='MonthlyBudget'),
+
+    #Budget Analysis
+    path('BudgetAnalysis/', views.BudgetAnalysis, name='BudgetAnalysis'),
+
+    #Savings Goals
+    path('savings_goal/', views.savings_goal, name='savings_goal'),
+
+    #Expense Report
+    path('expensereport/', views.expense_report, name='expensereport'),
+
+    #Add Expense
+    path('add_expense/', views.add_expense, name='add_expense'),
 ]
