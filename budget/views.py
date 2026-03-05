@@ -220,3 +220,79 @@ def budget_analysis(request):
 
     return render(request, "BudgetAnalysis.html", context)
 #End of Nakiya's views
+
+#start of chahat view for monthly summary
+from django.shortcuts import render
+from django.db.models import Sum
+from .models import MonthlyIncome, MonthlySavings, Expense, Category
+from EMI.models import EmiManager
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def monthly_summary(request):
+
+    user = request.user
+
+    # ==========================
+    # TOTAL INCOME
+    # ==========================
+    total_income = MonthlyIncome.objects.filter(
+        user=user
+    ).aggregate(total=Sum('salary'))['total'] or 0
+
+    # ==========================
+    # SAVINGS
+    # ==========================
+    savings = MonthlySavings.objects.filter(
+        user=user
+    ).aggregate(total=Sum('amount'))['total'] or 0
+
+    # ==========================
+    # INVESTMENTS
+    # ==========================
+    investments = Category.objects.filter(
+        user=user,
+        type="investment"
+    ).aggregate(total=Sum('budget_amount'))['total'] or 0
+
+    # ==========================
+    # EMI
+    # ==========================
+    emi = EmiManager.objects.aggregate(
+        total=Sum('monthly_amount')
+    )['total'] or 0
+
+    # ==========================
+    # EXPENSE
+    # ==========================
+    total_expense = Expense.objects.filter(
+        user=user
+    ).aggregate(total=Sum('amount'))['total'] or 0
+
+    # ==========================
+    # TOTAL DEDUCTIONS
+    # ==========================
+    total_deductions = savings + investments + emi
+
+    # ==========================
+    # AVAILABLE BALANCE
+    # ==========================
+    available_balance = total_income - total_deductions - total_expense
+
+    # ==========================
+    # DAILY LIMIT
+    # ==========================
+    daily_limit = available_balance / 30 if available_balance > 0 else 0
+
+    context = {
+        "total_income": total_income,
+        "savings": savings,
+        "investments": investments,
+        "emi": emi,
+        "deductions": total_deductions,
+        "balance": available_balance,
+        "daily": daily_limit,
+    }
+
+    return render(request, "monthly_summary.html", context)
