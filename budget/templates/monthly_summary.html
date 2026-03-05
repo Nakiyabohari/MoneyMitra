@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Monthly Summary</title>
+
+<link rel="stylesheet" href="{% static 'css/monthly_summary.css' %}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="header">
+<span class="back hoverable">←</span>
+<h2>Monthly Summary</h2>
+</div>
+
+<div class="month hoverable">
+📅 
+<input type="month" id="monthPicker">
+</div>
+
+<div class="dashboard">
+
+<div class="left">
+
+<div class="card hoverable">
+
+<p class="label">Total Income</p>
+
+<h1 id="totalIncome">
+₹{{ total_income }}
+</h1>
+
+</div>
+
+
+<div class="card small hoverable">
+
+<div class="row">
+<span>Savings</span>
+<span id="savings">₹{{ savings }}</span>
+</div>
+
+<div class="row">
+<span>Investments</span>
+<span id="investments">₹{{ investments }}</span>
+</div>
+
+<div class="row">
+<span>EMI</span>
+<span id="emi">₹{{ emi }}</span>
+</div>
+
+<div class="row">
+<span>Total Deductions</span>
+<span id="deductions">₹{{ deductions }}</span>
+</div>
+
+</div>
+
+
+<h3 class="section">Expense Distribution</h3>
+
+
+<div class="card center hoverable">
+
+<canvas id="donutChart" width="200" height="200"></canvas>
+
+
+<div class="legend">
+
+<div class="legend-item">
+<div>
+<span class="dot purple"></span> Investments
+</div>
+
+<div>
+<b id="invAmount">₹{{ investments }}</b>
+</div>
+</div>
+
+
+<div class="legend-item">
+<div>
+<span class="dot light"></span> Available
+</div>
+
+<div>
+<b id="availAmount">₹{{ balance }}</b>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="right">
+
+<div class="balance-card hoverable">
+
+<p>Available Balance</p>
+
+<h2 id="balance">
+₹{{ balance }}
+</h2>
+
+<small>After all deductions</small>
+
+</div>
+
+
+<div class="card hoverable">
+
+<p class="label">Suggested Daily Spending</p>
+
+<h2 id="dailyLimit">
+
+₹{{ daily|floatformat:0 }}
+<span>/ day</span>
+
+</h2>
+
+<small>
+Stay within this limit to manage expenses comfortably
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const summaryData = {
+
+income: {{ total_income }},
+savings: {{ savings }},
+investments: {{ investments }},
+emi: {{ emi }},
+balance: {{ balance }}
+
+};
+
+</script>
+
+<script src="{% static 'js/monthly_summary.js' %}"></script>
+
+</body>
+</html>

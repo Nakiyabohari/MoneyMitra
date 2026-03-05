@@ -1,0 +1,218 @@
+:root{
+--primary:#6C63FF;
+--primary-light:#EEE9FF;
+--dark:#2C2C2C;
+--gray:#888;
+--bg:#F6F7FB;
+}
+
+body{
+margin:0;
+font-family:'Poppins', sans-serif;
+background:var(--bg);
+display:flex;
+justify-content:center;
+padding:40px 20px;
+}
+
+/* APP */
+
+.app{
+width:100%;
+max-width:420px;
+background:white;
+padding:30px 25px;
+border-radius:35px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.header h2{
+margin:0;
+font-size:20px;
+}
+
+.back{
+font-size:22px;
+color:var(--primary);
+}
+
+/* MONTH */
+
+.month{
+background:var(--primary-light);
+padding:12px;
+border-radius:14px;
+margin:18px 0;
+font-weight:600;
+color:var(--dark);
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.month input{
+border:none;
+background:transparent;
+font-size:15px;
+font-weight:600;
+outline:none;
+cursor:pointer;
+color:var(--dark);
+}
+
+/* CARDS */
+
+.card{
+background:white;
+padding:18px;
+border-radius:20px;
+box-shadow:0 6px 15px rgba(0,0,0,0.05);
+margin-bottom:14px;
+}
+
+.card.small{
+font-size:14px;
+}
+
+.label{
+color:var(--gray);
+margin:0 0 6px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+}
+
+/* BALANCE */
+
+.balance-card{
+background:linear-gradient(90deg,var(--primary),#7E6BFF);
+color:white;
+padding:20px;
+border-radius:22px;
+margin-bottom:14px;
+}
+
+.balance-card p{
+margin:0;
+}
+
+.balance-card h2{
+margin:6px 0;
+}
+
+/* SECTION */
+
+.section{
+margin:20px 0 10px;
+font-weight:600;
+color:var(--dark);
+}
+
+/* CENTER */
+
+.center{
+text-align:center;
+}
+
+canvas{
+max-width:100%;
+}
+
+/* LEGEND */
+
+.legend{
+margin-top:14px;
+font-size:14px;
+}
+
+.legend-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:8px;
+}
+
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+display:inline-block;
+margin-right:6px;
+}
+
+.purple{
+background:var(--primary);
+}
+
+.light{
+background:var(--primary-light);
+}
+
+.percent{
+margin-left:6px;
+color:var(--primary);
+font-weight:600;
+}
+
+/* HOVER */
+
+.hoverable{
+transition:0.3s ease;
+cursor:pointer;
+}
+
+.hoverable:hover{
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* =============================
+   DESKTOP LAYOUT
+============================= */
+
+.dashboard{
+display:block;
+}
+
+/* DESKTOP */
+
+@media (min-width:1000px){
+
+.app{
+max-width:1200px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns: 2fr 1fr;
+gap:30px;
+align-items:start;
+}
+
+.left .card{
+margin-bottom:20px;
+}
+
+.right{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+canvas{
+width:320px;
+height:320px;
+}
+
+}
