@@ -53,7 +53,7 @@ class Category(models.Model):
 
     # Added fields as you said
     budget_amount = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
-    month = models.DateField(null=True, blank=True)
+    month = models.DateField(help_text="Select first day of month")
 
     def __str__(self):
         return self.name

@@ -94,3 +94,44 @@ def expensereport(request):
     }
 
     return render(request, "expensereport.html", context)
+
+
+# Nakiya's code
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from budget.models import Category, Expense
+
+
+@login_required
+def add_expense(request):
+
+    categories = Category.objects.filter(
+        user=request.user,
+        type="expense"
+    )
+
+    if request.method == "POST":
+
+        amount = request.POST.get("expense_amount")
+        category_id = request.POST.get("category")
+        date = request.POST.get("date")
+        payment_type = request.POST.get("expense_payment_method")
+        notes = request.POST.get("notes")
+
+        category = Category.objects.get(id=category_id)
+
+        Expense.objects.create(
+            user=request.user,
+            category=category,
+            amount=amount,
+            date=date,
+            payment_type=payment_type,
+            notes=notes
+        )
+
+        return redirect("expensereport")
+
+    return render(request, "add_expense.html", {"categories": categories})
+
+# End of Nakiya's code

@@ -1,23 +1,24 @@
-/* Live amount display */
-document.getElementById("amountInput").addEventListener("input", function () {
-    const value = this.value || 0;
-    document.getElementById("displayAmount").innerText = "₹" + value;
+// LIVE AMOUNT DISPLAY
+document.addEventListener("DOMContentLoaded", function () {
+    const amountInput = document.getElementById("amountInput");
+    const displayAmount = document.getElementById("displayAmount");
+
+    amountInput.addEventListener("input", function () {
+        displayAmount.innerText = "₹" + (this.value || 0);
+    });
 });
 
-/* Handle dropdown change */
 function handleSourceChange() {
     const select = document.getElementById("incomeSourceSelect");
-    const selectBox = document.getElementById("sourceSelectBox");
-    const inputBox = document.getElementById("sourceInputBox");
+    const input = document.getElementById("customSourceInput");
 
     if (select.value === "Other") {
-        selectBox.classList.add("hidden");
-        inputBox.classList.remove("hidden");
-        document.getElementById("customSourceInput").focus();
+        select.classList.add("hidden");
+        input.classList.remove("hidden");
+        input.focus();
     }
 }
 
-/* When user presses Enter */
 function handleCustomEnter(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -25,33 +26,30 @@ function handleCustomEnter(event) {
     }
 }
 
-/* Finalize custom source */
 function finalizeCustomSource() {
     const input = document.getElementById("customSourceInput");
-    const value = input.value.trim();
     const select = document.getElementById("incomeSourceSelect");
-    const selectBox = document.getElementById("sourceSelectBox");
-    const inputBox = document.getElementById("sourceInputBox");
+    const value = input.value.trim();
 
     if (value === "") {
-        inputBox.classList.add("hidden");
-        selectBox.classList.remove("hidden");
+        input.classList.add("hidden");
+        select.classList.remove("hidden");
         select.value = "";
         return;
     }
 
-    // Remove previous dynamic option if exists
     const oldOption = document.getElementById("dynamicIncomeOption");
     if (oldOption) oldOption.remove();
 
     const newOption = document.createElement("option");
     newOption.value = value;
     newOption.text = value;
-    newOption.selected = true;
     newOption.id = "dynamicIncomeOption";
 
     select.appendChild(newOption);
+    select.value = value;
 
-    inputBox.classList.add("hidden");
-    selectBox.classList.remove("hidden");
+    input.value = "";
+    input.classList.add("hidden");
+    select.classList.remove("hidden");
 }

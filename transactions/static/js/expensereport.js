@@ -1,105 +1,106 @@
-function generatePDFBlob(){
+// Check if script loaded
+console.log("Expense report JS loaded");
 
-const { jsPDF } = window.jspdf;
-const doc = new jsPDF();
+document.addEventListener("DOMContentLoaded", function () {
 
-const month = document.getElementById("monthSelect").value;
-const year = document.getElementById("yearSelect").value;
-const today = new Date().toLocaleDateString("en-GB");
+    if (!window.reportData) {
+        console.error("reportData not found");
+        return;
+    }
 
-let y = 20;
+    const incomes = window.reportData.incomes || [];
+    const expenses = window.reportData.expenses || [];
+    const totalIncome = window.reportData.totalIncome || 0;
+    const totalExpense = window.reportData.totalExpense || 0;
+    const balance = window.reportData.balance || 0;
 
-doc.setFontSize(22);
-doc.text("MoneyMitra",105,y,{align:"center"});
-y+=12;
+    const downloadBtn = document.getElementById("downloadBtn");
+    const shareBtn = document.getElementById("shareBtn");
 
-doc.setFontSize(18);
-doc.text("Expense Report",105,y,{align:"center"});
-y+=15;
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", downloadPDF);
+    }
 
-doc.setFontSize(12);
-doc.text(`Period: ${month} ${year}`,20,y);
-doc.text(`Date: ${today}`,190,y,{align:"right"});
-y+=10;
+    if (shareBtn) {
+        shareBtn.addEventListener("click", sharePDF);
+    }
 
-doc.text("INCOME",20,y);
-y+=10;
+    function generatePDFBlob() {
 
-incomes.forEach(income=>{
-  doc.text(income.source,20,y);
-  doc.text("Rs "+income.amount,190,y,{align:"right"});
-  y+=10;
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        const month = document.getElementById("monthSelect")?.value || "";
+        const year = document.getElementById("yearSelect")?.value || "";
+
+        let y = 20;
+
+        doc.setFontSize(18);
+        doc.text("Expense Report", 105, y, { align: "center" });
+        y += 10;
+
+        doc.text(`Period: ${month} ${year}`, 20, y);
+        y += 10;
+
+        doc.text("INCOME", 20, y);
+        y += 10;
+
+        incomes.forEach(item => {
+            doc.text(item.source || "", 20, y);
+            doc.text("Rs " + (item.amount || 0), 190, y, { align: "right" });
+            y += 8;
+        });
+
+        y += 5;
+        doc.text("Total Income: Rs " + totalIncome, 20, y);
+        y += 15;
+
+        doc.text("EXPENSE", 20, y);
+        y += 10;
+
+        expenses.forEach(item => {
+            doc.text(item.category || "", 20, y);
+            doc.text("Rs " + (item.amount || 0), 190, y, { align: "right" });
+            y += 8;
+        });
+
+        y += 5;
+        doc.text("Total Expense: Rs " + totalExpense, 20, y);
+        y += 15;
+
+        doc.text("Balance: Rs " + balance, 20, y);
+
+        return doc.output("blob");
+    }
+
+    function downloadPDF() {
+
+        const blob = generatePDFBlob();
+        const month = document.getElementById("monthSelect")?.value || "";
+        const year = document.getElementById("yearSelect")?.value || "";
+
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `Expense_${month}_${year}.pdf`;
+        link.click();
+    }
+
+    async function sharePDF() {
+
+        const blob = generatePDFBlob();
+        const file = new File([blob], "Expense_Report.pdf", { type: "application/pdf" });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+
+            await navigator.share({
+                title: "Expense Report",
+                files: [file]
+            });
+
+        } else {
+            downloadPDF();
+            alert("Sharing not supported. File downloaded instead.");
+        }
+    }
+
 });
-
-doc.text("Total Income",20,y);
-doc.text("Rs "+totalIncome,190,y,{align:"right"});
-y+=15;
-
-doc.text("EXPENSE",20,y);
-y+=10;
-
-expenses.forEach(expense=>{
-  doc.text(expense.category,20,y);
-  doc.text("Rs "+expense.amount,190,y,{align:"right"});
-  y+=10;
-});
-
-doc.text("Total Expense",20,y);
-doc.text("Rs "+totalExpense,190,y,{align:"right"});
-y+=15;
-
-doc.text("Balance",20,y);
-doc.text("Rs "+balance,190,y,{align:"right"});
-
-return doc.output("blob");
-}
-
-
-
-function downloadPDF(){
-
-const blob = generatePDFBlob();
-
-const month = document.getElementById("monthSelect").value;
-const year = document.getElementById("yearSelect").value;
-
-const fileName = `MoneyMitra_${month}_${year}.pdf`;
-
-const link = document.createElement("a");
-link.href = URL.createObjectURL(blob);
-link.download = fileName;
-link.click();
-
-}
-
-
-
-async function sharePDF(){
-
-const blob = generatePDFBlob();
-
-const month = document.getElementById("monthSelect").value;
-const year = document.getElementById("yearSelect").value;
-
-const file = new File(
-[blob],
-`MoneyMitra_${month}_${year}.pdf`,
-{ type:"application/pdf" }
-);
-
-if(navigator.canShare &&
-navigator.canShare({files:[file]})){
-
-await navigator.share({
-title:"MoneyMitra Report",
-text:"My Expense Report",
-files:[file]
-});
-
-}
-else{
-downloadPDF();
-alert("Sharing not supported. File downloaded.");
-}
-
-}
