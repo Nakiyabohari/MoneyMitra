@@ -4,7 +4,15 @@ from .models import EmiManager
 class EmiManagerForm(forms.ModelForm):
     class Meta:
         model = EmiManager
-        fields = '__all__'
+
+        # REMOVE user from form
+        fields = [
+            'emi_name',
+            'monthly_amount',
+            'duration',
+            'start_date',
+            'end_date'
+        ]
 
         widgets = {
             'emi_name': forms.TextInput(attrs={

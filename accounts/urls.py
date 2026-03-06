@@ -5,6 +5,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
+    # Income
+    path('income/', views.income, name='income'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('profile/', views.profile, name='profile'),
     path('edit-profile/', views.edit_profile, name='edit_profile'),
@@ -15,11 +17,8 @@ urlpatterns = [
     path('calculator/', views.calculator, name='calculator'),
     path('calendar/', views.calendar_view, name='calendar'),
 
-    # Income
-    path('income/', views.income, name='income'),
-
     # Add Income
-    path('add-income/', views.add_income, name='add_income'),
+    path('addincome/', views.add_income, name='add_income'),
 
     #emi manager
     path('emimanager/', views.emimanager, name='emimanager'),

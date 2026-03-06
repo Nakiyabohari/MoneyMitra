@@ -42,12 +42,12 @@
     <!-- ================= BALANCE ================= -->
 
     <div class="balance-wrapper">
-        <div class="balance-card">
-            <p>Available Balance</p>
-            <h1>₹{{ available_balance }}</h1>
-            <span>• After EMI deduction</span>
-        </div>
+    <div class="balance-card">
+        <p>Available Balance</p>
+        <h1>₹{{ salary }}</h1>
+        <span>• After EMI deduction</span>
     </div>
+</div>
 
     <!-- ================= CONTENT ROW ================= -->
 
@@ -66,7 +66,7 @@
 
                 <div class="overview-card">
                     <p>Savings</p>
-                    <h4>₹{{ profile.savings }}</h4>
+                    <h4>₹{{ total_savings }}</h4>
                 </div>
 
                 <div class="overview-card">
@@ -76,7 +76,7 @@
 
                 <div class="overview-card">
                     <p>EMI</p>
-                    <h4>₹{{ profile.emi }}</h4>
+                    <h4>₹{{ total_emi }}</h4>
                 </div>
 
             </div>
