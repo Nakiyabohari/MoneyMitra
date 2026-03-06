@@ -3,7 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from httpx import request
 from .models import Profile
+from datetime import date
+from django.db.models import Sum
+from budget.models import MonthlyIncome
+from investment.models import InvestmentPlan
+
+
 
 # HOME
 def home(request):
@@ -52,7 +59,25 @@ def user_login(request):
 from django.shortcuts import render, redirect
 
 #Income
+@login_required
 def income(request):
+
+    if request.method == "POST":
+        salary = request.POST.get("salary")
+
+        MonthlyIncome.objects.create(
+            user=request.user,
+            month=date.today(),
+            salary=salary
+        )
+
+        return redirect("dashboard")
+
+    return render(request, "income.html") 
+
+
+#Add income
+def add_income(request):
     if request.method == "POST":
         salary = request.POST.get("salary")
 
@@ -64,26 +89,29 @@ def income(request):
 
     return render(request, "income.html")
 
-
-#Add income
-def add_income(request):
-    return render(request, "add_income.html")   
-
-
 # DASHBOARD
 @login_required
 def dashboard(request):
+
     profile = Profile.objects.get(user=request.user)
 
-    # Available balance calculation
-    available_balance = profile.monthly_salary - profile.emi
+    # 🔹 Fetch latest salary
+    income = MonthlyIncome.objects.filter(user=request.user).order_by('-id').first()
+    salary = income.salary if income else 0
+
+    # 🔹 Fetch total investment
+    total_investment = InvestmentPlan.objects.filter(
+        user=request.user
+    ).aggregate(total=Sum('monthly_amount'))['total'] or 0
 
     context = {
         'profile': profile,
-        'available_balance': available_balance,
+        'salary': salary,
+        'total_investment': total_investment,
     }
 
     return render(request, 'dashboard.html', context)
+
 
 #EMI Manager
 @login_required

@@ -1,23 +1,29 @@
+from arrow import now
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from.models import SavingsGoal
 from .forms import MonthlyIncomeForm, MonthlySavingsForm,SavingsGoalForm
 
 
+
+
+@login_required
 def monthly_income(request):
+
     if request.method == "POST":
-        form = MonthlyIncomeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('savings')   # ✅ FIXED HERE
-    else:
-        form = MonthlyIncomeForm()
+        salary = request.POST.get("salary")
 
-    return render(request, 'income.html', {'form': form})
+        MonthlyIncome.objects.create(
+            user=request.user,
+            month=date.today(),
+            salary=salary
+        )
 
+        return redirect('dashboard')
 
+    return render(request, "income.html")
 
-
+@login_required
 def monthly_savings(request):
     if request.method == "POST":
         form = MonthlySavingsForm(request.POST)
