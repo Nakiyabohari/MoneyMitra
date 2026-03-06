@@ -66,7 +66,7 @@ def income(request):
 
 #Add income
 def add_income(request):
-    return render(request, "add_income.html")   
+    return render(request, "add_income.html")
 
 
 # DASHBOARD
