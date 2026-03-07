@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -7,8 +6,11 @@ from httpx import request
 from .models import Profile
 from datetime import date
 from django.db.models import Sum
-from budget.models import MonthlyIncome
+from budget.models import MonthlyIncome,SavingsGoal,Category
 from investment.models import InvestmentPlan
+from EMI.models import EmiManager
+from budget.forms import CategoryForm
+from transactions.forms import add_expense_Form
 
 
 
@@ -73,7 +75,7 @@ def income(request):
 
         return redirect("dashboard")
 
-    return render(request, "income.html") 
+    return render(request, "income.html")
 
 
 #Add income
@@ -89,49 +91,90 @@ def add_income(request):
 
     return render(request, "income.html")
 
+
 # DASHBOARD
 @login_required
 def dashboard(request):
 
     profile = Profile.objects.get(user=request.user)
 
-    # 🔹 Fetch latest salary
-    income = MonthlyIncome.objects.filter(user=request.user).order_by('-id').first()
+    # fetch salary
+    income = MonthlyIncome.objects.filter(user=request.user).order_by('-month').first()
     salary = income.salary if income else 0
 
-    # 🔹 Fetch total investment
-    total_investment = InvestmentPlan.objects.filter(
-        user=request.user
-    ).aggregate(total=Sum('monthly_amount'))['total'] or 0
+    # fetch savings goals
+    savings_goals = SavingsGoal.objects.filter(user=request.user)
+
+    # calculate total savings
+    total_savings = sum(goal.current_amount for goal in savings_goals)
+
+    # EMI
+    emis = EmiManager.objects.filter(user=request.user)
+    total_emi = sum(emi.monthly_amount for emi in emis)
 
     context = {
         'profile': profile,
         'salary': salary,
-        'total_investment': total_investment,
+        'total_savings': total_savings,
+        'total_emi':total_emi,
     }
 
     return render(request, 'dashboard.html', context)
 
-
 #EMI Manager
 @login_required
 def emimanager(request):
+
+    emis = EmiManager.objects.filter(user=request.user)
+
+    context = {
+        'emis': emis
+    }
     return render(request, 'emimanager.html')
 
 #Monthly Budget
 @login_required
 def MonthlyBudget(request):
-    return render(request, 'MonthlyBudget.html')
+
+    categories = Category.objects.filter(user=request.user)
+
+    if request.method == "POST":
+
+        form = CategoryForm(request.POST)
+
+        if form.is_valid():
+            budget = form.save(commit=False)
+            budget.user = request.user
+            budget.save()
+
+            return redirect('MonthlyBudget')
+
+    else:
+        form = CategoryForm()
+
+    context = {
+        'form': form,
+        'categories': categories
+    }
+
+    return render(request, 'MonthlyBudget.html', context)
 
 #Budget Analysis
 @login_required
 def BudgetAnalysis(request):
     return render(request, 'BudgetAnalysis.html')
 
-#Savings Goals
+# Savings Goals
 @login_required
 def savings_goal(request):
-    return render(request, 'savings_goal.html')
+
+    goals = SavingsGoal.objects.filter(user=request.user)
+
+    context = {
+        'goals': goals
+    }
+
+    return render(request, 'savings_goal.html', context)
 
 #Expense Report
 @login_required
@@ -139,10 +182,17 @@ def expense_report(request):
     return render(request, 'expense_report.html')
 
 #Add Expense
+from budget.models import Category
 @login_required
 def add_expense(request):
-    return render(request, 'add_expense.html')
 
+    categories = Category.objects.filter(user=request.user)
+
+    context = {
+        "categories": categories
+    }
+
+    return render(request, "add_expense.html", context)
 
 
 #menu

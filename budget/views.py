@@ -89,7 +89,7 @@ def delete_goal(request, goal_id):
     goal.delete()
 
     return JsonResponse({"success": True})
-# Nakiya's Views 
+# Nakiya's Views
 from django.contrib.auth.decorators import login_required
 from .forms import CategoryForm
 from .models import Category

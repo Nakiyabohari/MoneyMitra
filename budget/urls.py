@@ -12,7 +12,5 @@ urlpatterns = [
     # Nakiya's page
     path('MonthlyBudget/', views.monthly_budget, name='monthly_budget'),
     path('BudgetAnalysis/', views.budget_analysis, name='budget_analysis'),
-
-    #chahat's page
-    path("monthly_summary/", views.monthly_summary, name="monthly_summary"),
+    path('monthly_summary/',views.monthly_summary,name='monthly_summary'),
 ]

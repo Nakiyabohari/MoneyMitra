@@ -27,24 +27,31 @@
 
     <label>Category</label>
 
-    <div class="category-wrapper">
+<label>Category</label>
 
-        <!-- Select -->
-<div class="field hoverable" id="categoryField">
+<div class="category-wrapper">
 
         <!-- Custom Input -->
         <div class="field hoverable hidden" id="categoryInputBox">
             <input
                 type="text"
                 id="categoryInput"
-                name="custom_category"   <!-- ✅ THIS WAS MISSING -->
+                name="custom_category"  
               
         </div>
 
         <option value="">Select Category</option>
+    {% for cat in categories %}
+        <option value="{{ cat.id }}">{{ cat.name }}</option>
+    {% endfor %}
+    <option value="custom">➕ Custom Category</option>
+    <!-- CATEGORY SELECT -->
+    <select name="category" id="categoryField" class="field hoverable">
+
+        <option value="">Select Category</option>
 
         {% for cat in categories %}
-        <option value="{{ cat.id }}">{{ cat.name }}</option>
+        <option value="{{ cat.name }}">{{ cat.name }}</option>
         {% endfor %}
 
         <option value="custom">➕ Custom Category</option>
@@ -53,11 +60,13 @@
 
 </div>
 
-<!-- Custom Input -->
+
+<!-- CUSTOM CATEGORY INPUT -->
 <div class="field hoverable hidden" id="categoryInputBox">
     <input
         type="text"
         id="categoryInput"
+        name="custom_category"
         placeholder="Enter custom category"
     >
 </div>

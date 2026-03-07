@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
-     # Income
+    # Income
     path('income/', views.income, name='income'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('profile/', views.profile, name='profile'),
@@ -16,8 +16,6 @@ urlpatterns = [
     # NEW
     path('calculator/', views.calculator, name='calculator'),
     path('calendar/', views.calendar_view, name='calendar'),
-
-   
 
     # Add Income
     path('addincome/', views.add_income, name='add_income'),
