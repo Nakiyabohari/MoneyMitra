@@ -3,14 +3,19 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import JsonResponse
 from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
 from .models import Income_model
 from .models import Expense_model,Category
 from .models import Expensereport_model
 from .models import Transaction_model
 from .forms import addincome_Form
 from .forms import add_expense_Form
-# Create your views here.
 
+
+# ==========================
+# ADD INCOME
+# ==========================
+@login_required
 def addincome(request):
     if request.method == "POST":
         amount = request.POST.get("amount")
@@ -18,15 +23,15 @@ def addincome(request):
         payment_method = request.POST.get("payment_method")
         notes = request.POST.get("notes")
 
-        # ✅ SAVE TO DATABASE
         Income_model.objects.create(
+            user=request.user,
             amount=amount,
             income_source=income_source,
             payment_method=payment_method,
             notes=notes
         )
 
-        return redirect("expensereport")  # ✅ URL name
+        return redirect("expensereport")
 
     return render(request, "addincome.html")
 
@@ -55,6 +60,11 @@ def addincome(request):
 #     return render(request, "add_expense.html")
 
 
+
+# ==========================
+# ADD EXPENSE
+# ==========================
+@login_required
 def add_expense(request):
     categories = Category.objects.all()  # filter by user if needed
 
@@ -74,6 +84,7 @@ def add_expense(request):
                 return redirect("add_expense")  # handle invalid category
 
         Expense_model.objects.create(
+            user=request.user,
             expense_amount=expense_amount,
             category=category,
             date=date,
@@ -83,20 +94,23 @@ def add_expense(request):
         return redirect("expensereport")
 
     return render(request, "add_expense.html", {"categories": categories})
+    return render(request, "add_expense.html")
 
 
+# ==========================
+# EXPENSE REPORT
+# ==========================
+@login_required
 def expensereport(request):
 
-    incomes = Income_model.objects.all()
-    expenses = Expense_model.objects.all()
+    incomes = Income_model.objects.filter(user=request.user)
+    expenses = Expense_model.objects.filter(user=request.user)
 
-    # totals
     total_income = sum(i.amount for i in incomes)
     total_expense = sum(e.expense_amount for e in expenses)
 
     balance = total_income - total_expense
 
-    # month + year dropdown
     months = [
         "January","February","March","April","May","June",
         "July","August","September","October","November","December"
@@ -104,14 +118,12 @@ def expensereport(request):
 
     years = list(range(2026, 2051))
 
-    # income percentage
     for income in incomes:
         if total_income > 0:
             income.percent = (income.amount / total_income) * 100
         else:
             income.percent = 0
 
-    # expense percentage
     for expense in expenses:
         if total_expense > 0:
             expense.percent = (expense.expense_amount / total_expense) * 100
@@ -188,3 +200,4 @@ def transactionhistory(request):
     }
 
     return render(request,"transactionhistory.html",context)
+    return render(request, "expensereport.html", context)

@@ -27,22 +27,22 @@
 
     <div class="option-grid">
 
-        <div class="option-card" onclick="goTo('/add-expense/')">
+        <div class="option-card" onclick="redirect_page('{% url 'add_expense' %}')">
             <div class="option-icon">💳</div>
             <div class="option-text">Add Expense</div>
         </div>
 
-        <div class="option-card" onclick="goTo('/add-income/')">
+        <div class="option-card" onclick="redirect_page('{% url 'addincome' %}')">
             <div class="option-icon">💵</div>
             <div class="option-text">Add Income</div>
         </div>
 
-        <div class="option-card" onclick="goTo('/add-investment/')">
+        <div class="option-card" onclick="redirect_page('{% url 'investment' %}')">
             <div class="option-icon">📈</div>
             <div class="option-text">Add Investment</div>
         </div>
 
-        <div class="option-card" onclick="goTo('/add-emi/')">
+        <div class="option-card" onclick="redirect_page('{% url 'emimanager' %}')">
             <div class="option-icon">💰</div>
             <div class="option-text">Add EMI</div>
         </div>

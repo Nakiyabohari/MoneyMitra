@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Category model must come first
 class Category(models.Model):
@@ -14,6 +16,8 @@ class Category(models.Model):
 
 
 class Income_model(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     amount = models.IntegerField()
     income_source = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
@@ -21,6 +25,8 @@ class Income_model(models.Model):
 
 
 class Expense_model(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     expense_amount = models.IntegerField()
     category = models.CharField(max_length=100)
     date = models.DateField()
@@ -29,6 +35,8 @@ class Expense_model(models.Model):
 
 
 class Expensereport_model(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     month = models.IntegerField()
     year = models.IntegerField()
     salary = models.IntegerField()

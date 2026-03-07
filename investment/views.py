@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from .forms import InvestmentForm
 from openai import OpenAI
 
@@ -8,6 +9,7 @@ from openai import OpenAI
 # ==============================
 # INVESTMENT PAGE
 # ==============================
+@login_required
 def investment_view(request):
 
     if request.method == "POST":
@@ -25,9 +27,7 @@ def investment_view(request):
 # ==============================
 # MITRA AI VIEW (FINAL WORKING)
 # ==============================
-# ==============================
-# MITRA AI VIEW (FINAL WORKING)
-# ==============================
+@login_required
 def mitra_ai(request):
 
     if request.method != "POST":
@@ -60,7 +60,7 @@ IMPORTANT RULES:
 
         response = client.chat.completions.create(
             model="llama-3.1-8b-instant",
-            temperature=0.3,  # lower = more accurate
+            temperature=0.3,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message}

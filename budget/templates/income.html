@@ -12,7 +12,7 @@
 <div class="page-wrapper">
     <div class="app-card">
 
-        <!-- ✅ PROGRESS BAR -->
+        <!-- PROGRESS BAR -->
         <div class="progress-bar">
             <div class="progress-step active"></div>
             <div class="progress-step"></div>
@@ -20,6 +20,7 @@
         </div>
 
         <h1>Enter your monthly income</h1>
+
         <p class="subtitle">
             This helps us track your expenses and suggest savings
         </p>
@@ -27,15 +28,27 @@
         <form method="POST">
             {% csrf_token %}
 
+            <!-- SALARY CARD -->
             <div class="salary-card">
+
                 <label>Monthly Salary</label>
+
                 <div class="salary-box">
                     <span class="rupee">₹</span>
-                    <input type="text" id="salaryDisplay" class="salary-input" placeholder="0">
-                    <input type="hidden" name="salary" id="salaryReal">
+
+                    <!-- IMPORTANT: name="salary" -->
+                    <input 
+                        type="number"
+                        name="salary"
+                        class="salary-input"
+                        placeholder="0"
+                        required
+                    >
                 </div>
+
             </div>
 
+            <!-- INFO BOX -->
             <div class="info-box">
                 <span class="info-icon">i</span>
                 <p>
@@ -43,14 +56,15 @@
                 </p>
             </div>
 
-            <button type="submit" class="continue-btn">Continue</button>
+            <!-- BUTTON -->
+            <button type="submit" class="add-income-btn">
+                Add Income
+            </button>
 
         </form>
 
     </div>
 </div>
-
-<script src="{% static 'js/income.js' %}"></script>
 
 </body>
 </html>

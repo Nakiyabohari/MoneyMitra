@@ -1,9 +1,18 @@
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from httpx import request
 from .models import Profile
+from datetime import date
+from django.db.models import Sum
+from budget.models import MonthlyIncome,SavingsGoal,Category
+from investment.models import InvestmentPlan
+from EMI.models import EmiManager
+from budget.forms import CategoryForm
+from transactions.forms import add_expense_Form
+
+
 
 # HOME
 def home(request):
@@ -45,26 +54,145 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('income')
 
     return render(request, 'login.html')
+
+from django.shortcuts import render, redirect
+
+#Income
+@login_required
+def income(request):
+
+    if request.method == "POST":
+        salary = request.POST.get("salary")
+
+        MonthlyIncome.objects.create(
+            user=request.user,
+            month=date.today(),
+            salary=salary
+        )
+
+        return redirect("dashboard")
+
+    return render(request, "income.html")
+
+
+#Add income
+def add_income(request):
+    if request.method == "POST":
+        salary = request.POST.get("salary")
+
+        # save income here if you have model
+        # example:
+        # Income.objects.create(user=request.user, amount=salary)
+
+        return redirect('dashboard')   # go to saving page
+
+    return render(request, "income.html")
 
 
 # DASHBOARD
 @login_required
 def dashboard(request):
+
     profile = Profile.objects.get(user=request.user)
 
-    # Available balance calculation
-    available_balance = profile.monthly_salary - profile.emi
+    # fetch salary
+    income = MonthlyIncome.objects.filter(user=request.user).order_by('-month').first()
+    salary = income.salary if income else 0
+
+    # fetch savings goals
+    savings_goals = SavingsGoal.objects.filter(user=request.user)
+
+    # calculate total savings
+    total_savings = sum(goal.current_amount for goal in savings_goals)
+
+    # EMI
+    emis = EmiManager.objects.filter(user=request.user)
+    total_emi = sum(emi.monthly_amount for emi in emis)
 
     context = {
         'profile': profile,
-        'available_balance': available_balance,
+        'salary': salary,
+        'total_savings': total_savings,
+        'total_emi':total_emi,
     }
 
     return render(request, 'dashboard.html', context)
 
+#EMI Manager
+@login_required
+def emimanager(request):
+
+    emis = EmiManager.objects.filter(user=request.user)
+
+    context = {
+        'emis': emis
+    }
+    return render(request, 'emimanager.html')
+
+#Monthly Budget
+@login_required
+def MonthlyBudget(request):
+
+    categories = Category.objects.filter(user=request.user)
+
+    if request.method == "POST":
+
+        form = CategoryForm(request.POST)
+
+        if form.is_valid():
+            budget = form.save(commit=False)
+            budget.user = request.user
+            budget.save()
+
+            return redirect('MonthlyBudget')
+
+    else:
+        form = CategoryForm()
+
+    context = {
+        'form': form,
+        'categories': categories
+    }
+
+    return render(request, 'MonthlyBudget.html', context)
+
+#Budget Analysis
+@login_required
+def BudgetAnalysis(request):
+    return render(request, 'BudgetAnalysis.html')
+
+# Savings Goals
+@login_required
+def savings_goal(request):
+
+    goals = SavingsGoal.objects.filter(user=request.user)
+
+    context = {
+        'goals': goals
+    }
+
+    return render(request, 'savings_goal.html', context)
+
+#Expense Report
+@login_required
+def expense_report(request):
+    return render(request, 'expense_report.html')
+
+#Add Expense
+from budget.models import Category
+@login_required
+def add_expense(request):
+
+    categories = Category.objects.filter(user=request.user)
+
+    context = {
+        "categories": categories
+    }
+
+    return render(request, "add_expense.html", context)
 
 
 #menu
