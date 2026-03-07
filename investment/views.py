@@ -9,19 +9,25 @@ from openai import OpenAI
 # ==============================
 # INVESTMENT PAGE
 # ==============================
+from .models import InvestmentPlan
+
 @login_required
 def investment_view(request):
 
     if request.method == "POST":
-        form = InvestmentForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-            return redirect('investment')
-    else:
-        form = InvestmentForm()
+        investment_type = request.POST.get("investment_type")
+        amount = request.POST.get("amount")
 
-    return render(request, 'investment.html', {'form': form})
+        InvestmentPlan.objects.update_or_create(
+            user=request.user,
+            investment_type=investment_type,
+            defaults={"monthly_amount": amount}
+        )
+
+        return redirect("investment")
+
+    return render(request, "investment.html")
 
 
 # ==============================

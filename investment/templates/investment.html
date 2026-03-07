@@ -1,115 +1,170 @@
 {% load static %}
+
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Investments - MoneyMitra</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/investment-desktop.css' %}">
-    <link rel="stylesheet" href="{% static 'css/investment-mobile.css' %}" media="(max-width: 768px)">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/investment-desktop.css' %}">
+<link rel="stylesheet" href="{% static 'css/investment-mobile.css' %}" media="(max-width: 768px)">
+
+
 </head>
 
 <body>
-    <div class="main-wrapper">
-        <div class="main-card">
 
-            <!-- LEFT SECTION -->
-            <div class="left-section">
+<div class="main-wrapper">
+<div class="main-card">
 
-                <!-- Header -->
-                <div class="page-header">
-                    <button class="back-btn" onclick="goBack()">&#8592;</button>
-                    <h2>Investment Planning</h2>
-                </div>
+<!-- LEFT SECTION -->
 
-                <p class="info-text">
-                    Investing regularly helps your money grow over time.
-                    Start small and increase gradually.
-                </p>
+<div class="left-section">
 
-                <h3>Choose Investment Type</h3>
 
-                <div class="investment-types">
-                    <div class="invest-card active"
-                         onclick="selectType('Mutual Funds', this)">
-                        <h4>Mutual Funds</h4>
-                        <p>Diversified portfolio</p>
-                    </div>
+<div class="page-header">
+    <button class="back-btn" onclick="goBack()">&#8592;</button>
+    <h2>Investment Planning</h2>
+</div>
 
-                    <div class="invest-card"
-                         onclick="selectType('ETFs', this)">
-                        <h4>ETFs</h4>
-                        <p>Index tracking</p>
-                    </div>
-                </div>
+<div class="mobile-info-card">
+    <span class="info-icon">ℹ</span>
+    Investing regularly helps your money grow over time.
+    Start small and increase gradually as you learn.
+</div>
 
-                <div class="amount-card">
-                    <p>Monthly Investment Amount</p>
-                    <div class="amount-input">
-                        ₹ <input type="number">
-                    </div>
-                </div>
+<p class="info-text">
+    Investing regularly helps your money grow over time.
+    Start small and increase gradually.
+</p>
 
-                <button class="outline-btn" onclick="toggleMitraChat()">
-                    ✨ Ask Mitra AI
-                </button>
+<h3>Choose Investment Type</h3>
 
-                <button type="submit" class="btn">
-                    Save Investment Plan
-                </button>
+<div class="investment-types">
 
-            </div>
-            
-
-            <!-- RIGHT SECTION (CHAT) -->
-            <div class="right-section">
-
-                <div class="mitra-header">
-                    MoneyMitra AI
-                    <span onclick="closeMitraChat()">✕</span>
-                </div>
-
-                <div id="chatBox" class="mitra-chatbox"></div>
-
-                <div class="mitra-input-area">
-                    <input type="text"
-                           id="chatInput"
-                           placeholder="Ask about investments...">
-
-                    <button type="button"
-                            onclick="sendChatMessage()">
-                        Send
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
+    <div class="invest-card active" onclick="selectType('Mutual Funds', this)">
+        <div class="invest-icon">📈</div>
+        <h4>Mutual Funds</h4>
+        <p>Diversified portfolio</p>
     </div>
 
-    <script src="{% static 'js/investment.js' %}"></script>
+    <div class="invest-card" onclick="selectType('ETFs', this)">
+        <div class="invest-icon">💲</div>
+        <h4>ETFs</h4>
+        <p>Index tracking</p>
+    </div>
 
-    <script>
-        function goBack() {
-            window.history.back();
-        }
+</div>
 
-        function toggleMitraChat() {
-            if (window.innerWidth <= 768) {
-                document
-                    .querySelector(".right-section")
-                    .classList.add("show-chat");
-            }
-        }
+<form method="POST">
+    {% csrf_token %}
 
-        function closeMitraChat() {
-            document
-                .querySelector(".right-section")
-                .classList.remove("show-chat");
-        }
-    </script>
+    <input type="hidden"
+           id="investmentType"
+           name="investment_type"
+           value="Mutual Funds">
+
+    <div class="amount-card">
+
+        <p>Monthly Investment Amount</p>
+
+        <div class="amount-input">
+            ₹ <input type="number"
+                     name="amount"
+                     placeholder="Enter amount"
+                     required>
+        </div>
+
+    </div>
+
+    <div class="why-invest">
+    <h4>Why invest monthly?</h4>
+
+    <ul>
+        <li>Build wealth steadily over time</li>
+        <li>Reduce risk through regular investing</li>
+        <li>Make investing a habit</li>
+    </ul>
+</div>
+
+    <!-- MOBILE BUTTON -->
+    <button type="button"
+            class="outline-btn"
+            onclick="toggleMitraChat()">
+        ✨ Ask Mitra AI
+    </button>
+
+    <button type="submit" class="btn">
+        Save Investment Plan
+    </button>
+
+</form>
+
+</div>
+
+<!-- RIGHT SECTION (CHAT PANEL) -->
+
+<div class="right-section">
+
+<div class="mitra-header">
+    MoneyMitra AI
+    <span onclick="closeMitraChat()">✕</span>
+</div>
+
+<div id="chatBox" class="mitra-chatbox"></div>
+
+<div class="mitra-input-area">
+
+    <input type="text"
+           id="chatInput"
+           placeholder="Ask about investments...">
+
+    <button type="button"
+            onclick="sendChatMessage()">
+        Send
+    </button>
+
+</div>
+
+
+</div>
+
+</div>
+</div>
+
+<script src="{% static 'js/investment.js' %}"></script>
+
+<script>
+
+function goBack() {
+    window.history.back();
+}
+
+function toggleMitraChat() {
+
+    if (window.innerWidth <= 768) {
+
+        document
+        .querySelector(".right-section")
+        .classList.add("show-chat");
+
+    }
+
+}
+
+function closeMitraChat() {
+
+    document
+    .querySelector(".right-section")
+    .classList.remove("show-chat");
+
+}
+
+</script>
+
 </body>
 </html>
-
