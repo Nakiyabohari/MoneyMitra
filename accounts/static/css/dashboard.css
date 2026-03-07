@@ -364,13 +364,36 @@ body{
     }
 }
 .big-card{
-    height:160px;
+    height:170px;
 }
 
 .mini-scroll{
-    max-height:90px;
+    max-height:110px;
     overflow-y:auto;
     margin-top:10px;
+}
+
+.progress-item{
+    margin-bottom:12px;
+}
+
+.progress-text{
+    font-size:14px;
+    margin-bottom:6px;
+    color:#6c63ff;
+}
+
+.progress-bar{
+    width:100%;
+    height:6px;
+    background:#e6e6ef;
+    border-radius:10px;
+}
+
+.progress-fill{
+    height:6px;
+    background:#6c63ff;
+    border-radius:10px;
 }
 
 .mini-scroll::-webkit-scrollbar{
