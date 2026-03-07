@@ -23,19 +23,28 @@ def monthly_income(request):
 
     return render(request, "income.html")
 
+from datetime import date
+
 @login_required
 def monthly_savings(request):
+
     if request.method == "POST":
         form = MonthlySavingsForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            saving = form.save(commit=False)
+
+            saving.user = request.user
+            saving.month = date.today()
+
+            saving.save()
+
             return redirect('success')
+
     else:
         form = MonthlySavingsForm()
 
     return render(request, 'saving.html', {'form': form})
-
-
 
 # done by bappu
 
