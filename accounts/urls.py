@@ -37,4 +37,7 @@ urlpatterns = [
 
     #Add Expense
     path('add_expense/', views.add_expense, name='add_expense'),
+
+    #transactionshistry
+    path('transactionhistory/', views.transactionhistory, name='transactionhistory')
 ]
