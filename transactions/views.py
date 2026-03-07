@@ -31,7 +31,7 @@ def addincome(request):
             notes=notes
         )
 
-        return redirect("expensereport")
+        return redirect("dashboard")
 
     return render(request, "addincome.html")
 
