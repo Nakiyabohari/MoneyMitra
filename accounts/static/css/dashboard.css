@@ -363,3 +363,21 @@ body{
         font-size:22px;
     }
 }
+.big-card{
+    height:160px;
+}
+
+.mini-scroll{
+    max-height:90px;
+    overflow-y:auto;
+    margin-top:10px;
+}
+
+.mini-scroll::-webkit-scrollbar{
+    width:5px;
+}
+
+.mini-scroll::-webkit-scrollbar-thumb{
+    background:#cfcaf8;
+    border-radius:10px;
+}

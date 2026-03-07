@@ -151,12 +151,23 @@ display:inline-block;
 margin-right:6px;
 }
 
-.purple{
-background:var(--primary);
+/* COLORS FOR CHART */
+
+.investment{
+background:#B76DF7;
 }
 
-.light{
-background:var(--primary-light);
+.saving{
+background: #9370db;
+}
+
+.emi{
+background: #9400d3;
+}
+
+
+.available{
+background:#800080;
 }
 
 .percent{
