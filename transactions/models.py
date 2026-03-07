@@ -53,7 +53,7 @@ class Expensereport_model(models.Model):
     salary = models.IntegerField()
 
 
-class Transaction_model(models.Model):
+class Transaction_history_model(models.Model):
     TRANSACTION_TYPE = [
         ('income', 'Income'),
         ('expense', 'Expense')

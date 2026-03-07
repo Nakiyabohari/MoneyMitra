@@ -52,8 +52,8 @@
 
 {% for income in incomes %}
 <div class="row">
-  <span>{{ income.income_source }}</span>
-  <span>₹{{ income.amount }}</span>
+  <span>{{ income.income_source|default:"Unknown" }}</span>
+  <span>₹{{ income.amount|default:0 }}</span>
 </div>
 {% empty %}
 <div>No income records</div>
@@ -61,7 +61,7 @@
 
 <div class="row total">
   <span>Total Income</span>
-  <span>₹{{ total_income }}</span>
+  <span>₹{{ total_income|default:0 }}</span>
 </div>
 </div>
 
@@ -72,13 +72,13 @@
 {% for expense in expenses %}
 <div class="row">
   <span>
-    {% if expense.category|lower == "custom" and expense.notes %}
+    {% if expense.category and expense.category|lower == "custom" and expense.notes %}
         {{ expense.notes }}
     {% else %}
-        {{ expense.category }}
+        {{ expense.category|default:"Other" }}
     {% endif %}
   </span>
-  <span>₹{{ expense.expense_amount }}</span>
+  <span>₹{{ expense.expense_amount|default:0 }}</span>
 </div>
 {% empty %}
 <div>No expense records</div>
@@ -86,7 +86,7 @@
 
 <div class="row total">
   <span>Total Expense</span>
-  <span>₹{{ total_expense }}</span>
+  <span>₹{{ total_expense|default:0 }}</span>
 </div>
 </div>
 
@@ -94,7 +94,7 @@
 <div class="card balance">
 <div>Net Balance</div>
 
-<div class="big">₹{{ balance }}</div>
+<div class="big">₹{{ balance|default:0 }}</div>
 
 <div>
 {% if balance >= 0 %}
@@ -105,7 +105,7 @@ Deficit
 </div>
 </div>
 
-<!-- CATEGORY BREAKDOWN (MERGED LIST) -->
+<!-- CATEGORY BREAKDOWN -->
 <div class="card">
 <h3>Category Breakdown</h3>
 
@@ -114,12 +114,12 @@ Deficit
 <!-- INCOME ITEMS -->
 {% for income in incomes %}
 <div class="row">
-  <span>{{ income.income_source }}</span>
-  <span>{{ income.percent|floatformat:1 }}%</span>
+  <span>{{ income.income_source|default:"Unknown" }}</span>
+  <span>{{ income.percent|default:0|floatformat:1 }}%</span>
 </div>
 
 <div class="progress">
-  <div class="progress-bar" style="width:{{ income.percent }}%"></div>
+  <div class="progress-bar" style="width:{{ income.percent|default:0 }}%"></div>
 </div>
 {% endfor %}
 
@@ -127,17 +127,17 @@ Deficit
 {% for expense in expenses %}
 <div class="row">
 <span>
-    {% if expense.category|lower == "custom" and expense.notes %}
+    {% if expense.category and expense.category|lower == "custom" and expense.notes %}
         {{ expense.notes }}
     {% else %}
-        {{ expense.category }}
+        {{ expense.category|default:"Other" }}
     {% endif %}
 </span>
-<span>{{ expense.percent|floatformat:1 }}%</span>
+<span>{{ expense.percent|default:0|floatformat:1 }}%</span>
 </div>
 
 <div class="progress">
-<div class="progress-bar" style="width:{{ expense.percent }}%"></div>
+<div class="progress-bar" style="width:{{ expense.percent|default:0 }}%"></div>
 </div>
 {% endfor %}
 
@@ -146,10 +146,11 @@ Deficit
 {% endif %}
 
 </div>
+
 <!-- TOTAL TRANSACTIONS -->
 <div class="card balance">
 <div>Total Transactions</div>
-<div class="big">{{ total_transactions }}</div>
+<div class="big">{{ total_transactions|default:0 }}</div>
 </div>
 
 </div>
@@ -160,8 +161,8 @@ window.reportData = {
     incomes: [
         {% for income in incomes %}
         {
-            income_source: "{{ income.income_source|escapejs }}",
-            amount: {{ income.amount }}
+            income_source: "{{ income.income_source|default:''|escapejs }}",
+            amount: {{ income.amount|default:0 }}
         }{% if not forloop.last %},{% endif %}
         {% endfor %}
     ],
@@ -169,8 +170,8 @@ window.reportData = {
     expenses: [
         {% for expense in expenses %}
         {
-            category: "{% if expense.category|lower == 'custom' and expense.notes %}{{ expense.notes|escapejs }}{% else %}{{ expense.category|escapejs }}{% endif %}",
-            expense_amount: {{ expense.expense_amount }}
+            category: "{% if expense.category and expense.category|lower == 'custom' and expense.notes %}{{ expense.notes|escapejs }}{% else %}{{ expense.category|default:''|escapejs }}{% endif %}",
+            expense_amount: {{ expense.expense_amount|default:0 }}
         }{% if not forloop.last %},{% endif %}
         {% endfor %}
     ],
