@@ -96,7 +96,7 @@ def add_income(request):
 @login_required
 def dashboard(request):
 
-    profile = Profile.objects.get(user=request.user)
+    profile, created = Profile.objects.get_or_create(user=request.user)
 
     # fetch salary
     income = MonthlyIncome.objects.filter(user=request.user).order_by('-month').first()
@@ -112,11 +112,19 @@ def dashboard(request):
     emis = EmiManager.objects.filter(user=request.user)
     total_emi = sum(emi.monthly_amount for emi in emis)
 
+    # investment
+    investment_total = InvestmentPlan.objects.filter(
+        user=request.user
+    ).aggregate(total=Sum('monthly_amount'))['total'] or 0
+
+    print(InvestmentPlan.objects.filter(user=request.user).values())
+
     context = {
         'profile': profile,
         'salary': salary,
         'total_savings': total_savings,
-        'total_emi':total_emi,
+        'total_emi': total_emi,
+        'investment_total': investment_total
     }
 
     return render(request, 'dashboard.html', context)
