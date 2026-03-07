@@ -1,7 +1,9 @@
 let selectedInvestment = "Mutual Funds";
 
 function selectType(type, element) {
+
     selectedInvestment = type;
+
     document.getElementById("investmentType").value = type;
 
     document.querySelectorAll(".invest-card")
