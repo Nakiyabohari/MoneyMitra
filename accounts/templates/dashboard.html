@@ -42,12 +42,12 @@
     <!-- ================= BALANCE ================= -->
 
     <div class="balance-wrapper">
-    <div class="balance-card">
-        <p>Available Balance</p>
-        <h1>₹{{ salary }}</h1>
-        <span>• After EMI deduction</span>
+        <div class="balance-card">
+            <p>Available Balance</p>
+            <h1>₹{{ salary }}</h1>
+            <span>• After EMI deduction</span>
+        </div>
     </div>
-</div>
 
     <!-- ================= CONTENT ROW ================= -->
 
@@ -61,7 +61,7 @@
 
                 <div class="overview-card">
                     <p>Monthly Salary</p>
-                    <h4>₹{{ profile.monthly_salary }}</h4>
+                    <h4>₹{{ salary }}</h4>
                 </div>
 
                 <div class="overview-card">
@@ -71,14 +71,74 @@
 
                 <div class="overview-card">
                     <p>Investments</p>
-                    <h4>₹{{ total_investment }}</h4>
+                    <h4>₹{{ investment_total }}</h4>
                 </div>
 
                 <div class="overview-card">
                     <p>EMI</p>
                     <h4>₹{{ total_emi }}</h4>
                 </div>
+                
 
+                <!-- SCROLL CARD 1 -->
+                <div class="overview-card big-card">
+    <p>Income</p>
+
+    <div class="mini-scroll">
+
+        <div class="progress-item">
+            <div class="progress-text">₹12.00/month</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:70%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-text">₹25.00/month</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:50%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-text">₹10.00/month</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:40%"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="overview-card big-card">
+    <p>Expense</p>
+
+    <div class="mini-scroll">
+
+        <div class="progress-item">
+            <div class="progress-text">₹40.00/month</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:80%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-text">₹15.00/month</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:60%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-text">₹22.00/month</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:35%"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
             </div>
         </div>
 
@@ -106,15 +166,11 @@
 
     </div>
 
-    <!-- ✅ ADD BUTTON NOW INSIDE CONTAINER -->
     {% include 'addbutton.html' %}
 
 </div>
 
-<!-- Menu can stay outside -->
 {% include 'menu.html' %}
-
-<!-- ================= SCRIPTS ================= -->
 
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="{% static 'js/menu.js' %}"></script>

@@ -34,6 +34,7 @@ def addincome(request):
         income.save()
 
         return redirect("expensereport")
+        return redirect("dashboard")
 
     return render(request, "add_income.html")
 

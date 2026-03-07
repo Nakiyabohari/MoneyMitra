@@ -66,10 +66,10 @@ let startAngle = -Math.PI / 2;
 
 const slices = [
 
-{value:investments,color:"#6C63FF"},
-{value:savings,color:"#00b894"},
-{value:emi,color:"#fdcb6e"},
-{value:balance,color:"#e8e6ff"}
+{value:investments,color:"#B76DF7"}, 
+{value:savings,color:"#9370DB"},
+{value:emi,color:"#9400D3"},
+{value:balance,color:"#800080"}
 
 ];
 

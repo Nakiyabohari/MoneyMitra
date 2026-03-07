@@ -16,7 +16,9 @@
 <div class="app">
 
 <div class="header">
-<a href="{% url 'dashboard' %}" class="icon-btn"><span class="back hoverable">←</span></a>
+<a href="{% url 'dashboard' %}" class="icon-btn">
+<span class="back hoverable">←</span>
+</a>
 <h2>Monthly Summary</h2>
 </div>
 
@@ -77,9 +79,8 @@
 
 <div class="legend-item">
 <div>
-<span class="dot purple"></span> Investments
+<span class="dot investment"></span> Investments
 </div>
-
 <div>
 <b id="invAmount">₹{{ investments }}</b>
 </div>
@@ -88,9 +89,28 @@
 
 <div class="legend-item">
 <div>
-<span class="dot light"></span> Available
+<span class="dot saving"></span> Savings
+</div>
+<div>
+<b id="savAmount">₹{{ savings }}</b>
+</div>
 </div>
 
+
+<div class="legend-item">
+<div>
+<span class="dot emi"></span> EMI
+</div>
+<div>
+<b id="emiAmount">₹{{ emi }}</b>
+</div>
+</div>
+
+
+<div class="legend-item">
+<div>
+<span class="dot available"></span> Available
+</div>
 <div>
 <b id="availAmount">₹{{ balance }}</b>
 </div>
