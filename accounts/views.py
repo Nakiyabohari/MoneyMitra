@@ -117,7 +117,7 @@ def dashboard(request):
         user=request.user
     ).aggregate(total=Sum('monthly_amount'))['total'] or 0
 
-    print(InvestmentPlan.objects.filter(user=request.user).values())
+    print(InvestmentPlan.objects.filter(user=request.user).values())    
 
     context = {
         'profile': profile,
