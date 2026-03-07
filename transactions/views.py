@@ -66,35 +66,42 @@ def addincome(request):
 # ==========================
 @login_required
 def add_expense(request):
-    categories = Category.objects.all()  # filter by user if needed
+
+    categories = Category.objects.all()
 
     if request.method == "POST":
+
         expense_amount = request.POST.get("expense_amount")
         category_id = request.POST.get("category")
-        custom_category_name = request.POST.get("custom_category")
+        custom_category = request.POST.get("custom_category")
         date = request.POST.get("date")
         expense_payment_method = request.POST.get("expense_payment_method")
         notes = request.POST.get("notes")
 
-        if category_id == "custom" and custom_category_name:
-            category = Category.objects.create(name=custom_category_name)
+        # If user selects custom category
+        if category_id == "custom":
+
+            category_obj = Category.objects.create(
+                user=request.user,
+                name=custom_category
+            )
+
         else:
-            category = Category.objects.filter(id=category_id).first()
-            if not category:
-                return redirect("add_expense")  # handle invalid category
+            category_obj = Category.objects.get(id=int(category_id))
 
         Expense_model.objects.create(
             user=request.user,
             expense_amount=expense_amount,
-            category=category,
+            category=category_obj,
             date=date,
             expense_payment_method=expense_payment_method,
             notes=notes
         )
+
         return redirect("expensereport")
 
     return render(request, "add_expense.html", {"categories": categories})
-    return render(request, "add_expense.html")
+
 
 
 # ==========================
