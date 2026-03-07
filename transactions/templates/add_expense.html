@@ -32,9 +32,6 @@
         <!-- Select -->
 <div class="field hoverable" id="categoryField">
 
-<<<<<<< HEAD
-    <select id="categorySelect" name="category" required>
-=======
         <!-- Custom Input -->
         <div class="field hoverable hidden" id="categoryInputBox">
             <input
@@ -43,15 +40,12 @@
                 name="custom_category"   <!-- ✅ THIS WAS MISSING -->
               
         </div>
->>>>>>> 16112782e4b6fc5569032a4790c95d4832bba355
 
         <option value="">Select Category</option>
-
-        {% for cat in categories %}
+    {% for cat in categories %}
         <option value="{{ cat.id }}">{{ cat.name }}</option>
-        {% endfor %}
-
-        <option value="custom">➕ Custom Category</option>
+    {% endfor %}
+    <option value="custom">➕ Custom Category</option>
 
     </select>
 
