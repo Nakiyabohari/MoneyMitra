@@ -22,10 +22,6 @@ if (monthPicker){
 const today = new Date();
 
 const year = today.getFullYear();
-const month = String(today.getMonth() + 1).padStart(2,"0");
-
-// set current month
-monthPicker.value = `${year}-${month}`;
 
 // allow only current year
 monthPicker.min = `${year}-01`;
@@ -104,3 +100,21 @@ startAngle += angle;
 }
 
 drawDonut();
+
+
+/* =========================
+MONTH CHANGE -> FETCH DATA
+========================= */
+
+if(monthPicker){
+
+monthPicker.addEventListener("change", function(){
+
+const selectedMonth = this.value;
+
+// reload page with selected month
+window.location.href = `?month=${selectedMonth}`;
+
+});
+
+}
