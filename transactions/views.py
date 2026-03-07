@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Income_model
 from .models import Expense_model,Category
 from .models import Expensereport_model
-from .models import Transaction_model
+from .models import Transaction_history_model
 from .forms import addincome_Form
 from .forms import add_expense_Form
 
@@ -16,94 +16,63 @@ from .forms import add_expense_Form
 # ADD INCOME
 # ==========================
 @login_required
-def addincome(request):
-    if request.method == "POST":
-        amount = request.POST.get("amount")
-        income_source = request.POST.get("income_source")
-        payment_method = request.POST.get("payment_method")
-        notes = request.POST.get("notes")
 
-        Income_model.objects.create(
-            user=request.user,
-            amount=amount,
-            income_source=income_source,
-            payment_method=payment_method,
-            notes=notes
+@login_required
+def addincome(request):
+
+    if request.method == "POST":
+
+        source = request.POST.get("income_source")
+        amount = request.POST.get("amount")
+
+        income = Income_model(
+            user=request.user,   # ⭐ IMPORTANT
+            income_source=source,
+            amount=amount
         )
 
+        income.save()
+
+        return redirect("expensereport")
         return redirect("dashboard")
 
-    return render(request, "addincome.html")
-
-# def add__expense(request):
-#     if request.method == "POST":
-#         expense_amount = request.POST.get("expense_amount")
-#         category = request.POST.get("category")
-#         custom_category = request.POST.get("custom_category")
-#         date = request.POST.get("date")
-#         expense_payment_method = request.POST.get("expense_payment_method")
-#         notes = request.POST.get("notes")
-
-#         if category == "custom" and custom_category:
-#             category = custom_category
-
-#         Expense_model.objects.create(
-#             expense_amount=expense_amount,
-#             category=category,
-#             date=date,
-#             expense_payment_method=expense_payment_method,
-#             notes=notes
-#         )
-
-#         return redirect("expensereport")
-
-#     return render(request, "add_expense.html")
-
-
+    return render(request, "add_income.html")
 
 # ==========================
 # ADD EXPENSE
 # ==========================
-@login_required
-def add_expense(request):
+from django.contrib import messages
 
-    categories = Category.objects.all()
+@login_required
+def add__expense(request):
+
+    categories = Category.objects.filter(type="expense")
 
     if request.method == "POST":
 
-        expense_amount = request.POST.get("expense_amount")
+        amount = request.POST.get("expense_amount")
         category_id = request.POST.get("category")
-        custom_category = request.POST.get("custom_category")
         date = request.POST.get("date")
-        expense_payment_method = request.POST.get("expense_payment_method")
+        payment_type = request.POST.get("expense_payment_method")
         notes = request.POST.get("notes")
 
-        # If user selects custom category
-        if category_id == "custom":
+        category = Category.objects.get(id=category_id)
 
-            category_obj = Category.objects.create(
-                user=request.user,
-                name=custom_category
-            )
-
-        else:
-            category_obj = Category.objects.get(id=int(category_id))
-
-        Expense_model.objects.create(
+        expense = Expense_model(
             user=request.user,
-            expense_amount=expense_amount,
-            category=category_obj,
+            expense_amount=amount,
+            category=category,
             date=date,
-            expense_payment_method=expense_payment_method,
+            expense_payment_method=payment_type,
             notes=notes
         )
+
+        expense.save()
 
         return redirect("expensereport")
 
     return render(request, "add_expense.html", {"categories": categories})
-
-
-
+    
 # ==========================
 # EXPENSE REPORT
 # ==========================
@@ -125,17 +94,13 @@ def expensereport(request):
 
     years = list(range(2026, 2051))
 
+    # Calculate income percentage
     for income in incomes:
-        if total_income > 0:
-            income.percent = (income.amount / total_income) * 100
-        else:
-            income.percent = 0
+        income.percent = (income.amount / total_income * 100) if total_income > 0 else 0
 
+    # Calculate expense percentage
     for expense in expenses:
-        if total_expense > 0:
-            expense.percent = (expense.expense_amount / total_expense) * 100
-        else:
-            expense.percent = 0
+        expense.percent = (expense.expense_amount / total_expense * 100) if total_expense > 0 else 0
 
     total_transactions = incomes.count() + expenses.count()
 
@@ -151,7 +116,6 @@ def expensereport(request):
     }
 
     return render(request, "expensereport.html", context)
-
 
 # Nakiya's code
 
@@ -193,18 +157,15 @@ def add_expense(request):
 
 # End of Nakiya's code
 
-def transactionhistory(request):
+@login_required
+def transaction_history(request):
 
-    transactions = Transaction_model.objects.all().order_by('-date')
-
-    total_income = Transaction_model.objects.filter(type="income").aggregate(Sum('amount'))['amount__sum'] or 0
-    total_expense = Transaction_model.objects.filter(type="expense").aggregate(Sum('amount'))['amount__sum'] or 0
+    incomes = Income_model.objects.filter(user=request.user)
+    expenses = Expense_model.objects.filter(user=request.user)
 
     context = {
-        "transactions": transactions,
-        "total_income": total_income,
-        "total_expense": total_expense
+        "incomes": incomes,
+        "expenses": expenses,
     }
 
-    return render(request,"transactionhistory.html",context)
-    return render(request, "expensereport.html", context)
+    return render(request, "transactionhistory.html", context)
