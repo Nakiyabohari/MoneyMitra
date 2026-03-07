@@ -2,100 +2,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
 <title>Add Expense</title>
+
 </head>
 
 <body>
 
 <div class="card">
+
 <form method="POST">
 {% csrf_token %}
 
-    <div class="header">
-        <div class="back-btn" onclick="history.back()">←</div>
-        <div class="title">Add Expense</div>
-    </div>
+<div class="header">
+<div class="back-btn" onclick="history.back()">←</div>
+<div class="title">Add Expense</div>
+</div>
 
-    <label>Amount</label>
-    <div class="input-box">
-        <span class="icon">₹</span>
-        <input type="number" name="expense_amount" placeholder="0.00" step="0.01" required>
-    </div>
+<label>Amount</label>
+<div class="input-box">
+<span class="icon">₹</span>
+<input type="number" name="expense_amount" placeholder="0.00" step="0.01" required>
+</div>
 
-    <label>Category</label>
-
+<label>Category</label>
 
 <div class="category-wrapper">
 
-        <!-- Custom Input -->
-        <div class="field hoverable hidden" id="categoryInputBox">
-            <input
-                type="text"
-                id="categoryInput"
-                name="custom_category"  
-              
-        </div>
+<select name="category" id="categoryField" class="field hoverable">
 
-        <option value="">Select Category</option>
-    {% for cat in categories %}
-        <option value="{{ cat.id }}">{{ cat.name }}</option>
-    {% endfor %}
-    <option value="custom">➕ Custom Category</option>
-    <!-- CATEGORY SELECT -->
-    <select name="category" id="categoryField" class="field hoverable">
+<option value="">Select Category</option>
 
-        <option value="">Select Category</option>
+{% for cat in categories %}
+<option value="{{ cat.id }}">{{ cat.name }}</option>
+{% endfor %}
 
-        {% for cat in categories %}
-        <option value="{{ cat.name }}">{{ cat.name }}</option>
-        {% endfor %}
+<option value="custom">➕ Custom Category</option>
 
-        <option value="custom">➕ Custom Category</option>
-
-    </select>
+</select>
 
 </div>
-
 
 <!-- CUSTOM CATEGORY INPUT -->
+
 <div class="field hoverable hidden" id="categoryInputBox">
-    <input
-        type="text"
-        id="categoryInput"
-        name="custom_category"
-        placeholder="Enter custom category"
-    >
+
+<input
+type="text"
+id="categoryInput"
+name="custom_category"
+placeholder="Enter custom category">
+
 </div>
 
-    <label>Date</label>
-    <div class="input-box">
-        <span class="icon">📅</span>
-        <input type="date" name="date" required>
-    </div>
+<label>Date</label>
 
-    <label>Payment Type</label>
-    <div class="input-box">
-        <select name="expense_payment_method" required>
-            <option value="">Select Payment Type</option>
-            <option value="Cash">Cash</option>
-            <option value="UPI">UPI</option>
-            <option value="Credit Card">Credit Card</option>
-            <option value="Debit Card">Debit Card</option>
-            <option value="Net Banking">Net Banking</option>
-        </select>
-    </div>
+<div class="input-box">
+<span class="icon">📅</span>
+<input type="date" name="date" required>
+</div>
 
-    <label>Notes (Optional)</label>
-    <div class="input-box">
-        <textarea name="notes" placeholder="Write a note..."></textarea>
-    </div>
+<label>Payment Type</label>
 
-    <button type="submit">Save Expense</button>
+<div class="input-box">
+<select name="expense_payment_method" required>
+
+<option value="">Select Payment Type</option>
+<option value="Cash">Cash</option>
+<option value="UPI">UPI</option>
+<option value="Credit Card">Credit Card</option>
+<option value="Debit Card">Debit Card</option>
+<option value="Net Banking">Net Banking</option>
+
+</select>
+</div>
+
+<label>Notes (Optional)</label>
+
+<div class="input-box">
+<textarea name="notes" placeholder="Write a note..."></textarea>
+</div>
+
+<button type="submit">Save Expense</button>
 
 </form>
+
 </div>
 
 <script src="{% static 'js/add_expense.js' %}"></script>
