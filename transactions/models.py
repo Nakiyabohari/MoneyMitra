@@ -24,14 +24,25 @@ class Income_model(models.Model):
     notes = models.CharField(max_length=100)
 
 
+
 class Expense_model(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     expense_amount = models.IntegerField()
-    category = models.CharField(max_length=100)
+
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE
+    )
+
     date = models.DateField()
+
     expense_payment_method = models.CharField(max_length=100)
-    notes = models.CharField(max_length=100)
+
+    notes = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return f"{self.category} - ₹{self.expense_amount}"
 
 
 class Expensereport_model(models.Model):
