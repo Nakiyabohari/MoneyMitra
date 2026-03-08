@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================
-       SAFETY CHECK
+    SAFETY CHECK
     ========================== */
 
     if (typeof labels === "undefined" || labels.length === 0) {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       PIE CHART - SPENDING BY CATEGORY
+    PIE CHART - SPENDING BY CATEGORY
     ========================== */
 
     const pieCanvas = document.getElementById("categoryChart");
