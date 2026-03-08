@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Income_model
 from .models import Expense_model
 from .models import Expensereport_model
-from .models import Transaction_model
+from .models import Transaction_history_model
 # Register your models here.
 class IncomeAdmin(admin.ModelAdmin):
     list_display = ('amount', 'income_source', 'payment_method' ,'notes')
@@ -16,9 +16,9 @@ class ExpensereportAdmin(admin.ModelAdmin):
     list_display = ('month', 'year', 'salary')
 admin.site.register(Expensereport_model,ExpensereportAdmin)
 
-class TransactionAdmin(admin.ModelAdmin):
+class TransactionhistoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'type', 'category', 'amount', 'date')
-admin.site.register(Transaction_model,TransactionAdmin)
+admin.site.register(Transaction_history_model,TransactionhistoryAdmin)
 
 
 

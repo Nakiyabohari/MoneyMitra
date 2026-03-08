@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from httpx import request
+
+from transactions.models import Expense_model, Income_model
 from .models import Profile
 from datetime import date
 from django.db.models import Sum
@@ -117,14 +119,23 @@ def dashboard(request):
         user=request.user
     ).aggregate(total=Sum('monthly_amount'))['total'] or 0
 
-    print(InvestmentPlan.objects.filter(user=request.user).values())    
+    print(InvestmentPlan.objects.filter(user=request.user).values())   
+
+    # ✅ FETCH INCOME TRANSACTIONS
+    incomes = Income_model.objects.filter(user=request.user)
+
+    # ✅ FETCH EXPENSE TRANSACTIONS
+    expenses = Expense_model.objects.filter(user=request.user)
 
     context = {
         'profile': profile,
         'salary': salary,
         'total_savings': total_savings,
         'total_emi': total_emi,
-        'investment_total': investment_total
+        'investment_total': investment_total,
+
+        'incomes': incomes,
+        'expenses': expenses
     }
 
     return render(request, 'dashboard.html', context)

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Sum
-
+from datetime import date
 from .models import SavingsGoal, Category, Expense, MonthlyIncome
 from .forms import MonthlySavingsForm, SavingsGoalForm, CategoryForm
 from EMI.models import EmiManager
@@ -208,41 +208,93 @@ def budget_analysis(request):
 # =============================
 # MONTHLY SUMMARY
 # =============================
+from datetime import date, datetime
+from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from .models import SavingsGoal, Expense, MonthlyIncome
+from EMI.models import EmiManager
+from investment.models import InvestmentPlan
+
+
 @login_required
 def monthly_summary(request):
 
     user = request.user
 
+    selected_month = request.GET.get("month")
+
+    # =============================
+    # GET SELECTED MONTH
+    # =============================
+    if selected_month:
+        year, month = map(int, selected_month.split("-"))
+    else:
+        today = datetime.today()
+        year = today.year
+        month = today.month
+        selected_month = f"{year}-{str(month).zfill(2)}"
+
+
+    # =============================
+    # TOTAL INCOME
+    # =============================
     total_income = MonthlyIncome.objects.filter(
-        user=user
+        user=user,
+        month__year=year,
+        month__month=month
     ).aggregate(total=Sum('salary'))['total'] or 0
 
 
-    savings = SavingsGoal.objects.filter(
-        user=user
-    ).aggregate(total=Sum('current_amount'))['total'] or 0
+    # =============================
+    # SAVINGS (ONLY CURRENT MONTH)
+    # =============================
+    today = date.today()
+
+    if year == today.year and month == today.month:
+        savings = SavingsGoal.objects.filter(
+            user=user
+        ).aggregate(total=Sum('current_amount'))['total'] or 0
+    else:
+        savings = 0
 
 
+    # =============================
+    # INVESTMENTS
+    # =============================
     investments = InvestmentPlan.objects.filter(
-        user=user
+        user=user,
+        created_at__year=year,
+        created_at__month=month
     ).aggregate(total=Sum('monthly_amount'))['total'] or 0
 
 
+    # =============================
+    # EMI
+    # =============================
     emi = EmiManager.objects.filter(
-        user=user
+        user=user,
+        start_date__year=year,
+        start_date__month=month
     ).aggregate(total=Sum('monthly_amount'))['total'] or 0
 
 
+    # =============================
+    # EXPENSES
+    # =============================
     total_expense = Expense.objects.filter(
-        user=user
+        user=user,
+        date__year=year,
+        date__month=month
     ).aggregate(total=Sum('amount'))['total'] or 0
 
 
+    # =============================
+    # CALCULATIONS
+    # =============================
     total_deductions = savings + investments + emi
 
-
     available_balance = total_income - total_deductions - total_expense
-
 
     daily_limit = available_balance / 30 if available_balance > 0 else 0
 
@@ -255,6 +307,7 @@ def monthly_summary(request):
         "deductions": total_deductions,
         "balance": available_balance,
         "daily": daily_limit,
+        "selected_month": selected_month
     }
 
     return render(request, "monthly_summary.html", context)
