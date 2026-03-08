@@ -172,6 +172,11 @@ def MonthlyBudget(request):
 def BudgetAnalysis(request):
     return render(request, 'BudgetAnalysis.html')
 
+#transactionshistry
+@login_required
+def transactionhistory(request):
+    return render(request, 'transactionhistory.html')
+
 # Savings Goals
 @login_required
 def savings_goal(request):
