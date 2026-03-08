@@ -9,9 +9,9 @@ from .forms import MonthlySavingsForm, SavingsGoalForm, CategoryForm
 from EMI.models import EmiManager
 from investment.models import InvestmentPlan
 from budget.models import Category
-from transactions.models import Expense_model, Income_model
+from transactions.models import Income_model
 from .models import Category
-
+from budget.models import Expense
 
 # =============================
 # MONTHLY INCOME
@@ -158,71 +158,76 @@ def monthly_budget(request):
         'form': form,
         'categories': categories
     })
+    
+
+
 
 # =============================
 # BUDGET ANALYSIS
 # =============================
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.db.models import Sum
+from transactions.models import Expense_model, Income_model
+
+
 @login_required
 def budget_analysis(request):
 
-    user = request.user
+    # USER DATA
+    incomes = Income_model.objects.filter(user=request.user)
+    expenses = Expense_model.objects.filter(user=request.user)
 
-    # CATEGORY EXPENSE TOTALS
+    # TOTALS
+    total_income = sum(i.amount for i in incomes)
+    total_expense = sum(e.expense_amount for e in expenses)
+
+    # CATEGORY TOTALS
     category_expense = (
         Expense_model.objects
-        .filter(user=user)
-        .values('category__id', 'category__name')
-        .annotate(total=Sum('expense_amount'))
-        .order_by('-total')
+        .filter(user=request.user)
+        .values("category__name")
+        .annotate(total=Sum("expense_amount"))
+        .order_by("-total")
     )
 
-    total_expense = sum(item['total'] for item in category_expense) if category_expense else 0
-
-    # TOTAL INCOME
-    total_income = Income_Model.objects.filter(user=user).aggregate(
-        total=Sum('salary')
-    )['total'] or 0
-
-    categories = Category.objects.filter(user=user, type="expense")
-
     labels = []
-    budget_data = []
     spent_data = []
+    budget_data = []
 
-    for cat in categories:
+    for item in category_expense:
+        labels.append(item["category__name"])
+        spent_data.append(float(item["total"]))
+        budget_data.append(0)
 
-        spent = Expense_model.objects.filter(
-            user=user,
-            category_id=cat.id
-        ).aggregate(total=Sum('expense_amount'))['total'] or 0
-
-        labels.append(cat.name)
-        budget_data.append(float(cat.budget_amount or 0))
-        spent_data.append(float(spent))
-
-    # TOP SPENDING CATEGORIES
+    # TOP SPENDING
     top_categories = []
 
     for item in category_expense:
 
         percent = 0
         if total_expense > 0:
-            percent = round((item['total'] / total_expense) * 100, 1)
+            percent = round((item["total"] / total_expense) * 100, 1)
 
         top_categories.append({
-            "name": item['category__name'],
-            "total": item['total'],
+            "name": item["category__name"],
+            "total": float(item["total"]),
             "percent": percent
         })
 
-    return render(request, "BudgetAnalysis.html", {
+    context = {
         "labels": labels,
         "budget_data": budget_data,
         "spent_data": spent_data,
         "total_income": float(total_income),
         "total_expense": float(total_expense),
         "top_categories": top_categories
-    })
+    }
+
+    return render(request, "BudgetAnalysis.html", context)
+
+
 
 # =============================
 # MONTHLY SUMMARY
