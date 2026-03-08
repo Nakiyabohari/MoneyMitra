@@ -1,18 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
+from budget.models import Category
 
 
-# Category model must come first
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    TYPE_CHOICES = [
-        ('income', 'Income'),
-        ('expense', 'Expense'),
-    ]
-    type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='expense')
+# # Category model must come first
+# class Category(models.Model):
+#     name = models.CharField(max_length=100)
+#     TYPE_CHOICES = [
+#         ('income', 'Income'),
+#         ('expense', 'Expense'),
+#     ]
+#     type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='expense')
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Income_model(models.Model):
@@ -32,7 +33,7 @@ class Expense_model(models.Model):
 
     category = models.ForeignKey(
         Category,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE    
     )
 
     date = models.DateField()

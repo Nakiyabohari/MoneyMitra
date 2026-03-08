@@ -1,190 +1,190 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
+    <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
 
-<title>Add Expense</title>
+    <title>Add Expense</title>
 
-<style>
+    <style>
 
-.hidden{
-display:none;
-}
+    .hidden{
+    display:none;
+    }
 
-.category-wrapper{
-width:100%;
-}
+    .category-wrapper{
+    width:100%;
+    }
 
-.message-success{
-background:#e6ffed;
-color:#1b5e20;
-padding:10px;
-border-radius:6px;
-margin-bottom:10px;
-}
+    .message-success{
+    background:#e6ffed;
+    color:#1b5e20;
+    padding:10px;
+    border-radius:6px;
+    margin-bottom:10px;
+    }
 
-.message-error{
-background:#ffe6e6;
-color:#b71c1c;
-padding:10px;
-border-radius:6px;
-margin-bottom:10px;
-}
+    .message-error{
+    background:#ffe6e6;
+    color:#b71c1c;
+    padding:10px;
+    border-radius:6px;
+    margin-bottom:10px;
+    }
 
-</style>
+    </style>
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-<div class="card">
+    <div class="card">
 
-<form method="POST">
-{% csrf_token %}
+    <form method="POST">
+    {% csrf_token %}
 
-<div class="header">
-<div class="back-btn" onclick="history.back()">←</div>
-<div class="title">Add Expense</div>
-</div>
+    <div class="header">
+    <div class="back-btn" onclick="history.back()">←</div>
+    <div class="title">Add Expense</div>
+    </div>
 
-<!-- SUCCESS / ERROR MESSAGES -->
+    <!-- SUCCESS / ERROR MESSAGES -->
 
-{% if messages %}
-{% for message in messages %}
+    {% if messages %}
+    {% for message in messages %}
 
-<div class="message-{{ message.tags }}">
-{{ message }}
-</div>
+    <div class="message-{{ message.tags }}">
+    {{ message }}
+    </div>
 
-{% endfor %}
-{% endif %}
+    {% endfor %}
+    {% endif %}
 
 
-<label>Amount</label>
+    <label>Amount</label>
 
-<div class="input-box">
-<span class="icon">₹</span>
+    <div class="input-box">
+    <span class="icon">₹</span>
 
-<input 
-type="number" 
-name="expense_amount"
-placeholder="0.00" 
-step="0.01" 
-required>
+    <input 
+    type="number" 
+    name="expense_amount"
+    placeholder="0.00" 
+    step="0.01" 
+    required>
 
-</div>
+    </div>
 
 
-<label>Category</label>
+    <label>Category</label>
 
-<div class="category-wrapper">
+    <div class="category-wrapper">
 
-<select 
-name="category" 
-id="categoryField" 
-class="field hoverable"
-required>
+    <select 
+    name="category" 
+    id="categoryField" 
+    class="field hoverable"
+    required>
 
-<option value="">Select Category</option>
+    <option value="">Select Category</option>
 
-{% for cat in categories %}
-<option value="{{ cat.id }}">{{ cat.name }}</option>
-{% endfor %}
+    {% for cat in categories %}
+    <option value="{{ cat.id }}">{{ cat.name }}</option>
+    {% endfor %}
 
-<option value="custom">➕ Custom Category</option>
+    <option value="custom">➕ Custom Category</option>
 
-</select>
+    </select>
 
 
-<input
-type="text"
-id="categoryInput"
-name="custom_category"
-class="field hoverable hidden"
-placeholder="Enter custom category"
-/>
+    <input
+    type="text"
+    id="categoryInput"
+    name="custom_category"
+    class="field hoverable hidden"
+    placeholder="Enter custom category"
+    />
 
-</div>
+    </div>
 
 
-<label>Date</label>
+    <label>Date</label>
 
-<div class="input-box">
-<span class="icon">📅</span>
+    <div class="input-box">
+    <span class="icon">📅</span>
 
-<input 
-type="date" 
-name="date" 
-required>
+    <input 
+    type="date" 
+    name="date" 
+    required>
 
-</div>
+    </div>
 
 
-<label>Payment Type</label>
+    <label>Payment Type</label>
 
-<div class="input-box">
+    <div class="input-box">
 
-<select name="expense_payment_method" required>
+    <select name="expense_payment_method" required>
 
-<option value="">Select Payment Type</option>
+    <option value="">Select Payment Type</option>
 
-<option value="Cash">Cash</option>
-<option value="UPI">UPI</option>
-<option value="Credit Card">Credit Card</option>
-<option value="Debit Card">Debit Card</option>
-<option value="Net Banking">Net Banking</option>
+    <option value="Cash">Cash</option>
+    <option value="UPI">UPI</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Debit Card">Debit Card</option>
+    <option value="Net Banking">Net Banking</option>
 
-</select>
+    </select>
 
-</div>
+    </div>
 
 
-<label>Notes (Optional)</label>
+    <label>Notes (Optional)</label>
 
-<div class="input-box">
+    <div class="input-box">
 
-<textarea 
-name="notes"
-placeholder="Write a note...">
-</textarea>
+    <textarea 
+    name="notes"
+    placeholder="Write a note...">
+    </textarea>
 
-</div>
+    </div>
 
 
-<button type="submit">
-Save Expense
-</button>
+    <button type="submit">
+    Save Expense
+    </button>
 
-</form>
+    </form>
 
-</div>
+    </div>
 
 
-<script>
+    <script>
 
-const categoryField = document.getElementById("categoryField");
-const categoryInput = document.getElementById("categoryInput");
+    const categoryField = document.getElementById("categoryField");
+    const categoryInput = document.getElementById("categoryInput");
 
-categoryField.addEventListener("change", function(){
+    categoryField.addEventListener("change", function(){
 
-if(this.value === "custom"){
+    if(this.value === "custom"){
 
-categoryField.classList.add("hidden");
-categoryInput.classList.remove("hidden");
-categoryInput.focus();
+    categoryField.classList.add("hidden");
+    categoryInput.classList.remove("hidden");
+    categoryInput.focus();
 
-}
+    }
 
-});
+    });
 
-</script>
+    </script>
 
 
-</body>
-</html>
+    </body>
+    </html>

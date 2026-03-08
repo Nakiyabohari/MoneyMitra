@@ -10,6 +10,9 @@ from .models import Expensereport_model
 from .models import Transaction_history_model
 from .forms import addincome_Form
 from .forms import add_expense_Form
+from .models import Income_model, Expense_model, Category, Expensereport_model, Transaction_history_model
+from datetime import date
+
 
 
 # ==========================
@@ -46,35 +49,57 @@ def addincome(request):
 from django.contrib import messages
 
 @login_required
-def add__expense(request):
+def add_expense(request):
 
-    categories = Category.objects.filter(type="expense")
+    categories = Category.objects.filter(user=request.user, type="expense")
 
     if request.method == "POST":
 
         amount = request.POST.get("expense_amount")
         category_id = request.POST.get("category")
-        date = request.POST.get("date")
+        expense_date = request.POST.get("date")
         payment_type = request.POST.get("expense_payment_method")
         notes = request.POST.get("notes")
 
-        category = Category.objects.get(id=category_id)
+        # CUSTOM CATEGORY
+        if category_id == "custom":
 
-        expense = Expense_model(
+            custom_name = request.POST.get("custom_category")
+
+            if not custom_name:
+                return render(request, "add_expense.html", {
+                    "categories": categories,
+                    "error": "Please enter custom category name"
+                })
+
+            category = Category.objects.create(
+                user=request.user,
+                name=custom_name,
+                type="expense",
+                month=date.today()
+            )
+
+        else:
+            category = Category.objects.get(id=category_id)
+
+        Expense_model.objects.create(
             user=request.user,
             expense_amount=amount,
             category=category,
-            date=date,
+            date=expense_date,
             expense_payment_method=payment_type,
             notes=notes
         )
 
-        expense.save()
+        return redirect("dashboard")
 
-        return redirect("expensereport")
+    return render(request, "add_expense.html", {
+        "categories": categories
+    })
 
-    return render(request, "add_expense.html", {"categories": categories})
-    
+
+
+
 # ==========================
 # EXPENSE REPORT
 # ==========================
@@ -119,43 +144,44 @@ def expensereport(request):
 
     return render(request, "expensereport.html", context)
 
-# Nakiya's code
+# # Nakiya's code
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from budget.models import Category, Expense
+# from django.shortcuts import render, redirect
+# from django.contrib.auth.decorators import login_required
 
 
-@login_required
-def add_expense(request):
+# @login_required
+# def add_expense(request):
 
-    categories = Category.objects.filter(
-        user=request.user,
-        type="expense"
-    )
+#     categories = Category.objects.filter(
+#         user=request.user,
+#         type="expense"
+#     )
 
-    if request.method == "POST":
+#     if request.method == "POST":
 
-        amount = request.POST.get("expense_amount")
-        category_id = request.POST.get("category")
-        date = request.POST.get("date")
-        payment_type = request.POST.get("expense_payment_method")
-        notes = request.POST.get("notes")
+#         amount = request.POST.get("expense_amount")
+#         category_id = request.POST.get("category")
+#         date = request.POST.get("date")
+#         payment_type = request.POST.get("expense_payment_method")
+#         notes = request.POST.get("notes")
 
-        category = Category.objects.get(id=category_id)
+#         category = Category.objects.get(id=category_id)
 
-        Expense.objects.create(
-            user=request.user,
-            category=category,
-            amount=amount,
-            date=date,
-            payment_type=payment_type,
-            notes=notes
-        )
+#         Expense.objects.create(
+#             user=request.user,
+#             expense_amount=amount,
+#             category=category,
+#             amount=amount,
+#             date=date,
+#             payment_type=payment_type,
+#             notes=notes
 
-        return redirect("expensereport")
+#         )
 
-    return render(request, "add_expense.html", {"categories": categories})
+#         return redirect("expensereport")
+
+#     return render(request, "add_expense.html", {"categories": categories})
 
 # End of Nakiya's code@login_requiredfrom django.db.models import Sum
 from django.contrib.auth.decorators import login_required

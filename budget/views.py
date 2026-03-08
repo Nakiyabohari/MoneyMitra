@@ -8,6 +8,9 @@ from .models import SavingsGoal, Category, Expense, MonthlyIncome
 from .forms import MonthlySavingsForm, SavingsGoalForm, CategoryForm
 from EMI.models import EmiManager
 from investment.models import InvestmentPlan
+from budget.models import Category
+from transactions.models import Expense_model, Income_model
+from .models import Category
 
 
 # =============================
@@ -156,7 +159,6 @@ def monthly_budget(request):
         'categories': categories
     })
 
-
 # =============================
 # BUDGET ANALYSIS
 # =============================
@@ -165,17 +167,19 @@ def budget_analysis(request):
 
     user = request.user
 
+    # CATEGORY EXPENSE TOTALS
     category_expense = (
-        Expense.objects
+        Expense_model.objects
         .filter(user=user)
         .values('category__id', 'category__name')
-        .annotate(total=Sum('amount'))
+        .annotate(total=Sum('expense_amount'))
         .order_by('-total')
     )
 
     total_expense = sum(item['total'] for item in category_expense) if category_expense else 0
 
-    total_income = MonthlyIncome.objects.filter(user=user).aggregate(
+    # TOTAL INCOME
+    total_income = Income_Model.objects.filter(user=user).aggregate(
         total=Sum('salary')
     )['total'] or 0
 
@@ -187,14 +191,29 @@ def budget_analysis(request):
 
     for cat in categories:
 
-        spent = Expense.objects.filter(
+        spent = Expense_model.objects.filter(
             user=user,
             category_id=cat.id
-        ).aggregate(total=Sum('amount'))['total'] or 0
+        ).aggregate(total=Sum('expense_amount'))['total'] or 0
 
         labels.append(cat.name)
         budget_data.append(float(cat.budget_amount or 0))
         spent_data.append(float(spent))
+
+    # TOP SPENDING CATEGORIES
+    top_categories = []
+
+    for item in category_expense:
+
+        percent = 0
+        if total_expense > 0:
+            percent = round((item['total'] / total_expense) * 100, 1)
+
+        top_categories.append({
+            "name": item['category__name'],
+            "total": item['total'],
+            "percent": percent
+        })
 
     return render(request, "BudgetAnalysis.html", {
         "labels": labels,
@@ -202,8 +221,8 @@ def budget_analysis(request):
         "spent_data": spent_data,
         "total_income": float(total_income),
         "total_expense": float(total_expense),
+        "top_categories": top_categories
     })
-
 
 # =============================
 # MONTHLY SUMMARY

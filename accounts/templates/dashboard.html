@@ -78,34 +78,28 @@
                     <p>EMI</p>
                     <h4>₹{{ total_emi }}</h4>
                 </div>
-                
-
-                <!-- SCROLL CARD 1 -->
                 <div class="overview-card big-card">
-    <p>Income</p>
+                <p>Income</p>
 
-    <div class="mini-scroll">
+                <div class="mini-scroll">
+
+        {% for income in incomes %}
 
         <div class="progress-item">
-            <div class="progress-text">₹12.00/month</div>
+            <div class="progress-text">₹{{ income.amount }}</div>
+
             <div class="progress-bar">
                 <div class="progress-fill" style="width:70%"></div>
             </div>
         </div>
 
-        <div class="progress-item">
-            <div class="progress-text">₹25.00/month</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:50%"></div>
-            </div>
-        </div>
+        {% empty %}
 
         <div class="progress-item">
-            <div class="progress-text">₹10.00/month</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:40%"></div>
-            </div>
+            <div class="progress-text">No income added</div>
         </div>
+
+        {% endfor %}
 
     </div>
 </div>
@@ -116,32 +110,31 @@
 
     <div class="mini-scroll">
 
+        {% for expense in expenses %}
+
         <div class="progress-item">
-            <div class="progress-text">₹40.00/month</div>
+            <div class="progress-text">₹{{ expense.expense_amount }}</div>
+
             <div class="progress-bar">
                 <div class="progress-fill" style="width:80%"></div>
             </div>
         </div>
 
-        <div class="progress-item">
-            <div class="progress-text">₹15.00/month</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:60%"></div>
-            </div>
-        </div>
+        {% empty %}
 
         <div class="progress-item">
-            <div class="progress-text">₹22.00/month</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:35%"></div>
-            </div>
+            <div class="progress-text">No expense added</div>
         </div>
+
+        {% endfor %}
 
     </div>
+</div>  
 </div>
-            </div>
-        </div>
+</div>
 
+
+                
         <!-- RIGHT SIDE -->
         <div class="right-side">
             <h3 class="section-title">Quick Actions</h3>

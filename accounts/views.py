@@ -13,6 +13,7 @@ from investment.models import InvestmentPlan
 from EMI.models import EmiManager
 from budget.forms import CategoryForm
 from transactions.forms import add_expense_Form
+from budget.models import Expense
 
 
 
