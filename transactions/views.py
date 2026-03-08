@@ -25,18 +25,20 @@ def addincome(request):
         source = request.POST.get("income_source")
         amount = request.POST.get("amount")
 
+        
         income = Income_model(
-            user=request.user,   # ⭐ IMPORTANT
-            income_source=source,
-            amount=amount
-        )
+    user=request.user,
+    income_source=source,
+    amount=amount,
+    payment_method=request.POST.get("payment_method"),
+    notes=request.POST.get("notes")
+)
 
         income.save()
 
-        return redirect("expensereport")
         return redirect("dashboard")
 
-    return render(request, "add_income.html")
+    return render(request, "addincome.html")
 
 # ==========================
 # ADD EXPENSE
@@ -155,17 +157,42 @@ def add_expense(request):
 
     return render(request, "add_expense.html", {"categories": categories})
 
-# End of Nakiya's code
+# End of Nakiya's code@login_requiredfrom django.db.models import Sum
+from django.contrib.auth.decorators import login_required
 
 @login_required
 def transaction_history(request):
 
-    incomes = Income_model.objects.filter(user=request.user)
-    expenses = Expense_model.objects.filter(user=request.user)
+    incomes = Income_model.objects.all()
+    expenses = Expense_model.objects.all()
+
+    transactions = []
+
+    for income in incomes:
+        transactions.append({
+            "type": "income",
+            "title": income.income_source,
+            "amount": income.amount,
+            "date": "Income Added"
+        })
+
+    for expense in expenses:
+        transactions.append({
+            "type": "expense",
+            "title": expense.category.name,
+            "amount": expense.expense_amount,
+            "date": str(expense.date)
+        })
+
+    print("TRANSACTIONS:", transactions)
+
+    total_income = incomes.aggregate(total=Sum("amount"))["total"] or 0
+    total_expense = expenses.aggregate(total=Sum("expense_amount"))["total"] or 0
 
     context = {
-        "incomes": incomes,
-        "expenses": expenses,
+        "transactions": transactions,
+        "total_income": total_income,
+        "total_expense": total_expense,
     }
 
     return render(request, "transactionhistory.html", context)

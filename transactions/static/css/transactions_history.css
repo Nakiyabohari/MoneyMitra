@@ -1,0 +1,191 @@
+:root{
+    --primary:#6C63FF;
+    --primary-light:#F1F0FF;
+    --bg:#f5f6fa;
+    --dark:#2d3436;
+    --gray:#636e72;
+}
+
+/* body */
+body{
+    background:var(--bg);
+    display:flex;
+    justify-content:center;
+    padding:40px 0;
+    font-family:sans-serif;
+}
+
+/* container */
+.container{
+    width:380px;
+    background:white;
+    padding:30px 25px;
+    border-radius:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* header */
+.app-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.back-btn{
+    font-size:22px;
+    color:var(--primary);
+    cursor:pointer;
+}
+
+/* summary */
+.summary-section{
+    display:flex;
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    flex:1;
+    padding:20px;
+    border-radius:20px;
+    background:var(--primary-light);
+}
+
+.income-card{
+    color:#1b9c5c;
+}
+
+.expense-card{
+    color:#d63031;
+}
+
+/* search */
+.search-box{
+    background:var(--primary-light);
+    padding:14px;
+    border-radius:16px;
+    display:flex;
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    background:transparent;
+    width:100%;
+}
+
+/* filter */
+.filter-section select{
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    border:1px solid var(--primary-light);
+    background:#f8f7ff;
+    margin-bottom:18px;
+}
+
+/* transaction card */
+.transaction{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:14px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.05);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:0.25s;
+}
+
+.transaction:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* left */
+.transaction-left{
+    display:flex;
+    gap:14px;
+}
+
+.transaction-icon{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--primary-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--primary);
+}
+
+.transaction-details p{
+    margin:0;
+    font-weight:600;
+    color:var(--dark);
+}
+
+.transaction-details span{
+    font-size:13px;
+    color:var(--gray);
+}
+
+.transaction-amount{
+    font-weight:bold;
+    color:var(--dark);
+}
+
+.transaction-actions span{
+    margin-left:8px;
+    cursor:pointer;
+}
+
+/* modal */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    background:white;
+    padding:24px;
+    border-radius:20px;
+    width:300px;
+}
+
+.modal-content input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:12px;
+    border:1px solid var(--primary-light);
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:space-between;
+    margin-top:14px;
+}
+
+.modal-actions button{
+    padding:10px 16px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+}
+
+.save-btn{
+    background:var(--primary);
+    color:white;
+}
