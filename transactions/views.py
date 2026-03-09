@@ -103,33 +103,86 @@ def add_expense(request):
 # ==========================
 # EXPENSE REPORT
 # ==========================
+from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
 @login_required
 def expensereport(request):
 
-    incomes = Income_model.objects.filter(user=request.user)
-    expenses = Expense_model.objects.filter(user=request.user)
+    user = request.user
 
+    # =============================
+    # GET SELECTED MONTH
+    # =============================
+    selected_month = request.GET.get("month")
+
+    if selected_month:
+        year, month = map(int, selected_month.split("-"))
+    else:
+        today = datetime.today()
+        year = today.year
+        month = today.month
+        selected_month = f"{year}-{str(month).zfill(2)}"
+
+
+    # =============================
+    # FILTER DATA BY MONTH
+    # =============================
+    incomes = Income_model.objects.filter(
+        user=user,
+        date__year=year,
+        date__month=month
+    )
+
+    expenses = Expense_model.objects.filter(
+        user=user,
+        date__year=year,
+        date__month=month
+    )
+
+
+    # =============================
+    # TOTAL CALCULATIONS
+    # =============================
     total_income = sum(i.amount for i in incomes)
     total_expense = sum(e.expense_amount for e in expenses)
 
     balance = total_income - total_expense
 
+
+    # =============================
+    # MONTHS (JAN-DEC)
+    # =============================
     months = [
         "January","February","March","April","May","June",
         "July","August","September","October","November","December"
     ]
 
-    years = list(range(2026, 2051))
 
-    # Calculate income percentage
+    # =============================
+    # CURRENT YEAR ONLY
+    # =============================
+    current_year = datetime.today().year
+    years = [current_year]
+
+
+    # =============================
+    # INCOME PERCENT
+    # =============================
     for income in incomes:
         income.percent = (income.amount / total_income * 100) if total_income > 0 else 0
 
-    # Calculate expense percentage
+
+    # =============================
+    # EXPENSE PERCENT
+    # =============================
     for expense in expenses:
         expense.percent = (expense.expense_amount / total_expense * 100) if total_expense > 0 else 0
 
+
     total_transactions = incomes.count() + expenses.count()
+
 
     context = {
         "incomes": incomes,
@@ -139,7 +192,8 @@ def expensereport(request):
         "balance": balance,
         "months": months,
         "years": years,
-        "total_transactions": total_transactions
+        "total_transactions": total_transactions,
+        "selected_month": selected_month
     }
 
     return render(request, "expensereport.html", context)

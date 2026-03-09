@@ -23,7 +23,7 @@ class Income_model(models.Model):
     income_source = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
     notes = models.CharField(max_length=100)
-
+    date = models.DateField(auto_now_add=True)
 
 
 class Expense_model(models.Model):
@@ -41,6 +41,7 @@ class Expense_model(models.Model):
     expense_payment_method = models.CharField(max_length=100)
 
     notes = models.CharField(max_length=100, blank=True)
+    
 
     def __str__(self):
         return f"{self.category} - ₹{self.expense_amount}"
