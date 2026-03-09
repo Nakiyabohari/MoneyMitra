@@ -7,6 +7,7 @@ urlpatterns = [
     path('savings_goal/', views.savings_goal, name='savings_goal'),
     path("add_money/<int:goal_id>/<int:amount>/", views.add_money, name="add_money"),
     path("delete_goal/<int:goal_id>/", views.delete_goal, name="delete_goal"),
+    path("remove_money/<int:goal_id>/<int:amount>/", views.remove_money, name="remove_money"),
     
 
     # Nakiya's page

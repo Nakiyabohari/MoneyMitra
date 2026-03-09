@@ -106,11 +106,22 @@ style="width:{{ goal.progress }}%; background:{{ goal.color }}">
 <!-- QUICK BUTTONS -->
 <div class="quick-buttons">
 
-<button onclick="addMoney({{ goal.id }},500)">+₹500</button>
+<input
+type="number"
+placeholder="Enter amount"
+class="amount-input"
+id="amountInput{{ goal.id }}"
+>
 
-<button onclick="addMoney({{ goal.id }},1000)">+₹1000</button>
+<button class="add-btn"
+onclick="addMoneyInput({{ goal.id }}, {{ goal.target_amount }}, {{ goal.current_amount }})">
+Add
+</button>
 
-<button onclick="addMoney({{ goal.id }},5000)">+₹5000</button>
+<button class="remove-btn"
+onclick="removeMoneyInput({{ goal.id }}, {{ goal.current_amount }})">
+Remove
+</button>
 
 </div>
 

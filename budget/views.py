@@ -98,11 +98,41 @@ def savings_goal(request):
 # =============================
 # ADD MONEY
 # =============================
+from decimal import Decimal
+from django.http import JsonResponse
+
 def add_money(request, goal_id, amount):
 
     goal = SavingsGoal.objects.get(id=goal_id, user=request.user)
 
+    amount = Decimal(amount)
+
+    remaining = goal.target_amount - goal.current_amount
+
+    # prevent exceeding target
+    if amount > remaining:
+        amount = remaining
+
     goal.current_amount += amount
+    goal.save()
+
+    return JsonResponse({"success": True})
+
+from decimal import Decimal
+from django.http import JsonResponse
+
+def remove_money(request, goal_id, amount):
+
+    goal = SavingsGoal.objects.get(id=goal_id, user=request.user)
+
+    amount = Decimal(amount)
+
+    goal.current_amount -= amount
+
+    # prevent negative savings
+    if goal.current_amount < 0:
+        goal.current_amount = 0
+
     goal.save()
 
     return JsonResponse({"success": True})

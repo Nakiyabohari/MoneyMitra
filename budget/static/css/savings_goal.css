@@ -120,6 +120,12 @@ background:white;
 border-radius:20px;
 padding:20px;
 box-shadow:0 5px 20px rgba(0,0,0,0.05);
+transition:0.2s;
+}
+
+.goal-card:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 30px rgba(0,0,0,0.08);
 }
 
 /* HEADER */
@@ -175,28 +181,111 @@ font-size:12px;
 margin-top:5px;
 }
 
-/* QUICK BUTTONS */
+/* QUICK BUTTON AREA */
 
 .quick-buttons{
 display:flex;
 gap:10px;
 margin-top:15px;
+align-items:center;
 }
 
-.quick-buttons button{
+/* INPUT BOX */
+
+.amount-input{
 flex:1;
+padding:10px 12px;
+border-radius:12px;
 border:none;
-padding:8px;
-border-radius:10px;
-background:#ede9ff;
-color:#6a5cff;
-font-size:12px;
-cursor:pointer;
+background:#e9e9f3;
+font-size:13px;
+outline:none;
 transition:0.2s;
 }
 
-.quick-buttons button:hover{
+.amount-input:focus{
+background:#ede9ff;
+}
+
+/* BUTTON STYLE */
+
+.quick-buttons{
+display:flex;
+gap:12px;
+margin-top:16px;
+align-items:center;
+}
+
+/* INPUT */
+
+.amount-input{
+flex:1;
+height:42px;
+padding:0 14px;
+border-radius:14px;
+border:none;
+background:#e9e9f3;
+font-size:13px;
+outline:none;
+}
+
+/* BUTTON BASE */
+
+.quick-buttons button{
+height:42px;
+padding:0 20px;
+border:none;
+border-radius:14px;
+font-size:13px;
+font-weight:500;
+cursor:pointer;
+transition:all 0.2s ease;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* ADD BUTTON */
+
+.quick-buttons .add-btn{
+background:#e8e6ff;
+color:#5a4bff;
+}
+
+.quick-buttons .add-btn:hover{
 background:#6a5cff;
+color:white;
+}
+
+/* REMOVE BUTTON */
+
+.remove-btn{
+background:#e8e6ff;
+color:#5a4bff;
+}
+
+.remove-btn:hover{
+background:#ef4444;
+color:white;
+}
+/* HOVER */
+
+.quick-buttons button:hover{
+background:#6257ff;
+color:white;
+}
+
+/* REMOVE BUTTON */
+
+.remove-btn{
+background:#e8e6ff;
+color:#5a4bff;
+}
+
+/* REMOVE BUTTON HOVER */
+
+.remove-btn:hover{
+background:#ef4444;
 color:white;
 }
 
@@ -303,7 +392,7 @@ cursor:pointer;
 border:3px solid black;
 }
 
-/* BUTTON */
+/* CREATE BUTTON */
 
 .create-btn{
 margin-top:20px;
