@@ -182,46 +182,57 @@ if(e.target.classList.contains("edit")){
 
 });
 
-/* CLOSE MODAL */
+const closeBtn = document.querySelector(".close-edit");
 
-document.querySelector(".close-edit").onclick = () =>{
-    modal.style.display="none";
-};
-
+if (closeBtn) {
+    closeBtn.onclick = () => {
+        document.getElementById("editModal").style.display = "none";
+    };
+}
 
 
 /* ================= SAVE EDIT ================= */
 
-document.getElementById("saveEdit").addEventListener("click", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
-    const id = document.getElementById("editId").value;
-    const model = document.getElementById("editModel").value;
-    const amount = document.getElementById("editAmount").value;
-    const category = document.getElementById("editCategory").value;
-    const notes = document.getElementById("editNotes").value;
+    const saveBtn = document.getElementById("saveEdit");
 
-    fetch("/transactions/edit-transaction/", {
+    if (saveBtn) {
 
-        method: "POST",
+        saveBtn.addEventListener("click", function(){
 
-        headers:{
-            "Content-Type":"application/x-www-form-urlencoded",
-            "X-CSRFToken":getCookie("csrftoken")
-        },
+            const id = document.getElementById("editId").value;
+            const model = document.getElementById("editModel").value;
+            const amount = document.getElementById("editAmount").value;
+            const category = document.getElementById("editCategory").value;
+            const notes = document.getElementById("editNotes").value;
 
-        body:`id=${id}&model=${model}&amount=${amount}&category=${category}&notes=${notes}`
+            fetch("/transactions/edit-transaction/", {
 
-    })
-    .then(res => res.json())
-    .then(data => {
+                method: "POST",
 
-        console.log("EDIT RESPONSE:", data);
+                headers:{
+                    "Content-Type":"application/x-www-form-urlencoded",
+                    "X-CSRFToken":getCookie("csrftoken")
+                },
 
-        if(data.status === "success"){
-            location.reload();
-        }
+                body:`id=${id}&model=${model}&amount=${amount}&category=${category}&notes=${notes}`
 
-    })
-    .catch(error => console.log("ERROR:", error));
+            })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("EDIT RESPONSE:", data);
+
+                if(data.status === "success"){
+                    location.reload();
+                }
+
+            })
+            .catch(error => console.log("ERROR:", error));
+
+        });
+
+    }
 
 });
