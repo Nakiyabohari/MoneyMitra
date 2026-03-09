@@ -74,5 +74,31 @@
 
 <script src="{% static 'js/transactions_history.js' %}"></script>
 
+<div id="editModal" class="edit-modal">
+
+    <div class="edit-box">
+
+        <span class="close-edit">&times;</span>
+
+        <h3>Edit Transaction</h3>
+
+        <input type="hidden" id="editId">
+        <input type="hidden" id="editModel">
+
+        <label>Amount</label>
+        <input type="number" id="editAmount">
+
+        <label>Category</label>
+        <input type="text" id="editCategory">
+
+        <label>Notes</label>
+        <textarea id="editNotes"></textarea>
+
+        <a href="{% url 'transaction_history' %}" ><button id="saveEdit">Save Changes</button></a>
+
+    </div>
+
+</div>
+
 </body>
 </html>

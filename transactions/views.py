@@ -82,13 +82,13 @@ def add_expense(request):
         else:
             category = Category.objects.get(id=category_id)
 
-        Expense_model.objects.create(
-            user=request.user,
-            expense_amount=amount,
-            category=category,
-            date=expense_date,
-            expense_payment_method=payment_type,
-            notes=notes
+            Expense_model.objects.create(
+                user=request.user,
+                expense_amount=amount,
+                category=category,
+                date=expense_date,
+                expense_payment_method=payment_type,
+                notes=notes
         )
 
         return redirect("dashboard")
@@ -239,17 +239,18 @@ def expensereport(request):
 
 # End of Nakiya's code@login_requiredfrom django.db.models import Sum
 from django.contrib.auth.decorators import login_required
-
 @login_required
 def transaction_history(request):
 
-    incomes = Income_model.objects.all()
-    expenses = Expense_model.objects.all()
+    incomes = Income_model.objects.filter(user=request.user)
+    expenses = Expense_model.objects.filter(user=request.user)
 
     transactions = []
 
     for income in incomes:
         transactions.append({
+            "id": income.id,
+            "model": "income",
             "type": "income",
             "title": income.income_source,
             "amount": income.amount,
@@ -258,13 +259,13 @@ def transaction_history(request):
 
     for expense in expenses:
         transactions.append({
+            "id": expense.id,
+            "model": "expense",
             "type": "expense",
             "title": expense.category.name,
             "amount": expense.expense_amount,
             "date": str(expense.date)
         })
-
-    print("TRANSACTIONS:", transactions)
 
     total_income = incomes.aggregate(total=Sum("amount"))["total"] or 0
     total_expense = expenses.aggregate(total=Sum("expense_amount"))["total"] or 0
@@ -276,3 +277,61 @@ def transaction_history(request):
     }
 
     return render(request, "transactionhistory.html", context)
+
+from django.views.decorators.http import require_POST
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+
+@csrf_exempt
+@login_required
+def delete_transaction(request):
+
+    if request.method == "POST":
+
+        transaction_id = request.POST.get("id")
+        model = request.POST.get("model")
+
+        if model == "income":
+            Income_model.objects.filter(
+                id=transaction_id,
+                user=request.user
+            ).delete()
+
+        elif model == "expense":
+            Expense_model.objects.filter(
+                id=transaction_id,
+                user=request.user
+            ).delete()
+
+        return JsonResponse({"status": "deleted"})
+
+    return JsonResponse({"status": "error"})
+
+@login_required
+def edit_transaction(request):
+
+    if request.method == "POST":
+
+        id = request.POST.get("id")
+        model = request.POST.get("model")
+        amount = request.POST.get("amount")
+        category = request.POST.get("category")
+        notes = request.POST.get("notes")
+
+        if model == "income":
+
+            income = Income_model.objects.get(id=id,user=request.user)
+            income.amount = amount
+            income.income_source = category
+            income.notes = notes
+            income.save()
+
+        elif model == "expense":
+
+            expense = Expense_model.objects.get(id=id,user=request.user)
+            expense.expense_amount = amount
+            expense.notes = notes
+            expense.save()
+
+        return JsonResponse({"status":"success"})
