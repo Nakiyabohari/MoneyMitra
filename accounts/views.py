@@ -101,40 +101,41 @@ def dashboard(request):
 
     profile, created = Profile.objects.get_or_create(user=request.user)
 
-    # fetch salary
+    # salary
     income = MonthlyIncome.objects.filter(user=request.user).order_by('-month').first()
     salary = income.salary if income else 0
 
-    # fetch savings goals
+    # savings goals
     savings_goals = SavingsGoal.objects.filter(user=request.user)
-
-    # calculate total savings
     total_savings = sum(goal.current_amount for goal in savings_goals)
 
     # EMI
     emis = EmiManager.objects.filter(user=request.user)
     total_emi = sum(emi.monthly_amount for emi in emis)
 
-    # investment
+    # investments
     investment_total = InvestmentPlan.objects.filter(
         user=request.user
     ).aggregate(total=Sum('monthly_amount'))['total'] or 0
 
-    print(InvestmentPlan.objects.filter(user=request.user).values())   
-
-    # ✅ FETCH INCOME TRANSACTIONS
+    # income transactions
     incomes = Income_model.objects.filter(user=request.user)
+    total_income = incomes.aggregate(total=Sum('amount'))['total'] or 0
 
-    # ✅ FETCH EXPENSE TRANSACTIONS
+    # expenses
     expenses = Expense_model.objects.filter(user=request.user)
+    total_expense = expenses.aggregate(total=Sum('expense_amount'))['total'] or 0
+
+    # ✅ AVAILABLE BALANCE
+    available_balance = salary + total_income - total_expense - total_emi - investment_total
 
     context = {
         'profile': profile,
         'salary': salary,
+        'available_balance': available_balance,
         'total_savings': total_savings,
         'total_emi': total_emi,
         'investment_total': investment_total,
-
         'incomes': incomes,
         'expenses': expenses
     }

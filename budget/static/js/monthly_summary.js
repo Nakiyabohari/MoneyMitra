@@ -6,6 +6,7 @@ const data = summaryData;
 
 const investments = data.investments;
 const savings = data.savings;
+const expense = data.expense;
 const emi = data.emi;
 const balance = data.balance;
 
@@ -56,13 +57,14 @@ const ctx = canvas.getContext("2d");
 function drawDonut(){
 
 const total =
-investments + savings + emi + balance;
+investments + savings +expense+ emi + balance;
 
 let startAngle = -Math.PI / 2;
 
 const slices = [
 
 {value:investments,color:"#B76DF7"}, 
+{value:expense,color:"#47ef8a"},
 {value:savings,color:"#9370DB"},
 {value:emi,color:"#9400D3"},
 {value:balance,color:"#800080"}

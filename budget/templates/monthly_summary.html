@@ -50,6 +50,12 @@
 </div>
 
 <div class="row">
+<span>Expenses</span>
+<span id="expense">₹{{ expense }}</span>
+</div>
+
+
+<div class="row">
 <span>Investments</span>
 <span id="investments">₹{{ investments }}</span>
 </div>
@@ -86,6 +92,14 @@
 </div>
 </div>
 
+<div class="legend-item">
+<div>
+<span class="dot expense"></span> Expenses
+</div>
+<div>
+<b id="expAmount">₹{{ expense }}</b>
+</div>
+</div>
 
 <div class="legend-item">
 <div>
@@ -163,11 +177,11 @@ Stay within this limit to manage expenses comfortably
 
 
 <script>
-
 const summaryData = {
 
 income: {{ total_income }},
 savings: {{ savings }},
+expense: {{ expense }},
 investments: {{ investments }},
 emi: {{ emi }},
 balance: {{ balance }}
