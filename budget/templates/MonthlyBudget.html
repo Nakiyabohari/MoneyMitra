@@ -19,7 +19,7 @@
 
 <div class="budget-page">
 
-    <!-- PAGE HEADER -->
+    <!-- HEADER -->
 
     <div class="page-header">
 
@@ -33,26 +33,21 @@
     </div>
 
 
-    <!-- MAIN SECTION -->
 
     <div class="budget-container">
 
-        <!-- LEFT SIDE FORM -->
+        <!-- LEFT FORM -->
 
         <div class="budget-form-card">
 
             <h2>Add New Budget</h2>
 
-            <form method="POST" >
+            <form method="POST">
 
                 {% csrf_token %}
 
-                <!-- CATEGORY -->
-
                 <label>Category</label>
                 {{ form.name }}
-
-                <!-- CUSTOM CATEGORY -->
 
                 <div id="customCategoryField">
 
@@ -61,12 +56,8 @@
 
                 </div>
 
-                <!-- MONTHLY LIMIT -->
-
                 <label>Monthly Limit</label>
                 {{ form.budget_amount }}
-
-                <!-- MONTH -->
 
                 <label>Month</label>
                 {{ form.month }}
@@ -87,78 +78,94 @@
 
             {% if categories %}
 
-                {% for cat in categories %}
+            {% for cat in categories %}
 
-                <!-- BUDGET CARD -->
+            <div class="budget-card">
 
-                <div class="budget-card">
+                <!-- HEADER -->
 
-                    <!-- CARD HEADER -->
+                <div class="budget-card-header">
 
-                    <div class="budget-card-header">
+                    <div class="card-title">
 
-                        <div class="card-title">
+                        <div class="card-icon">🎯</div>
 
-                            <div class="card-icon">
-                                🎯
-                            </div>
-
-                            <div class="title-text">
-
-                                <h3>{{ cat.name }}</h3>
-                                <span class="status">On Track</span>
-
-                            </div>
-
+                        <div class="title-text">
+                            <h3>{{ cat.name }}</h3>
+                            <span class="status">On Track</span>
                         </div>
 
-                        <span class="delete-icon">
-                            🗑
+                        <!-- EDIT -->
+                        <span class="edit-icon"
+                              onclick="toggleEdit({{ cat.id }})">
+                        ✏️
                         </span>
 
                     </div>
 
+                    <!-- DELETE -->
+
+                    <span class="delete-icon"
+                          onclick="deleteBudget({{ cat.id }})">
+                    🗑
+                    </span>
+
+                </div>
 
 
-                    <!-- SPENT / LIMIT -->
 
-                    <div class="budget-info">
+                <!-- SPENT / EDIT / LIMIT -->
 
-                        <div class="spent">
+                <div class="budget-info">
 
-                            <p>Spent</p>
-                            <h4>₹0</h4>
+                    <!-- SPENT -->
+                    <div class="spent">
+                        <p>Spent</p>
+                        <h4>₹0</h4>
+                    </div>
 
-                        </div>
 
-                        <div class="limit">
+                    <!-- EDIT BOX -->
 
-                            <p>Limit</p>
-                            <h4>₹{{ cat.budget_amount }}</h4>
+                    <div class="edit-box"
+                         id="editBox{{ cat.id }}"
+                         style="display:none;">
 
-                        </div>
+                        <label>Edit Budget</label>
+
+                        <input type="number"
+                               id="editAmount{{ cat.id }}"
+                               value="{{ cat.budget_amount }}">
+
+                        <button onclick="saveEdit({{ cat.id }})">
+                            Save Changes
+                        </button>
 
                     </div>
 
 
+                    <!-- LIMIT -->
 
-                    <!-- PROGRESS BAR -->
-
-                    <div class="progress-bar">
-
-                        <div class="progress"></div>
-
+                    <div class="limit">
+                        <p>Limit</p>
+                        <h4>₹{{ cat.budget_amount }}</h4>
                     </div>
 
                 </div>
 
-                {% endfor %}
 
 
+                <!-- PROGRESS BAR -->
+
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+
+            </div>
+
+            {% endfor %}
 
             {% else %}
-
-            <!-- EMPTY STATE -->
 
             <div class="no-budget">
 
@@ -179,13 +186,15 @@
 
     <div class="save-container">
 
-        <button type="submit" class="save-btn">
+        <button class="save-btn">
             Save Changes
         </button>
 
     </div>
 
 </div>
+
+
 
 <script src="{% static 'js/MonthlyBudget.js' %}"></script>
 

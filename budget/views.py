@@ -194,6 +194,43 @@ def monthly_budget(request):
 
 
 
+from django.http import JsonResponse
+from .models import Category   # use your actual model
+
+
+def delete_budget(request, id):
+
+    if request.method == "POST":
+
+        budget = Category.objects.get(id=id)
+        budget.delete()
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"success": False})
+
+
+
+import json
+from django.views.decorators.csrf import csrf_exempt
+
+def edit_budget(request, id):
+
+    if request.method == "POST":
+
+        data = json.loads(request.body)
+
+        amount = data.get("amount")
+
+        budget = Category.objects.get(id=id)
+        budget.budget_amount = amount
+        budget.save()
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"success": False})
+
+
 # =============================
 # BUDGET ANALYSIS
 # =============================
