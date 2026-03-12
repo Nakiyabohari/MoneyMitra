@@ -14,4 +14,6 @@ urlpatterns = [
     path('MonthlyBudget/', views.monthly_budget, name='monthly_budget'),
     path('BudgetAnalysis/', views.budget_analysis, name='budget_analysis'),
     path('monthly_summary/',views.monthly_summary,name='monthly_summary'),
+    path("delete_budget/<int:id>/", views.delete_budget, name="delete_budget"),
+    path("edit_budget/<int:id>/", views.edit_budget, name="edit_budget"),
 ]
