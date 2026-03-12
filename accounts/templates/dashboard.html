@@ -31,10 +31,10 @@
         </div>
 
         <div class="top-icons">
-            <a href="{% url 'calculator' %}" class="circle-icon">🧮</a>
-            <a href="{% url 'calendar' %}" class="circle-icon">📅</a>
-            <a href="{% url 'profile' %}" class="circle-icon">👤</a>
-            <div class="circle-icon menu-btn" onclick="open_menu()">☰</div>
+            <a href="{% url 'calculator' %}" class="circle-icon" title="Calculator">🧮</a>
+            <a href="{% url 'calendar' %}" class="circle-icon" title="Calendar">📅</a>
+            <a href="{% url 'profile' %}" class="circle-icon" title="Profile">👤</a>
+            <div class="circle-icon menu-btn" onclick="open_menu()" id="menu" title="Menu">☰</div>
         </div>
 
     </div>
@@ -147,8 +147,8 @@
                 Manage EMIs →
             </a>
 
-            <a href="{% url 'monthly_summary' %}" class="quick-action">
-                Monthly Summary →
+            <a href="{% url 'savings_goal' %}" class="quick-action">
+                Savings Goals →
             </a>
 
             <a href="{% url 'MonthlyBudget' %}" class="quick-action">
