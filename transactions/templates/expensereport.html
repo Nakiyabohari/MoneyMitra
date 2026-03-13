@@ -185,5 +185,48 @@ window.reportData = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="{% static 'js/expensereport.js' %}"></script>
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const monthSelect = document.getElementById("monthSelect");
+const yearSelect = document.getElementById("yearSelect");
+
+const selectedMonth = "{{ selected_month|default:'' }}";
+
+if(selectedMonth){
+
+const parts = selectedMonth.split("-");
+const year = parts[0];
+const month = parseInt(parts[1]);
+
+if(monthSelect){
+monthSelect.selectedIndex = month - 1;
+}
+
+if(yearSelect){
+yearSelect.value = year;
+}
+
+}
+
+function updateReport(){
+
+const month = monthSelect.selectedIndex + 1;
+const year = yearSelect.value;
+
+const formattedMonth = month.toString().padStart(2,"0");
+
+window.location.href = `?month=${year}-${formattedMonth}`;
+
+}
+
+monthSelect.addEventListener("change", updateReport);
+yearSelect.addEventListener("change", updateReport);
+
+});
+
+</script>
+
 </body>
 </html>

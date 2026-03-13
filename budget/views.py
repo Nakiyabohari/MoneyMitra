@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Sum
 from datetime import date
+
+from httpx import request
 from .models import SavingsGoal, Category, Expense, MonthlyIncome
 from .forms import MonthlySavingsForm, SavingsGoalForm, CategoryForm
 from EMI.models import EmiManager
@@ -98,11 +100,41 @@ def savings_goal(request):
 # =============================
 # ADD MONEY
 # =============================
+from decimal import Decimal
+from django.http import JsonResponse
+
 def add_money(request, goal_id, amount):
 
     goal = SavingsGoal.objects.get(id=goal_id, user=request.user)
 
+    amount = Decimal(amount)
+
+    remaining = goal.target_amount - goal.current_amount
+
+    # prevent exceeding target
+    if amount > remaining:
+        amount = remaining
+
     goal.current_amount += amount
+    goal.save()
+
+    return JsonResponse({"success": True})
+
+from decimal import Decimal
+from django.http import JsonResponse
+
+def remove_money(request, goal_id, amount):
+
+    goal = SavingsGoal.objects.get(id=goal_id, user=request.user)
+
+    amount = Decimal(amount)
+
+    goal.current_amount -= amount
+
+    # prevent negative savings
+    if goal.current_amount < 0:
+        goal.current_amount = 0
+
     goal.save()
 
     return JsonResponse({"success": True})
@@ -160,6 +192,43 @@ def monthly_budget(request):
     })
     
 
+
+
+from django.http import JsonResponse
+from .models import Category   # use your actual model
+
+
+def delete_budget(request, id):
+
+    if request.method == "POST":
+
+        budget = Category.objects.get(id=id)
+        budget.delete()
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"success": False})
+
+
+
+import json
+from django.views.decorators.csrf import csrf_exempt
+
+def edit_budget(request, id):
+
+    if request.method == "POST":
+
+        data = json.loads(request.body)
+
+        amount = data.get("amount")
+
+        budget = Category.objects.get(id=id)
+        budget.budget_amount = amount
+        budget.save()
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"success": False})
 
 
 # =============================
@@ -236,10 +305,11 @@ from datetime import date, datetime
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .models import SavingsGoal, Expense, MonthlyIncome
+from .models import SavingsGoal, MonthlyIncome
 from EMI.models import EmiManager
 from investment.models import InvestmentPlan
-
+from transactions.models import Expense_model
+from transactions.models import Income_model
 
 @login_required
 def monthly_summary(request):
@@ -259,17 +329,26 @@ def monthly_summary(request):
         month = today.month
         selected_month = f"{year}-{str(month).zfill(2)}"
 
-
-    # =============================
-    # TOTAL INCOME
-    # =============================
-    total_income = MonthlyIncome.objects.filter(
-        user=user,
-        month__year=year,
-        month__month=month
+# =============================
+# TOTAL INCOME
+# =============================
+    salary_income = MonthlyIncome.objects.filter(
+    user=user,
+    month__year=year,
+    month__month=month
     ).aggregate(total=Sum('salary'))['total'] or 0
 
+    transaction_income = Income_model.objects.filter(
+    user=user,
+    date__year=year,
+    date__month=month
+    ).aggregate(total=Sum('amount'))['total'] or 0
 
+
+    total_income = salary_income + transaction_income
+
+    
+    
     # =============================
     # SAVINGS (ONLY CURRENT MONTH)
     # =============================
@@ -306,19 +385,19 @@ def monthly_summary(request):
     # =============================
     # EXPENSES
     # =============================
-    total_expense = Expense.objects.filter(
-        user=user,
-        date__year=year,
-        date__month=month
-    ).aggregate(total=Sum('amount'))['total'] or 0
+    total_expense = Expense_model.objects.filter(
+    user=user,
+    date__year=year,
+    date__month=month
+    ).aggregate(total=Sum('expense_amount'))['total'] or 0
 
 
     # =============================
     # CALCULATIONS
     # =============================
-    total_deductions = savings + investments + emi
+    total_deductions = savings + investments + emi + total_expense
 
-    available_balance = total_income - total_deductions - total_expense
+    available_balance = total_income - total_deductions
 
     daily_limit = available_balance / 30 if available_balance > 0 else 0
 
@@ -326,6 +405,7 @@ def monthly_summary(request):
     context = {
         "total_income": total_income,
         "savings": savings,
+        "expense": total_expense,
         "investments": investments,
         "emi": emi,
         "deductions": total_deductions,

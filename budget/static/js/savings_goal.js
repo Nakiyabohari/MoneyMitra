@@ -32,9 +32,21 @@ element.classList.add("active")
 
 }
 
-/* ADD MONEY */
 
-function addMoney(goalId,amount){
+/* ADD MONEY QUICK BUTTON */
+
+function addMoney(goalId,amount,target,current){
+
+amount=Number(amount)
+target=Number(target)
+current=Number(current)
+
+/* VALIDATION */
+
+if(current + amount > target){
+alert("Amount exceeds your savings goal")
+return
+}
 
 fetch(`/budget/add_money/${goalId}/${amount}/`,{
 method:"GET"
@@ -45,6 +57,72 @@ location.reload()
 })
 
 }
+
+
+/* ADD MONEY FROM INPUT */
+
+function addMoneyInput(goalId,target,current){
+
+let amount=document.getElementById("amountInput"+goalId).value
+
+amount=Number(amount)
+target=Number(target)
+current=Number(current)
+
+if(!amount || amount<=0){
+alert("Enter valid amount")
+return
+}
+
+/* CHECK LIMIT */
+
+if(current + amount > target){
+alert("Amount exceeds your savings goal")
+return
+}
+
+fetch(`/budget/add_money/${goalId}/${amount}/`,{
+method:"GET"
+})
+.then(response=>response.json())
+.then(data=>{
+location.reload()
+})
+
+}
+
+
+/* REMOVE MONEY */
+
+function removeMoneyInput(goalId,current){
+
+let amount=document.getElementById("amountInput"+goalId).value
+
+amount=Number(amount)
+current=Number(current)
+
+if(!amount || amount<=0){
+alert("Enter valid amount")
+return
+}
+
+/* CHECK SAVED LIMIT */
+
+if(amount > current){
+alert("You cannot remove more than saved amount")
+return
+}
+
+fetch(`/budget/remove_money/${goalId}/${amount}/`,{
+method:"GET"
+})
+.then(response=>response.json())
+.then(data=>{
+location.reload()
+})
+
+}
+
 
 /* DELETE GOAL */
 
@@ -62,6 +140,7 @@ location.reload()
 
 }
 
+
 /* PROGRESS LIMIT FUNCTION (MAX 100%) */
 
 function updateProgress(saved,goal,barId,textId){
@@ -69,6 +148,7 @@ function updateProgress(saved,goal,barId,textId){
 let percent=(saved/goal)*100
 
 /* LIMIT TO 100% */
+
 percent=Math.min(percent,100)
 
 document.getElementById(barId).style.width=percent+"%"
@@ -76,6 +156,7 @@ document.getElementById(barId).style.width=percent+"%"
 document.getElementById(textId).innerText=percent.toFixed(1)+"% achieved"
 
 }
+
 
 /* CLOSE MODAL CLICK OUTSIDE */
 

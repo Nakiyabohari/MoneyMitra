@@ -133,3 +133,24 @@ document.addEventListener("DOMContentLoaded", function () {
     shareBtn.addEventListener("click", sharePDF);
 
 });
+
+const monthSelect = document.getElementById("monthSelect");
+const yearSelect = document.getElementById("yearSelect");
+
+if(monthSelect && yearSelect){
+
+function updateReport(){
+
+const month = monthSelect.selectedIndex + 1;
+const year = yearSelect.value;
+
+const formattedMonth = month.toString().padStart(2,"0");
+
+window.location.href = `?month=${year}-${formattedMonth}`;
+
+}
+
+monthSelect.addEventListener("change", updateReport);
+yearSelect.addEventListener("change", updateReport);
+
+}
