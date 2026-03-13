@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Investment Details</title>
+    <link rel="stylesheet" href="{% static 'css/investment_details.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Investment Details</h2>
+
+    <table>
+
+        <tr>
+            <th>Investment Type</th>
+            <th>Monthly Amount</th>
+            <th>Created</th>
+            <th>Last Updated</th>
+        </tr>
+
+        {% for inv in investments %}
+
+        <tr>
+            <td>{{ inv.investment_type }}</td>
+            <td>₹{{ inv.monthly_amount }}</td>
+            <td>{{ inv.created_at|date:"d M Y" }}</td>
+            <td>{{ inv.updated_at|date:"d M Y" }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

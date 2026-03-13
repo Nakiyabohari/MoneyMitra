@@ -31,6 +31,24 @@ def investment_view(request):
 
 
 # ==============================
+# More details page
+# ==============================
+# views.py
+
+@login_required
+def investment_details(request):
+
+    investments = InvestmentPlan.objects.filter(user=request.user)
+
+    context = {
+        "investments": investments
+    }
+
+    return render(request, "investment_details.html", context)
+
+
+
+# ==============================
 # MITRA AI VIEW (FINAL WORKING)
 # ==============================
 @login_required
