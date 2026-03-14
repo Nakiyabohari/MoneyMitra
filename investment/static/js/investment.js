@@ -32,20 +32,33 @@ function getCookie(name) {
 
 /* ADD MESSAGE */
 function addMessageToChat(message, sender) {
-    const chatBox = document.getElementById("chatBox");
-    const bubble = document.createElement("div");
 
-    bubble.classList.add("chat-bubble");
+    const chatBox = document.getElementById("chatBox");
+
+    const row = document.createElement("div");
 
     if (sender === "user") {
-        bubble.classList.add("chat-user");
+
+        row.className = "chat-row user-row";
+
+        row.innerHTML = `
+            <div class="user-card">${message}</div>
+            <div class="user-avatar">ME</div>
+        `;
+
     } else {
-        bubble.classList.add("chat-bot");
+
+        row.className = "chat-row";
+
+        row.innerHTML = `
+            <div class="bot-icon">🤖</div>
+            <div class="bot-card">${message}</div>
+        `;
+
     }
 
-    bubble.innerText = message;
+    chatBox.appendChild(row);
 
-    chatBox.appendChild(bubble);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -127,3 +140,4 @@ function closeMitraChat() {
             .classList.remove("show-chat");
     document.body.classList.remove("showing-chat");
 }
+

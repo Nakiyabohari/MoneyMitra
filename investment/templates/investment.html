@@ -7,12 +7,10 @@
     <title>Investments - MoneyMitra</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="{% static 'css/investment-desktop.css' %}">
 <link rel="stylesheet" href="{% static 'css/investment-mobile.css' %}" media="(max-width: 768px)">
-
 
 </head>
 
@@ -25,22 +23,18 @@
 
 <div class="left-section">
 
-
 <div class="page-header">
     <a href="{% url 'dashboard' %}" class="back-btn">&#8592;</a>
     <h2>Investment Planning</h2>
 </div>
 
-<div class="mobile-info-card">
-    <span class="info-icon">ℹ</span>
-    Investing regularly helps your money grow over time.
-    Start small and increase gradually as you learn.
-</div>
+<!-- CURRENT BALANCE CARD -->
 
-<p class="info-text">
-    Investing regularly helps your money grow over time.
-    Start small and increase gradually.
-</p>
+<div class="balance-card">
+    <p class="balance-label">Current Balance</p>
+    <h2 class="balance-amount">₹{{ available_balance }}</h2>
+    <span class="balance-subtext">Available to invest</span>
+</div>
 
 <h3>Choose Investment Type</h3>
 
@@ -60,6 +54,29 @@
 
 </div>
 
+<!-- INVESTMENT SUGGESTIONS -->
+
+<h3>Investment Suggestions</h3>
+
+<div class="suggestions">
+
+    <div class="suggest-btn active" onclick="setInvestment({{ suggest_20 }})">
+        <span>20%</span>
+        <p>₹{{ suggest_20 }}</p>
+    </div>
+
+    <div class="suggest-btn" onclick="setInvestment({{ suggest_30 }})">
+        <span>30%</span>
+        <p>₹{{ suggest_30 }}</p>
+    </div>
+
+    <div class="suggest-btn" onclick="setInvestment({{ suggest_50 }})">
+        <span>50%</span>
+        <p>₹{{ suggest_50 }}</p>
+    </div>
+
+</div>
+
 <form method="POST">
     {% csrf_token %}
 
@@ -74,6 +91,7 @@
 
         <div class="amount-input">
             ₹ <input type="number"
+                    id="investmentAmount"
                     name="amount"
                     placeholder="Enter amount"
                     required>
@@ -81,55 +99,83 @@
 
     </div>
 
-    <div class="why-invest">
-    <h4>Why invest monthly?</h4>
+<!-- MOBILE BUTTON -->
+<button type="button"
+        class="outline-btn"
+        onclick="toggleMitraChat()">
+    ✨ Ask Mitra AI
+</button>
 
-    <ul>
-        <li>Build wealth steadily over time</li>
-        <li>Reduce risk through regular investing</li>
-        <li>Make investing a habit</li>
-    </ul>
-</div>
-
-    <!-- MOBILE BUTTON -->
-    <button type="button"
-            class="outline-btn"
-            onclick="toggleMitraChat()">
-        ✨ Ask Mitra AI
-    </button>
-
-    <button type="submit" class="btn">
-        Save Investment Plan
-    </button>
+<button type="submit" class="btn">
+    Save Investment Plan
+</button>
 
 </form>
 
 </div>
 
-<!-- RIGHT SECTION (CHAT PANEL) -->
 
+<!-- RIGHT SECTION -->
 <div class="right-section">
 
-<div class="mitra-header">
-    MoneyMitra AI
-    <span onclick="closeMitraChat()">✕</span>
+    <!-- AI HEADER -->
+    <div class="ai-top">
+        <div class="ai-title">
+            <div class="ai-icon">🤖</div>
+            <div>
+                <h3>MoneyMitra AI</h3>
+                <span class="ai-status">● Online & Ready to help</span>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- AI INTRO -->
+    <div class="ai-intro">
+        <h3>AI Investment Assistant</h3>
+        <p>Get personalized investment recommendations</p>
+    </div>
+
+    <div id="chatBox" class="chat-container">
+
+        <!-- BOT MESSAGE -->
+        <div class="chat-row">
+            <div class="bot-icon">🤖</div>
+
+            <div class="bot-card">
+                <h4>💡 Smart Investment Recommendation</h4>
+
+                <p>
+                    Based on your current balance of 
+                    <b>₹{{ available_balance }}</b>, consider investing 
+                    <b>₹{{ suggest_30 }}</b> (30%) to grow your wealth.
+                </p>
+
+                <small>
+                    This balanced approach helps you build wealth while
+                    maintaining sufficient liquidity for emergencies.
+                </small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- INPUT -->
+    <div class="mitra-input-area">
+
+        <input type="text"
+            id="chatInput"
+            placeholder="Ask about investments...">
+
+        <button type="button"
+                onclick="sendChatMessage()">
+            Send
+        </button>
+
+    </div>
+
 </div>
-
-<div id="chatBox" class="mitra-chatbox"></div>
-
-<div class="mitra-input-area">
-
-    <input type="text"
-           id="chatInput"
-           placeholder="Ask about investments...">
-
-    <button type="button"
-            onclick="sendChatMessage()">
-        Send
-    </button>
-
-</div>
-
 
 </div>
 
@@ -162,6 +208,12 @@ function closeMitraChat() {
     .querySelector(".right-section")
     .classList.remove("show-chat");
 
+}
+
+/* Suggestion Autofill */
+
+function setInvestment(amount) {
+    document.getElementById("investmentAmount").value = amount;
 }
 
 </script>
