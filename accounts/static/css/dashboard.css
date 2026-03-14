@@ -272,6 +272,25 @@ body{
 .balance-card{
     position:relative;
 }
+.transaction-row{
+    
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 0;
+    font-size:17px;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    font-weight: 700;
+}
+
+.transaction-row span:first-child{
+    color:#6c63ff;
+}
+
+.transaction-row span:last-child{
+    font-weight:500;
+}
+
 
 /* PLUS BUTTON INSIDE BALANCE CARD */
 

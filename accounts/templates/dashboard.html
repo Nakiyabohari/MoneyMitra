@@ -71,10 +71,12 @@
                     <h4>₹{{ total_savings }}</h4>
                 </div>
 
-                <div class="overview-card">
-                    <p>Investments</p>
-                    <h4>₹{{ investment_total }}</h4>
-                </div>
+                <a href="{% url 'investment_details' %}" class="card-link">
+                    <div class="overview-card">
+                        <p>Investments</p>
+                        <h4>₹{{ investment_total }}</h4>
+                    </div>
+                </a>
 
                 <div class="overview-card">
                     <p>EMI</p>
@@ -85,14 +87,11 @@
 
                 <div class="mini-scroll">
 
-        {% for income in incomes %}
+        {% for income in incomes|slice:":5" %}
 
-        <div class="progress-item">
-            <div class="progress-text">₹{{ income.amount }}</div>
-
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:70%"></div>
-            </div>
+        <div class="transaction-row">
+            <span>{{ income.income_source }}</span>
+            <span>₹{{ income.amount }}</span>
         </div>
 
         {% empty %}
@@ -112,14 +111,11 @@
 
     <div class="mini-scroll">
 
-        {% for expense in expenses %}
+        {% for expense in expenses|slice:":5" %}
 
-        <div class="progress-item">
-            <div class="progress-text">₹{{ expense.expense_amount }}</div>
-
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:80%"></div>
-            </div>
+        <div class="transaction-row">
+            <span>{{ expense.category }}</span>
+            <span>₹{{ expense.expense_amount }}</span>
         </div>
 
         {% empty %}

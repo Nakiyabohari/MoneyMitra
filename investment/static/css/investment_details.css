@@ -1,0 +1,33 @@
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f6f7fb;
+}
+
+.container{
+    width:80%;
+    margin:auto;
+    padding:40px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+th, td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+}
+
+th{
+    background:#6C5CE7;
+    color:white;
+}

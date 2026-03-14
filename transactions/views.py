@@ -18,7 +18,12 @@ from datetime import date
 # ==========================
 # ADD INCOME
 # ==========================
-@login_required
+
+from decimal import Decimal, InvalidOperation
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
 
 @login_required
 def addincome(request):
@@ -27,26 +32,53 @@ def addincome(request):
 
         source = request.POST.get("income_source")
         amount = request.POST.get("amount")
+        payment_method = request.POST.get("payment_method")
+        notes = request.POST.get("notes")
 
-        
+        # ------------------------
+        # VALIDATE AMOUNT
+        # ------------------------
+        try:
+            amount = Decimal(amount)
+
+            if amount <= 0:
+                messages.error(request, "Amount must be greater than 0.")
+                return render(request, "addincome.html")
+
+            if amount > 10000000:
+                messages.error(request, "Amount is too large.")
+                return render(request, "addincome.html")
+
+        except (InvalidOperation, TypeError):
+            messages.error(request, "Invalid amount.")
+            return render(request, "addincome.html")
+
+        # ------------------------
+        # SAVE INCOME
+        # ------------------------
         income = Income_model(
-    user=request.user,
-    income_source=source,
-    amount=amount,
-    payment_method=request.POST.get("payment_method"),
-    notes=request.POST.get("notes")
-)
+            user=request.user,
+            income_source=source,
+            amount=amount,
+            payment_method=payment_method,
+            notes=notes
+        )
 
         income.save()
+
+        messages.success(request, "Income added successfully!")
 
         return redirect("dashboard")
 
     return render(request, "addincome.html")
 
+    
 # ==========================
 # ADD EXPENSE
 # ==========================
 from django.contrib import messages
+from datetime import datetime, date
+from decimal import Decimal, InvalidOperation
 
 @login_required
 def add_expense(request):
@@ -61,15 +93,52 @@ def add_expense(request):
         payment_type = request.POST.get("expense_payment_method")
         notes = request.POST.get("notes")
 
+        # -----------------------------
+        # VALIDATE AMOUNT
+        # -----------------------------
+        try:
+            amount = Decimal(amount)
+
+            if amount <= 0:
+                messages.error(request, "Amount must be greater than 0.")
+                return render(request, "add_expense.html", {
+                    "categories": categories
+                })
+
+            if amount > 10000000:   # limit 1 crore
+                messages.error(request, "Amount is too large.")
+                return render(request, "add_expense.html", {
+                    "categories": categories
+                })
+
+        except (InvalidOperation, TypeError):
+            messages.error(request, "Invalid amount value.")
+            return render(request, "add_expense.html", {
+                "categories": categories
+            })
+
+        # -----------------------------
+        # VALIDATE DATE
+        # -----------------------------
+        expense_date_obj = datetime.strptime(expense_date, "%Y-%m-%d").date()
+
+        if expense_date_obj > date.today():
+            messages.error(request, "Future expense date is not allowed.")
+            return render(request, "add_expense.html", {
+                "categories": categories
+            })
+
+        # -----------------------------
         # CUSTOM CATEGORY
+        # -----------------------------
         if category_id == "custom":
 
             custom_name = request.POST.get("custom_category")
 
             if not custom_name:
+                messages.error(request, "Please enter custom category name")
                 return render(request, "add_expense.html", {
-                    "categories": categories,
-                    "error": "Please enter custom category name"
+                    "categories": categories
                 })
 
             category = Category.objects.create(
@@ -82,21 +151,25 @@ def add_expense(request):
         else:
             category = Category.objects.get(id=category_id)
 
-            Expense_model.objects.create(
-                user=request.user,
-                expense_amount=amount,
-                category=category,
-                date=expense_date,
-                expense_payment_method=payment_type,
-                notes=notes
+        # -----------------------------
+        # SAVE EXPENSE
+        # -----------------------------
+        Expense_model.objects.create(
+            user=request.user,
+            expense_amount=amount,
+            category=category,
+            date=expense_date_obj,
+            expense_payment_method=payment_type,
+            notes=notes
         )
+
+        messages.success(request, "Expense added successfully!")
 
         return redirect("dashboard")
 
     return render(request, "add_expense.html", {
         "categories": categories
     })
-
 
 
 
@@ -238,6 +311,8 @@ def expensereport(request):
 #     return render(request, "add_expense.html", {"categories": categories})
 
 # End of Nakiya's code@login_requiredfrom django.db.models import Sum
+
+
 from django.contrib.auth.decorators import login_required
 @login_required
 def transaction_history(request):

@@ -22,9 +22,19 @@ padding-top:40px;
 .page-header{
 display:flex;
 align-items:center;
-gap:14px;
+justify-content:space-between;
 margin-bottom:10px;
 }
+
+/* LEFT SIDE */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+/* TITLE */
 
 .page-header h1{
 color:#2C2A5E;
@@ -39,6 +49,57 @@ font-size:15px;
 margin-top:4px;
 }
 
+/* HEADER ICON AREA */
+
+/* HEADER ICONS */
+
+.header-icons{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+/* NORMAL ICON BUTTON */
+
+.circle-icon{
+width:50px;
+height:50px;
+border-radius:50%;
+background:#ECEAFF;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+text-decoration:none;
+cursor:pointer;
+transition:0.2s;
+}
+
+/* MENU BUTTON */
+
+.menu-circle{
+width:50px;
+height:50px;
+border-radius:50%;
+background:linear-gradient(135deg,#6C5CE7,#7E6BFF);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+cursor:pointer;
+}
+
+/* HOVER */
+
+.circle-icon:hover{
+transform:scale(1.05);
+background:#E2E0FF;
+}
+
+.menu-circle:hover{
+transform:scale(1.05);
+}
 /* BACK BUTTON */
 
 .back-btn{
@@ -165,50 +226,6 @@ font-size:18px;
 color:#2C2A5E;
 }
 
-/*myy*/
-/* EDIT BOX */
-
-.edit-box{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:6px;
-min-width:120px;
-}
-
-/* INPUT */
-
-.edit-box input{
-width:110px;
-padding:6px 8px;
-border-radius:8px;
-border:1px solid #DCD9FF;
-background:#F7F6FF;
-font-size:13px;
-text-align:center;
-outline:none;
-}
-
-/* CENTER BUTTON */
-
-.edit-box button{
-display:block;
-margin:4px auto 0 auto;
-padding:6px 14px;
-border:none;
-border-radius:8px;
-font-size:12px;
-background:linear-gradient(45deg,#6C5CE7,#7E6BFF);
-color:white;
-cursor:pointer;
-transition:0.2s;
-}
-
-.edit-box button:hover{
-transform:translateY(-1px);
-box-shadow:0 4px 10px rgba(108,92,231,0.25);
-}
-
 /* STATUS */
 
 .status{
@@ -224,30 +241,6 @@ cursor:pointer;
 font-size:16px;
 opacity:0.5;
 transition:0.2s;
-}
-
-.delete-icon:hover{
-opacity:1;
-}
-
-
-.card-actions{
-display:flex;
-gap:10px;
-align-items:center;
-}
-
-.edit-icon,
-.delete-icon{
-cursor:pointer;
-font-size:16px;
-opacity:0.7;
-transition:0.2s;
-}
-
-.edit-icon:hover{
-opacity:1;
-color:#6a5cff;
 }
 
 .delete-icon:hover{
@@ -279,6 +272,49 @@ color:#2C2A5E;
 
 .limit h4{
 color:#6C5CE7;
+}
+
+/* EDIT BOX */
+
+.edit-box{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+min-width:120px;
+}
+
+/* INPUT */
+
+.edit-box input{
+width:110px;
+padding:6px 8px;
+border-radius:8px;
+border:1px solid #DCD9FF;
+background:#F7F6FF;
+font-size:13px;
+text-align:center;
+outline:none;
+}
+
+/* SAVE BUTTON */
+
+.edit-box button{
+display:block;
+margin:4px auto 0 auto;
+padding:6px 14px;
+border:none;
+border-radius:8px;
+font-size:12px;
+background:linear-gradient(45deg,#6C5CE7,#7E6BFF);
+color:white;
+cursor:pointer;
+transition:0.2s;
+}
+
+.edit-box button:hover{
+transform:translateY(-1px);
+box-shadow:0 4px 10px rgba(108,92,231,0.25);
 }
 
 /* PROGRESS BAR */
