@@ -141,3 +141,23 @@ function closeMitraChat() {
     document.body.classList.remove("showing-chat");
 }
 
+
+function open_menu(){
+    const menu = document.getElementById("menu");
+
+    if(menu){
+        menu.classList.toggle("show-menu");
+    }
+}
+
+function setInvestment(amount, element) {
+
+    document.getElementById("investmentAmount").value = amount;
+
+    // remove active from all suggestion cards
+    document.querySelectorAll(".suggest-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+    // activate clicked card
+    element.classList.add("active");
+}
