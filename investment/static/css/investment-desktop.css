@@ -31,10 +31,10 @@
 
 /* RIGHT ICONS */
 
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.header-icons{
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 /* ICON BUTTON */
