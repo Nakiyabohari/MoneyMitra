@@ -62,19 +62,50 @@ border-radius:30px;
 box-shadow:0 10px 40px rgba(0,0,0,0.05);
 }
 
-/* HEADER */
+/* PAGE HEADER */
 
-.header{
+.page-header{
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
+
+background:#ffffffcc;
+padding:20px 25px;
+border-radius:25px;
+
 margin-bottom:25px;
 }
 
-.left-header{
+/* LEFT SIDE */
+
+.header-left{
 display:flex;
 align-items:center;
 gap:10px;
+}
+
+/* RIGHT SIDE */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+border:none;
+background:none;
+font-size:20px;
+cursor:pointer;
+}
+
+/* TITLE */
+
+.title{
+font-size:20px;
+font-weight:600;
 }
 
 .back-btn{
