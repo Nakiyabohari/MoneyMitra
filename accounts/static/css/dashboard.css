@@ -269,7 +269,40 @@ body{
     transform:translateY(-6px);
 }
 
+.balance-card{
+    position:relative;
+}
 
+/* PLUS BUTTON INSIDE BALANCE CARD */
+
+.balance-add-btn{
+    position:absolute;
+    top:20px;
+    right:25px;
+
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:none;
+
+    background:white;
+    color:#6c63ff;
+    font-size:26px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    transition:0.25s;
+}
+
+.balance-add-btn:hover{
+    transform:scale(1.08);
+}
 /* ================= TABLET ================= */
 
 @media(max-width:1000px){

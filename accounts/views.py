@@ -57,7 +57,7 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            return redirect('income')
+            return redirect('dashboard')
 
     return render(request, 'login.html')
 

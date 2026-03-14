@@ -73,6 +73,94 @@
     transform: translateY(-3px);
 }
 
+/* ================= DARK MODE ================= */
+
+body.dark-mode{
+    background:#0f0f1a;
+    color:white;
+}
+
+/* container */
+body.dark-mode .app-container{
+    background:#0f0f1a;
+}
+
+/* cards */
+body.dark-mode .overview-card,
+body.dark-mode .right-side{
+    background:#1a1a2e;
+    color:white;
+}
+
+/* menu */
+body.dark-mode .drawer-panel{
+    background:#1a1a2e;
+}
+
+/* quick actions */
+body.dark-mode .quick-action{
+    background:#23234a;
+    color:white;
+}
+
+/* text */
+body.dark-mode .section-title,
+body.dark-mode .welcome-name{
+    color:white;
+}
+/* THEME SWITCH */
+
+.theme-switch{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.theme-toggle{
+    position:relative;
+    width:60px;
+    height:30px;
+}
+
+.theme-toggle input{
+    display:none;
+}
+
+.slider{
+    position:absolute;
+    cursor:pointer;
+    background:#ddd;
+    border-radius:30px;
+    width:100%;
+    height:100%;
+    transition:0.3s;
+}
+
+.slider::before{
+    content:"☀️";
+    position:absolute;
+    height:24px;
+    width:24px;
+    left:3px;
+    top:3px;
+    background:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.3s;
+}
+
+/* DARK POSITION */
+
+.theme-toggle input:checked + .slider{
+    background:#3b3b6d;
+}
+
+.theme-toggle input:checked + .slider::before{
+    transform:translateX(30px);
+    content:"🌙";
+}
 /* ===== LEFT SIDE ===== */
 .menu-left {
     display: flex;

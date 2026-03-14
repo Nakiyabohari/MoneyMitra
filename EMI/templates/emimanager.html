@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>EMI Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="{% static 'css/dark.css' %}">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" href="{% static 'css/emimanager.css' %}">
 </head>
@@ -54,7 +54,7 @@
 {% empty %}
 <p>No EMI added yet.</p>
 {% endfor %}
-
+<script src="{% static 'js/menu.js' %}"></script>
 <script src="{% static 'js/emimanager.js' %}"></script>
 
 </body>

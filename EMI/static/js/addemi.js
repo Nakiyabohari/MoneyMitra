@@ -26,21 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function calculateEndDate() {
 
-        if (!startDate.value || !duration.value) return;
+    if (!startDate.value || !duration.value) return;
 
-        // Browser date input already gives yyyy-mm-dd
-        let start = new Date(startDate.value);
+    let start = new Date(startDate.value);
 
-        let months = parseInt(duration.value);
+    let months = parseInt(duration.value);
 
-        start.setMonth(start.getMonth() + months);
+    start.setMonth(start.getMonth() + months);
 
-        let dd = String(start.getDate()).padStart(2, "0");
-        let mm = String(start.getMonth() + 1).padStart(2, "0");
-        let yyyy = start.getFullYear();
+    let dd = String(start.getDate()).padStart(2, "0");
+    let mm = String(start.getMonth() + 1).padStart(2, "0");
+    let yyyy = start.getFullYear();
 
-        endDate.value = `${dd}-${mm}-${yyyy}`;
-    }
+    endDate.value = `${yyyy}-${mm}-${dd}`;
+}
 
     duration.addEventListener("input", calculateEndDate);
     startDate.addEventListener("change", calculateEndDate);
