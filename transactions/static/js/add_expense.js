@@ -45,4 +45,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    // DATE FIELD
+    const dateField = document.getElementById("expenseDate");
+
+    if (dateField) {
+        const today = new Date().toISOString().split("T")[0];
+        dateField.max = today;     // Block future dates
+        dateField.value = today;   // Auto set today
+    }
+
+    // CATEGORY FIELD
+    const categoryField = document.getElementById("categoryField");
+    const categoryInput = document.getElementById("categoryInput");
+
+    if (categoryField) {
+        categoryField.addEventListener("change", function(){
+
+            if(this.value === "custom"){
+                categoryField.classList.add("hidden");
+                categoryInput.classList.remove("hidden");
+                categoryInput.focus();
+            }
+
+        });
+    }
+
+});
+
 });

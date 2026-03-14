@@ -8,15 +8,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="{% static 'css/savings_goal.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
 
 </head>
 
 <body>
 
+<!-- HEADER -->
+<div class="app-header">
+
+<div class="header-left">
+
+<a href="/calculator/" class="circle-icon">🧮</a>
+<a href="/calendar/" class="circle-icon">📅</a>
+<a href="/profile/" class="circle-icon">👤</a>
+<div class="menu-circle" onclick="open_menu()">
+☰
+</div>
+
+</div>
+
+
+</div>
+
+
 <div class="mobile-container">
 
-<!-- HEADER -->
+<!-- PAGE HEADER -->
 <div class="header">
 
 <div class="left-header">
@@ -61,7 +81,6 @@
 
 <div class="goal-card">
 
-<!-- HEADER -->
 <div class="goal-header">
 
 <div>
@@ -75,8 +94,6 @@
 
 </div>
 
-
-<!-- AMOUNT -->
 <div class="amount-row">
 
 <strong style="color:{{ goal.color }}">
@@ -89,21 +106,16 @@ of ₹{{ goal.target_amount|floatformat:0 }}
 
 </div>
 
-
-<!-- PROGRESS -->
 <div class="goal-bar">
 <div class="goal-fill"
 style="width:{{ goal.progress }}%; background:{{ goal.color }}">
 </div>
 </div>
 
-
 <div class="progress-text" style="color:{{ goal.color }}">
 {{ goal.progress|floatformat:1 }}% achieved
 </div>
 
-
-<!-- QUICK BUTTONS -->
 <div class="quick-buttons">
 
 <input
@@ -134,8 +146,7 @@ Remove
 </div>
 
 
-
-<!-- MODAL -->
+<!-- CREATE GOAL MODAL -->
 <div class="modal-overlay" id="goalModal">
 
 <div class="modal">
@@ -174,13 +185,9 @@ Remove
 <div class="color-options">
 
 <div class="color purple active" onclick="selectColor(this,'#6c63ff')"></div>
-
 <div class="color red" onclick="selectColor(this,'#ef4444')"></div>
-
 <div class="color green" onclick="selectColor(this,'#10b981')"></div>
-
 <div class="color blue" onclick="selectColor(this,'#3b82f6')"></div>
-
 <div class="color orange" onclick="selectColor(this,'#f59e0b')"></div>
 
 </div>
@@ -195,7 +202,11 @@ Create Goal
 </div>
 
 
+{% include "menu.html" %}
+
+<script src="{% static 'js/menu.js' %}"></script>
 <script src="{% static 'js/savings_goal.js' %}"></script>
 
 </body>
+
 </html>

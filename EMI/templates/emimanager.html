@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" href="{% static 'css/emimanager.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 </head>
 <body>
 
@@ -19,6 +20,23 @@
         <h2>EMI Manager</h2>
         <a href="{% url 'addemi' %}" class="icon-btn plus">+</a>
     </div>
+
+    <!-- HEADER -->
+<div class="app-header">
+
+<div class="header-left">
+
+<a href="/calculator/" class="circle-icon">🧮</a>
+<a href="/calendar/" class="circle-icon">📅</a>
+<a href="/profile/" class="circle-icon">👤</a>
+<div class="menu-circle" onclick="open_menu()">
+☰
+</div>
+
+</div>
+
+
+</div>
 
     <!-- Total EMI Card -->
     <div class="total-card">
@@ -54,6 +72,11 @@
 {% empty %}
 <p>No EMI added yet.</p>
 {% endfor %}
+
+{% include "menu.html" %}
+
+<script src="{% static 'js/menu.js' %}"></script>
+
 
 <script src="{% static 'js/emimanager.js' %}"></script>
 
