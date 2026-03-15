@@ -3,27 +3,41 @@
 <html>
 <head>
 <title>Edit Profile</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
 <link rel="stylesheet" href="{% static 'css/global.css' %}">
+
 </head>
+
 <body>
 
 <div class="container">
 
 <h2>Edit Profile</h2>
 
+{% if profile.profile_photo %}
+<div class="profile-preview">
+<img src="{{ profile.profile_photo.url }}">
+</div>
+{% endif %}
+
 <form method="POST" enctype="multipart/form-data">
+
 {% csrf_token %}
+
+<label>Full Name</label>
+<input type="text" name="full_name" value="{{ profile.full_name }}">
+
+<label>Email</label>
+<input type="email" value="{{ request.user.email }}" readonly>
 
 <label>Phone</label>
 <input type="text" name="phone" value="{{ profile.phone }}">
 
-<label>Gender</label>
-<select name="gender">
-<option value="Male">Male</option>
-<option value="Female">Female</option>
-<option value="Other">Other</option>
-</select>
+<label>Occupation</label>
+<input type="text" name="occupation" value="{{ profile.occupation }}">
 
 <label>Profile Photo</label>
 <input type="file" name="profile_photo">

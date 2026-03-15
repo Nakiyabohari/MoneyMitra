@@ -29,24 +29,6 @@ body {
     box-shadow: 0 30px 60px rgba(124, 106, 242, 0.15);
 }
 
-/* ===== PROGRESS BAR ===== */
-.progress-bar {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 35px;
-}
-
-.progress-step {
-    width: 55px;
-    height: 6px;
-    background: #ddd;
-    border-radius: 10px;
-}
-
-.progress-step.active {
-    background: #6c63ff;
-}
 
 /* ===== TITLE ===== */
 h1 {
@@ -154,34 +136,68 @@ h1 {
     transform: translateY(-3px);
 }
 
+/* ===== SKIP BUTTON ===== */
+
+.skip-btn{
+    display:block;
+    text-align:center;
+    margin-top:18px;
+    font-size:14px;
+    color:#614de7;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.skip-btn:hover{
+    color:#6c63ff;
+}
+
 /* ========================= */
 /* 📱 MOBILE RESPONSIVE */
 /* ========================= */
+
 @media (max-width: 768px) {
 
-    body {
-        background: #ffffff;
-    }
+body{
+    background: linear-gradient(to right, #ebe9f5, #dcd8f3);
+}
 
-    .page-wrapper {
-        padding: 0;
-        align-items: flex-start;
-    }
+/* keep card centered like desktop */
+.page-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
 
-    .app-card {
-        max-width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-        padding: 35px 20px;
-    }
+/* card same style as desktop */
+.app-card{
+    width:100%;
+    max-width:420px;
+    border-radius:28px;
+    padding:40px 25px;
+    box-shadow:0 30px 60px rgba(124,106,242,0.15);
+}
 
-    h1,
-    .subtitle {
-        text-align: left;
-    }
+/* title */
+h1{
+    font-size:24px;
+    text-align:center;
+}
 
-    .progress-bar {
-        justify-content: flex-start;
-    }
+/* subtitle */
+.subtitle{
+    text-align:center;
+}
+
+/* salary input size */
+.salary-input{
+    font-size:30px;
+}
+
+/* button */
+.add-income-btn{
+    padding:16px;
+}
 }

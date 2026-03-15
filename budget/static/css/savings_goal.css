@@ -12,7 +12,25 @@ justify-content:center;
 padding:40px;
 }
 
-/* HEADER ICON AREA */
+/* MAIN CONTAINER */
+
+.mobile-container{
+width:100%;
+max-width:1300px;
+background:#ffffffcc;
+padding:30px;
+border-radius:30px;
+box-shadow:0 10px 40px rgba(0,0,0,0.05);
+}
+
+/* HEADER */
+
+.page-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
 
 .header-left{
 display:flex;
@@ -23,13 +41,22 @@ gap:12px;
 .header-right{
 display:flex;
 align-items:center;
-justify-content:flex-end;
-position:absolute;
-top:30px;
-right:40px;
+gap:12px;
 }
 
-/* ICON BUTTONS */
+.back-btn{
+border:none;
+background:none;
+font-size:20px;
+cursor:pointer;
+}
+
+.title{
+font-size:20px;
+font-weight:600;
+}
+
+/* ICONS */
 
 .circle-icon{
 width:45px;
@@ -57,44 +84,6 @@ font-size:20px;
 cursor:pointer;
 }
 
-/* MAIN CONTAINER */
-
-.mobile-container{
-width:100%;
-max-width:1300px;
-background:#ffffffcc;
-padding:30px;
-border-radius:30px;
-box-shadow:0 10px 40px rgba(0,0,0,0.05);
-}
-
-/* HEADER */
-
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px;
-}
-
-.left-header{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.back-btn{
-border:none;
-background:none;
-font-size:20px;
-cursor:pointer;
-}
-
-.title{
-font-size:20px;
-font-weight:600;
-}
-
 .add-btn{
 width:45px;
 height:45px;
@@ -108,7 +97,7 @@ font-size:22px;
 cursor:pointer;
 }
 
-/* ================= TOTAL CARD ================= */
+/* TOTAL CARD */
 
 .total-card{
 background:linear-gradient(135deg,#6a5cff,#7a3cff);
@@ -146,7 +135,7 @@ background:white;
 border-radius:20px;
 }
 
-/* ================= GOALS GRID ================= */
+/* GOALS GRID */
 
 #goalsList{
 display:grid;
@@ -154,7 +143,7 @@ grid-template-columns:repeat(3,1fr);
 gap:25px;
 }
 
-/* ================= GOAL CARD ================= */
+/* GOAL CARD */
 
 .goal-card{
 background:white;
@@ -162,7 +151,6 @@ border-radius:20px;
 padding:20px;
 box-shadow:0 5px 20px rgba(0,0,0,0.05);
 transition:0.2s;
-width:100%;
 }
 
 .goal-card:hover{
@@ -190,12 +178,16 @@ color:#777;
 cursor:pointer;
 }
 
+/* AMOUNT ROW */
+
 .amount-row{
 display:flex;
 justify-content:space-between;
 margin-top:10px;
 font-size:14px;
 }
+
+/* PROGRESS BAR */
 
 .goal-bar{
 height:6px;
@@ -215,11 +207,11 @@ font-size:12px;
 margin-top:5px;
 }
 
-/* ================= QUICK ACTIONS ================= */
+/* QUICK BUTTONS */
 
 .quick-buttons{
 display:grid;
-grid-template-columns:2fr 1fr 1fr;
+grid-template-columns:2fr auto auto;
 gap:10px;
 margin-top:16px;
 }
@@ -235,8 +227,11 @@ font-size:13px;
 outline:none;
 }
 
-.quick-buttons button{
+/* ADD BUTTON */
+
+.quick-buttons .add-btn{
 height:42px;
+padding:0 14px;
 border:none;
 border-radius:14px;
 font-size:13px;
@@ -247,15 +242,36 @@ align-items:center;
 justify-content:center;
 background:#e8e6ff;
 color:#5a4bff;
-transition:0.2s;
 }
 
-.quick-buttons button:hover{
+.quick-buttons .add-btn:hover{
 background:#6a5cff;
 color:white;
 }
 
-/* ================= MODAL ================= */
+/* REMOVE BUTTON */
+
+.remove-btn{
+height:42px;
+padding:0 14px;
+border:none;
+border-radius:14px;
+font-size:13px;
+font-weight:500;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#e8e6ff;
+color:#5a4bff;
+}
+
+.remove-btn:hover{
+background:#6a5cff;
+color:white;
+}
+
+/* MODAL */
 
 .modal-overlay{
 position:fixed;
@@ -284,14 +300,12 @@ align-items:center;
 margin-bottom:15px;
 }
 
-.modal-header h3{
-font-size:20px;
-}
-
 .modal-header span{
 cursor:pointer;
 font-size:22px;
 }
+
+/* FORM */
 
 .modal label{
 display:block;
@@ -306,6 +320,27 @@ padding:12px;
 border-radius:12px;
 border:none;
 background:#f3f3f7;
+}
+
+/* RUPEE INPUT */
+
+.input-rupee{
+display:flex;
+align-items:center;
+background:#f3f3f7;
+border-radius:12px;
+padding:0 10px;
+}
+
+.input-rupee span{
+margin-right:5px;
+}
+
+.input-rupee input{
+border:none;
+background:none;
+flex:1;
+padding:12px 0;
 }
 
 /* COLORS */
@@ -347,7 +382,7 @@ font-size:15px;
 cursor:pointer;
 }
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 
 @media (max-width:1000px){
 

@@ -233,24 +233,27 @@ def profile(request):
     return render(request, 'profile.html', {'profile': profile})
 
 
+
 # EDIT PROFILE
 @login_required
 def edit_profile(request):
     profile = Profile.objects.get(user=request.user)
 
     if request.method == "POST":
+        profile.full_name = request.POST.get('full_name')
         profile.phone = request.POST.get('phone')
-        profile.gender = request.POST.get('gender')
+        profile.occupation = request.POST.get('occupation')
 
         if request.FILES.get('profile_photo'):
             profile.profile_photo = request.FILES.get('profile_photo')
 
         profile.save()
+
         return redirect('profile')
 
     return render(request, 'edit_profile.html', {'profile': profile})
 
-
+    
 # LOGOUT
 def user_logout(request):
     logout(request)
