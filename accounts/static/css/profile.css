@@ -148,3 +148,47 @@ body {
 .logout-btn:hover {
     transform: translateY(-3px);
 }
+
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+
+@media (max-width:768px){
+
+body{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+padding:25px 15px;
+min-height:100vh;
+}
+
+/* card */
+.profile-container{
+width:100%;
+max-width:100%;
+margin-top:25px;
+padding:30px 20px 35px;
+border-radius:28px;
+}
+
+/* header */
+.page-header h2{
+font-size:22px;
+}
+
+/* profile image */
+.profile-img,
+.profile-avatar{
+width:95px;
+height:95px;
+font-size:36px;
+}
+
+/* menu items */
+.profile-menu li{
+padding:16px 18px;
+}
+
+}
