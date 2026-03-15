@@ -44,30 +44,52 @@ body {
 }
 
 /* ===============================
-   HEADER
+   PAGE HEADER
 ================================ */
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-/* HEADER POSITION */
+.page-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
 
-.app-header{
-position:absolute;
-top:30px;
-right:40px;
+background:white;
+padding:15px 20px;
+border-radius:20px;
+
+margin-bottom:25px;
 }
 
-/* ICON CONTAINER */
+/* TITLE */
+
+.page-header h2{
+margin:0;
+font-size:20px;
+font-weight:600;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+width:40px;
+height:40px;
+border-radius:50%;
+background:#e9e7ff;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-decoration:none;
+font-size:18px;
+color:black;
+}
+
+/* RIGHT ICONS */
 
 .header-icons{
 display:flex;
-flex-direction:row;
 align-items:center;
-gap:15px;
+gap:12px;
 }
 
 /* NORMAL ICON */

@@ -277,4 +277,37 @@ font-size:14px;
 cursor:pointer;
 }
 
+.chat-close-btn{
+   display:none;
+}
+
+/* MOBILE ONLY */
+
+@media (max-width:768px){
+
+.chat-close-btn{
+   display:flex;
+   align-items:center;
+   justify-content:center;
+
+   width:36px;
+   height:36px;
+
+   border:none;
+   border-radius:50%;
+
+   font-size:20px;
+   cursor:pointer;
+
+   background:#f2f2ff;
+   color:#6C5CE7;
+}
+
+/* Align header */
+.ai-top{
+   justify-content:space-between;
+}
+
+}
+
 }

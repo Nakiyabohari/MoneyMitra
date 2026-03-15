@@ -18,32 +18,35 @@
 <body>
 
 <div class="main-wrapper">
+
+<div class="page-header">
+
+    <a href="{% url 'dashboard' %}" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+        </svg>
+    </a>
+
+
+    <h2>Investment Planning</h2>
+    <div class="header-icons">
+        <a href="/calculator/" class="circle-icon">🧮</a>
+        <a href="/calendar/" class="circle-icon">📅</a>
+        <a href="/profile/" class="circle-icon">👤</a>
+
+        <div class="menu-circle" onclick="open_menu()">☰</div>
+
+
+    </div>
+
+</div>
+
 <div class="main-card">
-
-
-
 <!-- LEFT SECTION -->
 
 <div class="left-section">
 
-<div class="page-header">
-    <a href="{% url 'dashboard' %}" class="back-btn">&#8592;</a>
-    <h2>Investment Planning</h2>
-</div>
-<!-- HEADER ICONS -->
-<div class="app-header">
-
-<div class="header-icons">
-
-<a href="/calculator/" class="circle-icon">🧮</a>
-<a href="/calendar/" class="circle-icon">📅</a>
-<a href="/profile/" class="circle-icon">👤</a>
-
-<div class="menu-circle" onclick="open_menu()">☰</div>
-
-</div>
-
-</div>
 
 <!-- CURRENT BALANCE CARD -->
 
@@ -77,17 +80,17 @@
 
 <div class="suggestions">
 
-    <div class="suggest-btn active" onclick="setInvestment({{ suggest_20 }})">
+    <div class="suggest-btn active" onclick="setInvestment({{ suggest_20 }}, this)">
         <span>20%</span>
         <p>₹{{ suggest_20 }}</p>
     </div>
 
-    <div class="suggest-btn" onclick="setInvestment({{ suggest_30 }})">
+    <div class="suggest-btn" onclick="setInvestment({{ suggest_30 }}, this)">
         <span>30%</span>
         <p>₹{{ suggest_30 }}</p>
     </div>
 
-    <div class="suggest-btn" onclick="setInvestment({{ suggest_50 }})">
+    <div class="suggest-btn" onclick="setInvestment({{ suggest_50 }}, this)">
         <span>50%</span>
         <p>₹{{ suggest_50 }}</p>
     </div>
@@ -123,7 +126,6 @@
     ✨ Ask Mitra AI
 </button>
 
-
 <button type="submit" class="btn">
     Save Investment Plan
 </button>
@@ -145,6 +147,8 @@
                 <span class="ai-status">● Online & Ready to help</span>
             </div>
         </div>
+        <!-- CLOSE BUTTON (MOBILE ONLY) -->
+    <button class="chat-close-btn" onclick="closeMitraChat()">✕</button>
     </div>
 
     <hr>
@@ -200,10 +204,6 @@
 </div>
 </div>
 
-{% include "menu.html" %}
-
-<script src="{% static 'js/menu.js' %}"></script>
-
 <script src="{% static 'js/investment.js' %}"></script>
 
 <script>
@@ -232,13 +232,10 @@ function closeMitraChat() {
 
 }
 
-/* Suggestion Autofill */
-
-function setInvestment(amount) {
-    document.getElementById("investmentAmount").value = amount;
-}
-
 </script>
+
+{% include "menu.html" %}
+<script src="{% static 'js/menu.js' %}"></script>
 
 </body>
 </html>
