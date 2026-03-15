@@ -1,17 +1,34 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-    const loginBtn = document.getElementById("loginBtn");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const form = document.getElementById("loginForm");
 
-    loginBtn.addEventListener("click", function(e){
+    /* Autofill saved email */
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+    const savedEmail = localStorage.getItem("savedEmail");
+
+    if(savedEmail){
+        emailInput.value = savedEmail;
+    }
+
+    /* Form validation + save email */
+
+    form.addEventListener("submit", function(e){
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
 
         if(!email || !password){
             e.preventDefault();
             alert("Please fill all fields");
             return;
         }
+
+        /* Save email for next login */
+
+        localStorage.setItem("savedEmail", email);
+
     });
 
 });
