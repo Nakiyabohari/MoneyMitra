@@ -183,3 +183,102 @@ body.dark-mode .mitra-input-area button{
     background:linear-gradient(135deg,#6c63ff,#7b72f5);
     color:white;
 }
+
+/* ================= HEADER DARK ================= */
+
+body.dark-mode .page-header{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 20px rgba(108,99,255,0.3);
+}
+
+body.dark-mode .page-header h2{
+    color:white;
+}
+
+/* back button */
+
+body.dark-mode .back-btn{
+    background:#23234a;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+/* ===== BACK ARROW WHITE ===== */
+
+body.dark-mode .back-btn svg{
+    stroke:white;
+}
+/* header icons */
+
+body.dark-mode .circle-icon,
+body.dark-mode .menu-circle{
+    background:#23234a;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+
+/* ================= AI PANEL FIX ================= */
+
+body.dark-mode .right-section{
+    background:#12122a;
+    box-shadow:0 0 20px rgba(108,99,255,0.25);
+}
+
+/* AI title */
+
+body.dark-mode .ai-title h3{
+    color:white;
+}
+
+body.dark-mode .ai-status{
+    color:#8a8aff;
+}
+
+/* divider line */
+
+body.dark-mode hr{
+    border-color:rgba(108,99,255,0.2);
+}
+
+/* AI intro */
+
+body.dark-mode .ai-intro h3{
+    color:white;
+}
+
+body.dark-mode .ai-intro p{
+    color:#cfcfff;
+}
+
+/* bot message */
+
+body.dark-mode .bot-card{
+    background:#1a1a2e;
+    color:white;
+    border:1px solid rgba(108,99,255,0.2);
+}
+
+/* chat input */
+
+body.dark-mode #chatInput{
+    background:#1a1a2e;
+    color:white;
+}
+
+body.dark-mode #chatInput::placeholder{
+    color:#9a9aff;
+}
+
+/* ===== INVEST CARD HOVER GLOW ===== */
+
+body.dark-mode .invest-card{
+    border:1px solid rgba(108,99,255,0.4);
+    transition:all 0.3s ease;
+}
+
+body.dark-mode .invest-card:hover{
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.7),
+        0 0 20px rgba(108,99,255,0.5),
+        0 0 35px rgba(108,99,255,0.4);
+    transform:translateY(-3px);
+}

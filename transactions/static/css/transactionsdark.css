@@ -1,0 +1,375 @@
+/* ================= GLOBAL DARK MODE ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+}
+
+
+/* ================= CONTAINER ================= */
+
+body.dark-mode .container{
+    padding:35px;
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .app-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+body.dark-mode .app-header h2{
+    color:white;
+}
+
+/* back button */
+
+body.dark-mode .icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#1a1a2e;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    text-decoration:none;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+
+
+/* ================= SUMMARY CARDS ================= */
+
+body.dark-mode .summary-card{
+    background:#1a1a2e;
+    padding:25px;
+    border-radius:20px;
+}
+
+
+/* ===== INCOME CARD ===== */
+
+body.dark-mode .income-card{
+    border:1px solid #00c896;
+
+    box-shadow:
+        0 0 8px rgba(0,200,150,0.5),
+        0 0 18px rgba(0,200,150,0.35),
+        inset 0 0 6px rgba(0,200,150,0.2);
+}
+
+body.dark-mode .income-card p{
+    color:#00c896;
+}
+
+body.dark-mode .income-card h3{
+    color:#00c896;
+}
+
+
+/* ===== EXPENSE CARD ===== */
+
+body.dark-mode .expense-card{
+    border:1px solid #ff4d4d;
+
+    box-shadow:
+        0 0 8px rgba(255,77,77,0.5),
+        0 0 18px rgba(255,77,77,0.35),
+        inset 0 0 6px rgba(255,77,77,0.2);
+}
+
+body.dark-mode .expense-card p{
+    color:#ff4d4d;
+}
+
+body.dark-mode .expense-card h3{
+    color:#ff4d4d;
+}
+
+.summary-card:hover{
+    transform:translateY(-3px);
+    transition:0.25s;
+}
+
+/* income */
+
+body.dark-mode .income-card{
+    border-left:4px solid #00c896;
+}
+
+body.dark-mode .income-card p{
+    color:#00c896;
+}
+
+body.dark-mode .income-card h3{
+    color:#00c896;
+}
+
+/* expense */
+
+body.dark-mode .expense-card{
+    border-left:4px solid #ff4d4d;
+}
+
+body.dark-mode .expense-card p{
+    color:#ff4d4d;
+}
+
+body.dark-mode .expense-card h3{
+    color:#ff4d4d;
+}
+
+
+/* ================= SEARCH ================= */
+
+body.dark-mode .search-box{
+    background:#1a1a2e;
+    border-radius:15px;
+    padding:12px 15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    box-shadow:0 6px 12px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .search-box input{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+    width:100%;
+}
+
+body.dark-mode .search-box input::placeholder{
+    color:#8a8aff;
+}
+
+
+/* ================= FILTER ================= */
+
+body.dark-mode select{
+    background:#1a1a2e;
+    border:none;
+    color:white;
+    padding:12px 15px;
+    border-radius:12px;
+    margin-top:10px;
+}
+
+
+/* ================= TRANSACTION LIST ================= */
+
+body.dark-mode .transaction-scroll{
+    margin-top:20px;
+}
+
+/* transaction card */
+
+body.dark-mode #transactionList > div{
+    background:#1a1a2e;
+    padding:16px;
+    border-radius:18px;
+    margin-bottom:14px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:0 6px 14px rgba(0,0,0,0.6);
+
+    transition:0.25s;
+}
+
+body.dark-mode #transactionList > div:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 12px rgba(108,99,255,0.4);
+}
+
+
+/* ================= TRANSACTION TEXT ================= */
+
+body.dark-mode .transaction-title{
+    color:white;
+}
+
+body.dark-mode .transaction-subtitle{
+    color:#8a8aff;
+}
+
+
+/* ================= AMOUNT COLORS ================= */
+
+body.dark-mode .income-amount{
+    color:#00c896;
+    font-weight:600;
+}
+
+body.dark-mode .expense-amount{
+    color:#ff4d4d;
+    font-weight:600;
+}
+
+
+/* ================= EDIT BUTTONS ================= */
+
+body.dark-mode .edit-btn{
+    background:#6c63ff;
+    color:white;
+    border:none;
+    border-radius:50%;
+}
+
+body.dark-mode .delete-btn{
+    background:#ff4d4d;
+    color:white;
+    border:none;
+    border-radius:50%;
+}
+
+
+/* ================= EDIT MODAL ================= */
+
+body.dark-mode .edit-modal{
+    background:rgba(0,0,0,0.7);
+}
+
+body.dark-mode .edit-box{
+    background:#12122a;
+    padding:25px;
+    border-radius:20px;
+
+    box-shadow:0 0 20px rgba(108,99,255,0.4);
+}
+
+body.dark-mode .edit-box input,
+body.dark-mode .edit-box textarea{
+    background:#1a1a2e;
+    border:none;
+    color:white;
+    padding:10px;
+    border-radius:10px;
+    width:100%;
+}
+
+body.dark-mode #saveEdit{
+    margin-top:15px;
+    padding:12px;
+    border:none;
+    border-radius:20px;
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.6);
+}
+
+/* ================= GLOBAL CARD STYLE ================= */
+
+body.dark-mode .summary-card,
+body.dark-mode .search-box,
+body.dark-mode .filter-section,
+body.dark-mode #typeFilter,
+body.dark-mode #transactionList > div{
+
+    background:#1a1a2e;
+    border-radius:18px;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.25);
+
+    transition:0.25s;
+}
+
+/* hover glow */
+
+body.dark-mode .search-box:hover,
+body.dark-mode #typeFilter:hover,
+body.dark-mode #transactionList > div:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 14px rgba(108,99,255,0.45),
+        0 8px 18px rgba(0,0,0,0.6);
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+body.dark-mode .actions{
+    display:flex;
+    gap:10px;
+}
+
+/* base button */
+
+body.dark-mode .action-btn{
+    width:36px;
+    height:36px;
+
+    border:none;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    background:#1a1a2e;
+    color:white;
+
+    transition:all 0.25s ease;
+}
+
+
+/* ================= EDIT BUTTON ================= */
+
+body.dark-mode .action-btn.edit{
+
+    color:#6c63ff;
+
+    box-shadow:
+        0 0 6px rgba(108,99,255,0.4),
+        inset 0 0 4px rgba(108,99,255,0.2);
+}
+
+body.dark-mode .action-btn.edit:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.7),
+        inset 0 0 6px rgba(108,99,255,0.3);
+}
+
+
+/* ================= DELETE BUTTON ================= */
+
+body.dark-mode .action-btn.delete{
+
+    color:#ff4d4d;
+
+    box-shadow:
+        0 0 6px rgba(255,77,77,0.4),
+        inset 0 0 4px rgba(255,77,77,0.2);
+}
+
+body.dark-mode .action-btn.delete:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 12px rgba(255,77,77,0.7),
+        inset 0 0 6px rgba(255,77,77,0.3);
+}

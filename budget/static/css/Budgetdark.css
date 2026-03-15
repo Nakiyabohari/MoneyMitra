@@ -1,0 +1,237 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+    font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .page-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+body.dark-mode .page-header h1{
+    color:white;
+}
+
+
+/* ================= SUMMARY CARDS ================= */
+
+body.dark-mode .summary-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-bottom:35px;
+}
+
+body.dark-mode .card{
+    background:#1a1a2e;
+    padding:25px;
+    border-radius:20px;
+}
+
+
+/* income */
+
+body.dark-mode .income-card{
+
+    border:1px solid #00c896;
+
+    box-shadow:
+        0 0 12px rgba(0,200,150,0.5),
+        0 0 25px rgba(0,200,150,0.3);
+}
+
+body.dark-mode .income-card .card-title{
+    color:#00c896;
+}
+
+body.dark-mode .income-card .card-value{
+    color:#00c896;
+    font-size:26px;
+}
+
+
+/* expense */
+
+body.dark-mode .expense-card{
+
+    border:1px solid #ff4d4d;
+
+    box-shadow:
+        0 0 12px rgba(255,77,77,0.5),
+        0 0 25px rgba(255,77,77,0.3);
+}
+
+body.dark-mode .expense-card .card-title{
+    color:#ff4d4d;
+}
+
+body.dark-mode .expense-card .card-value{
+    color:#ff4d4d;
+    font-size:26px;
+}
+
+
+/* ================= ANALYTICS GRID ================= */
+
+body.dark-mode .analytics-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-bottom:35px;
+}
+
+body.dark-mode .analytics-section h2{
+    margin-bottom:12px;
+}
+
+
+/* ================= CHART CARDS ================= */
+
+body.dark-mode .chart-card{
+    background:#1a1a2e;
+    padding:25px;
+    border-radius:20px;
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.35),
+        0 8px 20px rgba(0,0,0,0.6);
+}
+
+
+/* ================= TOP SPENDING ================= */
+
+body.dark-mode .top-card{
+    background:#1a1a2e;
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:18px;
+
+    box-shadow:
+        0 0 8px rgba(108,99,255,0.25),
+        0 8px 18px rgba(0,0,0,0.6);
+
+    transition:0.25s;
+}
+
+body.dark-mode .top-card:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 14px rgba(108,99,255,0.45),
+        0 8px 18px rgba(0,0,0,0.6);
+}
+
+
+/* ================= RANK CIRCLE ================= */
+
+body.dark-mode .rank{
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+}
+
+
+/* ================= CATEGORY NAME ================= */
+
+body.dark-mode .category-name{
+    color:white;
+}
+
+body.dark-mode .amount{
+    color:#6c63ff;
+}
+
+
+/* ================= PROGRESS BAR ================= */
+
+body.dark-mode .progress-bar{
+    height:8px;
+    background:#111122;
+    border-radius:10px;
+    margin-top:8px;
+}
+
+body.dark-mode .progress{
+    height:8px;
+    background:linear-gradient(90deg,#6c63ff,#7b72f5);
+    border-radius:10px;
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.6);
+}
+
+
+/* ================= EMPTY STATE ================= */
+
+body.dark-mode .empty-state{
+    text-align:center;
+    padding:40px;
+}
+
+body.dark-mode .empty-icon{
+    font-size:40px;
+}
+
+body.dark-mode .empty-state h3{
+    color:white;
+}
+
+body.dark-mode .empty-state p{
+    color:#8a8aff;
+}
+
+/* ================= MOBILE FIX ================= */
+
+@media (max-width:768px){
+
+/* SUMMARY CARDS STACK */
+body.dark-mode .summary-cards{
+grid-template-columns:1fr;
+gap:18px;
+}
+
+/* ANALYTICS GRID STACK */
+body.dark-mode .analytics-grid{
+grid-template-columns:1fr;
+gap:20px;
+}
+
+/* CHART CARDS */
+body.dark-mode .chart-card{
+padding:18px;
+border-radius:18px;
+}
+
+/* SECTION TITLE */
+body.dark-mode .analytics-section h2{
+font-size:18px;
+margin-bottom:10px;
+}
+
+/* TOP SPENDING */
+body.dark-mode .top-card{
+padding:16px;
+}
+
+/* AMOUNT TEXT */
+body.dark-mode .amount{
+font-size:15px;
+}
+
+}

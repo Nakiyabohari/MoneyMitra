@@ -248,3 +248,51 @@ body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
     filter: invert(1);
     cursor: pointer;
 }
+
+/* ================= HEADER DARK MODE ================= */
+
+body.dark-mode .page-header{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 20px rgba(108,99,255,0.35);
+}
+
+/* EMI Manager text */
+
+body.dark-mode .page-header h2{
+    color:white;
+}
+
+/* back button */
+
+body.dark-mode .back-btn{
+    background:#23234a;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+
+body.dark-mode .back-btn:hover{
+    box-shadow:0 0 20px rgba(108,99,255,0.8);
+}
+
+/* header icons */
+
+body.dark-mode .circle-icon,
+body.dark-mode .menu-circle{
+    background:#23234a;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+
+body.dark-mode .circle-icon:hover,
+body.dark-mode .menu-circle:hover{
+    box-shadow:0 0 20px rgba(108,99,255,0.8);
+}
+
+/* plus button */
+
+body.dark-mode .plus{
+    background:#6c63ff;
+    color:white;
+    box-shadow:0 0 15px rgba(108,99,255,0.7);
+}

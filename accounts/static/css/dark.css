@@ -125,3 +125,65 @@ body.dark-mode .drawer-header h2{
 body.dark-mode .close-button{
     color:white;
 }
+
+/* ================= CALCULATOR DARK MODE ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+}
+
+/* calculator card */
+
+body.dark-mode .calculator{
+    background:#12122a;
+    box-shadow:0 0 30px rgba(108,99,255,0.35);
+}
+
+/* display */
+
+body.dark-mode #display{
+    background:#1a1a2e;
+    color:white;
+    box-shadow: inset 0 0 10px rgba(108,99,255,0.3);
+}
+
+/* number buttons */
+
+body.dark-mode .btn{
+    background:#1a1a2e;
+    color:white;
+    border:1px solid rgba(108,99,255,0.2);
+    transition:0.25s;
+}
+
+body.dark-mode .btn:hover{
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.6),
+        0 0 20px rgba(108,99,255,0.4);
+}
+
+/* operator buttons */
+
+body.dark-mode .operator{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+    box-shadow:0 0 12px rgba(108,99,255,0.6);
+}
+
+/* equal button */
+
+body.dark-mode .equal{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.8),
+        0 0 20px rgba(108,99,255,0.5);
+}
+
+/* back button */
+
+body.dark-mode .back-btn{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
