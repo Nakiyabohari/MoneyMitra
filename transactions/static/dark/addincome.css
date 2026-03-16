@@ -1,0 +1,218 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+    font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+
+/* ================= MAIN CONTAINER ================= */
+
+body.dark-mode .container{
+    background:#12122a;
+    border-radius:25px;
+    padding:30px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+body.dark-mode .header h2{
+    color:white;
+}
+
+
+/* ================= BACK BUTTON ================= */
+
+body.dark-mode .back-btn{
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#1a1a2e;
+    color:#6c63ff;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+    cursor:pointer;
+    transition:0.25s;
+}
+
+body.dark-mode .back-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 15px rgba(108,99,255,0.6);
+}
+
+
+/* ================= AMOUNT CARD ================= */
+
+body.dark-mode .amount-card{
+    background:linear-gradient(135deg,#00c896,#16a085);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+    color:white;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.6),
+        0 0 15px rgba(0,200,150,0.4);
+}
+
+body.dark-mode .amount-card small{
+    opacity:0.9;
+}
+
+body.dark-mode .amount-card h1{
+    font-size:32px;
+    margin-top:5px;
+}
+
+
+/* ================= INPUT FIELDS ================= */
+
+body.dark-mode input,
+body.dark-mode select{
+    width:100%;
+    padding:14px 16px;
+
+    background:#1a1a2e;
+    border:none;
+    border-radius:12px;
+
+    color:white;
+    font-size:15px;
+
+    box-shadow:
+        inset 0 0 6px rgba(108,99,255,0.15),
+        0 5px 10px rgba(0,0,0,0.5);
+
+    transition:0.25s;
+}
+
+
+/* focus glow */
+
+body.dark-mode input:focus,
+body.dark-mode select:focus{
+    outline:none;
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.5),
+        inset 0 0 8px rgba(108,99,255,0.25);
+}
+
+
+/* placeholder */
+
+body.dark-mode input::placeholder{
+    color:#8a8aff;
+}
+
+
+/* ================= LABEL ================= */
+
+body.dark-mode label{
+    color:#cfcfff;
+    font-weight:500;
+}
+
+
+/* ================= BUTTON ================= */
+
+body.dark-mode button{
+    margin-top:25px;
+    padding:14px;
+
+    border:none;
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#00c896,#16a085);
+    color:white;
+
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+
+    transition:0.25s;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 12px rgba(0,200,150,0.4);
+}
+
+body.dark-mode button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.7),
+        0 0 18px rgba(0,200,150,0.6);
+}
+
+/* ================= INPUT HOVER ================= */
+
+body.dark-mode input:hover,
+body.dark-mode select:hover{
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.35),
+        inset 0 0 6px rgba(108,99,255,0.15);
+}
+
+
+/* ================= BUTTON HOVER ================= */
+
+body.dark-mode button{
+    transition:0.25s ease;
+}
+
+body.dark-mode button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 18px rgba(0,200,150,0.6),
+        0 10px 20px rgba(0,0,0,0.6);
+}
+
+
+/* ================= AMOUNT CARD HOVER ================= */
+
+body.dark-mode .amount-card{
+    transition:0.25s ease;
+}
+
+body.dark-mode .amount-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 18px rgba(0,200,150,0.5),
+        0 12px 25px rgba(0,0,0,0.7);
+}
+
+
+/* ================= BACK BUTTON HOVER ================= */
+
+body.dark-mode .back-btn{
+    transition:0.25s;
+}
+
+body.dark-mode .back-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6);
+}

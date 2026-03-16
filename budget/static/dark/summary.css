@@ -1,0 +1,175 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+}
+
+
+/* ================= APP CONTAINER ================= */
+
+body.dark-mode .app{
+    background:#12122a;
+    border-radius:28px;
+    padding:30px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .header h2{
+    color:white;
+}
+
+body.dark-mode .icon-btn{
+    background:#1a1a2e;
+    color:white;
+    border-radius:10px;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.35);
+}
+
+
+/* ================= MONTH SELECT ================= */
+
+body.dark-mode .month{
+    background:#1a1a2e;
+    border-radius:14px;
+    padding:10px 14px;
+
+    box-shadow:
+        inset 0 0 8px rgba(108,99,255,0.2),
+        0 6px 12px rgba(0,0,0,0.6);
+}
+
+body.dark-mode input[type="month"]{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+}
+
+
+/* ================= CARDS ================= */
+
+body.dark-mode .card{
+    background:#1a1a2e;
+    border-radius:20px;
+    padding:20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.25);
+}
+
+body.dark-mode .card.small{
+    background:#1a1a2e;
+}
+
+
+/* ================= TEXT ================= */
+
+body.dark-mode .label{
+    color:#8a8aff;
+}
+
+body.dark-mode .row span{
+    color:white;
+}
+
+
+/* ================= BALANCE CARD ================= */
+
+body.dark-mode .balance-card{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    border-radius:20px;
+    padding:22px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.6),
+        0 0 25px rgba(108,99,255,0.5);
+}
+
+
+/* ================= DAILY LIMIT ================= */
+
+body.dark-mode #dailyLimit{
+    color:white;
+}
+
+body.dark-mode #dailyLimit span{
+    color:#b3b3ff;
+}
+
+
+/* ================= SECTION TITLE ================= */
+
+body.dark-mode .section{
+    color:white;
+}
+
+
+/* ================= DONUT CARD ================= */
+
+body.dark-mode .center{
+    background:#1a1a2e;
+}
+
+
+/* ================= LEGEND ================= */
+
+body.dark-mode .legend-item{
+    color:white;
+}
+
+body.dark-mode .legend-item b{
+    color:white;
+}
+
+
+/* ================= DOT COLORS ================= */
+
+body.dark-mode .dot.investment{
+    background:#6c63ff;
+}
+
+body.dark-mode .dot.expense{
+    background:#ff4d4d;
+}
+
+body.dark-mode .dot.saving{
+    background:#00c896;
+}
+
+body.dark-mode .dot.emi{
+    background:#ff9f43;
+}
+
+body.dark-mode .dot.available{
+    background:#8a8aff;
+}
+
+
+/* ================= HOVER EFFECT ================= */
+
+body.dark-mode .hoverable:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.45),
+        0 10px 25px rgba(0,0,0,0.6);
+}
+
+body.dark-mode input[type="month"]::-webkit-calendar-picker-indicator{
+    filter: invert(1) brightness(2);
+}
+
+a{
+    text-decoration: none;
+}

@@ -21,11 +21,10 @@ body {
 }
 
 /* ===== HEADER ===== */
-.page-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
+.page-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .page-header h2 {

@@ -1,0 +1,283 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+    font-family:'Poppins',sans-serif;
+}
+
+
+/* ================= CONTAINER ================= */
+
+body.dark-mode .mobile-container{
+    background:#12122a;
+    border-radius:30px;
+    padding:30px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .title{
+    color:white;
+}
+
+body.dark-mode .back-btn{
+    background:#1a1a2e;
+    color:white;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+
+body.dark-mode .circle-icon{
+    background:#1a1a2e;
+    color:white;
+}
+
+body.dark-mode .menu-circle{
+    background:#1a1a2e;
+    color:white;
+}
+
+
+/* ================= TOTAL CARD ================= */
+
+body.dark-mode .total-card{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    border-radius:20px;
+    padding:25px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.6),
+        0 0 25px rgba(108,99,255,0.5);
+}
+
+body.dark-mode .total-bar{
+    height:8px;
+    background:rgba(255,255,255,0.2);
+    border-radius:10px;
+}
+
+body.dark-mode .total-fill{
+    background:white;
+    border-radius:10px;
+}
+
+
+/* ================= GOAL CARDS ================= */
+
+body.dark-mode .goal-card{
+    background:#1a1a2e;
+    border-radius:20px;
+    padding:20px;
+
+    margin-top:20px;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.6),
+        0 0 12px rgba(108,99,255,0.25);
+
+    transition:0.25s;
+}
+
+body.dark-mode .goal-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 18px rgba(108,99,255,0.45),
+        0 8px 20px rgba(0,0,0,0.6);
+}
+
+
+/* ================= GOAL TEXT ================= */
+
+body.dark-mode .goal-name{
+    color:white;
+}
+
+body.dark-mode .goal-date{
+    color:#8a8aff;
+}
+
+body.dark-mode .amount-row span{
+    color:#b3b3ff;
+}
+
+
+/* ================= PROGRESS BAR ================= */
+
+body.dark-mode .goal-bar{
+    height:8px;
+    background:#111122;
+    border-radius:10px;
+}
+
+body.dark-mode .goal-fill{
+    border-radius:10px;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.6);
+}
+
+
+/* ================= INPUT ================= */
+
+body.dark-mode .amount-input{
+    background:#12122a;
+    border:none;
+    border-radius:14px;
+    padding:12px;
+
+    color:white;
+
+    box-shadow:
+        inset 0 0 8px rgba(108,99,255,0.25),
+        0 6px 12px rgba(0,0,0,0.6);
+}
+
+body.dark-mode .amount-input:focus{
+    outline:none;
+
+    box-shadow:
+        inset 0 0 12px rgba(108,99,255,0.45),
+        0 0 15px rgba(108,99,255,0.6);
+}
+
+
+/* ================= BUTTONS ================= */
+
+body.dark-mode .add-btn{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    border:none;
+    border-radius:12px;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.6);
+}
+
+body.dark-mode .remove-btn{
+    background:#2b2b45;
+    color:white;
+
+    border:none;
+    border-radius:12px;
+}
+
+
+/* ================= MODAL ================= */
+
+body.dark-mode .modal-overlay{
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(6px);
+}
+
+body.dark-mode .modal{
+    background:#12122a;
+    border-radius:20px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 20px rgba(108,99,255,0.35);
+}
+
+body.dark-mode .modal h3{
+    color:white;
+}
+
+body.dark-mode .modal input{
+    background:#1a1a2e;
+    border:none;
+    border-radius:12px;
+    color:white;
+}
+
+body.dark-mode .create-btn{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    border:none;
+    border-radius:14px;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.6);
+}
+
+/* fix number input */
+
+body.dark-mode input[type="number"]{
+    background:#1a1a2e;
+    color:white;
+
+    border:none;
+    outline:none;
+
+    width:100%;
+    padding:12px 14px;
+
+    border-radius:14px;
+
+    appearance:none;
+    -moz-appearance:textfield;
+
+    box-shadow:
+        inset 0 0 8px rgba(108,99,255,0.25),
+        0 6px 12px rgba(0,0,0,0.6);
+}
+
+/* remove arrows */
+
+body.dark-mode input[type="number"]::-webkit-inner-spin-button,
+body.dark-mode input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+}
+
+/* rupee input container */
+
+body.dark-mode .input-rupee{
+    display:flex;
+    align-items:center;
+
+    background:#1a1a2e;
+    border-radius:18px;
+    padding:14px 18px;
+
+    /* removed glow */
+    box-shadow:none;
+
+    /* optional soft border so it doesn't look flat */
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+/* rupee symbol */
+
+body.dark-mode .input-rupee span{
+    color:#8a8aff;
+    font-size:18px;
+    margin-right:10px;
+}
+
+/* input field */
+
+body.dark-mode .input-rupee input{
+    background:transparent;
+    border:none;
+    outline:none;
+
+    color:white;
+    font-size:16px;
+
+    width:100%;
+}
+
+/* make date picker icon white in dark mode */
+
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+    cursor: pointer;
+}
