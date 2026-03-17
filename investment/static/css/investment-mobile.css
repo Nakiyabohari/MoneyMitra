@@ -311,3 +311,47 @@ cursor:pointer;
 }
 
 }
+
+/* MOBILE HEADER FIX */
+
+.page-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+}
+
+.page-header h2{
+font-size:18px;
+flex:1;
+text-align:center;
+}
+
+/* ICON GROUP */
+
+.header-icons{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+/* SMALL MOBILE ICONS */
+
+.circle-icon{
+width:34px;
+height:34px;
+font-size:16px;
+}
+
+.menu-circle{
+width:34px;
+height:34px;
+font-size:16px;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+width:34px;
+height:34px;
+}
