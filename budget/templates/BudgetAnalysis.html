@@ -29,22 +29,17 @@
 <!-- HEADER -->
 
 <div class="page-header">
-<a href="javascript:history.back()" class="back-btn">←</a>
-<h1>Budget Analytics</h1>
-</div>
 
-<!-- HEADER ICONS -->
-<div class="app-header">
+    <a href="{% url 'dashboard' %}" class="back-btn">←</a>
 
-<div class="header-icons">
+    <h2>Budget Analytics</h2>
 
-<a href="/calculator/" class="circle-icon">🧮</a>
-<a href="/calendar/" class="circle-icon">📅</a>
-<a href="/profile/" class="circle-icon">👤</a>
-
-<div class="menu-circle" onclick="open_menu()">☰</div>
-
-</div>
+    <div class="header-icons">
+        <a href="/calculator/" class="circle-icon">🧮</a>
+        <a href="/calendar/" class="circle-icon">📅</a>
+        <a href="/profile/" class="circle-icon">👤</a>
+        <div class="menu-circle" onclick="open_menu()">☰</div>
+    </div>
 
 </div>
 
