@@ -51,29 +51,22 @@ body{
 
 /* ================= LOGO (MERGED WITH BODY) ================= */
 
-.app-logo{
-    width:85px;
-    height:85px;
-    border-radius:22px;
+.app-logo {
+    width: 100px;;
+    height:auto;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    /* SAME AS BODY */
-    background-color:#d1baff40;
-    background-image:url("../images/bg.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-blend-mode:overlay;
-
-    box-shadow:0 12px 25px rgba(0,0,0,0.05);
+    background:none;      /* ❌ remove box */
+    box-shadow:none;      /* ❌ remove shadow */
+    border-radius:0;      /* ❌ remove round box */
 }
 
 .app-logo img{
-    width:60px;
-    height:60px;
+    width:180px;   /* 🔥 make it feel like a brand */
+    height:auto;
     object-fit:contain;
 }
 

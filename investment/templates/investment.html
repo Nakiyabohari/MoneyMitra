@@ -43,6 +43,14 @@
 
 </div>
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 <div class="main-card">
 <!-- LEFT SECTION -->
 
@@ -237,6 +245,16 @@ function closeMitraChat() {
 
 {% include "menu.html" %}
 <script src="{% static 'js/menu.js' %}"></script>
+
+<script>
+setTimeout(() => {
+    const alert = document.querySelector('.alert');
+    if(alert){
+        alert.style.opacity = '0';
+        alert.style.transition = '0.5s';
+    }
+}, 3000);
+</script>
 
 </body>
 </html>
