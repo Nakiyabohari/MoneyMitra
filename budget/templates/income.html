@@ -10,16 +10,18 @@
 
 <body>
 
+    
+
 <div class="page-wrapper">
     <div class="app-card">
 
-        
+        <a href="javascript:history.back()" class="back-circle">←</a>
 
         <h1>Enter your monthly income</h1>
 
         <p class="subtitle">
             This helps us track your expenses and suggest savings
-        </p>
+        </p>        
 
         <form method="POST">
             {% csrf_token %}
@@ -57,9 +59,7 @@
                 Add Income
             </button>
 
-            <a href="/dashboard/" class="skip-btn">
-            Skip for now
-            </a>
+            
 
         </form>
 
