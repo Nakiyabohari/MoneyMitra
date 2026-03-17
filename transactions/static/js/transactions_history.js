@@ -1,3 +1,7 @@
+
+
+
+
 const dataElement = document.getElementById("transactions-data");
 
 let transactions = [];
@@ -235,4 +239,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+});
+
+window.onclick = function(event){
+    if(event.target == modal){
+        modal.style.display = "none";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const closeBtn = document.querySelector(".close-edit");
+    const editModal = document.getElementById("editModal");
+
+    if (closeBtn && editModal) {
+        closeBtn.addEventListener("click", function () {
+            editModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target === editModal) {
+                editModal.style.display = "none";
+            }
+        });
+    }
 });
