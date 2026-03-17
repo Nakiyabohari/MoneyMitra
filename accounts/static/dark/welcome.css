@@ -120,3 +120,9 @@ body.dark-mode .illustration-box:hover{
 body.dark-mode .logo img{
     filter: brightness(1.1);
 }
+
+body.dark-mode .illustration-box img{
+    width:100%;
+    border-radius:20px;
+    object-fit:contain;
+}
