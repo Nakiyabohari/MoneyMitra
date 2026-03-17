@@ -164,7 +164,6 @@ def add_expense(request):
         )
 
         messages.success(request, "Expense added successfully!")
-
         return redirect("dashboard")
 
     return render(request, "add_expense.html", {

@@ -101,3 +101,4 @@ function closeQuickAdd(){
 document.getElementById("quick-sheet").classList.remove("active");
 document.getElementById("quick-overlay").classList.remove("active");
 }
+

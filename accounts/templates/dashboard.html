@@ -16,6 +16,18 @@
 
 <div class="app-container">
 
+    <!-- mycode -->
+    {% if messages %}
+    <div class="popup-container">
+        {% for message in messages %}
+            <div class="popup-message {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <!-- mycode end -->
+
     <!-- ================= TOP SECTION ================= -->
 
     <div class="top-section">
@@ -165,6 +177,18 @@
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="{% static 'js/menu.js' %}"></script>
 <script src="{% static 'js/addbutton.js' %}"></script>
+<script>
+    setTimeout(function () {
+        const popups = document.querySelectorAll('.popup-message');
+        popups.forEach(function (popup) {
+            popup.style.opacity = '0';
+            popup.style.transition = '0.5s';
+            setTimeout(function () {
+                popup.remove();
+            }, 500);
+        });
+    }, 3000);
+</script>
 
 </body>
 </html>
