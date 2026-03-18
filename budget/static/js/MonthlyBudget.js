@@ -3,6 +3,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const categorySelect = document.getElementById("categorySelect");
     const customField = document.getElementById("customCategoryField");
 
+    // ✅ REQUIRED FIELD (Monthly Limit)
+    const amountField = document.querySelector("[name='budget_amount']");
+    if (amountField) {
+        amountField.setAttribute("required", "required");
+    }
+
+    // OPTIONAL: highlight red if empty on submit
+    const form = document.querySelector("form");
+    if (form) {
+        form.addEventListener("submit", function (e) {
+
+            if (!amountField.value) {
+                amountField.style.border = "1px solid red";
+            } else {
+                amountField.style.border = "";
+            }
+
+        });
+    }
+
+    // CATEGORY CUSTOM FIELD SHOW/HIDE
     if (categorySelect) {
 
         customField.style.display = "none";
@@ -68,7 +89,6 @@ function deleteBudget(id){
 }
 
 
-
 /* ================================
    SHOW EDIT BOX
 ================================ */
@@ -90,7 +110,6 @@ function toggleEdit(id){
 }
 
 
-
 /* ================================
    SAVE EDIT
 ================================ */
@@ -98,6 +117,11 @@ function toggleEdit(id){
 function saveEdit(id){
 
     const amount = document.getElementById("editAmount"+id).value;
+
+    if(!amount){
+        alert("Please enter amount");
+        return;
+    }
 
     fetch(`/budget/edit_budget/${id}/`, {
 
@@ -137,7 +161,6 @@ function saveEdit(id){
     });
 
 }
-
 
 
 /* ================================

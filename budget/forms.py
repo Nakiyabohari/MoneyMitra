@@ -76,6 +76,14 @@ CATEGORY_CHOICES = [
 
 class CategoryForm(forms.ModelForm):
 
+    # ✅ ADD HERE (NOT inside Meta)
+    month = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'type': 'month',
+            'class': 'salary-input'
+        })
+    )
+
     name = forms.ChoiceField(
         choices=CATEGORY_CHOICES,
         widget=forms.Select(attrs={
@@ -102,12 +110,13 @@ class CategoryForm(forms.ModelForm):
                 'class': 'salary-input',
                 'placeholder': 'Budget amount'
             }),
-
-            'month': forms.DateInput(attrs={
-                'type': 'date',
-                'class': 'salary-input'
-            })
         }
+
+    # ✅ ADD THIS ALSO
+    def clean_month(self):
+        from datetime import datetime
+        month = self.cleaned_data.get('month')
+        return datetime.strptime(month, "%Y-%m").date().replace(day=1)
 
 
 # 5️⃣ Expense Form

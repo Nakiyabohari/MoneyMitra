@@ -354,6 +354,17 @@ width:220px;
 transition:0.2s;
 }
 
+.save-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+}
+
+.save-btn:hover{
+    text-decoration:none;
+}
+
 .save-btn:hover{
 transform:translateY(-1px);
 box-shadow:0 6px 20px rgba(108,92,231,0.25);
