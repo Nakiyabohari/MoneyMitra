@@ -293,3 +293,28 @@ body.dark-mode .circle-icon:hover::after{
 body.dark-mode .circle-icon:hover::before{
     opacity:1;
 }
+
+/* ===== MENU BUTTON HOVER (LIGHT MODE ONLY) ===== */
+
+body:not(.dark-mode) .menu-btn:hover{
+    color:#000;   /* 🔥 makes ☰ black */
+}
+
+/* ===== LOGO CONTAINER FIX (YOUR STRUCTURE) ===== */
+
+.app-logo-container{
+    display: flex;
+    align-items: center;
+}
+
+/* apply merge effect on INNER wrapper (important) */
+body.dark-mode .app-logo-container .top-left{
+    background: #0f0f1a;   /* SAME as body background */
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+/* remove any inline gap issues */
+body.dark-mode .app-logo img{
+    display: block;
+}
