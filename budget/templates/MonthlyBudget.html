@@ -1,10 +1,8 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,6 +12,7 @@
 <link rel="stylesheet" href="{% static 'css/MonthlyBudgetMobile.css' %}">
 <link rel="stylesheet" href="{% static 'dark/monthlybudget.css' %}">
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
 
 </head>
 
@@ -25,38 +24,29 @@
     <div class="page-header">
 
         <div class="header-left">
-            <a href="javascript:history.back()" class="back-btn">←</a>
+            <a href="{% url 'dashboard' %}" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </a>
 
             <div class="header-text">
-                <h1>Category Budgets</h1>
+                <h1>Budget Analytics</h1>
                 <p>Set limits to track your spending effectively</p>
             </div>
         </div>
-<a href="{% url 'dashboard' %}" class="back-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6"/>
-        </svg>
-    </a>
 
-<div class="header-text">
-<h1>Category Budgets</h1>
-<p>Set limits to track your spending effectively</p>
-</div>
+        <div class="header-icons">
+            <a href="/calculator/" class="circle-icon">🧮</a>
+            <a href="/calendar/" class="circle-icon">📅</a>
+            <a href="/profile/" class="circle-icon">👤</a>
+            <div class="menu-circle" onclick="open_menu()">☰</div>
+        </div>
 
-</div>
+    </div>
 
-<div class="header-icons">
-
-<a href="/calculator/" class="circle-icon">🧮</a>
-<a href="/calendar/" class="circle-icon">📅</a>
-<a href="/profile/" class="circle-icon">👤</a>
-
-<div class="menu-circle" onclick="open_menu()">☰</div>
-
-</div>
-
-</div>
+    <!-- MAIN -->
     <div class="budget-container">
 
         <!-- LEFT FORM -->
@@ -71,15 +61,13 @@
                 {{ form.name }}
 
                 <div id="customCategoryField">
-                    <label>Custom Category Name</label>
+                    <label>Custom Category</label>
                     {{ form.custom_name }}
                 </div>
 
-                <!-- ✅ Monthly Limit (REQUIRED FIX) -->
                 <label>Monthly Limit</label>
                 {{ form.budget_amount }}
 
-                <!-- Month -->
                 <label>Month</label>
                 {{ form.month }}
 
@@ -100,58 +88,54 @@
 
                 <div class="budget-card">
 
+                    <!-- CARD HEADER -->
                     <div class="budget-card-header">
 
                         <div class="card-title">
-                            <div class="card-icon">🎯</div>
-
-                            <div class="title-text">
-                                <h3>{{ cat.name }}</h3>
-                                <span class="status">On Track</span>
-                            </div>
-
-                            <span class="edit-icon"
-                                  onclick="toggleEdit({{ cat.id }})">
-                                ✏️
-                            </span>
+                            <h3>{{ cat.name }}</h3>
+                            <span class="status">On Track</span>
                         </div>
 
-                        <span class="delete-icon"
-                              onclick="deleteBudget({{ cat.id }})">
-                            🗑
-                        </span>
+                        <div class="card-actions">
+                            <span class="edit-icon"
+                                  onclick="toggleEdit({{ cat.id }})">✏️</span>
+
+                            <span class="delete-icon"
+                                  onclick="deleteBudget({{ cat.id }})">🗑</span>
+                        </div>
 
                     </div>
 
+                    <!-- INFO -->
                     <div class="budget-info">
 
-                        <div class="spent">
+                        <div>
                             <p>Spent</p>
                             <h4>₹0</h4>
                         </div>
 
+                        <!-- EDIT BOX -->
                         <div class="edit-box"
                              id="editBox{{ cat.id }}"
                              style="display:none;">
-
-                            <label>Edit Budget</label>
 
                             <input type="number"
                                    id="editAmount{{ cat.id }}"
                                    value="{{ cat.budget_amount }}">
 
                             <button onclick="saveEdit({{ cat.id }})">
-                                Save Changes
+                                Save
                             </button>
                         </div>
 
-                        <div class="limit">
+                        <div>
                             <p>Limit</p>
                             <h4>₹{{ cat.budget_amount }}</h4>
                         </div>
 
                     </div>
 
+                    <!-- PROGRESS -->
                     <div class="progress-bar">
                         <div class="progress"></div>
                     </div>
@@ -164,7 +148,7 @@
 
                 <div class="no-budget">
                     <h3>No Budgets Set</h3>
-                    <p>Add your first budget category from the form</p>
+                    <p>Add your first budget category</p>
                 </div>
 
             {% endif %}
@@ -173,16 +157,17 @@
 
     </div>
 
-<div class="save-container">
-    <a href="/dashboard/" class="save-btn">
-        Save Changes
-    </a>
-</div>
+    <!-- SAVE BUTTON -->
+    <div class="save-container">
+        <a href="/dashboard/" class="save-btn">
+            Save Changes
+        </a>
+    </div>
 
 </div>
 
 {% include "menu.html" %}
-
+<!-- JS -->
 <script src="{% static 'js/menu.js' %}"></script>
 <script src="{% static 'js/MonthlyBudget.js' %}"></script>
 
