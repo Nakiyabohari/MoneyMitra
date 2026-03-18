@@ -1,3 +1,4 @@
+from calendar import month
 from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -375,11 +376,24 @@ def monthly_summary(request):
     # =============================
     # EMI
     # =============================
-    emi = EmiManager.objects.filter(
-        user=user,
-        start_date__year=year,
-        start_date__month=month
-    ).aggregate(total=Sum('monthly_amount'))['total'] or 0
+    from dateutil.relativedelta import relativedelta
+
+    current_month_date = date(year, month, 1)
+
+    all_emis = EmiManager.objects.filter(user=user)
+
+    total_emi = 0
+
+    for emi_obj in all_emis:
+        start = emi_obj.start_date.replace(day=1)
+        duration = emi_obj.duration
+
+        end = start + relativedelta(months=duration)
+
+        if start <= current_month_date < end:
+            total_emi += emi_obj.monthly_amount
+
+    emi = total_emi
 
 
     # =============================
