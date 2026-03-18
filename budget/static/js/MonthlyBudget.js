@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const categorySelect = document.getElementById("categorySelect");
+    // ORIGINAL (kept)
+    let categorySelect = document.getElementById("categorySelect");
+
+    // ✅ FIX: fallback for Django forms (does NOT remove original)
+    if (!categorySelect) {
+        categorySelect = document.querySelector("[name='name']");
+    }
+
     const customField = document.getElementById("customCategoryField");
 
     // ✅ REQUIRED FIELD (Monthly Limit)
@@ -24,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // CATEGORY CUSTOM FIELD SHOW/HIDE
-    if (categorySelect) {
+    if (categorySelect && customField) {
 
         customField.style.display = "none";
 
@@ -97,9 +104,10 @@ function toggleEdit(id){
 
     const box = document.getElementById("editBox"+id);
 
-    if(box.style.display === "none"){
+    // ✅ FIX: handle empty display case (NO removal)
+    if(box.style.display === "none" || box.style.display === ""){
 
-        box.style.display = "block";
+        box.style.display = "block";   // your original style kept
 
     }else{
 

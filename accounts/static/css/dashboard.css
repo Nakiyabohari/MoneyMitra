@@ -317,6 +317,83 @@ body{
 }
 /* ================= TABLET ================= */
 
+body:not(.dark-mode) .quick-action:hover {
+    color:#1f1f3d; /* or black */
+}
+
+/* ================= TOOLTIP LIGHT MODE ================= */
+
+/* parent fix (important) */
+.top-icons{
+    overflow:visible;
+}
+
+.app-container{
+    overflow:visible;
+}
+
+/* icon base */
+body:not(.dark-mode) .circle-icon{
+    position:relative;
+    z-index:10;
+}
+
+/* tooltip */
+body:not(.dark-mode) .circle-icon::after{
+    content:attr(data-title);   /* 🔥 FIX HERE */
+
+    position:absolute;
+    bottom:-40px;
+    left:50%;
+    transform:translateX(-50%) scale(0.9);
+
+    background:#ffffff;
+    color:#1f1f3d;
+
+    padding:6px 12px;
+    border-radius:10px;
+
+    font-size:12px;
+    white-space:nowrap;
+
+    opacity:0;
+    pointer-events:none;
+
+    z-index:9999;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.15);
+
+    transition:all 0.25s ease;
+}
+
+/* arrow */
+body:not(.dark-mode) .circle-icon::before{
+    content:"";
+    position:absolute;
+    bottom:-10px;
+    left:50%;
+    transform:translateX(-50%);
+
+    border-width:6px;
+    border-style:solid;
+    border-color:#ffffff transparent transparent transparent;
+
+    opacity:0;
+    transition:0.25s;
+    z-index:9999;
+}
+
+/* show */
+body:not(.dark-mode) .circle-icon:hover::after{
+    opacity:1;
+    transform:translateX(-50%) scale(1);
+}
+
+body:not(.dark-mode) .circle-icon:hover::before{
+    opacity:1;
+}
+
 @media(max-width:1000px){
     .content-row{
         grid-template-columns:1fr;

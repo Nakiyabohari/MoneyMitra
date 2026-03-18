@@ -36,10 +36,13 @@ class SavingsGoalForm(forms.ModelForm):
 
         widgets = {
 
-            'title': forms.TextInput(attrs={
-                'class': 'salary-input',
-                'placeholder': 'Goal name'
-            }),
+        'title': forms.TextInput(attrs={
+        'class': 'form-input',
+        'placeholder': 'Goal Name',
+        'pattern': '[A-Za-z ]+',
+        'title': 'Only letters allowed',
+        'oninput': "this.value = this.value.replace(/[^A-Za-z ]/g, '')"
+        }),
 
             'target_amount': forms.NumberInput(attrs={
                 'class': 'salary-input',
@@ -93,12 +96,15 @@ class CategoryForm(forms.ModelForm):
     )
 
     custom_name = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'salary-input',
-            'placeholder': 'Enter category name',
-            'id': 'customCategory'
-        })
+    required=False,
+    widget=forms.TextInput(attrs={   # ✅ CORRECT
+        'class': 'salary-input',
+        'placeholder': 'Enter Category Name',
+        'pattern': '[A-Za-z ]+',
+        'title': 'Only letters allowed',
+        'oninput': "this.value = this.value.replace(/[^A-Za-z ]/g, '')",
+        'id': 'customCategory'
+    })
     )
 
     class Meta:
