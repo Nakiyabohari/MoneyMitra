@@ -594,3 +594,34 @@ display:none;
 .circle-icon:hover{
     background:#dedcff;
 }
+
+.alert{
+padding:12px 16px;
+margin-bottom:20px;
+
+border-radius:10px;
+font-size:14px;
+
+animation:slideDown 0.4s ease;
+}
+
+/* SUCCESS STYLE */
+
+.alert.success{
+background:#e9fff3;
+color:#1b8f5a;
+border-left:4px solid #00b894;
+}
+
+/* ANIMATION */
+
+@keyframes slideDown{
+from{
+opacity:0;
+transform:translateY(-10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}

@@ -25,24 +25,24 @@
     <!-- PAGE HEADER -->
     <div class="page-header">
 
-        <div class="header-left">
-            <button class="back-btn" onclick="goBack()">←</button>
-            <div class="title">Savings Goals</div>
-        </div>
+    <a href="{% url 'dashboard' %}" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+        </svg>
+    </a>
 
-        <div class="header-right">
-            <div class="add-btn" onclick="openModal()">+</div>
-            <a href="/calculator/" class="circle-icon">🧮</a>
-            <a href="/calendar/" class="circle-icon">📅</a>
-            <a href="/profile/" class="circle-icon">👤</a>
+    <h2>Savings Goals</h2>
 
-            <div class="menu-circle" onclick="open_menu()">☰</div>
-
-            
-
-        </div>
-
+    <div class="header-icons">
+        <a onclick="openModal()" class="icon-btn plus">+</a>
+        <a href="/calculator/" class="circle-icon">🧮</a>
+        <a href="/calendar/" class="circle-icon">📅</a>
+        <a href="/profile/" class="circle-icon">👤</a>
+        <div class="menu-circle" onclick="open_menu()">☰</div>
     </div>
+
+</div>
 
 <!-- TOTAL PROGRESS -->
 {% if goals %}
@@ -114,8 +114,7 @@ style="width:{{ goal.progress }}%; background:{{ goal.color }}">
 type="number"
 placeholder="Enter amount"
 class="amount-input"
-id="amountInput{{ goal.id }}"
->
+id="amountInput{{ goal.id }}">
 
 <button class="add-btn"
 onclick="addMoneyInput({{ goal.id }}, {{ goal.target_amount }}, {{ goal.current_amount }})">

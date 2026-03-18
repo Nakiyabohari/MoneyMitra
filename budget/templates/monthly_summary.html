@@ -9,17 +9,34 @@
 
 <link rel="stylesheet" href="{% static 'css/monthly_summary.css' %}">
 <link rel="stylesheet" href="{% static 'dark/summary.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
 </head>
 
 <body>
 
 <div class="app">
 
-<div class="header">
-<a href="{% url 'dashboard' %}" class="icon-btn">
-<span class="back hoverable">←</span>
-</a>
-<h2>Monthly Summary</h2>
+<div class="mobile-container">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+    <a href="{% url 'dashboard' %}" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+        </svg>
+    </a>
+
+    <h2>Monthly Summary</Summary></h2>
+
+    <div class="header-icons">
+        <a href="/calculator/" class="circle-icon">🧮</a>
+        <a href="/calendar/" class="circle-icon">📅</a>
+        <a href="/profile/" class="circle-icon">👤</a>
+        <div class="menu-circle" onclick="open_menu()">☰</div>
+    </div>
+
 </div>
 
 <div class="month hoverable">
@@ -175,8 +192,14 @@ Stay within this limit to manage expenses comfortably
 
 </div>
 
+{% include "menu.html" %}
+
+<script src="{% static 'js/menu.js' %}"></script>
 
 <script>
+
+
+
 const summaryData = {
 
 income: {{ total_income }},

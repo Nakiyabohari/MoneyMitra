@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="{% static 'css/transactions_history.css' %}">
 <link rel="stylesheet" href="{% static 'dark/history.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
 
 </head>
 
@@ -18,10 +19,25 @@
 <div class="container">
 
 <!-- HEADER -->
+<div class="page-header">
 
-<div class="app-header">
-<a href="{% url 'dashboard' %}" class="icon-btn">←</a>
-<h2>Transaction History</h2>
+    <a href="{% url 'dashboard' %}" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+        </svg>
+    </a>
+
+    <h2>Transaction History</h2>
+
+    <div class="header-icons">
+        <a href="#" class="icon-btn plus">+</a>
+        <a href="/calculator/" class="circle-icon">🧮</a>
+        <a href="/calendar/" class="circle-icon">📅</a>
+        <a href="/profile/" class="circle-icon">👤</a>
+        <div class="menu-circle" onclick="open_menu()">☰</div>
+    </div>
+
 </div>
 
 
@@ -95,11 +111,15 @@
         <label>Notes</label>
         <textarea id="editNotes"></textarea>
 
-        <button id="saveEdit">Save Changes</button></a>
+        <button id="saveEdit">Save Changes</button>
 
     </div>
 
 </div>
+
+{% include "menu.html" %}
+
+<script src="{% static 'js/menu.js' %}"></script>
 <script src="{% static 'js/menu.js' %}"></script>
 </body>
 </html>
