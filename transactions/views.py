@@ -56,12 +56,18 @@ def addincome(request):
         # ------------------------
         # SAVE INCOME
         # ------------------------
+        from datetime import datetime
+
+        income_date = request.POST.get("date")
+        income_date_obj = datetime.strptime(income_date, "%Y-%m-%d").date()
+
         income = Income_model(
             user=request.user,
             income_source=source,
             amount=amount,
             payment_method=payment_method,
-            notes=notes
+            notes=notes,
+            date=income_date_obj   # ✅ IMPORTANT
         )
 
         income.save()

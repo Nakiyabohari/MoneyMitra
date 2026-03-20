@@ -20,22 +20,28 @@ from budget.models import Expense
 # MONTHLY INCOME
 # =============================
 @login_required
-def monthly_income(request):
+def income(request):
+
+    income_obj = MonthlyIncome.objects.filter(user=request.user).first()
 
     if request.method == "POST":
         salary = request.POST.get("salary")
 
-        MonthlyIncome.objects.create(
+        print("SALARY RECEIVED:", salary)  # 🔥 DEBUG
+
+        MonthlyIncome.objects.update_or_create(
             user=request.user,
-            month=date.today(),
-            salary=salary
+            defaults={
+                "salary": salary,
+                "month": date.today()
+            }
         )
 
-        return redirect('dashboard')
+        return redirect("dashboard")
 
-    return render(request, "income.html")
-
-
+    return render(request, "income.html", {
+        "income": income_obj
+    })
 # =============================
 # MONTHLY SAVINGS
 # =============================

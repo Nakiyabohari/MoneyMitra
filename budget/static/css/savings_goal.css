@@ -460,3 +460,109 @@ font-size:14px;
 }
 
 }
+
+/* ================= TOOLTIP FIX (FINAL) ================= */
+
+/* Fix stacking issues */
+.page-header{
+    position:relative;
+    z-index:50;
+}
+
+.total-card,
+.goal-card{
+    position:relative;
+    z-index:1;
+}
+
+/* Tooltip base */
+[data-title]{
+    position:relative;
+    display:inline-flex; /* 🔥 important */
+    align-items:center;
+    justify-content:center;
+}
+
+/* ================= LIGHT TOOLTIP ================= */
+
+[data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:130%;
+    left:50%;
+    transform:translateX(-50%) scale(0.9);
+
+    background:#ffffff;
+    color:#2c2c54;
+
+    padding:10px 16px;
+    border-radius:25px;
+
+    font-size:13px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+
+    z-index:99999;
+}
+
+/* Arrow */
+[data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:105%;
+    left:50%;
+    transform:translateX(-50%);
+
+    border-width:7px;
+    border-style:solid;
+
+    border-color:transparent transparent #ffffff transparent;
+
+    opacity:0;
+
+    transition:all 0.25s ease;
+
+    z-index:99999;
+}
+
+/* Show */
+[data-title]:hover::after,
+[data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(6px) scale(1);
+}
+
+/* ================= DARK TOOLTIP ================= */
+
+body.dark-mode [data-title]::after{
+    background:#12122a;
+    color:#ffffff;
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.6),
+        0 10px 25px rgba(0,0,0,0.7);
+}
+
+body.dark-mode [data-title]::before{
+    border-color:transparent transparent #12122a transparent;
+}
+
+/* ================= PLUS BUTTON FIX ================= */
+
+.icon-btn.plus[data-title]::after{
+    top:140%;
+}
+
+.icon-btn.plus[data-title]::before{
+    top:110%;
+}

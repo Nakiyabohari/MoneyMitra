@@ -1,156 +1,165 @@
 /* ===== PAGE BACKGROUND ===== */
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(145deg, #e9e6ff, #f5f4ff);
-    display: flex;
-    justify-content: center;
-    padding: 40px 15px;
+margin: 0;
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(145deg, #e9e6ff, #f5f4ff);
+display: flex;
+justify-content: center;
+padding: 40px 15px;
 }
 
 /* ===== MAIN CONTAINER ===== */
 .profile-container {
-    width: 100%;
-    max-width: 400px;
-    background: #f0f0ff;
-    border-radius: 30px;
-    padding: 30px 25px 40px;
-    box-shadow:
-        15px 15px 30px rgba(166, 159, 255, 0.25),
-        -15px -15px 30px rgba(255, 255, 255, 0.9);
+width: 100%;
+max-width: 400px;
+background: #f0f0ff;
+border-radius: 30px;
+padding: 30px 25px 40px;
+box-shadow:
+15px 15px 30px rgba(166, 159, 255, 0.25),
+-15px -15px 30px rgba(255, 255, 255, 0.9);
 }
 
 /* ===== HEADER ===== */
 .page-header{
-    display:flex;
-    align-items:center;
-    gap:12px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .page-header h2 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 22px;
-    color: #2f2d4a;
+margin: 0;
+font-weight: 600;
+font-size: 22px;
+color: #2f2d4a;
 }
 
+/* ✅ BACK BUTTON (NO HOVER AT ALL) */
 .back-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #f0f0ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: #6c63ff;
-    font-size: 18px;
-    box-shadow:
-        6px 6px 12px rgba(166, 159, 255, 0.25),
-        -6px -6px 12px rgba(255, 255, 255, 0.9);
-    transition: 0.3s ease;
+width: 42px;
+height: 42px;
+border-radius: 50%;
+background: #f0f0ff;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
+color: #6c63ff;
+font-size: 18px;
+box-shadow:
+6px 6px 12px rgba(166, 159, 255, 0.25),
+-6px -6px 12px rgba(255, 255, 255, 0.9);
+
+```
+/* completely disable animation */
+transition: none;
+```
+
 }
 
+/* 🚫 FORCE REMOVE ANY HOVER FROM ANY FILE */
 .back-btn:hover {
-    transform: translateY(-2px);
+transform: none !important;
+box-shadow:
+6px 6px 12px rgba(166, 159, 255, 0.25),
+-6px -6px 12px rgba(255, 255, 255, 0.9) !important;
 }
 
 /* ===== PROFILE SUMMARY CARD ===== */
 .profile-summary-card {
-    background: #f0f0ff;
-    border-radius: 28px;
-    padding: 40px 25px;
-    text-align: center;
-    margin-bottom: 30px;
-    box-shadow:
-        10px 10px 25px rgba(166, 159, 255, 0.2),
-        -10px -10px 25px rgba(255, 255, 255, 0.9);
+background: #f0f0ff;
+border-radius: 28px;
+padding: 40px 25px;
+text-align: center;
+margin-bottom: 30px;
+box-shadow:
+10px 10px 25px rgba(166, 159, 255, 0.2),
+-10px -10px 25px rgba(255, 255, 255, 0.9);
 }
 
 .profile-img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
+width: 110px;
+height: 110px;
+border-radius: 50%;
+object-fit: cover;
+margin-bottom: 15px;
 }
 
 .profile-avatar {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    margin: 0 auto 15px;
-    background: #6c63ff;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
+width: 110px;
+height: 110px;
+border-radius: 50%;
+margin: 0 auto 15px;
+background: #6c63ff;
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 40px;
 }
 
 .profile-summary-card h3 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 20px;
+margin: 0;
+font-weight: 600;
+font-size: 20px;
 }
 
 .profile-summary-card p {
-    margin-top: 8px;
-    font-size: 14px;
-    color: #847dff;
+margin-top: 8px;
+font-size: 14px;
+color: #847dff;
 }
 
 /* ===== PROFILE MENU LIST ===== */
 .profile-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+list-style: none;
+padding: 0;
+margin: 0;
 }
 
 .profile-menu li {
-    background: #f0f0ff;
-    border-radius: 22px;
-    padding: 18px 20px;
-    margin-bottom: 18px;
-    box-shadow:
-        8px 8px 18px rgba(166, 159, 255, 0.2),
-        -8px -8px 18px rgba(255, 255, 255, 0.9);
-    transition: 0.3s ease;
+background: #f0f0ff;
+border-radius: 22px;
+padding: 18px 20px;
+margin-bottom: 18px;
+box-shadow:
+8px 8px 18px rgba(166, 159, 255, 0.2),
+-8px -8px 18px rgba(255, 255, 255, 0.9);
+transition: 0.3s ease;
 }
 
 .profile-menu li:hover {
-    transform: translateY(-4px);
+transform: translateY(-4px);
 }
 
 .profile-menu li a {
-    text-decoration: none;
-    color: #2f2d4a;
-    font-weight: 500;
+text-decoration: none;
+color: #2f2d4a;
+font-weight: 500;
 }
 
 /* ===== LOGOUT BUTTON ===== */
 .logout-btn {
-    width: 100%;
-    margin-top: 20px;
-    padding: 16px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #8c82ff, #6c63ff);
-    color: white;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.5);
-    transition: 0.3s ease;
+width: 100%;
+margin-top: 20px;
+padding: 16px;
+border: none;
+border-radius: 30px;
+background: linear-gradient(135deg, #8c82ff, #6c63ff);
+color: white;
+font-size: 15px;
+font-weight: 500;
+cursor: pointer;
+box-shadow: 0 10px 25px rgba(108, 99, 255, 0.5);
+transition: 0.3s ease;
 }
 
 .logout-btn:hover {
-    transform: translateY(-3px);
+transform: translateY(-3px);
 }
 
-
 /* ===============================
-   MOBILE RESPONSIVE
+MOBILE RESPONSIVE
 ================================ */
 
 @media (max-width:768px){

@@ -252,3 +252,26 @@ body.dark-mode .field:focus{
         0 0 18px rgba(108,99,255,0.65),
         0 8px 18px rgba(0,0,0,0.6);
 }
+/* ================= SELECT DROPDOWN FIX ================= */
+
+body.dark-mode select{
+    background-color: #1a1a2e;
+    color: white;
+}
+
+/* Dropdown options */
+body.dark-mode select option{
+    background-color: #1a1a2e;
+    color: white;
+}
+
+/* When option is selected */
+body.dark-mode select option:checked{
+    background-color: #6c63ff;
+    color: white;
+}
+
+/* Hover effect (limited support) */
+body.dark-mode select option:hover{
+    background-color: #2a2a4a;
+}
