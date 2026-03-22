@@ -1,128 +1,121 @@
 /* ================= BACKGROUND ================= */
 
 body.dark-mode.welcome-body{
-    background: radial-gradient(circle at top,#0f0f1a,#050514);
-    font-family:'Poppins',sans-serif;
-    color:white;
+background: radial-gradient(circle at top,#0f0f1a,#050514);
+font-family:'Poppins',sans-serif;
+color:white;
 }
-
 
 /* ================= HERO LAYOUT ================= */
 
 body.dark-mode .hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:60px;
 }
-
 
 /* ================= LEFT SIDE ================= */
 
 body.dark-mode .hero-left h1{
-    color:white;
+color:white;
 }
 
 body.dark-mode .tagline{
-    color:#8a8aff;
-    margin-top:10px;
+color:#8a8aff;
+margin-top:10px;
 }
-
 
 /* ================= FEATURES ================= */
 
 body.dark-mode .features{
-    margin-top:25px;
+margin-top:25px;
 }
 
 body.dark-mode .feature{
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-    margin-bottom:18px;
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-bottom:18px;
 }
 
 body.dark-mode .feature strong{
-    color:white;
+color:white;
 }
 
 body.dark-mode .feature small{
-    color:#8a8aff;
+color:#8a8aff;
 }
-
 
 /* ================= TICK ICON ================= */
 
 body.dark-mode .tick{
-    color:#6c63ff;
-    font-size:18px;
+color:#6c63ff;
+font-size:18px;
 }
-
 
 /* ================= CTA BUTTON ================= */
 
 body.dark-mode .cta{
-    margin-top:25px;
-    padding:14px 30px;
+margin-top:25px;
+padding:14px 30px;
 
-    border:none;
-    border-radius:30px;
+```
+border:none;
+border-radius:30px;
 
-    font-size:16px;
-    font-weight:600;
+font-size:16px;
+font-weight:600;
 
-    color:white;
-    cursor:pointer;
+color:white;
+cursor:pointer;
 
-    background:linear-gradient(135deg,#6c63ff,#9b8cff);
+background:linear-gradient(135deg,#6c63ff,#9b8cff);
 
-    transition:0.25s;
+transition:0.25s;
 
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.6),
-        0 0 12px rgba(108,99,255,0.4);
+box-shadow:
+    0 8px 20px rgba(0,0,0,0.6),
+    0 0 12px rgba(108,99,255,0.4);
+```
+
 }
 
 body.dark-mode .cta:hover{
-    transform:translateY(-3px);
+transform:translateY(-3px);
 
-    box-shadow:
-        0 12px 25px rgba(0,0,0,0.7),
-        0 0 18px rgba(108,99,255,0.6);
+```
+box-shadow:
+    0 12px 25px rgba(0,0,0,0.7),
+    0 0 18px rgba(108,99,255,0.6);
+```
+
 }
 
-
-/* ================= RIGHT SIDE IMAGE BOX ================= */
+/* ================= RIGHT SIDE IMAGE (NO BOX) ================= */
 
 body.dark-mode .illustration-box{
-    background:#1a1a2e;
-    padding:30px;
-    border-radius:30px;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.7),
-        0 0 25px rgba(108,99,255,0.25);
-
-    transition:0.3s;
+background: transparent;
+padding: 0;
+border-radius: 0;
+box-shadow: none;
 }
 
-body.dark-mode .illustration-box:hover{
-    transform:translateY(-5px);
+/* ================= IMAGE GLOW EFFECT ================= */
 
-    box-shadow:
-        0 20px 45px rgba(0,0,0,0.75),
-        0 0 30px rgba(108,99,255,0.45);
+body.dark-mode .illustration-box img{
+width:100%;
+object-fit:contain;
+
+```
+/* soft premium glow */
+filter: drop-shadow(0 0 20px rgba(108,99,255,0.35));
+```
+
 }
-
 
 /* ================= LOGO ================= */
 
 body.dark-mode .logo img{
-    filter: brightness(1.1);
-}
-
-body.dark-mode .illustration-box img{
-    width:100%;
-    border-radius:20px;
-    object-fit:contain;
+filter: brightness(1.1);
 }

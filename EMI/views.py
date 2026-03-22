@@ -8,22 +8,53 @@ from .models import EmiManager
 # ==============================
 # EMI LIST PAGE
 # ==============================
+from datetime import date
+
 @login_required
 def emimanager(request):
 
-    emi = EmiManager.objects.filter(user=request.user)
+    emis = EmiManager.objects.filter(user=request.user)
 
-    total = emi.aggregate(
-        Sum('monthly_amount')
-    )['monthly_amount__sum']
+    emi_data = []
 
-    total = total if total else 0
+    for emi in emis:
+        today = date.today()
+
+        # total months
+        total_months = emi.duration
+
+        # months passed
+        months_passed = (today.year - emi.start_date.year) * 12 + (today.month - emi.start_date.month)
+
+        if months_passed < 0:
+            months_passed = 0
+
+        if months_passed > total_months:
+            months_passed = total_months
+
+        # months left
+        months_left = total_months - months_passed
+
+        # progress %
+        progress = (months_passed / total_months) * 100 if total_months else 0
+
+        # status
+        status = "Completed" if months_left == 0 else "Active"
+
+        emi_data.append({
+            "obj": emi,
+            "passed": months_passed,
+            "left": months_left,
+            "progress": progress,
+            "status": status
+        })
+
+    total = emis.aggregate(Sum('monthly_amount'))['monthly_amount__sum'] or 0
 
     return render(request, 'emimanager.html', {
-        'u': emi,
+        'emis': emi_data,
         'total': total
     })
-
 
 # ==============================
 # ADD EMI
