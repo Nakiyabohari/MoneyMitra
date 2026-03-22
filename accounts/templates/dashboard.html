@@ -73,10 +73,14 @@
 
             <div class="overview-grid">
 
-                <div class="overview-card">
-                    <p>Monthly Salary</p>
-                    <h4>₹{{ salary }}</h4><br>
-                </div>
+                <a href="{% url 'income' %}" class="card-link">
+                    <div class="overview-card">
+                        <p>Monthly Salary</p>
+                        
+                        <h4>₹{{ salary }}</h4><br>
+                        <p>Click for add income</p> 
+                    </div>
+                </a>
 
                 <div class="overview-card">
                     <p>Savings</p>
