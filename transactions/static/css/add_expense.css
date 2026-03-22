@@ -25,6 +25,31 @@ background:linear-gradient(
 background-attachment:fixed;
 }
 
+.hidden{
+    display:none;
+    }
+
+    .category-wrapper{
+    width:100%;
+    }
+
+    .message-success{
+    background:#e6ffed;
+    color:#1b5e20;
+    padding:10px;
+    border-radius:6px;
+    margin-bottom:10px;
+    }
+
+    .message-error{
+    background:#ffe6e6;
+    color:#b71c1c;
+    padding:10px;
+    border-radius:6px;
+    margin-bottom:10px;
+    }
+
+
 /* Card */
 
 .card{

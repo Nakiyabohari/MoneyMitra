@@ -85,6 +85,7 @@ def addincome(request):
 from django.contrib import messages
 from datetime import datetime, date
 from decimal import Decimal, InvalidOperation
+from budget.models import MonthlyIncome   # ✅ ADD THIS IMPORT
 
 @login_required
 def add_expense(request):
@@ -111,7 +112,7 @@ def add_expense(request):
                     "categories": categories
                 })
 
-            if amount > 10000000:   # limit 1 crore
+            if amount > 10000000:
                 messages.error(request, "Amount is too large.")
                 return render(request, "add_expense.html", {
                     "categories": categories
@@ -133,6 +134,29 @@ def add_expense(request):
             return render(request, "add_expense.html", {
                 "categories": categories
             })
+
+        # =====================================================
+        # ✅ ADD THIS BLOCK HERE 🔥 (VERY IMPORTANT)
+        # =====================================================
+               # -----------------------------
+        # ✅ CHECK INCOME (FIXED 🔥)
+        # -----------------------------
+        month_start = expense_date_obj.replace(day=1)
+
+        income_exists = MonthlyIncome.objects.filter(
+            user=request.user,
+            month=month_start
+        ).exists()
+
+        if not income_exists:
+            messages.error(
+                request,
+                "⚠️ Please add your income befor adding expenses."
+            )
+            return render(request, "add_expense.html", {
+                "categories": categories
+            })
+        # =====================================================
 
         # -----------------------------
         # CUSTOM CATEGORY

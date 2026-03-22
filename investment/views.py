@@ -1,26 +1,24 @@
-from django.db import models
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from .forms import InvestmentForm
-from openai import OpenAI
+from django.contrib import messages
+from datetime import date
 from decimal import Decimal
 from django.db.models import Sum
+
 from accounts.models import Profile
 from transactions.models import Income_model, Expense_model
 from EMI.models import EmiManager
 from .models import InvestmentPlan
 from budget.models import MonthlyIncome
-from django.contrib import messages
+
+from openai import OpenAI
 
 
 # ==============================
 # INVESTMENT PAGE
 # ==============================
-
-from django.contrib import messages  # ✅ ADD THIS AT TOP
 
 @login_required
 def investment_view(request):
@@ -56,25 +54,48 @@ def investment_view(request):
     suggest_30 = int(available_balance * Decimal('0.30'))
     suggest_50 = int(available_balance * Decimal('0.50'))
 
-    # -----------------------------
-    # SAVE PLAN ✅ (ONLY ONE BLOCK)
-    # -----------------------------
+    # ==============================
+    # POST (SAVE INVESTMENT)
+    # ==============================
     if request.method == "POST":
 
         investment_type = request.POST.get("investment_type")
         amount = request.POST.get("amount")
 
+        # 🔥 CHECK INCOME FIRST
+        today = date.today()
+        month_start = today.replace(day=1)
+
+        income_exists = MonthlyIncome.objects.filter(
+            user=request.user,
+            month=month_start
+        ).exists()
+
+        if not income_exists:
+            messages.error(
+                request,
+                "⚠️ Please add your income before making investments."
+            )
+            return render(request, "investment.html", {
+                "available_balance": available_balance,
+                "suggest_20": suggest_20,
+                "suggest_30": suggest_30,
+                "suggest_50": suggest_50
+            })
+
+        # SAVE INVESTMENT
         InvestmentPlan.objects.update_or_create(
             user=request.user,
             investment_type=investment_type,
             defaults={"monthly_amount": amount}
         )
 
-        # ✅ ADD THIS LINE HERE
         messages.success(request, "Investment saved successfully!")
-
         return redirect("investment")
 
+    # ==============================
+    # GET REQUEST
+    # ==============================
     context = {
         "available_balance": available_balance,
         "suggest_20": suggest_20,
@@ -85,11 +106,9 @@ def investment_view(request):
     return render(request, "investment.html", context)
 
 
-
 # ==============================
-# More details page
+# INVESTMENT DETAILS
 # ==============================
-# views.py
 
 @login_required
 def investment_details(request):
@@ -117,8 +136,9 @@ def investment_details(request):
 
 
 # ==============================
-# MITRA AI VIEW (FINAL WORKING)
+# MITRA AI
 # ==============================
+
 @login_required
 def mitra_ai(request):
 

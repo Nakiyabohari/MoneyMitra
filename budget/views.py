@@ -69,6 +69,9 @@ def monthly_savings(request):
 # =============================
 # SAVINGS GOAL
 # =============================
+from django.contrib import messages
+from django.db.models import Sum
+
 @login_required
 def savings_goal(request):
 
@@ -81,16 +84,28 @@ def savings_goal(request):
     if total_target > 0:
         percent = round((total_saved / total_target) * 100, 1)
 
+    # 👉 CHECK ONLY SALARY
+    monthly_income = MonthlyIncome.objects.filter(user=request.user).aggregate(
+        total=Sum('salary')
+    )['total'] or 0
+
     if request.method == "POST":
 
         form = SavingsGoalForm(request.POST)
 
         if form.is_valid():
-            goal = form.save(commit=False)
-            goal.user = request.user
-            goal.save()
 
-            return redirect("savings_goal")
+            # ❌ NO SALARY
+            if monthly_income == 0:
+                messages.error(request, "Please add your income first")
+
+            else:
+                goal = form.save(commit=False)
+                goal.user = request.user
+                goal.save()
+
+                messages.success(request, "Goal created successfully ✅")
+                return redirect("savings_goal")
 
     else:
         form = SavingsGoalForm()
