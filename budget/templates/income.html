@@ -23,41 +23,42 @@
             This helps us track your expenses and suggest savings
         </p>        
 
-        <form method="POST">
-            {% csrf_token %}
+        <form method="POST" action="{% url 'income' %}">
+    {% csrf_token %}
 
-            <!-- SALARY CARD -->
-            <div class="salary-card">
+    <!-- SALARY CARD -->
+    <div class="salary-card">
 
-                <label>Monthly Salary</label>
+        <label>Monthly Salary</label>
 
-                <div class="salary-box">
-                    <span class="rupee">₹</span>
+        <div class="salary-box">
+            <span class="rupee">₹</span>
 
-                    <!-- IMPORTANT: name="salary" -->
-                    <input 
-                        type="number"
-                        name="salary"
-                        class="salary-input"
-                        placeholder="0"
-                        required
-                    >
-                </div>
+            <input 
+                type="number"
+                name="salary"
+                class="salary-input"
+                value="{{ income.salary|default:0 }}"
+                required
+            >
+        </div>
 
-            </div>
+    </div>
 
-            <!-- INFO BOX -->
-            <div class="info-box">
-                <span class="info-icon">i</span>
-                <p>
-                    Your income information is stored securely and used only to calculate your budget
-                </p>
-            </div>
+    <!-- INFO BOX -->
+    <div class="info-box">
+        <span class="info-icon">i</span>
+        <p>
+            Your income information is stored securely and used only to calculate your budget
+        </p>
+    </div>
 
-            <!-- BUTTON -->
-            <button type="submit" class="add-income-btn">
-                Add Income
-            </button>
+    <!-- BUTTON -->
+    <button type="submit" class="add-income-btn">
+        Add Income
+    </button>
+
+</form>
 
             
 

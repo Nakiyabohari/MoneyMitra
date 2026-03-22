@@ -23,7 +23,7 @@ class Income_model(models.Model):
     income_source = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
     notes = models.TextField(blank=True, null=True)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
 
 
 class Expense_model(models.Model):

@@ -216,3 +216,10 @@ body.dark-mode .back-btn:hover{
     box-shadow:
         0 0 15px rgba(108,99,255,0.6);
 }
+/* ================= DATE ICON WHITE (FIX) ================= */
+
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(1) brightness(2);
+    opacity: 1;
+    cursor: pointer;
+}

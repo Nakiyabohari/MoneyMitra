@@ -67,19 +67,24 @@ from django.shortcuts import render, redirect
 @login_required
 def income(request):
 
+    income_obj = MonthlyIncome.objects.filter(user=request.user).first()
+
     if request.method == "POST":
         salary = request.POST.get("salary")
 
-        MonthlyIncome.objects.create(
+        MonthlyIncome.objects.update_or_create(
             user=request.user,
-            month=date.today(),
-            salary=salary
+            defaults={
+                "salary": salary,
+                "month": date.today()
+            }
         )
 
         return redirect("dashboard")
 
-    return render(request, "income.html")
-
+    return render(request, "income.html", {
+        "income": income_obj
+    })
 
 #Add income
 def add_income(request):

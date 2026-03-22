@@ -625,3 +625,61 @@ opacity:1;
 transform:translateY(0);
 }
 }
+/* ================= TOOLTIP LIGHT ================= */
+
+[data-title]{
+    position:relative;
+}
+
+/* TEXT */
+[data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:125%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    background:#ffffff;
+    color:#2c2c54;
+
+    padding:12px 22px;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:0 12px 28px rgba(0,0,0,0.15);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+}
+
+/* ARROW */
+[data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    border-width:8px;
+    border-style:solid;
+
+    border-color:transparent transparent #ffffff transparent;
+
+    opacity:0;
+    transition:all 0.25s ease;
+}
+
+/* SHOW */
+[data-title]:hover::after,
+[data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(6px) scale(1);
+}

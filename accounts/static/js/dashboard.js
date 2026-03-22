@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadDashboard(){
-    const income = Number(localStorage.getItem("income")) || 0;
+    
     const savings = Number(localStorage.getItem("savings")) || 0;
     const investment = Number(localStorage.getItem("investmentAmount")) || 0;
     const emi = Number(localStorage.getItem("emi")) || 0;
