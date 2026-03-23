@@ -247,6 +247,18 @@ cursor:pointer;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:22px;
+    max-height: 420px;   /* adjust based on your layout */
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.budget-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.budget-list::-webkit-scrollbar-thumb {
+    background: #7b6cf6;
+    border-radius: 10px;
 }
 
 /* CARD */
