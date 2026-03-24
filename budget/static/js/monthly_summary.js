@@ -57,47 +57,57 @@ const ctx = canvas.getContext("2d");
 function drawDonut(){
 
 const total =
-investments + savings +expense+ emi + balance;
+investments + savings + expense + emi + balance;
 
 let startAngle = -Math.PI / 2;
 
+ctx.clearRect(0,0,200,200);
+
+// 🔥 gradient creator (main purple style)
+function getGradient(startColor, endColor){
+    const gradient = ctx.createLinearGradient(0,0,200,200);
+    gradient.addColorStop(0, startColor);
+    gradient.addColorStop(1, endColor);
+    return gradient;
+}
+
 const slices = [
 
-{value:investments,color:"#B76DF7"}, 
-{value:expense,color:"#47ef8a"},
-{value:savings,color:"#9370DB"},
-{value:emi,color:"#9400D3"},
-{value:balance,color:"#800080"}
+{ value: Math.max(investments, 0), gradient: getGradient("#6C5CE7", "#B76DF7") },
+{ value: Math.max(expense, 0),     gradient: getGradient("#A29BFE", "#D6CCFF") },
+{ value: Math.max(savings, 0),     gradient: getGradient("#8E7CFF", "#C3B6FF") },
+{ value: Math.max(emi, 0),         gradient: getGradient("#7B6CF6", "#B3A6FF") },
+{ value: Math.max(balance, 0),     gradient: getGradient("#5A4FCF", "#9B8CFF") }
 
 ];
 
-ctx.clearRect(0,0,200,200);
+slices.forEach(slice => {
 
-slices.forEach(slice=>{
+    if(slice.value === 0) return;
 
-if(slice.value === 0) return;
+    const angle = (slice.value / total) * Math.PI * 2;
 
-const angle =
-(slice.value / total) * Math.PI * 2;
+    ctx.beginPath();
 
-ctx.beginPath();
+    ctx.arc(
+        100,
+        100,
+        75,              // 🔥 slightly bigger radius
+        startAngle,
+        startAngle + angle
+    );
 
-ctx.arc(
-100,
-100,
-70,
-startAngle,
-startAngle + angle
-);
+    ctx.strokeStyle = slice.gradient;
 
-ctx.strokeStyle = slice.color;
-ctx.lineWidth = 14;
+    ctx.lineWidth = 22;   // 🔥 THICK ring like your image
+    ctx.lineCap = "butt"; // clean segment edges
 
-ctx.stroke();
+    ctx.stroke();
 
-startAngle += angle;
+    startAngle += angle;
 
 });
+
 
 }
 

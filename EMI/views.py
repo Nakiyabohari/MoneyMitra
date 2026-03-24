@@ -28,30 +28,58 @@ def emimanager(request):
 # ==============================
 # ADD EMI
 # ==============================
+from django.contrib import messages
+from django.db.models import Sum
+from budget.models import MonthlyIncome
+
 @login_required
 def addemi(request):
 
+    monthly_income = MonthlyIncome.objects.filter(user=request.user).aggregate(
+        total=Sum('salary')
+    )['total']
+
+    existing_emi = EmiManager.objects.filter(user=request.user).aggregate(
+        total=Sum('monthly_amount')
+    )['total'] or 0
+
     if request.method == 'POST':
         e = EmiManagerForm(request.POST)
+
         if e.is_valid():
-            emi = e.save(commit=False)
-            emi.user = request.user
-            emi.save()
-            return redirect("emimanager")
+
+            # ❌ NO INCOME CASE
+            if not monthly_income:
+                messages.error(request, "⚠️ Please add your monthly income first")
+            
+            else:
+                new_emi = e.cleaned_data['monthly_amount']
+                total_emi = existing_emi + new_emi
+
+                # ❌ EMI > INCOME
+                if total_emi > monthly_income:
+                    deficit = total_emi - monthly_income
+
+                    messages.error(
+                        request,
+                        f"⚠️ EMI exceeds income by ₹{deficit}"
+                    )
+                else:
+                    # ✅ SAVE EMI
+                    emi = e.save(commit=False)
+                    emi.user = request.user
+                    emi.save()
+
+                    messages.success(request, "✅ EMI added successfully")
+                    return redirect("emimanager")  # only success redirect
+
     else:
         e = EmiManagerForm()
 
-    total = EmiManager.objects.filter(user=request.user).aggregate(
-        Sum('monthly_amount')
-    )['monthly_amount__sum']
-
-    total = total if total else 0
-
     return render(request, 'addemi.html', {
         "e": e,
-        "total": total
+        "total": existing_emi
     })
-
 
 # ==============================
 # DELETE EMI (PERMANENT)

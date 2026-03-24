@@ -315,3 +315,81 @@ body {
 
     /* Keep only + and menu */
 }
+
+/* ===============================
+   TOOLTIP (FINAL FIXED)
+================================ */
+
+[data-title]{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* TEXT */
+[data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:130%;
+    left:50%;
+    transform:translateX(-50%) scale(0.9);
+
+    background:#ffffff;
+    color:#2c2c54;
+
+    padding:10px 16px;
+    border-radius:25px;
+
+    font-size:13px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+
+    z-index:9999; /* 🔥 KEY FIX */
+}
+
+/* ARROW */
+[data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:105%;
+    left:50%;
+    transform:translateX(-50%);
+
+    border-width:7px;
+    border-style:solid;
+
+    border-color:transparent transparent #ffffff transparent;
+
+    opacity:0;
+
+    transition:all 0.25s ease;
+
+    z-index:9999;
+}
+
+/* SHOW */
+[data-title]:hover::after,
+[data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(6px) scale(1);
+}
+
+/* PLUS BUTTON FIX */
+.icon-btn.plus[data-title]::after{
+    top:140%;
+}
+
+.icon-btn.plus[data-title]::before{
+    top:110%;
+}

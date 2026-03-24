@@ -9,51 +9,77 @@ body.dark-mode{
 
 /* ================= HEADER ================= */
 
+/* ================= HEADER DARK FIX ================= */
+
 body.dark-mode .page-header{
     display:flex;
     align-items:center;
-    gap:12px;
-    margin-bottom:25px;
+    justify-content:space-between;
+
+    padding:14px 20px;
+    margin-bottom:30px;
+
+    background:#1a1a2e;
+    border-radius:20px;
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.25),
+        0 8px 20px rgba(0,0,0,0.6);
+
+    backdrop-filter: blur(10px);
 }
 
-body.dark-mode .page-header h1{
+/* Title fix (YOU USED h2 not h1) */
+body.dark-mode .page-header h2{
     color:white;
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:0.5px;
 }
 
-/* back button dark mode */
+/* icons container */
+body.dark-mode .header-icons{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
 
-body.dark-mode .back-btn{
-    width:44px;
-    height:44px;
+/* menu button fix */
+body.dark-mode .menu-circle{
+    background:#1a1a2e;
+    color:white;
+
+    width:42px;
+    height:42px;
+    border-radius:50%;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:50%;
-    border:none;
-
-    background:#1a1a2e;
-    color:#6c63ff;
-
-    font-size:18px;
     cursor:pointer;
 
     box-shadow:
-        0 0 10px rgba(108,99,255,0.4),
-        0 6px 14px rgba(0,0,0,0.6);
+        0 0 10px rgba(108,99,255,0.3),
+        inset 0 0 5px rgba(108,99,255,0.2);
 
-    transition:0.25s;
+    transition:0.3s;
 }
 
-body.dark-mode .back-btn:hover{
-    transform:translateY(-2px);
+body.dark-mode .menu-circle:hover{
+    transform:translateY(-2px) scale(1.05);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
 
     box-shadow:
-        0 0 16px rgba(108,99,255,0.6),
-        0 8px 18px rgba(0,0,0,0.7);
+        0 0 12px rgba(108,99,255,0.8),
+        0 0 25px rgba(108,99,255,0.6);
 }
 
+/* Fix SVG color inside back button */
+body.dark-mode .back-btn svg{
+    stroke:#6c63ff;
+}
 /* ================= SUMMARY CARDS ================= */
 
 body.dark-mode .summary-cards{
@@ -267,4 +293,137 @@ body.dark-mode .amount{
 font-size:15px;
 }
 
+}
+
+/* ================= TOP ICONS DARK GLOW ================= */
+
+body.dark-mode .circle-icon{
+    background:#1a1a2e;
+    color:white;
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.3),
+        inset 0 0 5px rgba(108,99,255,0.2);
+
+    transition:all 0.3s ease;
+}
+
+/* hover effect */
+
+body.dark-mode .circle-icon:hover{
+    transform:translateY(-3px) scale(1.05);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.8),
+        0 0 25px rgba(108,99,255,0.6),
+        0 0 40px rgba(108,99,255,0.4);
+}
+
+/* active (clicked feel) */
+
+body.dark-mode .circle-icon:active{
+    transform:scale(0.95);
+}
+/* ================= BACK BUTTON DARK FIX ================= */
+
+body.dark-mode .back-btn{
+    background:#1a1a2e !important;   /* remove white */
+    color:white;
+
+    width:42px;
+    height:42px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.3),
+        inset 0 0 5px rgba(108,99,255,0.2);
+
+    transition:0.3s ease;
+}
+
+
+/* ================= BACK BUTTON HOVER ================= */
+
+body.dark-mode .back-btn:hover{
+    transform:translateY(-2px) scale(1.05);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.8),
+        0 0 25px rgba(108,99,255,0.6);
+}
+
+
+/* ================= SVG COLOR ================= */
+
+body.dark-mode .back-btn svg{
+    stroke:white !important;
+}
+
+/* ================= DARK TOOLTIP ================= */
+
+body.dark-mode [data-title]{
+    position:relative;
+}
+
+/* TEXT */
+body.dark-mode [data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:120%;
+    left:50%;
+    transform:translateX(-50%) scale(0.8);
+
+    background:#1a1a2e;
+    color:#ffffff;
+
+    padding:12px 20px;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6),
+        0 10px 25px rgba(0,0,0,0.6);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+}
+
+/* ARROW */
+body.dark-mode [data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%) scale(0.8);
+
+    border-width:8px;
+    border-style:solid;
+
+    border-color:transparent transparent #1a1a2e transparent;
+
+    opacity:0;
+    transition:all 0.25s ease;
+}
+
+/* SHOW */
+body.dark-mode [data-title]:hover::after,
+body.dark-mode [data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(4px) scale(1);
 }

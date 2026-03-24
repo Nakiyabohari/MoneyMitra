@@ -1,6 +1,6 @@
 from django import forms
 from .models import EmiManager
-
+import re
 class EmiManagerForm(forms.ModelForm):
     class Meta:
         model = EmiManager
@@ -16,9 +16,12 @@ class EmiManagerForm(forms.ModelForm):
 
         widgets = {
             'emi_name': forms.TextInput(attrs={
-                'class': 'form-input',
-                'placeholder': 'Enter EMI Name'
-            }),
+        'class': 'form-input',
+        'placeholder': 'Enter EMI Name',
+        'pattern': '[A-Za-z ]+',
+        'title': 'Only letters allowed',
+        'oninput': "this.value = this.value.replace(/[^A-Za-z ]/g, '')"
+        }),
 
             'monthly_amount': forms.NumberInput(attrs={
                 'class': 'form-input',
@@ -46,3 +49,5 @@ class EmiManagerForm(forms.ModelForm):
                 'onblur': "if(!this.value)this.type='text'"
             }),
         }
+
+  

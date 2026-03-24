@@ -282,3 +282,64 @@ body.dark-mode .invest-card:hover{
         0 0 35px rgba(108,99,255,0.4);
     transform:translateY(-3px);
 }
+
+/* ================= TOOLTIP DARK ================= */
+
+body.dark-mode [data-title]{
+    position:relative;
+}
+
+/* TEXT */
+body.dark-mode [data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:125%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    background:#12122a;
+    color:#ffffff;
+
+    padding:12px 22px;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6),
+        0 12px 28px rgba(0,0,0,0.7);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+}
+
+/* ARROW */
+body.dark-mode [data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    border-width:8px;
+    border-style:solid;
+
+    border-color:transparent transparent #12122a transparent;
+
+    opacity:0;
+    transition:all 0.25s ease;
+}
+
+/* SHOW */
+body.dark-mode [data-title]:hover::after,
+body.dark-mode [data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(6px) scale(1);
+}

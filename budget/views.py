@@ -1,3 +1,4 @@
+from calendar import month
 from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -19,22 +20,28 @@ from budget.models import Expense
 # MONTHLY INCOME
 # =============================
 @login_required
-def monthly_income(request):
+def income(request):
+
+    income_obj = MonthlyIncome.objects.filter(user=request.user).first()
 
     if request.method == "POST":
         salary = request.POST.get("salary")
 
-        MonthlyIncome.objects.create(
+        print("SALARY RECEIVED:", salary)  # 🔥 DEBUG
+
+        MonthlyIncome.objects.update_or_create(
             user=request.user,
-            month=date.today(),
-            salary=salary
+            defaults={
+                "salary": salary,
+                "month": date.today()
+            }
         )
 
-        return redirect('dashboard')
+        return redirect("dashboard")
 
-    return render(request, "income.html")
-
-
+    return render(request, "income.html", {
+        "income": income_obj
+    })
 # =============================
 # MONTHLY SAVINGS
 # =============================
@@ -62,6 +69,9 @@ def monthly_savings(request):
 # =============================
 # SAVINGS GOAL
 # =============================
+from django.contrib import messages
+from django.db.models import Sum
+
 @login_required
 def savings_goal(request):
 
@@ -74,16 +84,28 @@ def savings_goal(request):
     if total_target > 0:
         percent = round((total_saved / total_target) * 100, 1)
 
+    # 👉 CHECK ONLY SALARY
+    monthly_income = MonthlyIncome.objects.filter(user=request.user).aggregate(
+        total=Sum('salary')
+    )['total'] or 0
+
     if request.method == "POST":
 
         form = SavingsGoalForm(request.POST)
 
         if form.is_valid():
-            goal = form.save(commit=False)
-            goal.user = request.user
-            goal.save()
 
-            return redirect("savings_goal")
+            # ❌ NO SALARY
+            if monthly_income == 0:
+                messages.error(request, "Please add your income first")
+
+            else:
+                goal = form.save(commit=False)
+                goal.user = request.user
+                goal.save()
+
+                messages.success(request, "Goal created successfully ✅")
+                return redirect("savings_goal")
 
     else:
         form = SavingsGoalForm()
@@ -375,11 +397,24 @@ def monthly_summary(request):
     # =============================
     # EMI
     # =============================
-    emi = EmiManager.objects.filter(
-        user=user,
-        start_date__year=year,
-        start_date__month=month
-    ).aggregate(total=Sum('monthly_amount'))['total'] or 0
+    from dateutil.relativedelta import relativedelta
+
+    current_month_date = date(year, month, 1)
+
+    all_emis = EmiManager.objects.filter(user=user)
+
+    total_emi = 0
+
+    for emi_obj in all_emis:
+        start = emi_obj.start_date.replace(day=1)
+        duration = emi_obj.duration
+
+        end = start + relativedelta(months=duration)
+
+        if start <= current_month_date < end:
+            total_emi += emi_obj.monthly_amount
+
+    emi = total_emi
 
 
     # =============================

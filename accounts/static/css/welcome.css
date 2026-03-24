@@ -107,7 +107,7 @@ h1 {
 }
 
 /* ===============================
-   BUTTON
+BUTTON
 ================================ */
 
 .cta {
@@ -145,17 +145,14 @@ h1 {
 
 .illustration-box {
     width: 420px;
-    height: 420px;
-    background: white;
-    border-radius: 40px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 40px 80px rgba(108,99,255,0.2);
 }
 
 .illustration-box img {
-    width: 260px;
+    width: 700px;
 }
 
 /* ===============================
