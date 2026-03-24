@@ -18,7 +18,6 @@ from budget.models import Category
 
 class Income_model(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
     amount = models.IntegerField()
     income_source = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
@@ -28,7 +27,6 @@ class Income_model(models.Model):
 
 class Expense_model(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
     expense_amount = models.IntegerField()
 
     category = models.ForeignKey(
