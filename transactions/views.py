@@ -142,20 +142,6 @@ def add_expense(request):
         # ✅ CHECK INCOME (FIXED 🔥)
         # -----------------------------
         month_start = expense_date_obj.replace(day=1)
-
-        income_exists = MonthlyIncome.objects.filter(
-            user=request.user,
-            month=month_start
-        ).exists()
-
-        if not income_exists:
-            messages.error(
-                request,
-                "⚠️ Please add your income befor adding expenses."
-            )
-            return render(request, "add_expense.html", {
-                "categories": categories
-            })
         # =====================================================
 
         # -----------------------------
