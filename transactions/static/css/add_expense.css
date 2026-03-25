@@ -273,6 +273,9 @@ display:block;
 
 }
 
+.input-box {
+    cursor: pointer;
+}
 
 /* Large Desktop */
 
@@ -283,3 +286,4 @@ max-width:1000px;
 }
 
 }
+
