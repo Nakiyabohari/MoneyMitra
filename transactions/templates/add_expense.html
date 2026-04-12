@@ -1,4 +1,4 @@
-    {% load static %}
+{% load static %}
     <!DOCTYPE html>
     <html lang="en">
 
@@ -86,9 +86,16 @@
 
 
     <label>Date</label>
-    <div class="input-icon-wrap">
-    <span class="left-icon">🗓️</span>
-    <input type="date" name="date" required>
+
+    <div class="input-box">
+    <span class="icon">📅</span>
+
+    <input
+    type="date" 
+    name="date"
+    id="expenseDate"
+    required>
+
     </div>
 
 

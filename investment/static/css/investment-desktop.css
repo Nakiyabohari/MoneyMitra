@@ -361,15 +361,17 @@ body{
     flex:1;
     max-width:900px;
 
-    background:var(--bg-soft);
+    background:linear-gradient(135deg,#f8f7ff,#f1efff);
     padding:30px;
     border-radius:24px;
 
-    box-shadow:0 20px 40px rgba(0,0,0,0.05);
+    border:1px solid #eceaff;
+    box-shadow:0 20px 40px rgba(108,92,231,0.08);
 
     display:flex;
     flex-direction:column;
     height:700px;
+
 }
 
 /* AI HEADER */
@@ -449,37 +451,62 @@ padding-right:6px;
 /* CHAT ROW */
 
 .chat-row{
-display:flex;
-gap:12px;
-align-items:flex-start;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
 }
 
 .bot-icon{
-width:36px;
-height:36px;
-border-radius:50%;
-background:linear-gradient(135deg,var(--primary),var(--secondary));
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:16px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#6C5CE7,#7E6BFF);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:18px;
+
+    box-shadow:0 6px 12px rgba(108,92,231,0.25);
+    
 }
 
 /* BOT CARD */
 
 .bot-card{
-background:#f4f2ff;
-padding:18px;
-border-radius:18px;
-font-size:14px;
-line-height:1.7;
-border:1px solid #eceaff;
+    margin:0;
+    background:white;
+    padding:14px 18px;
+    border-radius:20px;
+    font-size:14px;
+    line-height:1.6;
+
+    box-shadow:0 8px 20px rgba(108,92,231,0.08);
+    border:none;
+
+    max-width:75%;
+white-space:pre-line;
+word-wrap:break-word;
 }
 
 .bot-card ul{
 margin-top:8px;
 padding-left:15px;
+white-space:pre-line;   /* IMPORTANT */
+word-wrap:break-word;
+max-width:75%;
+}
+
+.bot-card ol{
+    padding-left:18px;
+    margin-top:8px;
+}
+
+.bot-card li{
+    margin-bottom:8px;
 }
 
 /* USER */
@@ -512,26 +539,43 @@ font-weight:600;
 
 /* INPUT AREA */
 
-.mitra-input-area{
-display:flex;
-gap:10px;
-margin-top:auto;
+.mitra-input-area input{
+    flex:1;
+    padding:14px 16px;
+
+    border-radius:20px;
+    border:1px solid #ddd;
+
+    transition:0.2s;
+    
 }
 
-.mitra-input-area input{
-flex:1;
-padding:14px;
-border-radius:12px;
-border:2px solid #ddd;
+.mitra-input-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:20px;
+
+    width:100%;
 }
+
+.mitra-input-area input:focus{
+    outline:none;
+    border-color:#6C5CE7;
+    box-shadow:0 0 0 3px rgba(108,92,231,0.1);
+}
+
 
 .mitra-input-area button{
-padding:12px 18px;
-border-radius:12px;
-border:none;
-background:var(--primary);
-color:white;
-cursor:pointer;
+    padding:12px 20px;
+    border-radius:20px;
+    border:none;
+
+    background:linear-gradient(135deg,#6C5CE7,#7E6BFF);
+    color:white;
+
+    cursor:pointer;
 }
 
 /* Hide Ask Mitra button on desktop */
@@ -682,4 +726,224 @@ transform:translateY(0);
 [data-title]:hover::before{
     opacity:1;
     transform:translateX(-50%) translateY(6px) scale(1);
+}
+.profile-icon img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+/* ===== SIDEBAR FIXED ===== */
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:#ffffff;
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-right:1px solid #eee;
+
+    /* 🔥 ADD THIS */
+    overflow-y:auto;
+}
+
+/* LOGO */
+.sidebar-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.sidebar-logo img{
+    width:35px;
+}
+
+.sidebar-logo h2{
+    font-size:20px;
+    color:#6c63ff;
+    font-weight:700;
+}
+
+/* MENU */
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+/* LINKS */
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    text-decoration:none;
+    padding:12px 14px;
+    border-radius:12px;
+
+    color:#444;
+    font-size:15px;
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+/* HOVER EFFECT */
+.sidebar-menu a:hover{
+    background:#f3f1ff;
+    color:#6c63ff;
+    transform:translateX(4px);
+}
+
+/* ACTIVE (OPTIONAL) */
+.sidebar-menu a.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* DIVIDER */
+.menu-divider{
+    margin:20px 0 10px;
+    font-size:13px;
+    color:#999;
+    padding-left:5px;
+}
+
+
+.theme-switch{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.switch{
+    width:50px;
+    height:26px;
+}
+
+.slider::before{
+    height:20px;
+    width:20px;
+    font-size:12px;
+}
+
+.switch input:checked + .slider::before{
+    transform:translateX(24px);
+}
+
+/* ===== THEME TOGGLE (MAKE IT LIKE EXPENSE CARD) ===== */
+
+.theme-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    width:100%;
+    background:#e9e6f2;        /* 🔥 ONE BIG CONTAINER */
+    padding:12px 14px;
+    border-radius:14px;
+
+    transition:0.25s ease;
+}
+
+.theme-toggle:hover{
+    background:#dedbfb;
+}
+
+/* KEEP LEFT SIMPLE */
+.theme-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+/* FIX TEXT */
+.theme-left p{
+    margin:0;
+}
+
+/* SWITCH NORMAL */
+.switch{
+    flex-shrink:0;
+}
+
+/* ===== FIX CONTENT SHIFT ===== */
+.app-container{
+    margin-left:260px;
+    width:calc(100% - 260px);
+}
+
+/* FIX RIGHT SIDE ALIGNMENT */
+.content-row > div:last-child{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+/* MAKE BOTH SIDES SAME HEIGHT ALIGN */
+.content-row{
+    align-items:stretch;
+}
+
+/* OPTIONAL: MAKE CARD WIDTH PERFECT */
+.content-row > div:last-child .overview-card{
+    width:100%;
+}
+
+/* ===== SIDEBAR MENU CARD STYLE (LIKE IMAGE 1) ===== */
+
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+/* EACH MENU ITEM AS CARD */
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:#e9e6f2;
+    padding:12px 14px;   /* 🔥 smaller */
+    border-radius:14px;  /* 🔥 smaller */
+
+    text-decoration:none;
+    color:#3b3b6d;
+    font-size:14px;      /* 🔥 smaller text */
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+/* ICON CIRCLE (IMPORTANT 🔥) */
+.sidebar-menu a span{
+    width:34px;
+    height:34px;
+    font-size:16px;
+}
+
+/* HOVER EFFECT */
+.sidebar-menu a:hover{
+    transform:translateY(-3px);
+    background:#dedbfb;
+}
+
+/* ACTIVE */
+.sidebar-menu a.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* FIX TEXT ALIGN */
+.sidebar-menu a p{
+    margin:0;
 }

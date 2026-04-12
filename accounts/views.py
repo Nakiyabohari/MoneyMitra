@@ -134,6 +134,75 @@ def dashboard(request):
     # ✅ AVAILABLE BALANCE
     available_balance = salary + total_income - total_expense - total_emi - investment_total
 
+    # 🔥 EMOJI MAP
+    emoji_map = {
+        # 🍔 Lifestyle
+        "Food & Dining": "🍔",
+        "Restaurant": "🍽️","restaurant": "🍽️",
+        "Cafe": "☕","cafe": "☕",
+        
+        # 🚗 Travel
+        "Transportation": "🚗","transportation": "🚗",
+        "Petrol": "⛽","petrol": "⛽",
+        "Travel": "✈️","travel": "✈️",
+        
+        # 🛍️ Shopping
+        "Shopping": "🛍️","shopping": "🛍️",
+        "Clothing": "👕","clothing": "👕",
+        
+        # 🎮 Fun
+        "Entertainment": "🎮","entertainment": "🎮",
+        "Movies": "🎬","movies": "🎬",
+        "Music": "🎵","music": "🎵",
+        
+        # 📓 Study / Books
+        "Books": "📓","books": "📓","book": "📓","Book": "📓",
+        "Education": "🎓","education": "🎓",
+        
+        # 💊 Health
+        "Health": "💊","health": "💊",
+        "Gym": "🏋️","gym": "🏋️",
+        
+        # 🏠 Home
+        "Rent": "🏠","rent": "🏠",
+        "Bills": "💡","bills": "💡",
+        
+        # 🐶 Personal
+        "Pets": "🐶","pets": "🐶","Pet": "🐶","pet": "🐶",
+        "Gifts": "🎁","Gift": "🎁","gift": "🎁","gift": "🎁",
+
+        "Salary": "💵","salary": "💵",
+        "Freelancing": "💻","freelancing": "💻",
+        "Business": "🏢","business": "🏢",
+        "Investment": "📈","investment": "📈",
+        "Bonus": "🎉","bonus": "🎉"
+}
+
+
+    # 🔥 ADD EMOJI TO EXPENSES
+    expenses_with_emoji = []
+    for expense in expenses:
+        name = str(expense.category)
+        emoji = emoji_map.get(name, "💸")
+
+        expenses_with_emoji.append({
+        "name": name,
+        "amount": expense.expense_amount,   # 🔥 CHANGE KEY
+        "emoji": emoji
+    })
+
+    # 🔥 ADD EMOJI TO INCOME ALSO
+    incomes_with_emoji = []
+    for inc in incomes:
+        name = inc.income_source
+        emoji = emoji_map.get(name, "💰")
+
+        incomes_with_emoji.append({
+            "name": name,
+            "amount": inc.amount,
+            "emoji": emoji
+        })
+
     context = {
         'profile': profile,
         'salary': salary,
@@ -141,8 +210,8 @@ def dashboard(request):
         'total_savings': total_savings,
         'total_emi': total_emi,
         'investment_total': investment_total,
-        'incomes': incomes,
-        'expenses': expenses
+        'incomes': incomes_with_emoji,     # ✅ UPDATED
+        'expenses': expenses_with_emoji    # ✅ UPDATED
     }
 
     return render(request, 'dashboard.html', context)

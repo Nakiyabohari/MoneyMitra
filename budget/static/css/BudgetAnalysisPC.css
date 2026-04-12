@@ -10,6 +10,12 @@ margin:auto;
 padding:20px;
 }
 
+body{
+margin:0;
+font-family:'Poppins', sans-serif;
+background:var(--bg);
+padding:40px 20px;
+}
 
 /* SUMMARY CARDS */
 
@@ -199,4 +205,127 @@ gap:20px;
       font-size:14px;
    }
 
+}
+
+   .profile-icon img{
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      object-fit:cover;
+   }
+
+
+
+/* ===============================
+   🔥 REQUIRED LAYOUT FIX
+================================ */
+
+/* main layout (sidebar + content) */
+.main-layout{
+    display:flex;
+}
+
+/* sidebar already styled in menu.css */
+
+/* content area shift */
+.app-container{
+    margin-left:240px;              /* same sidebar width */
+    width:calc(100% - 240px);
+    padding:30px 40px;
+}
+
+/* remove center restriction */
+.analytics-page{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    padding:0;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:240px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:#ffffff;
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-right:1px solid #eee;
+    overflow-y:auto;
+}
+
+/* ===== MENU ===== */
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+/* ===== MENU ITEM ===== */
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:#e9e6f2;
+    padding:12px 14px;     /* balanced size */
+    font-size:14px;
+    border-radius:14px;
+
+    text-decoration:none;
+    color:#3b3b6d;
+    font-weight:500;
+
+    transition:0.2s;
+}
+
+/* ICON */
+.sidebar-menu a span{
+    width:30px;
+    height:30px;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* TEXT */
+.sidebar-menu a p{
+    margin:0;
+    white-space:nowrap;
+}
+
+/* HOVER (soft like your image) */
+.sidebar-menu a:hover{
+    background:#e2dff5;
+    transform:none;
+}
+
+/* 🚫 NO ACTIVE STYLE (as you wanted) */
+
+/* ===== THEME ===== */
+.theme-toggle{
+    margin-top:auto;
+}
+
+.theme-left{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:#e9e6f2;
+    padding:12px 14px;
+    border-radius:14px;
+}
+
+/* ===== CONTENT SHIFT ===== */
+.app-container{
+    margin-left:240px;
+    width:calc(100% - 240px);
 }

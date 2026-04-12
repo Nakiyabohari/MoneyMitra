@@ -14,23 +14,51 @@
 
 <body>
 
-<div class="app-container">
+<div class="main-layout">
 
-    <!-- mycode -->
-    {% if messages %}
-    <div class="popup-container">
-        {% for message in messages %}
-            <div class="popup-message {{ message.tags }}">
-                {{ message }}
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+
+        <div class="sidebar-menu">
+            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
+            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
+            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
+            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
+            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
+            <a href='{% url 'budget_analysis' %}'><span>📊</span><p>Budget Analytics</p></a>
+            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
+            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
+
+            <div class="theme-toggle">
+                <div class="theme-left">
+                    <span>🌙</span><p>Theme</p>
+                    <label class="switch">
+                    <input type="checkbox" onclick="toggleTheme()">
+                    <span class="slider"></span>
+                </label>
+                </div>
+
+                
             </div>
-        {% endfor %}
+        </div>
+
     </div>
-    {% endif %}
-    <!-- mycode end -->
 
-    <!-- ================= TOP SECTION ================= -->
+    <!-- ===== MAIN APP ===== -->
+    <div class="app-container">
 
-    <div class="top-section">
+        {% if messages %}
+        <div class="popup-container">
+            {% for message in messages %}
+                <div class="popup-message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- ===== TOP SECTION ===== -->
+            <div class="top-section">
 
         <div class="top-left">
             <div class="app-logo">
@@ -42,140 +70,114 @@
                 <h2 class="welcome-name">{{ profile.full_name }}</h2>
             </div>
         </div>
+            
 
-        <div class="top-icons">
-            <a href="{% url 'calculator' %}" class="circle-icon" data-title="Calculator">🧮</a>
-            <a href="{% url 'calendar' %}" class="circle-icon" data-title="Calendar">📅</a>
-            <a href="{% url 'profile' %}" class="circle-icon" data-title="Profile">👤</a>
-            <div class="circle-icon menu-btn" onclick="open_menu()" id="menu" data-title="Menu">☰</div>
-        </div>
+            <div class="top-icons">
+                <a href="{% url 'calculator' %}" class="circle-icon" data-title="Calculator">🧮</a>
+                <a href="{% url 'calendar' %}" class="circle-icon" data-title="Calendar">📅</a>
 
-    </div>
-
-    <!-- ================= BALANCE ================= -->
-
-    <div class="balance-wrapper">
-        <div class="balance-card">
-            <button class="floating-button" data-title="Add">{% include 'addbutton.html' %}</button>
-            <p>Available Balance</p>
-            <h1>₹{{ available_balance }}</h1>
-            <span>• After All Deduction</span>
-        </div>
-    </div>
-
-    <!-- ================= CONTENT ROW ================= -->
-
-    <div class="content-row">
-
-        <!-- LEFT SIDE -->
-        <div class="left-side">
-            <h3 class="section-title">Overview</h3>
-
-            <div class="overview-grid">
-
-                <a href="{% url 'income' %}" class="card-link">
-                    <div class="overview-card">
-                        <p>Monthly Salary</p>
-                        
-                        <h4>₹{{ salary }}</h4><br>
-                        <p>Click for add income</p> 
-                    </div>
+                <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+                    {% if profile.profile_photo %}
+                        <img src="{{ profile.profile_photo.url }}">
+                    {% else %}
+                        👤
+                    {% endif %}
                 </a>
 
-                <div class="overview-card">
-                    <p>Savings</p>
-                    <h4>₹{{ total_savings }}</h4><br>
                 </div>
 
-                <a href="{% url 'investment_details' %}" class="card-link">
+        </div>
+
+        <!-- ===== BALANCE ===== -->
+        <div class="balance-wrapper">
+            <div class="balance-card">
+                <button class="floating-button">{% include 'addbutton.html' %}</button>
+                <p>Available Balance</p>
+                <h1>₹{{ available_balance }}</h1>
+                <span>• After All Deduction</span>
+            </div>
+        </div>
+
+        <!-- ===== CONTENT ===== -->
+        <div class="content-row">
+
+            <!-- LEFT -->
+            <div class="left-side">
+                <h3 class="section-title">Overview</h3>
+
+                <div class="overview-grid">
+
+                    <a href="{% url 'income' %}" class="card-link">
+                        <div class="overview-card">
+                            <p>Monthly Salary</p>
+                            <h4>₹{{ salary }}</h4><br>
+                            <p>Click for add income</p> 
+                        </div>
+                    </a>
+
                     <div class="overview-card">
-                        <p>Investment</p>
-                        
-                        <h4>₹{{ investment_total }}</h4><br>
-                        <p>Click for more details</p> 
+                        <p>Savings</p>
+                        <h4>₹{{ total_savings }}</h4>
                     </div>
-                </a>
 
-                <div class="overview-card">
-                    <p>EMI</p>
-                    <h4>₹{{ total_emi }}</h4>
+                    <a href="{% url 'investment_details' %}" class="card-link">
+                        <div class="overview-card">
+                            <p>Investment</p>
+                            <h4>₹{{ investment_total }}</h4><br>
+                            <p>Click for more details</p> 
+                        </div>
+                    </a>
+
+                    <div class="overview-card">
+                        <p>EMI</p>
+                        <h4>₹{{ total_emi }}</h4>
+                    </div>
+
                 </div>
+            </div>
+
+            <!-- RIGHT (NO EXTRA CONTAINER STYLE) -->
+            <div style="display:flex; flex-direction:column; gap:25px;">
+
+                <!-- OTHER INCOME -->
                 <div class="overview-card big-card">
-                <p>Other Income</p>
+                    <p>Other Income</p>
+                    <div class="mini-scroll">
 
-                <div class="mini-scroll">
+                        {% for income in incomes|slice:":5" %}
+                        <div class="transaction-row">
+                            <span>{{ income.emoji }} {{ income.name }}</span>
+                            <span>₹{{ income.amount }}</span>
+                        </div>
+                        {% empty %}
+                        <div class="progress-text">No income added</div>
+                        {% endfor %}
 
-        {% for income in incomes|slice:":5" %}
+                    </div>
+                </div>
 
-        <div class="transaction-row">
-            <span>{{ income.income_source }}</span>
-            <span>₹{{ income.amount }}</span>
-        </div>
+                <!-- EXPENSE -->
+                <div class="overview-card big-card">
+                    <p>Expense</p>
+                    <div class="mini-scroll">
 
-        {% empty %}
+                        {% for expense in expenses|slice:":5" %}
+                        <div class="transaction-row">
+                            <span>{{ expense.emoji }} {{ expense.name }}</span>
+                            <span>₹{{ expense.amount }}</span>
+                        </div>
+                        {% empty %}
+                        <div class="progress-text">No expense added</div>
+                        {% endfor %}
 
-        <div class="progress-item">
-            <div class="progress-text">No income added</div>
-        </div>
+                    </div>
+                </div>
 
-        {% endfor %}
-
-    </div>
-</div>
-
-
-<div class="overview-card big-card">
-    <p>Expense</p>
-
-    <div class="mini-scroll">
-
-        {% for expense in expenses|slice:":5" %}
-
-        <div class="transaction-row">
-            <span>{{ expense.category }}</span>
-            <span>₹{{ expense.expense_amount }}</span>
-        </div>
-
-        {% empty %}
-
-        <div class="progress-item">
-            <div class="progress-text">No expense added</div>
-        </div>
-
-        {% endfor %}
-
-    </div>
-</div>  
-</div>
-</div>
-
-
-                
-        <!-- RIGHT SIDE -->
-        <div class="right-side">
-            <h3 class="section-title">Quick Actions</h3>
-
-            <a href="{% url 'investment' %}" class="quick-action">
-                Investment Options →
-            </a>
-
-            <a href="{% url 'emimanager' %}" class="quick-action">
-                Manage EMIs →
-            </a>
-
-            <a href="{% url 'savings_goal' %}" class="quick-action">
-                Savings Goals →
-            </a>
-
-            <a href="{% url 'MonthlyBudget' %}" class="quick-action">
-                Set Category Budgets →
-            </a>
+            </div>
 
         </div>
 
     </div>
-
-
 </div>
 
 {% include 'menu.html' %}
@@ -183,17 +185,18 @@
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="{% static 'js/menu.js' %}"></script>
 <script src="{% static 'js/addbutton.js' %}"></script>
+
 <script>
-    setTimeout(function () {
-        const popups = document.querySelectorAll('.popup-message');
-        popups.forEach(function (popup) {
-            popup.style.opacity = '0';
-            popup.style.transition = '0.5s';
-            setTimeout(function () {
-                popup.remove();
-            }, 500);
-        });
-    }, 3000);
+setTimeout(function () {
+    const popups = document.querySelectorAll('.popup-message');
+    popups.forEach(function (popup) {
+        popup.style.opacity = '0';
+        popup.style.transition = '0.5s';
+        setTimeout(function () {
+            popup.remove();
+        }, 500);
+    });
+}, 3000);
 </script>
 
 </body>

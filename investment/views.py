@@ -73,6 +73,7 @@ def investment_view(request):
         return redirect("investment")
 
     context = {
+        "profile": profile,
         "available_balance": available_balance,
         "suggest_20": suggest_20,
         "suggest_30": suggest_30,
@@ -87,6 +88,7 @@ def investment_view(request):
 # ==============================
 @login_required
 def investment_details(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
     investments = InvestmentPlan.objects.filter(user=request.user)
 
     total_amount = sum(i.monthly_amount for i in investments)
@@ -103,6 +105,7 @@ def investment_details(request):
     mf_percent = (mf_amount / total_amount * 100) if total_amount > 0 else 0
 
     context = {
+        "profile": profile,
         "investments": investments,
         "total_amount": total_amount,
         "etf_amount": etf_amount,

@@ -659,3 +659,164 @@ button:active::after {
 
 
 
+<<<<<<< HEAD
+=======
+/* Hover */
+
+.input-box:hover,
+.field:hover{
+background:#e7dbff;
+}
+
+
+/* Focus */
+
+.input-box:focus-within,
+.field:focus-within{
+border:1px solid #b892ff;
+box-shadow:0 0 0 3px #d1baff40;
+background:#ffffff;
+}
+
+
+/* Inputs */
+
+.input-box input,
+.input-box select,
+.input-box textarea,
+.field input,
+.field select{
+border:none;
+outline:none;
+background:transparent;
+width:100%;
+font-size:15px;
+color:#333;
+}
+
+
+/* Select */
+
+select{
+appearance:none;
+cursor:pointer;
+}
+
+
+/* Textarea */
+
+.input-box textarea{
+resize:none;
+height:65px;
+}
+
+
+/* Icons */
+
+.icon{
+margin-right:10px;
+color:#6c4ccf;
+font-size:16px;
+}
+
+
+/* Button */
+
+button{
+width:100%;
+margin-top:26px;
+padding:15px;
+border:none;
+border-radius:14px;
+background:linear-gradient(90deg,#c5a8ff,#b892ff);
+color:white;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:all 0.25s ease;
+box-shadow:0 6px 14px rgba(0,0,0,0.1);
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 14px 28px rgba(0,0,0,0.18);
+}
+
+button:active{
+transform:scale(0.97);
+box-shadow:0 6px 14px rgba(0,0,0,0.1);
+}
+
+
+/* Hidden class */
+
+.hidden{
+display:none;
+}
+
+
+/* Custom category input */
+
+#categoryInputBox{
+margin-top:10px;
+width:100%;
+}
+
+
+/* Tablet */
+
+@media(min-width:768px){
+
+.card{
+max-width:650px;
+padding:30px;
+border-radius:18px;
+}
+
+}
+
+
+/* Desktop */
+
+@media(min-width:1024px){
+
+body{
+align-items:flex-start;
+padding-top:40px;
+padding-bottom:40px;
+}
+
+.card{
+max-width:900px;
+padding:35px 40px;
+border-radius:20px;
+}
+
+.input-box,
+.field{
+width:100%;
+}
+
+button{
+width:260px;
+margin:20px auto 0 auto;
+display:block;
+}
+
+}
+
+.input-box {
+    cursor: pointer;
+}
+
+/* Large Desktop */
+
+@media(min-width:1400px){
+
+.card{
+max-width:1000px;
+}
+
+}
+
+>>>>>>> 3be285f845db9119b3bafbacf682a8642bc25949

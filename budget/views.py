@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Sum
 from datetime import date
 
+from accounts.models import Profile
 from httpx import request
 from .models import SavingsGoal, Category, Expense, MonthlyIncome
 from .forms import MonthlySavingsForm, SavingsGoalForm, CategoryForm
@@ -74,7 +75,7 @@ from django.db.models import Sum
 
 @login_required
 def savings_goal(request):
-
+    profile, created = Profile.objects.get_or_create(user=request.user)
     goals = SavingsGoal.objects.filter(user=request.user)
 
     total_saved = sum(g.current_amount for g in goals)
@@ -109,8 +110,9 @@ def savings_goal(request):
 
     else:
         form = SavingsGoalForm()
-
-    return render(request, "savings_goal.html", {
+    
+        return render(request, "savings_goal.html", {
+        "profile": profile,
         "form": form,
         "goals": goals,
         "total_saved": total_saved,
@@ -179,7 +181,7 @@ def delete_goal(request, goal_id):
 # =============================
 @login_required
 def monthly_budget(request):
-
+    profile, created = Profile.objects.get_or_create(user=request.user)
     if request.method == "POST":
 
         form = CategoryForm(request.POST)
@@ -207,8 +209,10 @@ def monthly_budget(request):
         user=request.user,
         type='expense'
     )
+    
 
     return render(request, 'MonthlyBudget.html', {
+        "profile": profile,
         'form': form,
         'categories': categories
     })
@@ -266,15 +270,14 @@ from transactions.models import Expense_model, Income_model
 @login_required
 def budget_analysis(request):
 
-    # USER DATA
+    profile, created = Profile.objects.get_or_create(user=request.user)  # 🔥 ADD THIS
+
     incomes = Income_model.objects.filter(user=request.user)
     expenses = Expense_model.objects.filter(user=request.user)
 
-    # TOTALS
     total_income = sum(i.amount for i in incomes)
     total_expense = sum(e.expense_amount for e in expenses)
 
-    # CATEGORY TOTALS
     category_expense = (
         Expense_model.objects
         .filter(user=request.user)
@@ -292,11 +295,9 @@ def budget_analysis(request):
         spent_data.append(float(item["total"]))
         budget_data.append(0)
 
-    # TOP SPENDING
     top_categories = []
 
     for item in category_expense:
-
         percent = 0
         if total_expense > 0:
             percent = round((item["total"] / total_expense) * 100, 1)
@@ -308,6 +309,7 @@ def budget_analysis(request):
         })
 
     context = {
+        "profile": profile,   # 🔥 ADD THIS
         "labels": labels,
         "budget_data": budget_data,
         "spent_data": spent_data,
@@ -335,7 +337,7 @@ from transactions.models import Income_model
 
 @login_required
 def monthly_summary(request):
-
+    profile, created = Profile.objects.get_or_create(user=request.user)
     user = request.user
 
     selected_month = request.GET.get("month")
@@ -439,6 +441,7 @@ def monthly_summary(request):
 
     context = {
         "total_income": total_income,
+        "profile": profile,
         "savings": savings,
         "expense": total_expense,
         "investments": investments,

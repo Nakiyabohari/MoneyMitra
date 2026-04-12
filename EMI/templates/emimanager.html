@@ -1,21 +1,28 @@
 {% load static %}
+
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="UTF-8">
     <title>EMI Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/dark2.css' %}">
-    <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" href="{% static 'css/emimanager.css' %}">
-    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/dark2.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/emimanager.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <!-- Header -->
-    <!-- PAGE HEADER -->
+
+<!-- HEADER -->
 <div class="page-header">
 
     <a href="{% url 'dashboard' %}" class="back-btn">
@@ -28,58 +35,89 @@
     <h2>EMI Manager</h2>
 
     <div class="header-icons">
-        <a href="{% url 'addemi' %}" class="icon-btn plus" data-title="Add EMI">+</a>
-        <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
-        <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
-        <a href="/profile/" class="circle-icon" data-title="Profile">👤</a>
-        <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
-    </div>
+        <a href="{% url 'addemi' %}" class="icon-btn plus">+</a>
+        <a href="/calculator/" class="circle-icon">🧮</a>
+        <a href="/calendar/" class="circle-icon">📅</a>
+        <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
 
+            {% if profile.profile_photo %}
+                <img src="{{ profile.profile_photo.url }}">
+            {% else %}
+                👤
+            {% endif %}
+
+        </a>
+        <div class="menu-circle" onclick="open_menu()">☰</div>
+    </div>
 
 </div>
 
-    <!-- Total EMI Card -->
-    <div class="total-card">
-        <p>Total Monthly EMI</p>
-        <h1 id="totalEmi">₹{{ total|floatformat:0 }}</h1>
-    </div>
+<!-- TOTAL EMI -->
+<div class="total-card">
+    <p>Total Monthly EMI</p>
+    <h1>₹{{ total|floatformat:0 }}</h1>
+</div>
 
-    <h3 class="section-title">Active EMIs</h3>
+<h3 class="section-title">Active EMIs</h3>
 
-    {% for i in u %}
-<div class="emi-card" data-end="{{ i.end_date|date:'Y-m-d' }}">
+<!-- EMI LIST -->
+{% for i in emis %}
+
+<div class="emi-card">
 
     <div class="emi-top">
         <div>
-            <h4>{{ i.emi_name }}</h4>
-            <p>{{ i.duration }} months</p>
-            <span class="status"></span> <!-- Status will appear here -->
+
+            <!-- NAME -->
+            <h4>{{ i.obj.emi_name }}</h4>
+
+            <!-- MONTH INFO -->
+            <p>{{ i.left }} months left</p>
+
+            <!-- STATUS -->
+            <span class="status"
+            style="color:{% if i.status == 'Completed' %}#6c63ff{% else %}#00c853{% endif %}">
+                {{ i.status }}
+            </span>
+
+            <!-- PAID INFO -->
+            <small style="display:block; margin-top:5px; color:#888;">
+                {{ i.passed }} of {{ i.obj.duration }} months paid
+            </small>
+
         </div>
 
-        <form method="post" action="{% url 'delete_emi' i.id %}">
+        <!-- DELETE -->
+        <form method="post" action="{% url 'delete_emi' i.obj.id %}">
             {% csrf_token %}
             <button type="submit" class="delete-btn">🗑</button>
         </form>
+
     </div>
 
-    <h2 class="emi-amount">₹{{ i.monthly_amount }}/month</h2>
+    <!-- AMOUNT -->
+    <h2 class="emi-amount">
+        ₹{{ i.obj.monthly_amount }}/month
+    </h2>
 
+    <!-- PROGRESS BAR -->
     <div class="progress-bar">
-        <div class="progress" style="width: {{ i.duration|floatformat:0 }}%;"></div>
+        <div class="progress"
+             style="width: {{ i.progress }}%;"></div>
     </div>
 
 </div>
+
 {% empty %}
-<p>No EMI added yet.</p>
+    <p>No EMI added yet.</p>
 {% endfor %}
-<script src="{% static 'js/menu.js' %}"></script>
+
+
+</div>
 
 {% include "menu.html" %}
 
 <script src="{% static 'js/menu.js' %}"></script>
-
-
-<script src="{% static 'js/emimanager.js' %}"></script>
 
 </body>
 </html>

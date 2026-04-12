@@ -142,20 +142,6 @@ def add_expense(request):
         # ✅ CHECK INCOME (FIXED 🔥)
         # -----------------------------
         month_start = expense_date_obj.replace(day=1)
-
-        income_exists = MonthlyIncome.objects.filter(
-            user=request.user,
-            month=month_start
-        ).exists()
-
-        if not income_exists:
-            messages.error(
-                request,
-                "⚠️ Please add your income befor adding expenses."
-            )
-            return render(request, "add_expense.html", {
-                "categories": categories
-            })
         # =====================================================
 
         # -----------------------------
@@ -208,10 +194,11 @@ def add_expense(request):
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from accounts.models import Profile
 
 @login_required
 def expensereport(request):
-
+    profile, created = Profile.objects.get_or_create(user=request.user)
     user = request.user
 
     # =============================
@@ -287,6 +274,7 @@ def expensereport(request):
 
 
     context = {
+        "profile": profile,
         "incomes": incomes,
         "expenses": expenses,
         "total_income": total_income,
@@ -343,9 +331,10 @@ def expensereport(request):
 
 
 from django.contrib.auth.decorators import login_required
+from accounts.models import Profile
 @login_required
 def transaction_history(request):
-
+    profile, created = Profile.objects.get_or_create(user=request.user)
     incomes = Income_model.objects.filter(user=request.user)
     expenses = Expense_model.objects.filter(user=request.user)
 
@@ -375,6 +364,7 @@ def transaction_history(request):
     total_expense = expenses.aggregate(total=Sum("expense_amount"))["total"] or 0
 
     context = {
+        "profile": profile,
         "transactions": transactions,
         "total_income": total_income,
         "total_expense": total_expense,

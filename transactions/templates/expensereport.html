@@ -13,164 +13,173 @@
 
 <body>
 
-<div class="container" id="reportContent">
+<div class="main-layout">
 
+    <!-- SIDEBAR (NO CHANGE) -->
+    <div class="sidebar">
 
+        <div class="sidebar-menu">
+            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
+            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
+            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
+            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
+            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
+            <a href='{% url 'budget_analysis' %}'><span>📊</span><p>Budget Analytics</p></a>
+            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
+            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
 
-<div class="page-header">
+            <div class="theme-toggle">
+                <div class="theme-left">
+                    <span>🌙</span>
+                    <p>Theme</p>
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleTheme()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
-    <a href="{% url 'dashboard' %}" class="back-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6"/>
-        </svg>
-    </a>
-
-    <h2>Expense Reports</h2>
-
-    <div class="header-icons">
-        <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
-        <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
-        <a href="/profile/" class="circle-icon" data-title="Profile">👤</a>
-        <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
     </div>
 
-</div> <!-- ✅ THIS WAS MISSING -->
+    <!-- MAIN CONTENT -->
+    <div class="app-container">
 
-<!-- SELECT PERIOD -->
-<div class="period-section">
-  <div class="period-title">
-    <span>📅</span>
-    <span>Select Period</span>
-  </div>
+        <div class="container" id="reportContent">
 
-  <div class="select-box">
-    <select id="monthSelect">
-      {% for m in months %}
-      <option value="{{ m }}">{{ m }}</option>
-      {% endfor %}
-    </select>
+            <!-- HEADER -->
+            <div class="page-header">
 
-    <select id="yearSelect">
-      {% for y in years %}
-      <option value="{{ y }}">{{ y }}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
+                <a href="{% url 'dashboard' %}" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </a>
 
-<!-- BUTTONS -->
-<div class="buttons">
-  <button id="downloadBtn" class="btn download">Download</button>
-  <button id="shareBtn" class="btn share">Share</button>
-</div>
+                <h2>Expense Reports</h2>
 
-<!-- INCOME SUMMARY -->
-<div class="card income">
-<h3>Income Summary</h3>
+                <div class="header-icons">
+                    <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+                    <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
 
-{% for income in incomes %}
-<div class="row">
-  <span>{{ income.income_source|default:"Unknown" }}</span>
-  <span>₹{{ income.amount|default:0 }}</span>
-</div>
-{% empty %}
-<div>No income records</div>
-{% endfor %}
+                    <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+                        {% if profile.profile_photo %}
+                            <img src="{{ profile.profile_photo.url }}">
+                        {% else %}
+                            👤
+                        {% endif %}
+                    </a>
 
-<div class="row total">
-  <span>Total Income</span>
-  <span>₹{{ total_income|default:0 }}</span>
-</div>
-</div>
+                    <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
+                </div>
 
-<!-- EXPENSE SUMMARY -->
-<div class="card expense">
-<h3>Expense Summary</h3>
+            </div>
 
-{% for expense in expenses %}
-<div class="row">
-  <span>
-    {% if expense.category and expense.category|lower == "custom" and expense.notes %}
-        {{ expense.notes }}
-    {% else %}
-        {{ expense.category|default:"Other" }}
-    {% endif %}
-  </span>
-  <span>₹{{ expense.expense_amount|default:0 }}</span>
-</div>
-{% empty %}
-<div>No expense records</div>
-{% endfor %}
+            <!-- SELECT PERIOD -->
+            <div class="period-section">
+              <div class="period-title">
+                <span>📅</span>
+                <span>Select Period</span>
+              </div>
 
-<div class="row total">
-  <span>Total Expense</span>
-  <span>₹{{ total_expense|default:0 }}</span>
-</div>
-</div>
+              <div class="select-box">
+                <select id="monthSelect">
+                  {% for m in months %}
+                  <option value="{{ m }}">{{ m }}</option>
+                  {% endfor %}
+                </select>
 
-<!-- NET BALANCE -->
-<div class="card balance">
-<div>Net Balance</div>
+                <select id="yearSelect">
+                  {% for y in years %}
+                  <option value="{{ y }}">{{ y }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
 
-<div class="big">₹{{ balance|default:0 }}</div>
+            <!-- BUTTONS -->
+            <div class="buttons">
+              <button id="downloadBtn" class="btn download">Download</button>
+              <button id="shareBtn" class="btn share">Share</button>
+            </div>
 
-<div>
-{% if balance >= 0 %}
-Surplus
-{% else %}
-Deficit
-{% endif %}
-</div>
-</div>
+            <!-- INCOME -->
+            <div class="card income">
+                <h3>Income Summary</h3>
 
-<!-- CATEGORY BREAKDOWN -->
-<div class="card">
-<h3>Category Breakdown</h3>
+                {% for income in incomes %}
+                <div class="row">
+                  <span>{{ income.income_source|default:"Unknown" }}</span>
+                  <span>₹{{ income.amount|default:0 }}</span>
+                </div>
+                {% empty %}
+                <div>No income records</div>
+                {% endfor %}
 
-{% if total_income|add:total_expense > 0 %}
+                <div class="row total">
+                  <span>Total Income</span>
+                  <span>₹{{ total_income|default:0 }}</span>
+                </div>
+            </div>
 
-<!-- INCOME ITEMS -->
-{% for income in incomes %}
-<div class="row">
-  <span>{{ income.income_source|default:"Unknown" }}</span>
-  <span>{{ income.percent|default:0|floatformat:1 }}%</span>
-</div>
+            <!-- EXPENSE -->
+            <div class="card expense">
+                <h3>Expense Summary</h3>
 
-<div class="progress">
-  <div class="progress-bar" style="width:{{ income.percent|default:0 }}%"></div>
-</div>
-{% endfor %}
+                {% for expense in expenses %}
+                <div class="row">
+                  <span>
+                    {% if expense.category and expense.category|lower == "custom" and expense.notes %}
+                        {{ expense.notes }}
+                    {% else %}
+                        {{ expense.category|default:"Other" }}
+                    {% endif %}
+                  </span>
+                  <span>₹{{ expense.expense_amount|default:0 }}</span>
+                </div>
+                {% empty %}
+                <div>No expense records</div>
+                {% endfor %}
 
-<!-- EXPENSE ITEMS -->
-{% for expense in expenses %}
-<div class="row">
-<span>
-    {% if expense.category and expense.category|lower == "custom" and expense.notes %}
-        {{ expense.notes }}
-    {% else %}
-        {{ expense.category|default:"Other" }}
-    {% endif %}
-</span>
-<span>{{ expense.percent|default:0|floatformat:1 }}%</span>
-</div>
+                <div class="row total">
+                  <span>Total Expense</span>
+                  <span>₹{{ total_expense|default:0 }}</span>
+                </div>
+            </div>
 
-<div class="progress">
-<div class="progress-bar" style="width:{{ expense.percent|default:0 }}%"></div>
-</div>
-{% endfor %}
+            <!-- BALANCE -->
+            <div class="card balance">
+                <div>Net Balance</div>
+                <div class="big">₹{{ balance|default:0 }}</div>
+                <div>
+                    {% if balance >= 0 %}Surplus{% else %}Deficit{% endif %}
+                </div>
+            </div>
 
-{% else %}
-<div>No transactions</div>
-{% endif %}
+            <!-- CATEGORY -->
+            <div class="card">
+                <h3>Category Breakdown</h3>
+                {% if total_income|add:total_expense > 0 %}
 
-</div>
+                {% for income in incomes %}
+                <div class="row">
+                  <span>{{ income.income_source }}</span>
+                  <span>{{ income.percent|floatformat:1 }}%</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" style="width:{{ income.percent }}%"></div>
+                </div>
+                {% endfor %}
 
-<!-- TOTAL TRANSACTIONS -->
-<div class="card balance">
-<div>Total Transactions</div>
-<div class="big">{{ total_transactions|default:0 }}</div>
-</div>
+                {% else %}
+                <div>No transactions</div>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

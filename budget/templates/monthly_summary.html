@@ -14,181 +14,198 @@
 
 <body>
 
-<div class="app">
+<div class="main-layout">
 
-<div class="mobile-container">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
 
-    <!-- PAGE HEADER -->
-    <div class="page-header">
+        <div class="sidebar-menu">
+            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
+            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
+            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
+            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
+            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
+            <a href='{% url 'budget_analysis' %}'><span>📊</span><p>Budget Analytics</p></a>
+            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
+            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
 
-    <a href="{% url 'dashboard' %}" class="back-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6"/>
-        </svg>
-    </a>
+            <div class="theme-toggle">
+                <div class="theme-left">
+                    <span>🌙</span>
+                    <p>Theme</p>
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleTheme()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
-    <h2>Monthly Summary</h2>
-
-    <div class="header-icons">
-        <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
-        <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
-        <a href="/profile/" class="circle-icon" data-title="Profile">👤</a>
-        <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
     </div>
 
-</div>
+    <!-- CONTENT -->
+    <div class="app-container">
 
-<div class="month hoverable">
-📅
-<input type="month" id="monthPicker" value="{{ selected_month }}">
-</div>
+        <div class="mobile-container">
 
-<div class="dashboard">
+            <!-- HEADER -->
+            <div class="page-header">
 
-<div class="left">
+                <a href="{% url 'dashboard' %}" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </a>
 
-<div class="card hoverable">
+                <h2>Monthly Summary</h2>
 
-<p class="label">Total Income</p>
+                <div class="header-icons">
+                    <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+                    <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
+                    <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+                
+                        {% if profile.profile_photo %}
+                            <img src="{{ profile.profile_photo.url }}" alt="Profile">
+                        {% else %}
+                            👤
+                        {% endif %}
 
-<h1 id="totalIncome">
-₹{{ total_income }}
-</h1>
+                    </a>
+                    <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
+                </div>
 
-</div>
+            </div>
 
+            <!-- MONTH -->
+            <div class="month hoverable">
+                📅
+                <input type="month" id="monthPicker" value="{{ selected_month }}">
+            </div>
 
-<div class="card small hoverable">
+            <!-- DASHBOARD -->
+            <div class="dashboard">
 
-<div class="row">
-<span>Savings</span>
-<span id="savings">₹{{ savings }}</span>
-</div>
+                <div class="left">
 
-<div class="row">
-<span>Expenses</span>
-<span id="expense">₹{{ expense }}</span>
-</div>
+                    <div class="card hoverable">
+                        <p class="label">Total Income</p>
+                        <h1 id="totalIncome">₹{{ total_income }}</h1>
+                    </div>
 
+                    <div class="card small hoverable">
 
-<div class="row">
-<span>Investments</span>
-<span id="investments">₹{{ investments }}</span>
-</div>
+                        <div class="row">
+                            <span>Savings</span>
+                            <span id="savings">₹{{ savings }}</span>
+                        </div>
 
-<div class="row">
-<span>EMI</span>
-<span id="emi">₹{{ emi }}</span>
-</div>
+                        <div class="row">
+                            <span>Expenses</span>
+                            <span id="expense">₹{{ expense }}</span>
+                        </div>
 
-<div class="row">
-<span>Total Deductions</span>
-<span id="deductions">₹{{ deductions }}</span>
-</div>
+                        <div class="row">
+                            <span>Investments</span>
+                            <span id="investments">₹{{ investments }}</span>
+                        </div>
 
-</div>
+                        <div class="row">
+                            <span>EMI</span>
+                            <span id="emi">₹{{ emi }}</span>
+                        </div>
 
+                        <div class="row">
+                            <span>Total Deductions</span>
+                            <span id="deductions">₹{{ deductions }}</span>
+                        </div>
 
-<h3 class="section">Expense Distribution</h3>
+                    </div>
 
+                    <h3 class="section">Expense Distribution</h3>
 
-<div class="card center hoverable">
+                    <div class="card center hoverable">
 
-<canvas id="donutChart" width="200" height="200"></canvas>
+                        <canvas id="donutChart" width="200" height="200"></canvas>
 
+                        <div class="legend">
 
-<div class="legend">
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot investment"></span> Investments
+                                </div>
+                                <div>
+                                    <b id="invAmount">₹{{ investments }}</b>
+                                </div>
+                            </div>
 
-<div class="legend-item">
-<div>
-<span class="dot investment"></span> Investments
-</div>
-<div>
-<b id="invAmount">₹{{ investments }}</b>
-</div>
-</div>
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot expense"></span> Expenses
+                                </div>
+                                <div>
+                                    <b id="expAmount">₹{{ expense }}</b>
+                                </div>
+                            </div>
 
-<div class="legend-item">
-<div>
-<span class="dot expense"></span> Expenses
-</div>
-<div>
-<b id="expAmount">₹{{ expense }}</b>
-</div>
-</div>
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot saving"></span> Savings
+                                </div>
+                                <div>
+                                    <b id="savAmount">₹{{ savings }}</b>
+                                </div>
+                            </div>
 
-<div class="legend-item">
-<div>
-<span class="dot saving"></span> Savings
-</div>
-<div>
-<b id="savAmount">₹{{ savings }}</b>
-</div>
-</div>
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot emi"></span> EMI
+                                </div>
+                                <div>
+                                    <b id="emiAmount">₹{{ emi }}</b>
+                                </div>
+                            </div>
 
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot available"></span> Available
+                                </div>
+                                <div>
+                                    <b id="availAmount">₹{{ balance }}</b>
+                                </div>
+                            </div>
 
-<div class="legend-item">
-<div>
-<span class="dot emi"></span> EMI
-</div>
-<div>
-<b id="emiAmount">₹{{ emi }}</b>
-</div>
-</div>
+                        </div>
 
+                    </div>
 
-<div class="legend-item">
-<div>
-<span class="dot available"></span> Available
-</div>
-<div>
-<b id="availAmount">₹{{ balance }}</b>
-</div>
-</div>
+                </div>
 
-</div>
+                <div class="right">
 
-</div>
+                    <div class="balance-card hoverable">
+                        <p>Available Balance</p>
+                        <h2 id="balance">₹{{ balance }}</h2>
+                        <small>After all deductions</small>
+                    </div>
 
-</div>
+                    <div class="card hoverable">
+                        <p class="label">Suggested Daily Spending</p>
+                        <h2 id="dailyLimit">
+                            ₹{{ daily|floatformat:0 }} <span>/ day</span>
+                        </h2>
+                        <small>
+                            Stay within this limit to manage expenses comfortably
+                        </small>
+                    </div>
 
+                </div>
 
-<div class="right">
+            </div>
 
-<div class="balance-card hoverable">
+        </div>
 
-<p>Available Balance</p>
-
-<h2 id="balance">
-₹{{ balance }}
-</h2>
-
-<small>After all deductions</small>
-
-</div>
-
-
-<div class="card hoverable">
-
-<p class="label">Suggested Daily Spending</p>
-
-<h2 id="dailyLimit">
-
-₹{{ daily|floatformat:0 }}
-<span>/ day</span>
-
-</h2>
-
-<small>
-Stay within this limit to manage expenses comfortably
-</small>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
@@ -197,23 +214,18 @@ Stay within this limit to manage expenses comfortably
 <script src="{% static 'js/menu.js' %}"></script>
 
 <script>
-
-
-
 const summaryData = {
-
-income: {{ total_income }},
-savings: {{ savings }},
-expense: {{ expense }},
-investments: {{ investments }},
-emi: {{ emi }},
-balance: {{ balance }}
-
+    income: {{ total_income }},
+    savings: {{ savings }},
+    expense: {{ expense }},
+    investments: {{ investments }},
+    emi: {{ emi }},
+    balance: {{ balance }}
 };
-
 </script>
 
 <script src="{% static 'js/monthly_summary.js' %}"></script>
 <script src="{% static 'js/menu.js' %}"></script>
+
 </body>
 </html>
