@@ -22,9 +22,36 @@
 
 <body>
 
-<div class="analytics-page">
+<div class="main-layout"> <!-- ✅ ADDED -->
 
-    
+    <div class="sidebar">
+
+        <div class="sidebar-menu">
+            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
+            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
+            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
+            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
+            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
+            <a href='{% url 'budget_analysis' %}' class="active"><span>📊</span><p>Budget Analytics</p></a>
+            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
+            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
+
+            <div class="theme-toggle">
+                <div class="theme-left">
+                    <span>🌙</span><p>Theme</p>
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleTheme()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="app-container"> <!-- ✅ ADDED -->
+
+        <div class="analytics-page">  
 
 <!-- HEADER -->
 
@@ -76,28 +103,21 @@
 
 <div class="analytics-grid">
 
-    <!-- Budget vs Spending -->
     <div class="analytics-section">
         <h2>Budget vs Spending</h2>
-
         <div class="chart-card">
             <canvas id="budgetChart"></canvas>
         </div>
     </div>
 
-
-    <!-- Spending by Category -->
     <div class="analytics-section">
         <h2>Spending by Category</h2>
-
         <div class="chart-card">
             <canvas id="categoryChart"></canvas>
         </div>
     </div>
 
 </div>
-
-<!-- TOP SPENDING CATEGORIES -->
 
 <div class="analytics-section">
 
@@ -112,21 +132,10 @@
 <div class="top-card">
 
 <div class="top-header">
-
-<div class="rank">
-{{ forloop.counter }}
+<div class="rank">{{ forloop.counter }}</div>
+<div class="category-name">{{ cat.name }}</div>
+<div class="amount">₹{{ cat.total }}</div>
 </div>
-
-<div class="category-name">
-{{ cat.name }}
-</div>
-
-<div class="amount">
-₹{{ cat.total }}
-</div>
-
-</div>
-
 
 <div class="progress-bar">
 <div class="progress" style="width: {{ cat.percent }}%"></div>
@@ -143,15 +152,9 @@
 {% else %}
 
 <div class="empty-state">
-
 <div class="empty-icon">📉</div>
-
 <h3>No expense data yet</h3>
-
-<p>
-Start adding expenses to see analytics and track your spending patterns
-</p>
-
+<p>Start adding expenses to see analytics and track your spending patterns</p>
 </div>
 
 {% endif %}
@@ -160,27 +163,23 @@ Start adding expenses to see analytics and track your spending patterns
 
 </div>
 
-</div>
+        </div> <!-- analytics-page -->
+
+    </div> <!-- app-container -->
+
+</div> <!-- main-layout -->
 
 {% include "menu.html" %}
 
 <script src="{% static 'js/menu.js' %}"></script>
-<!-- DJANGO DATA → JS -->
 
 <script>
-
 const labels = {{ labels|safe }};
 const budgetData = {{ budget_data|safe }};
 const spentData = {{ spent_data|safe }};
-
-console.log("Labels:", labels);
-console.log("Budget Data:", budgetData);
-console.log("Spent Data:", spentData);
-
 </script>
 
 <script src="{% static 'js/BudgetAnalysis.js' %}"></script>
 
 </body>
-
 </html>

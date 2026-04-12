@@ -16,7 +16,38 @@
 
 <body>
 
-<div class="container">
+<div class="main-layout">
+
+    <!-- YOUR SIDEBAR (NO CHANGE) -->
+    <div class="sidebar">
+
+        <div class="sidebar-menu">
+            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
+            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
+            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
+            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
+            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
+            <a href='{% url 'budget_analysis' %}'><span>📊</span><p>Budget Analytics</p></a>
+            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
+            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
+
+            <div class="theme-toggle">
+                <div class="theme-left">
+                    <span>🌙</span><p>Theme</p>
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleTheme()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-container">
+
+        <div class="container">
 
 <!-- HEADER -->
 <div class="page-header">
@@ -41,12 +72,11 @@
                 👤
             {% endif %}
 
-</a>
+        </a>
         <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
     </div>
 
 </div>
-
 
 <!-- SUMMARY -->
 
@@ -63,7 +93,6 @@
 </div>
 
 </div>
-
 
 <!-- SEARCH -->
 
@@ -85,12 +114,15 @@
 
 </div>
 
-
 <!-- TRANSACTIONS -->
 
 <div class="transaction-scroll">
 <div id="transactionList"></div>
 </div>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -124,9 +156,7 @@
 
 </div>
 
-{% include "menu.html" %}
+<script src="{% static 'js/menu.js' %}"></script>
 
-<script src="{% static 'js/menu.js' %}"></script>
-<script src="{% static 'js/menu.js' %}"></script>
 </body>
 </html>

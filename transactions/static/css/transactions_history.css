@@ -10,12 +10,111 @@
 /* BODY */
 
 body{
-background:linear-gradient(90deg,#d1baff40,#f0f1f8);
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-font-family:sans-serif;
+    margin:0;
+    font-family:sans-serif;
+    background:linear-gradient(90deg,#d1baff40,#f0f1f8);
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main-layout{
+    display:flex;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:240px;           /* smaller */
+    height:100vh;
+    padding:25px 18px;     /* compact */
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:#ffffff;
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-right:1px solid #eee;
+    overflow-y:auto;
+}
+
+/* ===== MENU ===== */
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+/* ===== MENU ITEM ===== */
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:#e9e6f2;
+    padding:10px 12px;     /* smaller height */
+    font-size:13px;        /* smaller text */
+    border-radius:12px;
+
+    text-decoration:none;
+    color:#3b3b6d;
+    
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+/* ICON */
+.sidebar-menu a span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    
+    width:28px;
+    height:28px;
+    font-size:14px;
+}
+
+/* HOVER */
+.sidebar-menu a:hover{
+    transform:translateY(-3px);
+    background:#dedbfb;
+}
+
+/* ACTIVE */
+.sidebar-menu a.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* ===== THEME ===== */
+.theme-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:#e9e6f2;
+    padding:10px 12px;
+    border-radius:12px;
+
+    margin-top:auto;
+}
+
+.theme-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.theme-left p{
+    margin:0;
+}
+
+/* ===== CONTENT SHIFT ===== */
+.app-container{
+    margin-left:240px;
+    width:calc(100% - 240px);
 }
 
 
