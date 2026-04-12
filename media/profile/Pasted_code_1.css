@@ -614,9 +614,6 @@ body:not(.dark-mode) .circle-icon:hover::before{
     flex-direction:column;
 
     border-right:1px solid #eee;
-
-    /* 🔥 ADD THIS */
-    overflow-y:auto;
 }
 
 /* LOGO */
@@ -689,55 +686,57 @@ body:not(.dark-mode) .circle-icon:hover::before{
     align-items:center;
 }
 
-.switch{
-    width:50px;
-    height:26px;
-}
-
-.slider::before{
-    height:20px;
-    width:20px;
-    font-size:12px;
-}
-
-.switch input:checked + .slider::before{
-    transform:translateX(24px);
-}
-
-/* ===== THEME TOGGLE (MAKE IT LIKE EXPENSE CARD) ===== */
-
 .theme-toggle{
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    width:100%;
-    background:#e9e6f2;        /* 🔥 ONE BIG CONTAINER */
     padding:12px 14px;
-    border-radius:14px;
+    border-radius:16px;
+    margin-top:10px;
 
-    transition:0.25s ease;
+    background:#f3f1ff;
+    cursor:pointer;
 }
 
-.theme-toggle:hover{
-    background:#dedbfb;
+.theme-toggle input{
+    display:none;
 }
 
-/* KEEP LEFT SIMPLE */
-.theme-left{
+.slider{
+    position:absolute;
+    cursor:pointer;
+    background:#ddd;
+    border-radius:30px;
+    width:100%;
+    height:100%;
+    transition:0.3s;
+}
+
+.slider::before{
+    content:"☀️";
+    position:absolute;
+    height:24px;
+    width:24px;
+    left:3px;
+    top:3px;
+    background:white;
+    border-radius:50%;
     display:flex;
     align-items:center;
-    gap:12px;
+    justify-content:center;
+    transition:0.3s;
 }
 
-/* FIX TEXT */
-.theme-left p{
-    margin:0;
+/* DARK POSITION */
+
+.theme-toggle input:checked + .slider{
+    background:#3b3b6d;
 }
 
-/* SWITCH NORMAL */
-.switch{
-    flex-shrink:0;
+.theme-toggle input:checked + .slider::before{
+    transform:translateX(30px);
+    content:"🌙";
 }
 
 /* ===== FIX CONTENT SHIFT ===== */
@@ -761,54 +760,4 @@ body:not(.dark-mode) .circle-icon:hover::before{
 /* OPTIONAL: MAKE CARD WIDTH PERFECT */
 .content-row > div:last-child .overview-card{
     width:100%;
-}
-
-/* ===== SIDEBAR MENU CARD STYLE (LIKE IMAGE 1) ===== */
-
-.sidebar-menu{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-}
-
-/* EACH MENU ITEM AS CARD */
-.sidebar-menu a{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    background:#e9e6f2;
-    padding:12px 14px;   /* 🔥 smaller */
-    border-radius:14px;  /* 🔥 smaller */
-
-    text-decoration:none;
-    color:#3b3b6d;
-    font-size:14px;      /* 🔥 smaller text */
-    font-weight:500;
-
-    transition:0.25s ease;
-}
-
-/* ICON CIRCLE (IMPORTANT 🔥) */
-.sidebar-menu a span{
-    width:34px;
-    height:34px;
-    font-size:16px;
-}
-
-/* HOVER EFFECT */
-.sidebar-menu a:hover{
-    transform:translateY(-3px);
-    background:#dedbfb;
-}
-
-/* ACTIVE */
-.sidebar-menu a.active{
-    background:#6c63ff;
-    color:white;
-}
-
-/* FIX TEXT ALIGN */
-.sidebar-menu a p{
-    margin:0;
 }

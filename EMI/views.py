@@ -3,7 +3,7 @@ from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
 from .forms import EmiManagerForm
 from .models import EmiManager
-
+from accounts.models import Profile
 
 # ==============================
 # EMI LIST PAGE
@@ -12,7 +12,7 @@ from datetime import date
 
 @login_required
 def emimanager(request):
-
+    profile, created = Profile.objects.get_or_create(user=request.user)
     emis = EmiManager.objects.filter(user=request.user)
 
     emi_data = []
@@ -52,6 +52,7 @@ def emimanager(request):
     total = emis.aggregate(Sum('monthly_amount'))['monthly_amount__sum'] or 0
 
     return render(request, 'emimanager.html', {
+        "profile": profile,
         'emis': emi_data,
         'total': total
     })

@@ -40,7 +40,15 @@
         <div class="header-icons">
             <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
             <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
-            <a href="/profile/" class="circle-icon" data-title="Profile">👤</a>
+            <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+
+                {% if profile.profile_photo %}
+                    <img src="{{ profile.profile_photo.url }}">
+                {% else %}
+                    👤
+                {% endif %}
+
+            </a>
             <div class="menu-circle" onclick="open_menu()"  data-title="Menu">☰</div>
         </div>
 
