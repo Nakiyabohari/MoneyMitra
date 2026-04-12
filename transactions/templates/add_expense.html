@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
     <link rel="stylesheet" href="{% static 'dark/expense.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
 
     <title>Add Expense</title>
 
@@ -40,19 +40,17 @@
 
 
     <label>Amount</label>
-
-    <div class="input-box">
-    <span class="icon">₹</span>
-
-    <input 
-    type="number" 
-    name="expense_amount"
-    placeholder="0.00" 
-    step="0.01" 
-    max="10000000"
-    required>
-
-    </div>
+<div class="input-icon-wrap">
+    <span class="left-icon">₹</span>
+    <input
+        type="number"
+        name="expense_amount"
+        placeholder="0.00"
+        step="0.01"
+        min="0"
+        required
+    >
+</div>
 
 
     <label>Category</label>
@@ -89,15 +87,14 @@
 
     <label>Date</label>
 
-    <div class="input-box">
+    <div class="input-box date-box">
     <span class="icon">📅</span>
-
     <input
-    type="date" 
-    name="date"
-    id="expenseDate"
-    required>
-
+        type="date" 
+        name="date"
+        id="expenseDate"
+        required
+    >
     </div>
 
 

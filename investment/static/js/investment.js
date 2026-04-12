@@ -52,7 +52,7 @@ function addMessageToChat(message, sender) {
 
         row.innerHTML = `
             <div class="bot-icon">🤖</div>
-            <div class="bot-card">${message}</div>
+            <div class="bot-card">${formatBotMessage(message)}</div>
         `;
 
     }
@@ -60,6 +60,47 @@ function addMessageToChat(message, sender) {
     chatBox.appendChild(row);
 
     chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function formatBotMessage(text) {
+
+    // 🔥 convert **bold** to <b>
+    text = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+
+    // split numbered list
+    const lines = text.split(/\d+\.\s/).filter(l => l.trim() !== "");
+
+    if(lines.length > 1){
+
+        let html = "<ol>";
+
+        lines.forEach(line => {
+            html += `<li>${line.trim()}</li>`;
+        });
+
+        html += "</ol>";
+        return html;
+    }
+
+    // normal paragraph
+    return `<p>${text}</p>`;
+}
+
+function addBotMessages(response) {
+
+    // split by numbered list (1. 2. 3.)
+    const parts = response.split(/(?=\d+\.)/);
+
+    parts.forEach((part, index) => {
+
+        const text = part.trim();
+        if (!text) return;
+
+        setTimeout(() => {
+            addMessageToChat(text, "bot");
+        }, index * 700); // delay for chat effect
+
+    });
 }
 
 /* TYPING INDICATOR */
@@ -102,10 +143,14 @@ function sendChatMessage() {
         body: `message=${encodeURIComponent(message)}`
     })
     .then(response => response.json())
+
     .then(data => {
-        removeTypingIndicator();
-        addMessageToChat(data.reply, "bot");
+    removeTypingIndicator();
+
+    // ✅ ONLY ONE MESSAGE
+    addMessageToChat(data.reply, "bot");
     })
+
     .catch(error => {
         removeTypingIndicator();
         addMessageToChat("AI request failed.", "bot");
