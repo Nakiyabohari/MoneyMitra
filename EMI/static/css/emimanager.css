@@ -10,7 +10,9 @@ html, body {
 body {
     align-items: flex-start !important;
     padding: 20px 10px;
-    overflow: hidden;
+
+    overflow-x: hidden;   /* ✅ only block horizontal */
+    overflow-y: auto;     /* ✅ allow vertical scroll */
 }
 
 /* ===============================
@@ -19,19 +21,21 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1200px;   
-    margin: auto;
+    max-width: none;   /* 🔥 REMOVE LIMIT */
+    margin: 0;         /* 🔥 REMOVE CENTER */
 
     height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
 
     padding: 0;
-    
     background: transparent;
     border-radius: 0;
 }
-
+.container {
+    height: auto;
+    overflow: visible;
+}
 /* Scrollbar */
 
 .container::-webkit-scrollbar {
@@ -399,4 +403,33 @@ body {
     height:100%;
     border-radius:50%;
     object-fit:cover;
+}
+
+.theme-toggle {
+    display: inline-flex;      /* 🔥 key change */
+    align-items: center;
+    gap: 10px;
+
+    width: auto;               /* ❌ remove full width */
+    
+    background: #e9e6f2;
+    padding: 6px 10px;         /* 🔥 smaller */
+    border-radius: 20px;       /* 🔥 pill but small */
+
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+.theme-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;   /* 🔥 tighter */
+}
+.switch {
+    width: 38px;   /* 🔥 smaller */
+    height: 20px;
+}
+
+.slider::before {
+    width: 16px;
+    height: 16px;
 }
