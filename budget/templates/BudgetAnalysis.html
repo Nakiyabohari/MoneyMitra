@@ -21,33 +21,8 @@
 </head>
 
 <body>
-
+{% include "menu.html" %}
 <div class="main-layout"> <!-- ✅ ADDED -->
-
-    <div class="sidebar">
-
-        <div class="sidebar-menu">
-            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
-            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
-            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
-            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
-            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
-            <a href='{% url 'budget_analysis' %}' class="active"><span>📊</span><p>Budget Analytics</p></a>
-            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
-            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
-
-            <div class="theme-toggle">
-                <div class="theme-left">
-                    <span>🌙</span><p>Theme</p>
-                    <label class="switch">
-                        <input type="checkbox" onclick="toggleTheme()">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <div class="app-container"> <!-- ✅ ADDED -->
 
@@ -169,7 +144,6 @@
 
 </div> <!-- main-layout -->
 
-{% include "menu.html" %}
 
 <script src="{% static 'js/menu.js' %}"></script>
 

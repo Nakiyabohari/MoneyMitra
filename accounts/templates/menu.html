@@ -1,57 +1,63 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<div class="sidebar">
 
-<link rel="stylesheet" href="{% static 'dark/menu.css' %}">
-<div class="menu-overlay" id="menu-overlay" onclick="close_menu()"></div>
-
-<div class="drawer-panel" id="drawer-panel">
-
-    <div class="drawer-header">
-        <h2>Menu</h2>
-        <span class="close-button" onclick="close_menu()">✕</span>
+    <div class="sidebar-logo">
+        <img src="{% static 'images/logo.png' %}">
+        <h2>MoneyMitra</h2>
     </div>
 
-    <div class="menu-card" onclick="redirect_page('{% url 'transaction_history' %}')">
-    <div class="menu-left">
-        <div class="menu-icon">🔄</div>
-        <span>Transaction History</span>
+    <div class="sidebar-menu">
+
+        <a href="{% url 'dashboard' %}" class="active">
+            <span>🏠</span><p>Dashboard</p>
+        </a>
+
+        <a href="{% url 'investment' %}">
+            <span>📊</span><p>Investment Options</p>
+        </a>
+
+        <a href="{% url 'emimanager' %}">
+            <span>💳</span><p>Manage EMIs</p>
+        </a>
+
+        <a href="{% url 'savings_goal' %}">
+            <span>💰</span><p>Savings Goals</p>
+        </a>
+
+        <a href="{% url 'monthly_budget' %}">
+            <span>📂</span><p>Category Budgets</p>
+        </a>
+
+        <a href="{% url 'transaction_history' %}">
+            <span>📜</span><p>Transaction History</p>
+        </a>
+
+        <a href="{% url 'budget_analysis' %}">
+            <span>📊</span><p>Budget Analytics</p>
+        </a>
+
+        <a href="{% url 'monthly_summary' %}">
+            <span>📅</span><p>Monthly Summary</p>
+        </a>
+
+        <a href="{% url 'expensereport' %}">
+            <span>📄</span><p>Expense Reports</p>
+        </a>
+
+        <!-- THEME -->
+        <div class="theme-toggle">
+    <div class="theme-left">
+        <span>🌙</span>
+        <p>Theme</p>
     </div>
-</div>
 
-    <div class="menu-card" onclick="redirect_page('{% url 'budget_analysis' %}')">
-        <div class="menu-left">
-            <div class="menu-icon">📊</div>
-            <span>Budget Analytics</span>
-        </div>
-
-    </div>
-
-    <div class="menu-card" onclick="redirect_page('{% url 'monthly_summary' %}')">
-        <div class="menu-left">
-            <div class="menu-icon">📈</div>
-            <span>Monthly Summary</span>
-        </div>
-
-    </div>
-
-    <div class="menu-card" onclick="redirect_page('{% url 'expensereport' %}')">
-        <div class="menu-left">
-            <div class="menu-icon">📄</div>
-            <span>Expense Reports</span>
-        </div>
-    </div>
-    
-    <div class="menu-card theme-switch">
-
-    <div class="menu-left">
-        <div class="menu-icon">🌙</div>
-        <span>Theme</span>
-    </div>
-
-    <label class="theme-toggle">
-        <input type="checkbox" id="theme-switch">
+    <label class="switch">
+        <input type="checkbox" id="themeSwitch" onchange="toggleTheme()">
         <span class="slider"></span>
     </label>
-
 </div>
+
+    </div>
 
 </div>

@@ -5,11 +5,13 @@ padding:0;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:#e9e6ff;
-display:flex;
-justify-content:center;
-padding:40px;
+    font-family:'Poppins',sans-serif;
+    background:#e9e6ff;
+
+    margin:0;
+    padding:0;
+
+    display:block;   /* ❌ REMOVE FLEX */
 }
 
  /* Alert Box Style */
@@ -37,13 +39,8 @@ padding:40px;
 /* MAIN CONTAINER */
 
 .mobile-container{
-width:100%;
-max-width:1300px;
-
-background: transparent;   /* 🔥 remove white */
-padding:0;                /* 🔥 remove inner gap */
-border-radius:0;          /* 🔥 remove round box */
-box-shadow:none;  
+    margin-left:240px;   /* 🔥 THIS FIXES OVERLAP */
+    padding:30px;
 }
 
 /* ===============================
@@ -466,11 +463,14 @@ width:90%;
 /* MOBILE HEADER */
 
 .page-header{
-padding:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .page-header h2{
-font-size:16px;
+    text-align:center;
+    flex:1;
 }
 
 .circle-icon,
@@ -594,4 +594,105 @@ body.dark-mode [data-title]::before{
     height:100%;
     border-radius:50%;
     object-fit:cover;
+}
+
+/* ===============================
+   SIDEBAR
+================================ */
+
+.sidebar{
+    width:240px;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+
+    background:#f4f4f8;
+
+    padding:20px 15px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-right:1px solid #eee;
+     z-index:100;
+    overflow-y:auto;
+}
+
+/* LOGO */
+
+.sidebar-logo h2{
+    text-align:center;
+    color:#6c63ff;
+    margin-bottom:25px;
+}
+
+/* MENU */
+
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+/* ITEM */
+
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:14px;
+    border-radius:16px;
+
+    background:#e9e9ef;
+    color:#333;
+
+    text-decoration:none;
+    font-size:14px;
+
+    transition:0.3s;
+}
+
+/* ICON */
+
+.sidebar-menu a span{
+    width:36px;
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+    background:#ffffff80;
+}
+
+/* HOVER */
+
+.sidebar-menu a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* ACTIVE */
+
+.sidebar-menu a.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* THEME */
+
+.theme-toggle{
+    margin-top:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px;
+    border-radius:14px;
+
+    background:#e9e9ef;
 }

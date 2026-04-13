@@ -14,10 +14,6 @@ body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
 
-  display: flex;
-  justify-content: center;   /* horizontal center */
-  align-items: center;       /* vertical center */
-
   margin: 0;
 
   background:
@@ -42,7 +38,6 @@ body {
 .container {
   width: 100%;
   max-width: 850px;
-
   margin: auto;   /* extra safety */
 
   background: rgba(255,255,255,0.75);
@@ -60,6 +55,8 @@ body {
    PAGE WRAPPER
 ========================= */
 .page-wrapper {
+   margin-left:260px;   /* sidebar width */
+    padding-left:40px; 
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -72,11 +69,11 @@ body {
 ========================= */
 .container,
 .card {
+  margin-left:390px;
   width: 100%;
   max-width: 430px;
   min-width: 0;
   position: relative;
-  margin: 0 auto;
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);

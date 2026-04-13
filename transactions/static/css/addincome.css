@@ -39,6 +39,7 @@ body {
 ========================= */
 .container {
   width: 100%;
+  margin-left:280px;
   max-width: 450px;
   position: relative;
   background: rgba(255, 255, 255, 0.72);
