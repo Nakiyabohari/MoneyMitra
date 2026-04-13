@@ -14,20 +14,10 @@
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-<<<<<<< HEAD
-
-  display: flex;
-  justify-content: center;   /* horizontal center */
-  align-items: center;       /* vertical center */
-
-  margin: 0;
-
-=======
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
->>>>>>> c93658500b5ec4dc47c39ebdec299a202efea0b0
   background:
     radial-gradient(circle at 10% 20%, rgba(196,181,253,0.25), transparent 25%),
     radial-gradient(circle at 90% 10%, rgba(216,180,254,0.2), transparent 25%),
@@ -42,19 +32,12 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-<<<<<<< HEAD
-=======
   align-items: center;
->>>>>>> c93658500b5ec4dc47c39ebdec299a202efea0b0
   padding: 20px 12px;
 }
 
 /* =========================
-<<<<<<< HEAD
-   CONTAINER
-=======
    CONTAINER / CARD
->>>>>>> c93658500b5ec4dc47c39ebdec299a202efea0b0
 ========================= */
 .container,
 .card {
