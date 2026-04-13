@@ -9,10 +9,12 @@
 
 /* =========================
    BODY (MAIN CENTERING FIX)
+   BODY
 ========================= */
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
+<<<<<<< HEAD
 
   display: flex;
   justify-content: center;   /* horizontal center */
@@ -20,40 +22,16 @@ body {
 
   margin: 0;
 
+=======
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+>>>>>>> c93658500b5ec4dc47c39ebdec299a202efea0b0
   background:
     radial-gradient(circle at 10% 20%, rgba(196,181,253,0.25), transparent 25%),
     radial-gradient(circle at 90% 10%, rgba(216,180,254,0.2), transparent 25%),
     linear-gradient(135deg, #f9f6ff, #efe7ff);
-}
-
-/* =========================
-   WRAPPER
-========================= */
-.page-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* =========================
-   CONTAINER (CARD)
-========================= */
-.container {
-  width: 100%;
-  max-width: 850px;
-
-  margin: auto;   /* extra safety */
-
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(20px);
-
-  border-radius: 30px;
-  padding: 28px;
-
-  box-shadow:
-    0 30px 70px rgba(109, 40, 217, 0.15),
-    inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
 /* =========================
@@ -64,11 +42,19 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
+=======
+  align-items: center;
+>>>>>>> c93658500b5ec4dc47c39ebdec299a202efea0b0
   padding: 20px 12px;
 }
 
 /* =========================
+<<<<<<< HEAD
    CONTAINER
+=======
+   CONTAINER / CARD
+>>>>>>> c93658500b5ec4dc47c39ebdec299a202efea0b0
 ========================= */
 .container,
 .card {
@@ -188,7 +174,7 @@ body {
 }
 
 /* =========================
-   ANIMATED GRADIENT TITLE
+   TITLE
 ========================= */
 .header h2,
 .header .title {
@@ -231,55 +217,6 @@ body {
 }
 
 /* =========================
-   OPTIONAL AMOUNT PREVIEW
-   works if you add:
-   .amount-card / #displayAmount
-========================= */
-.amount-card {
-  position: relative;
-  margin-bottom: 18px;
-  padding: 18px 18px 16px;
-  border-radius: 22px;
-  background: linear-gradient(135deg, rgba(224, 195, 252, 0.92), rgba(192, 132, 252, 0.95), rgba(139, 92, 246, 0.95));
-  color: #fff;
-  box-shadow:
-    0 16px 34px rgba(139, 92, 246, 0.20),
-    inset 0 1px 0 rgba(255,255,255,0.2);
-  overflow: hidden;
-}
-
-.amount-card::before {
-  content: "";
-  position: absolute;
-  width: 130px;
-  height: 130px;
-  right: -38px;
-  top: -42px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.14);
-}
-
-.amount-card small {
-  display: block;
-  font-size: 0.88rem;
-  font-weight: 500;
-  margin-bottom: 8px;
-  opacity: 0.95;
-  position: relative;
-  z-index: 1;
-}
-
-.amount-card h1,
-#displayAmount {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.8px;
-  position: relative;
-  z-index: 1;
-}
-
-/* =========================
    FORM
 ========================= */
 form {
@@ -298,7 +235,7 @@ label {
 }
 
 /* =========================
-   FLOATING GLASS INPUTS
+   BASE INPUTS
 ========================= */
 input,
 select,
@@ -307,7 +244,7 @@ textarea {
   min-width: 0;
   padding: 14px 16px;
   border-radius: 18px;
-  border: 1.5px solid rgba(221, 214, 254, 0.96);
+  border: none;
   background: rgba(255, 255, 255, 0.42);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -321,7 +258,6 @@ textarea {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
-    border-color 0.25s ease,
     background 0.25s ease;
 }
 
@@ -333,22 +269,15 @@ textarea::placeholder {
 input:hover,
 select:hover,
 textarea:hover {
-  transform: translateY(-1px);
-  border-color: #c4b5fd;
-  box-shadow:
-    0 12px 22px rgba(139, 92, 246, 0.07),
-    inset 0 1px 0 rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  transform: translateY(-2px);
-  border-color: #a855f7;
   background: rgba(255, 255, 255, 0.68);
   box-shadow:
-    0 0 0 5px rgba(168, 85, 247, 0.12),
-    0 14px 26px rgba(168, 85, 247, 0.09),
+    0 12px 24px rgba(168, 85, 247, 0.08),
     inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
@@ -356,6 +285,9 @@ textarea {
   resize: none;
 }
 
+/* =========================
+   SELECT
+========================= */
 select {
   cursor: pointer;
   appearance: none;
@@ -377,25 +309,136 @@ input[type="date"] {
 }
 
 /* =========================
-   WRAPPERS
+   SHARED FIELD WRAPPER EFFECT
 ========================= */
-#categoryWrapper,
-#sourceWrapper {
+.input-box,
+.input-icon-wrap,
+.category-wrapper,
+.date-box {
   width: 100%;
+  border-radius: 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* SAME HOVER EFFECT FOR ALL */
+.input-box:hover,
+.input-icon-wrap:hover,
+.category-wrapper:hover,
+.date-box:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(139, 92, 246, 0.06);
+}
+
+/* SAME FOCUS EFFECT FOR ALL */
+.input-box:focus-within,
+.input-icon-wrap:focus-within,
+.category-wrapper:focus-within,
+.date-box:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(139, 92, 246, 0.10);
+}
+
+/* =========================
+   INPUT BOX / FIELD INNER CLEANUP
+========================= */
+.input-box input,
+.input-box select,
+.input-box textarea,
+.field,
+.field input,
+.field select {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 15px;
+  color: #333;
+  box-shadow: none;
+}
+
+/* =========================
+   CATEGORY WRAPPER
+========================= */
+.category-wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-#categoryWrapper select,
-#categoryWrapper input,
-#sourceWrapper select,
-#sourceWrapper input {
-  width: 100%;
+/* =========================
+   AMOUNT ICON FIELD
+========================= */
+.input-icon-wrap {
+  position: relative;
+}
+
+.input-icon-wrap .left-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.05rem;
+  color: #8b5cf6;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.input-icon-wrap input {
+  padding-left: 48px !important;
 }
 
 /* =========================
-   PREMIUM BUTTON
+   DATE BOX
+========================= */
+.date-box {
+  position: relative;
+}
+
+.date-box .icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0;
+  font-size: 18px;
+  color: #6c4ccf;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.date-box input[type="date"] {
+  width: 100%;
+  padding-left: 50px !important;
+  padding-right: 42px !important;
+  position: relative;
+  z-index: 1;
+  color: #333;
+}
+
+.date-box input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 14px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.date-box input[type="date"]::-moz-focus-inner {
+  border: 0;
+}
+
+/* =========================
+   ICON
+========================= */
+.icon {
+  margin-right: 10px;
+  color: #6c4ccf;
+  font-size: 16px;
+}
+
+/* =========================
+   BUTTON
 ========================= */
 button {
   position: relative;
@@ -524,11 +567,6 @@ button:active::after {
     padding-right: 42px;
   }
 
-  .amount-card h1,
-  #displayAmount {
-    font-size: 2.4rem;
-  }
-
   form {
     gap: 14px;
   }
@@ -596,9 +634,28 @@ button:active::after {
     font-size: 1rem;
   }
 
+  .input-box,
+  .field {
+    width: 100%;
+  }
+
   button {
     max-width: 290px;
     padding: 16px 20px;
+    margin: 20px auto 0 auto;
+    display: block;
+  }
+
+  body {
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .card {
+    max-width: 900px;
+    padding: 35px 40px;
+    border-radius: 20px;
   }
 }
 
@@ -609,6 +666,10 @@ button:active::after {
   .container,
   .card {
     max-width: 1080px;
+  }
+
+  .card {
+    max-width: 1000px;
   }
 }
 
@@ -629,233 +690,54 @@ button:active::after {
 }
 
 
+/* APPLY SAME EFFECT TO ALL FIELD WRAPPERS */
 
-.input-icon-wrap {
-  position: relative;
+.date-box:hover,
+#categoryWrapper:hover,
+#sourceWrapper:hover {
+  background:#e7dbff;
+}
+
+.date-box:focus-within,
+#categoryWrapper:focus-within,
+#sourceWrapper:focus-within {
+  border:1px solid #b892ff;
+  box-shadow:0 0 0 3px #d1baff40;
+  background:#ffffff;
+}
+
+
+/* SAME VISIBLE HOVER EFFECT FOR ALL FIELDS */
+.input-box,
+.input-icon-wrap,
+.category-wrapper,
+.date-box {
   width: 100%;
+  border-radius: 18px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
-
-.input-icon-wrap .left-icon {
-  position: absolute;
-  left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.05rem;
-  color: #8b5cf6;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.input-icon-wrap input {
-  padding-left: 48px !important;
-}
-
-.input-icon-wrap input[type="date"] {
-  padding-left: 48px !important;
-}
-
-
-
-
-
-
-/* Hover */
 
 .input-box:hover,
-.field:hover{
-background:#e7dbff;
+.input-icon-wrap:hover,
+.category-wrapper:hover,
+.date-box:hover {
+  transform: translateY(-1px);
+  background: #e7dbff;
+  box-shadow:
+    0 12px 22px rgba(139, 92, 246, 0.07),
+    inset 0 1px 0 rgba(255,255,255,0.5);
 }
-
-
-/* Focus */
 
 .input-box:focus-within,
-.field:focus-within{
-border:1px solid #b892ff;
-box-shadow:0 0 0 3px #d1baff40;
-background:#ffffff;
+.input-icon-wrap:focus-within,
+.category-wrapper:focus-within,
+.date-box:focus-within {
+  transform: translateY(-2px);
+  background: #ffffff;
+  box-shadow:
+    0 0 0 3px #d1baff40,
+    0 12px 24px rgba(139, 92, 246, 0.10);
 }
-
-
-/* Inputs */
-
-.input-box input,
-.input-box select,
-.input-box textarea,
-.field input,
-.field select{
-border:none;
-outline:none;
-background:transparent;
-width:100%;
-font-size:15px;
-color:#333;
-}
-
-
-/* Select */
-
-select{
-appearance:none;
-cursor:pointer;
-}
-
-
-/* Textarea */
-
-.input-box textarea{
-resize:none;
-height:65px;
-}
-
-
-/* Icons */
-
-.icon{
-margin-right:10px;
-color:#6c4ccf;
-font-size:16px;
-}
-
-
-/* Button */
-
-button{
-width:100%;
-margin-top:26px;
-padding:15px;
-border:none;
-border-radius:14px;
-background:linear-gradient(90deg,#c5a8ff,#b892ff);
-color:white;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-transition:all 0.25s ease;
-box-shadow:0 6px 14px rgba(0,0,0,0.1);
-}
-
-button:hover{
-transform:translateY(-3px);
-box-shadow:0 14px 28px rgba(0,0,0,0.18);
-}
-
-button:active{
-transform:scale(0.97);
-box-shadow:0 6px 14px rgba(0,0,0,0.1);
-}
-
-
-/* Hidden class */
-
-.hidden{
-display:none;
-}
-
-
-/* Custom category input */
-
-#categoryInputBox{
-margin-top:10px;
-width:100%;
-}
-
-
-/* Tablet */
-
-@media(min-width:768px){
-
-.card{
-max-width:650px;
-padding:30px;
-border-radius:18px;
-}
-
-}
-
-
-/* Desktop */
-
-@media(min-width:1024px){
-
-body{
-align-items:flex-start;
-padding-top:40px;
-padding-bottom:40px;
-}
-
-.card{
-max-width:900px;
-padding:35px 40px;
-border-radius:20px;
-}
-
-.input-box,
-.field{
-width:100%;
-}
-
-button{
-width:260px;
-margin:20px auto 0 auto;
-display:block;
-}
-}
-
-.input-box {
-    cursor: pointer;
-}
-
-/* Large Desktop */
-
-@media(min-width:1400px){
-
-.card{
-max-width:1000px;
-}
-
-}
-
-/* DATE INPUT ICON INSIDE */
-.date-box{
-  position: relative;
-  width: 100%;
-}
-
-.date-box .icon{
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-right: 0;
-  font-size: 18px;
-  color: #6c4ccf;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.date-box input[type="date"]{
-  width: 100%;
-  padding-left: 50px !important;
-  padding-right: 42px !important;
-  position: relative;
-  z-index: 1;
-  background: rgba(255,255,255,0.42);
-  color: #333;
-}
-
-/* keep browser calendar clickable but hide its visible icon */
-.date-box input[type="date"]::-webkit-calendar-picker-indicator{
-  opacity: 0;
-  position: absolute;
-  right: 14px;
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-}
-
-/* firefox consistency */
-.date-box input[type="date"]::-moz-focus-inner{
-  border: 0;
-}
-
