@@ -26,7 +26,8 @@
 }
 
 .sidebar-logo img{
-    width:35px;
+    width:50px;      /* increase size */
+    height:auto;
 }
 
 .sidebar-logo h2{
