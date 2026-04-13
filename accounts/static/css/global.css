@@ -1,0 +1,57 @@
+/* ===============================
+   GLOBAL RESET + VARIABLES
+================================ */
+
+:root{
+    --primary:#6C5CE7;
+    --primary-dark:#5a52e0;
+    --primary-light:#ECEAFF;
+    --dark:#2D1E5F;
+    --gray:#777;
+    --bg:#f2f2f7;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY DEFAULT */
+body{
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+}
+
+/* HEADINGS */
+h1,h2,h3,h4,h5{
+    font-weight:600;
+}
+
+/* LINKS */
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* COMMON BUTTON */
+.btn{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(90deg,var(--primary),var(--primary-dark));
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(108,99,255,0.3);
+}

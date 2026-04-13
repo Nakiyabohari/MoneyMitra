@@ -1,0 +1,179 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+    font-family:'Poppins',sans-serif;
+}
+
+
+/* ================= MAIN WRAPPER ================= */
+
+body.dark-mode .main-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+
+/* ================= LOGIN CARD ================= */
+
+body.dark-mode .login-container{
+    background:#12122a;
+    padding:40px;
+    border-radius:25px;
+    width:360px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+
+    transition:0.3s;
+}
+
+body.dark-mode .login-container:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.75),
+        0 0 30px rgba(108,99,255,0.45);
+}
+
+
+/* ================= TITLE ================= */
+
+body.dark-mode .login-container h1{
+    color:white;
+    margin-bottom:5px;
+}
+
+body.dark-mode .subtitle{
+    color:#8a8aff;
+    margin-bottom:25px;
+}
+
+
+/* ================= LABEL ================= */
+
+body.dark-mode label{
+    color:#cfcfff;
+    font-weight:500;
+}
+
+
+/* ================= INPUT BOX ================= */
+
+body.dark-mode .input-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:#1a1a2e;
+    border-radius:14px;
+    padding:12px 14px;
+    margin-bottom:18px;
+
+    box-shadow:
+        inset 0 0 6px rgba(108,99,255,0.15),
+        0 5px 12px rgba(0,0,0,0.6);
+
+    transition:0.25s;
+}
+
+body.dark-mode .input-box:hover{
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.35),
+        inset 0 0 8px rgba(108,99,255,0.25);
+}
+
+body.dark-mode .input-box:focus-within{
+    box-shadow:
+        0 0 16px rgba(108,99,255,0.6),
+        inset 0 0 10px rgba(108,99,255,0.3);
+}
+
+
+/* ================= INPUT ================= */
+
+body.dark-mode input{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+    font-size:14px;
+    width:100%;
+}
+
+body.dark-mode input::placeholder{
+    color:#8a8aff;
+}
+
+
+/* ================= ICON ================= */
+
+body.dark-mode .input-box i{
+    color:#8a8aff;
+}
+
+
+/* ================= LOGIN BUTTON ================= */
+
+body.dark-mode .login-btn{
+    width:100%;
+    padding:14px;
+
+    border:none;
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#6c63ff,#9b8cff);
+    color:white;
+    font-weight:600;
+    font-size:15px;
+
+    cursor:pointer;
+    transition:0.25s;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 12px rgba(108,99,255,0.4);
+}
+
+body.dark-mode .login-btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.7),
+        0 0 18px rgba(108,99,255,0.6);
+}
+
+
+/* ================= SIGNUP TEXT ================= */
+
+body.dark-mode .signup-text{
+    margin-top:18px;
+    color:#cfcfff;
+    text-align:center;
+}
+
+body.dark-mode .signup-text a{
+    color:#6c63ff;
+    font-weight:500;
+}
+
+body.dark-mode .signup-text a:hover{
+    text-decoration:underline;
+}
+
+/* REMOVE CHROME AUTOFILL WHITE BACKGROUND */
+
+body.dark-mode input:-webkit-autofill,
+body.dark-mode input:-webkit-autofill:hover,
+body.dark-mode input:-webkit-autofill:focus,
+body.dark-mode input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}

@@ -1,0 +1,277 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+    font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+
+/* ================= MAIN CARD ================= */
+
+body.dark-mode .card{
+    background:#12122a;
+    padding:30px;
+    border-radius:25px;
+    max-width:700px;
+    margin:60px auto;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+body.dark-mode .title{
+    font-size:22px;
+    font-weight:600;
+}
+
+
+/* ================= BACK BUTTON ================= */
+
+body.dark-mode .back-btn{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:#1a1a2e;
+    color:#6c63ff;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+    cursor:pointer;
+    transition:0.25s;
+}
+
+body.dark-mode .back-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 15px rgba(108,99,255,0.6);
+}
+
+
+/* ================= LABEL ================= */
+
+body.dark-mode label{
+    color:#cfcfff;
+    font-weight:500;
+}
+
+
+/* ================= INPUT BOX ================= */
+
+body.dark-mode .input-box{
+    display:flex;
+    align-items:center;
+
+    background:#1a1a2e;
+    border-radius:14px;
+    padding:12px 14px;
+    margin-bottom:18px;
+
+    box-shadow:
+        inset 0 0 6px rgba(108,99,255,0.15),
+        0 5px 12px rgba(0,0,0,0.6);
+
+    transition:0.25s;
+}
+
+body.dark-mode .input-box:hover{
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.35),
+        inset 0 0 8px rgba(108,99,255,0.2);
+}
+
+
+/* ================= INPUT ================= */
+
+body.dark-mode input,
+body.dark-mode select{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+    font-size:15px;
+    width:100%;
+}
+
+body.dark-mode input::placeholder{
+    color:#8a8aff;
+}
+
+
+/* ================= ICON ================= */
+
+body.dark-mode .icon{
+    margin-right:10px;
+    color:#8a8aff;
+}
+
+
+/* ================= BUTTON ================= */
+
+body.dark-mode button{
+    width:220px;
+    margin:20px auto 0;
+    display:block;
+
+    padding:12px;
+    border:none;
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#6c63ff,#9b8cff);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:0.25s;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 12px rgba(108,99,255,0.4);
+}
+
+body.dark-mode button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.7),
+        0 0 18px rgba(108,99,255,0.6);
+}
+
+
+/* ================= SELECT FIELD ================= */
+
+body.dark-mode .field{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:none;
+    background:#1a1a2e;
+    color:white;
+
+    box-shadow:
+        inset 0 0 6px rgba(108,99,255,0.15),
+        0 5px 10px rgba(0,0,0,0.6);
+}
+
+
+/* ================= MESSAGES ================= */
+
+body.dark-mode .message-success{
+    background:#1b3d2b;
+    color:#7dffb0;
+}
+
+body.dark-mode .message-error{
+    background:#3b1f1f;
+    color:#ff8080;
+}
+
+
+/* ================= DATE ICON WHITE ================= */
+
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(1);   /* makes icon white */
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+
+/* ================= DATE ICON HOVER ================= */
+
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator:hover{
+    filter: invert(1) drop-shadow(0 0 6px rgba(108,99,255,0.7));
+}
+/* ================= CARD HOVER EFFECT ================= */
+
+body.dark-mode .card{
+    transition: all 0.25s ease;
+}
+
+body.dark-mode .card:hover{
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.75),
+        0 0 25px rgba(108,99,255,0.45);
+}
+
+/* ================= INPUT BOX HOVER ================= */
+
+body.dark-mode .input-box{
+    transition: all 0.25s ease;
+}
+
+body.dark-mode .input-box:hover{
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 14px rgba(108,99,255,0.45),
+        0 8px 18px rgba(0,0,0,0.6);
+}
+
+
+/* ================= INPUT FOCUS EFFECT ================= */
+
+body.dark-mode .input-box:focus-within{
+    box-shadow:
+        0 0 16px rgba(108,99,255,0.65),
+        0 8px 18px rgba(0,0,0,0.6);
+}
+
+/* CATEGORY SELECT HOVER */
+
+body.dark-mode .field{
+    transition: all 0.25s ease;
+}
+
+body.dark-mode .field:hover{
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 14px rgba(108,99,255,0.45),
+        0 8px 18px rgba(0,0,0,0.6);
+}
+
+body.dark-mode .field:focus{
+    box-shadow:
+        0 0 18px rgba(108,99,255,0.65),
+        0 8px 18px rgba(0,0,0,0.6);
+}
+/* ================= SELECT DROPDOWN FIX ================= */
+
+body.dark-mode select{
+    background-color: #1a1a2e;
+    color: white;
+}
+
+/* Dropdown options */
+body.dark-mode select option{
+    background-color: #1a1a2e;
+    color: white;
+}
+
+/* When option is selected */
+body.dark-mode select option:checked{
+    background-color: #6c63ff;
+    color: white;
+}
+
+/* Hover effect (limited support) */
+body.dark-mode select option:hover{
+    background-color: #2a2a4a;
+}

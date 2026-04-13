@@ -1,0 +1,345 @@
+/* ================= GLOBAL DARK MODE ================= */
+
+body.dark-mode{
+    background:#0f0f1a;
+    color:white;
+}
+
+/* ================= MAIN CONTAINER ================= */
+
+body.dark-mode .main-wrapper,
+body.dark-mode .container{
+    background:#0f0f1a;
+}
+
+/* ================= MAIN CARD ================= */
+
+body.dark-mode .main-card{
+    background:#12122a;
+    box-shadow:0 0 30px rgba(108,99,255,0.35);
+    border-radius:25px;
+}
+
+/* ================= HEADINGS ================= */
+
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4{
+    color:white;
+}
+
+/* ================= BALANCE CARD ================= */
+
+body.dark-mode .balance-card{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+    box-shadow:0 0 25px rgba(108,99,255,0.7);
+}
+
+/* ================= INVESTMENT CARDS ================= */
+
+body.dark-mode .invest-card{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.25);
+}
+
+body.dark-mode .invest-card.active{
+    border:1px solid #6c63ff;
+    box-shadow:0 0 20px rgba(108,99,255,0.6);
+}
+
+/* ================= SUGGESTION BUTTONS ================= */
+
+body.dark-mode .suggest-btn{
+    background:#1a1a2e;
+    color:white;
+    border:1px solid rgba(108,99,255,0.35);
+    transition:all 0.3s ease;
+}
+
+/* REMOVE default glow */
+body.dark-mode .suggest-btn.active{
+    background:#1a1a2e;
+    box-shadow:none;
+}
+
+/* glow only on hover */
+
+body.dark-mode .suggest-btn:hover{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.7),
+        0 0 20px rgba(108,99,255,0.6),
+        0 0 35px rgba(108,99,255,0.4);
+    transform:translateY(-3px);
+}
+/* ================= INPUT AREA ================= */
+
+body.dark-mode input{
+    background:#1a1a2e;
+    color:white;
+    border:1px solid rgba(108,99,255,0.3);
+}
+
+body.dark-mode input::placeholder{
+    color:#9a9aff;
+}
+
+body.dark-mode input:focus{
+    border:1px solid #6c63ff;
+    box-shadow:0 0 10px rgba(108,99,255,0.7);
+}
+
+/* ================= AMOUNT CARD ================= */
+
+body.dark-mode .amount-card{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 12px rgba(108,99,255,0.25);
+}
+
+/* ================= BUTTONS ================= */
+
+body.dark-mode .btn{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+    box-shadow:0 0 15px rgba(108,99,255,0.7);
+}
+
+body.dark-mode .btn:hover{
+    box-shadow:0 0 25px rgba(108,99,255,1);
+}
+
+body.dark-mode .outline-btn{
+    background:#1a1a2e;
+    color:white;
+    border:1px solid rgba(108,99,255,0.4);
+}
+
+/* ================= HEADER ICONS ================= */
+
+body.dark-mode .circle-icon,
+body.dark-mode .menu-circle,
+body.dark-mode .back-btn{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+
+/* ================= AI CHAT PANEL ================= */
+
+body.dark-mode .right-section{
+    background:#12122a;
+    color:white;
+}
+
+body.dark-mode .bot-card{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.25);
+}
+
+body.dark-mode .mitra-input-area input{
+    background:#1a1a2e;
+}
+
+/* ================= TABLE PAGE ================= */
+
+body.dark-mode table{
+    background:#12122a;
+    color:white;
+    border-collapse:collapse;
+    box-shadow:0 0 20px rgba(108,99,255,0.3);
+}
+
+body.dark-mode th{
+    background:#1a1a2e;
+    color:#8a8aff;
+}
+
+body.dark-mode td{
+    border-bottom:1px solid rgba(108,99,255,0.2);
+}
+
+body.dark-mode tr:hover{
+    background:#1a1a2e;
+}
+
+/* ================= CHAT INPUT DARK ================= */
+
+body.dark-mode .mitra-input-area{
+    background:#12122a;
+    border-top:1px solid rgba(108,99,255,0.2);
+}
+
+body.dark-mode .mitra-input-area input{
+    background:#1a1a2e;
+    color:white;
+    border:none;
+}
+
+body.dark-mode .mitra-input-area button{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+}
+
+/* ================= HEADER DARK ================= */
+
+body.dark-mode .page-header{
+    background:#1a1a2e;
+    color:white;
+    box-shadow:0 0 20px rgba(108,99,255,0.3);
+}
+
+body.dark-mode .page-header h2{
+    color:white;
+}
+
+/* back button */
+
+body.dark-mode .back-btn{
+    background:#23234a;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+/* ===== BACK ARROW WHITE ===== */
+
+body.dark-mode .back-btn svg{
+    stroke:white;
+}
+/* header icons */
+
+body.dark-mode .circle-icon,
+body.dark-mode .menu-circle{
+    background:#23234a;
+    color:white;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+}
+
+/* ================= AI PANEL FIX ================= */
+
+body.dark-mode .right-section{
+    background:#12122a;
+    box-shadow:0 0 20px rgba(108,99,255,0.25);
+}
+
+/* AI title */
+
+body.dark-mode .ai-title h3{
+    color:white;
+}
+
+body.dark-mode .ai-status{
+    color:#8a8aff;
+}
+
+/* divider line */
+
+body.dark-mode hr{
+    border-color:rgba(108,99,255,0.2);
+}
+
+/* AI intro */
+
+body.dark-mode .ai-intro h3{
+    color:white;
+}
+
+body.dark-mode .ai-intro p{
+    color:#cfcfff;
+}
+
+/* bot message */
+
+body.dark-mode .bot-card{
+    background:#1a1a2e;
+    color:white;
+    border:1px solid rgba(108,99,255,0.2);
+}
+
+/* chat input */
+
+body.dark-mode #chatInput{
+    background:#1a1a2e;
+    color:white;
+}
+
+body.dark-mode #chatInput::placeholder{
+    color:#9a9aff;
+}
+
+/* ===== INVEST CARD HOVER GLOW ===== */
+
+body.dark-mode .invest-card{
+    border:1px solid rgba(108,99,255,0.4);
+    transition:all 0.3s ease;
+}
+
+body.dark-mode .invest-card:hover{
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.7),
+        0 0 20px rgba(108,99,255,0.5),
+        0 0 35px rgba(108,99,255,0.4);
+    transform:translateY(-3px);
+}
+
+/* ================= TOOLTIP DARK ================= */
+
+body.dark-mode [data-title]{
+    position:relative;
+}
+
+/* TEXT */
+body.dark-mode [data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:125%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    background:#12122a;
+    color:#ffffff;
+
+    padding:12px 22px;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6),
+        0 12px 28px rgba(0,0,0,0.7);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+}
+
+/* ARROW */
+body.dark-mode [data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    border-width:8px;
+    border-style:solid;
+
+    border-color:transparent transparent #12122a transparent;
+
+    opacity:0;
+    transition:all 0.25s ease;
+}
+
+/* SHOW */
+body.dark-mode [data-title]:hover::after,
+body.dark-mode [data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(6px) scale(1);
+}

@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Income</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dark/income.css' %}">
+    <link rel="stylesheet" href="{% static 'css/income.css' %}">
+</head>
+
+<body>
+
+    
+
+<div class="page-wrapper">
+    <div class="app-card">
+
+        <a href="javascript:history.back()" class="back-circle">←</a>
+
+        <h1>Enter your monthly income</h1>
+
+        <p class="subtitle">
+            This helps us track your expenses and suggest savings
+        </p>        
+
+        <form method="POST" action="{% url 'income' %}">
+    {% csrf_token %}
+
+    <!-- SALARY CARD -->
+    <div class="salary-card">
+
+        <label>Monthly Salary</label>
+
+        <div class="salary-box">
+            <span class="rupee">₹</span>
+
+            <input 
+                type="number"
+                name="salary"
+                class="salary-input"
+                value="{{ income.salary|default:0 }}"
+                required
+            >
+        </div>
+
+    </div>
+
+    <!-- INFO BOX -->
+    <div class="info-box">
+        <span class="info-icon">i</span>
+        <p>
+            Your income information is stored securely and used only to calculate your budget
+        </p>
+    </div>
+
+    <!-- BUTTON -->
+    <button type="submit" class="add-income-btn">
+        Add Income
+    </button>
+
+</form>
+
+            
+
+        </form>
+
+    </div>
+</div>
+<script src="{% static 'js/menu.js' %}"></script>
+</body>
+</html>

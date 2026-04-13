@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Details</title>
+
+    <link rel="stylesheet" href="{% static 'css/investment_details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dark3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/idetails.css'%}">
+
+</head>
+
+<body>
+    {% include "menu.html" %}
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="page-header">
+        <h2>Investment Details</h2>
+
+        <div class="header-icons">
+            <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+            <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
+            <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+
+                {% if profile.profile_photo %}
+                    <img src="{{ profile.profile_photo.url }}">
+                {% else %}
+                    👤
+                {% endif %}
+
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+<div class="summary-cards">
+
+    <div class="card">
+        <p>Total Investment</p>
+        <h3>₹{{ total_amount }}</h3>
+    </div>
+
+    <div class="card">
+        <p>ETFs</p>
+        <h3>₹{{ etf_amount }}</h3>
+    </div>
+
+    <div class="card">
+        <p>Mutual Funds</p>
+        <h3>₹{{ mf_amount }}</h3>
+    </div>
+
+</div>
+
+<!-- PROGRESS BARS -->
+<div class="progress-section">
+    <h4 class="section-title">Portfolio Distribution</h4>
+
+    <div class="progress-item">
+        <div class="progress-header">
+            <span>ETFs ({{ etf_percent }}%)</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill etf" style="width: {{ etf_percent }}%"></div>
+        </div>
+    </div>
+
+    <div class="progress-item">
+        <div class="progress-header">
+            <span>Mutual Funds ({{ mf_percent }}%)</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill mf" style="width: {{ mf_percent }}%"></div>
+        </div>
+    </div>
+
+</div>
+
+    <p class="insight">
+{% if etf_percent > mf_percent %}
+📊 Most of your investment is in ETFs ({{ etf_percent }}%). Consider balancing your portfolio.
+{% elif mf_percent > etf_percent %}
+📊 Most of your investment is in Mutual Funds ({{ mf_percent }}%). Consider balancing your portfolio.
+{% else %}
+📊 Your investment is equally distributed between ETFs and Mutual Funds.
+{% endif %}
+{% if etf_percent > 70 or mf_percent > 70 %}
+⚠️ Your investment is heavily concentrated. Consider diversification.
+{% endif %}
+</p>
+
+    <!-- TABLE WRAPPER (IMPORTANT) -->
+    <div class="table-wrapper">
+
+        <table>
+
+            <tr>
+                <th>Investment Type</th>
+                <th>Monthly Amount</th>
+                <th>Created</th>
+                <th>Last Updated</th>
+            </tr>
+
+            {% for inv in investments %}
+
+            <tr>
+                <td>{{ inv.investment_type }}</td>
+                <td>₹{{ inv.monthly_amount }}</td>
+                <td>{{ inv.created_at|date:"d M Y" }}</td>
+                <td>{{ inv.updated_at|date:"d M Y" }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+<script src="{% static 'js/menu.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* ================= ADD TRANSACTION DARK MODE ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+}
+
+/* overlay */
+
+body.dark-mode .page-overlay{
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(3px);
+}
+
+/* bottom sheet */
+
+body.dark-mode .bottom-sheet{
+    background:#12122a;
+    border-radius:28px 28px 0 0;
+
+    box-shadow:
+        0 -10px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+/* drag line */
+
+body.dark-mode .drag-line{
+    background:#3a3a60;
+}
+
+/* title */
+
+body.dark-mode .sheet-title{
+    color:white;
+}
+
+/* option cards */
+
+body.dark-mode .option-card{
+    background:#1a1a2e;
+    border-radius:18px;
+
+    transition:0.25s;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.6),
+        inset 0 0 10px rgba(108,99,255,0.15);
+}
+
+/* hover glow */
+
+body.dark-mode .option-card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.7),
+        0 0 20px rgba(108,99,255,0.45);
+}
+
+/* icons */
+
+body.dark-mode .option-icon{
+    font-size:26px;
+}
+
+/* text */
+
+body.dark-mode .option-text{
+    color:#b3b3ff;
+}
+
+/* floating button */
+
+body.dark-mode .floating-button{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 18px rgba(108,99,255,0.7);
+}
+
+/* floating button hover */
+
+body.dark-mode .floating-button:hover{
+    transform:scale(1.05);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,1);
+}

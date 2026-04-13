@@ -1,0 +1,456 @@
+/* =========================================
+   VARIABLES
+========================================= */
+
+:root {
+    --primary: #6C5CE7;
+    --secondary: #7E6BFF;
+    --primary-light: #ECEAFF;
+    --bg-soft: #f8f7ff;
+}
+
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #f6f4ff, #eceaff);
+}
+
+/* =========================================
+   CENTER WRAPPER
+========================================= */
+
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+/* =========================================
+   MAIN CARD (DESKTOP)
+========================================= */
+
+.main-card {
+    width: 100%;
+    max-width: 1300px;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 40px;
+    padding: 25px;
+    align-items: stretch;
+}
+
+/* =========================================
+   LEFT SECTION
+========================================= */
+
+.left-section {
+    flex: 1.2;
+    padding: 50px;
+    background: #ffffff;
+    border-radius: 24px;
+}
+
+/* =========================================
+   RIGHT SECTION (AI DESKTOP)
+========================================= */
+
+.right-section {
+    flex: 1;
+    background: var(--bg-soft);
+    padding: 40px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+}
+
+/* =========================================
+   AI HEADER
+========================================= */
+
+.mitra-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 15px 35px rgba(108,92,231,0.3);
+    position: relative;
+}
+
+.close-chat {
+    display: none;
+}
+
+/* =========================================
+   CHAT AREA
+========================================= */
+
+.mitra-chatbox {
+    flex: 1;
+    margin: 25px 0;
+    overflow-y: auto;
+}
+
+.chat-bubble {
+    padding: 14px 18px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    max-width: 75%;
+    font-size: 14px;
+}
+
+.chat-user {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    margin-left: auto;
+}
+
+.chat-bot {
+    background: white;
+    border: 1px solid #eee;
+}
+
+/* =========================================
+   CHAT INPUT AREA
+========================================= */
+
+.mitra-input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.mitra-input-area input {
+    flex: 1;
+    padding: 14px;
+    border-radius: 14px;
+    border: 2px solid #ddd;
+}
+
+.mitra-input-area input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.mitra-input-area button {
+    padding: 14px 20px;
+    border-radius: 14px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =========================================
+   INVESTMENT CARDS
+========================================= */
+
+.investment-types {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.invest-card {
+    flex: 1;
+    padding: 24px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    background: #fafafa;
+    transition: 0.3s;
+}
+
+.invest-card:hover {
+    transform: translateY(-3px);
+}
+
+.invest-card.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+}
+
+/* =========================================
+   AMOUNT CARD
+========================================= */
+
+.amount-card {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    background: #fff;
+}
+
+.amount-input input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: 2px solid #ddd;
+    font-size: 16px;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn, .outline-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 40px;
+    margin-top: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+}
+
+.outline-btn {
+    background: white;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+/* =========================================
+   MOBILE STYLES
+========================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        background: #e9e6ff;
+    }
+
+    .main-wrapper {
+        display: block;
+        padding: 20px 14px;
+    }
+
+    .main-card {
+        display: block;
+        border-radius: 30px;
+        padding: 18px;
+        background: #f4f2ff;
+        box-shadow: none;
+    }
+
+    .left-section {
+        padding: 22px;
+        border-radius: 24px;
+    }
+
+    .investment-types {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    /* FULL SCREEN CHAT */
+    .right-section {
+        position: fixed;
+        inset: 0;
+        background: #f8f7ff;
+        z-index: 9999;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(100%);
+        transition: all 0.35s ease;
+    }
+
+    .right-section.show-chat {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .mitra-header {
+        position: sticky;
+        top: 0;
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .close-chat {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 18px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .mitra-chat
+    box {
+        flex: 1;
+        overflow-y: auto;
+        margin: 20px 0;
+    }
+
+    .mitra-input-area {
+        position: sticky;
+        bottom: 0;
+        background: #f8f7ff;
+        padding-top: 10px;
+    }
+}
+.profile-icon img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+}
+/* =========================================
+   FINAL SIDEBAR (CLEAN + FIXED)
+========================================= */
+
+/* FIX MAIN LAYOUT */
+.main-card {
+    display: flex;
+    gap: 25px;
+    overflow: visible;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    height: calc(100vh - 60px);
+
+    background: #f3f1ff;
+    border-radius: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 14px;
+    overflow-y: auto;
+}
+
+/* SCROLLBAR */
+.sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+/* LOGO */
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.sidebar-logo img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar-logo h2 {
+    font-size: 18px;
+    color: var(--primary);
+}
+
+/* MENU ITEMS */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 14px;
+    margin-top: 8px;
+
+    border-radius: 16px;
+    background: #e9e7ff;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-item:first-of-type {
+    margin-top: 0;
+}
+
+.menu-item:hover {
+    background: #dedbff;
+}
+
+.menu-item.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+}
+
+/* THEME BUTTON */
+.theme-toggle {
+    margin-top: auto;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px;
+    border-radius: 16px;
+    background: #e9e7ff;
+}
+
+/* TOGGLE */
+.toggle-btn {
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 50px;
+    position: relative;
+}
+
+.toggle-btn::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: orange;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    transition: 0.3s;
+}
+
+.toggle-btn.active {
+    background: var(--primary);
+}
+
+.toggle-btn.active::after {
+    left: 20px;
+}
+
+/* prevent parent cutting */
+.main-card {
+    height: auto;
+    overflow: visible;
+}

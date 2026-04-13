@@ -1,0 +1,198 @@
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:#ffffff;
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-right:1px solid #eee;
+    overflow-y:auto;
+}
+
+/* LOGO */
+.sidebar-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.sidebar-logo img{
+    width:35px;
+}
+
+.sidebar-logo h2{
+    font-size:20px;
+    color:#6c63ff;
+    font-weight:700;
+}
+
+/* MENU */
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+/* MENU ITEM */
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:#e9e6f2;
+    padding:12px 14px;
+    border-radius:14px;
+
+    text-decoration:none;
+    color:#3b3b6d;
+    font-size:14px;
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+/* ICON */
+.sidebar-menu a span{
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+}
+
+/* HOVER */
+.sidebar-menu a:hover{
+    transform:translateY(-3px);
+    background:#dedbfb;
+}
+
+/* ACTIVE */
+.sidebar-menu a.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* TEXT FIX */
+.sidebar-menu a p{
+    margin:0;
+}
+
+/* ================= THEME ================= */
+
+.theme-toggle{
+    margin-top:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#e9e6f2;
+    padding:12px 14px;
+    border-radius:14px;
+}
+
+.theme-toggle:hover{
+    background:#dedbfb;
+}
+
+.theme-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.theme-left p{
+    margin:0;
+}
+
+.switch{
+    flex-shrink:0;
+}
+
+/* ================= LAYOUT SHIFT ================= */
+
+.main-layout{
+    display:flex;
+}
+
+.app-container{
+    margin-left:260px;
+    width:calc(100% - 260px);
+}
+
+/* ===== SWITCH (MODERN TOGGLE) ===== */
+
+.switch{
+    position:relative;
+    display:inline-block;
+    width:46px;
+    height:24px;
+}
+
+/* hide checkbox */
+.switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+/* background */
+.slider{
+    position:absolute;
+    cursor:pointer;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    background:#d1d1d1;
+    border-radius:30px;
+
+    transition:0.3s;
+}
+
+/* circle */
+.slider:before{
+    position:absolute;
+    content:"";
+
+    height:18px;
+    width:18px;
+
+    left:3px;
+    top:3px;
+
+    background:white;
+    border-radius:50%;
+
+    transition:0.3s;
+}
+
+/* ON STATE */
+.switch input:checked + .slider{
+    background:#6c63ff;
+}
+
+.switch input:checked + .slider:before{
+    transform:translateX(22px);
+}
+.slider:before{
+    content:"☀️";   /* default */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+}
+
+.switch input:checked + .slider:before{
+    content:"🌙";
+}

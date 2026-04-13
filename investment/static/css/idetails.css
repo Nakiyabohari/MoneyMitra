@@ -1,0 +1,288 @@
+/* ================= DARK MODE CLEAN ================= */
+
+body.dark-mode{
+    background:#0f1220;
+    color:white;
+    font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+
+/* ================= CONTAINER ================= */
+
+body.dark-mode .container{
+    max-width:1200px;
+    margin:auto;
+    padding:16px;
+}
+
+
+/* ================= PERFECT HEADER FIX ================= */
+
+/* make proper spacing */
+body.dark-mode .page-header{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;  /* 🔥 important */
+    gap:10px;
+}
+
+/* push icons to right */
+body.dark-mode .header-icons{
+    margin-left:auto;
+}
+
+/* ================= TITLE LIKE LIGHT MODE ================= */
+
+/* ================= TITLE MULTILINE FIX ================= */
+
+body.dark-mode .page-header h2{
+    font-size:16px;
+    color:white;
+
+    margin-left:10px;
+
+    white-space:normal;     /* ✅ allow line break */
+    line-height:1.2;        /* 🔥 spacing like light mode */
+}
+
+/* RIGHT ICONS */
+body.dark-mode .header-icons{
+    display:flex;
+    gap:8px;
+    flex-shrink:0;
+}
+
+/* icons */
+body.dark-mode .circle-icon,
+body.dark-mode .menu-circle{
+    width:34px;
+    height:34px;
+}
+
+
+/* ================= BACK BUTTON ================= */
+
+body.dark-mode .back-btn{
+    width:34px;
+    height:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:#2a2d4a;
+
+    box-shadow:none;
+}
+
+body.dark-mode .back-btn svg{
+    stroke:white;
+}
+
+
+/* ================= ICONS ================= */
+
+body.dark-mode .header-icons{
+    display:flex;
+    gap:8px;
+}
+
+body.dark-mode .circle-icon,
+body.dark-mode .menu-circle{
+    width:34px;
+    height:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:#2a2d4a;
+
+    box-shadow:none;
+}
+
+
+/* ================= SUMMARY CARDS ================= */
+
+body.dark-mode .summary-cards{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    margin-bottom:20px;
+}
+
+body.dark-mode .card{
+    background:#1a1d35;
+    padding:18px;
+    border-radius:14px;
+
+    text-align:center;
+
+    box-shadow:none;
+}
+
+/* highlight card */
+body.dark-mode .summary-cards .card:first-child{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+}
+
+/* text */
+body.dark-mode .card p{
+    color:#aab0ff;
+    font-size:13px;
+}
+
+body.dark-mode .card h3{
+    color:white;
+    margin-top:6px;
+}
+
+
+/* ================= PROGRESS ================= */
+
+body.dark-mode .progress-section{
+    background:#1a1d35;
+    padding:16px;
+    border-radius:14px;
+    margin-bottom:16px;
+
+    box-shadow:none;
+}
+
+body.dark-mode .section-title{
+    color:white;
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+body.dark-mode .progress-header span{
+    color:white;
+    font-size:13px;
+}
+
+body.dark-mode .progress-bar{
+    height:8px;
+    background:#2a2d4a;
+    border-radius:10px;
+}
+
+body.dark-mode .progress-fill{
+    height:8px;
+    border-radius:10px;
+}
+
+body.dark-mode .progress-fill.etf{
+    background:#6c63ff;
+}
+
+body.dark-mode .progress-fill.mf{
+    background:#00c896;
+}
+
+
+/* ================= INSIGHT ================= */
+
+body.dark-mode .insight{
+    background:#1a1d35;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:16px;
+
+    color:#d0d4ff;
+
+    font-size:13px;
+
+    box-shadow:none;
+}
+
+
+/* ================= TABLE ================= */
+
+body.dark-mode table{
+    width:100%;
+    border-collapse:collapse;
+
+    background:#1a1d35;
+    border-radius:12px;
+
+    box-shadow:none;
+}
+
+body.dark-mode th{
+    background:#14172a;
+    color:#8a8aff;
+    padding:12px;
+    font-size:13px;
+}
+
+body.dark-mode td{
+    padding:12px;
+    color:white;
+    font-size:13px;
+}
+
+body.dark-mode tr{
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+/* ================= TOOLTIP DARK ================= */
+
+body.dark-mode [data-title]{
+    position:relative;
+}
+
+/* TEXT */
+body.dark-mode [data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:125%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    background:#12122a;
+    color:#ffffff;
+
+    padding:12px 22px;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6),
+        0 12px 28px rgba(0,0,0,0.7);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+}
+
+/* ARROW */
+body.dark-mode [data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    border-width:8px;
+    border-style:solid;
+
+    border-color:transparent transparent #12122a transparent;
+
+    opacity:0;
+    transition:all 0.25s ease;
+}
+
+/* SHOW */
+body.dark-mode [data-title]:hover::after,
+body.dark-mode [data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(6px) scale(1);
+}

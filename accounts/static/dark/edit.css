@@ -1,0 +1,120 @@
+/* ================= EDIT PROFILE DARK MODE ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+}
+
+/* main card */
+
+body.dark-mode .container{
+    background:#12122a;
+    border-radius:30px;
+    padding:35px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+/* heading */
+
+body.dark-mode h2{
+    color:white;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* labels */
+
+body.dark-mode label{
+    color:#8a8aff;
+    font-size:14px;
+}
+
+/* input fields */
+
+body.dark-mode input{
+    width:100%;
+    padding:14px 16px;
+    margin-top:6px;
+    margin-bottom:18px;
+
+    border:none;
+    border-radius:16px;
+
+    background:#1a1a2e;
+    color:white;
+
+    transition:0.25s;
+
+    box-shadow:
+        inset 0 0 8px rgba(108,99,255,0.25),
+        0 6px 12px rgba(0,0,0,0.6);
+}
+
+/* hover glow */
+
+body.dark-mode input:hover{
+    box-shadow:
+        inset 0 0 10px rgba(108,99,255,0.35),
+        0 0 10px rgba(108,99,255,0.35);
+}
+
+/* focus glow when typing */
+
+body.dark-mode input:focus{
+    outline:none;
+
+    box-shadow:
+        inset 0 0 12px rgba(108,99,255,0.45),
+        0 0 15px rgba(108,99,255,0.6);
+}
+
+/* readonly email */
+
+body.dark-mode input[readonly]{
+    opacity:0.7;
+}
+
+/* file upload */
+
+body.dark-mode input[type="file"]{
+    padding:10px;
+    background:#1a1a2e;
+}
+
+/* profile preview */
+
+body.dark-mode .profile-preview img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+
+    box-shadow:0 0 15px rgba(108,99,255,0.6);
+    margin-bottom:20px;
+}
+
+/* save button */
+
+body.dark-mode button{
+    width:100%;
+    padding:15px;
+
+    border:none;
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+    font-weight:600;
+
+    margin-top:10px;
+
+    box-shadow:0 0 15px rgba(108,99,255,0.6);
+    transition:0.3s;
+}
+
+body.dark-mode button:hover{
+    box-shadow:0 0 25px rgba(108,99,255,0.9);
+}
