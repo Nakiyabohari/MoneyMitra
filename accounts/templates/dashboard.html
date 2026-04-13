@@ -153,11 +153,29 @@
             </div>
 
         </div>
-
+        <div class="graph-container">
+            <div style="display:none;">
+    <span id="salaryDisplay"></span>
+    <span id="savingsDisplay"></span>
+    <span id="investmentDisplay"></span>
+    <span id="emiDisplay"></span>
+    <span id="balance"></span>
+</div>
+    <h3>Daily Expense Graph</h3>
+    <canvas id="expenseChart"></canvas>
     </div>
+    </div>
+
+    
 </div>
 
 {% include 'menu.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const expensesData = JSON.parse('{{ expense_json|escapejs }}');
+</script>
 
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="{% static 'js/menu.js' %}"></script>

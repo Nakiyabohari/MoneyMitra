@@ -495,12 +495,17 @@ body:not(.dark-mode) .circle-icon:hover::before{
 }
 .big-card{
     height:155px;
+    display:flex;
+    flex-direction:column;
 }
 
 .mini-scroll{
-    max-height:110px;
+    flex:1;
     overflow-y:auto;
     margin-top:10px;
+
+    padding-right:8px;
+    padding-bottom:10px;
 }
 
 .progress-item{

@@ -133,6 +133,19 @@ def dashboard(request):
 
     # ✅ AVAILABLE BALANCE
     available_balance = salary + total_income - total_expense - total_emi - investment_total
+    
+    # ✅ GRAPH DATA
+    import json
+
+    expense_chart_data = [
+    {
+        "date": str(expense.date),
+        "amount": float(expense.expense_amount)
+    }
+    for expense in expenses
+    
+]
+
 
     # 🔥 EMOJI MAP
     emoji_map = {
@@ -176,6 +189,7 @@ def dashboard(request):
         "Business": "🏢","business": "🏢",
         "Investment": "📈","investment": "📈",
         "Bonus": "🎉","bonus": "🎉"
+
 }
 
 
@@ -211,7 +225,8 @@ def dashboard(request):
         'total_emi': total_emi,
         'investment_total': investment_total,
         'incomes': incomes_with_emoji,     # ✅ UPDATED
-        'expenses': expenses_with_emoji    # ✅ UPDATED
+        'expenses': expenses_with_emoji,    # ✅ UPDATED
+        'expense_json': json.dumps(expense_chart_data)
     }
 
     return render(request, 'dashboard.html', context)
