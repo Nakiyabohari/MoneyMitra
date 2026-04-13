@@ -415,14 +415,13 @@ input[type="date"] {
   color: #333;
 }
 .date-box input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   right: 14px;
   width: 22px;
   height: 22px;
   cursor: pointer;
 }
-
 .date-box input[type="date"]::-moz-focus-inner {
   border: 0;
 }
