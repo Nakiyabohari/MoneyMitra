@@ -414,7 +414,6 @@ input[type="date"] {
   z-index: 1;
   color: #333;
 }
-
 .date-box input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
   position: absolute;
