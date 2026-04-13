@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="{% static 'css/dark2.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/emimanager.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- HEADER -->
+<div class="page-header">
+
+    <a href="{% url 'dashboard' %}" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+        </svg>
+    </a>
+
+    <h2>EMI Manager</h2>
+
+    <div class="header-icons">
+        <a href="{% url 'addemi' %}" class="icon-btn plus">+</a>
+        <a href="/calculator/" class="circle-icon">🧮</a>
+        <a href="/calendar/" class="circle-icon">📅</a>
+        <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+
+            {% if profile.profile_photo %}
+                <img src="{{ profile.profile_photo.url }}">
+            {% else %}
+                👤
+            {% endif %}
+
+        </a>
+        <div class="menu-circle" onclick="open_menu()">☰</div>
+    </div>
+
+</div>
+
+<!-- TOTAL EMI -->
+<div class="total-card">
+    <p>Total Monthly EMI</p>
+    <h1>₹{{ total|floatformat:0 }}</h1>
+</div>
+
+<h3 class="section-title">Active EMIs</h3>
+
+<!-- EMI LIST -->
+{% for i in emis %}
+
+<div class="emi-card">
+
+    <div class="emi-top">
+        <div>
+
+            <!-- NAME -->
+            <h4>{{ i.obj.emi_name }}</h4>
+
+            <!-- MONTH INFO -->
+            <p>{{ i.left }} months left</p>
+
+            <!-- STATUS -->
+            <span class="status"
+            style="color:{% if i.status == 'Completed' %}#6c63ff{% else %}#00c853{% endif %}">
+                {{ i.status }}
+            </span>
+
+            <!-- PAID INFO -->
+            <small style="display:block; margin-top:5px; color:#888;">
+                {{ i.passed }} of {{ i.obj.duration }} months paid
+            </small>
+
+        </div>
+
+        <!-- DELETE -->
+        <form method="post" action="{% url 'delete_emi' i.obj.id %}">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn">🗑</button>
+        </form>
+
+    </div>
+
+    <!-- AMOUNT -->
+    <h2 class="emi-amount">
+        ₹{{ i.obj.monthly_amount }}/month
+    </h2>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar">
+        <div class="progress"
+             style="width: {{ i.progress }}%;"></div>
+    </div>
+
+</div>
+
+{% empty %}
+    <p>No EMI added yet.</p>
+{% endfor %}
+
+
+</div>
+
+{% include "menu.html" %}
+
+<script src="{% static 'js/menu.js' %}"></script>
+
+</body>
+</html>

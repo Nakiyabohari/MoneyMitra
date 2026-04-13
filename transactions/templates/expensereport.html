@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Reports</title>
+
+<link rel="stylesheet" href="{% static 'css/expensereport.css' %}">
+<link rel="stylesheet" href="{% static 'dark/report.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+</head>
+
+<body>
+
+<div class="main-layout">
+
+    <!-- SIDEBAR (NO CHANGE) -->
+    <div class="sidebar">
+
+        <div class="sidebar-menu">
+            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
+            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
+            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
+            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
+            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
+            <a href='{% url 'budget_analysis' %}'><span>📊</span><p>Budget Analytics</p></a>
+            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
+            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
+
+            <div class="theme-toggle">
+                <div class="theme-left">
+                    <span>🌙</span>
+                    <p>Theme</p>
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleTheme()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-container">
+
+        <div class="container" id="reportContent">
+
+            <!-- HEADER -->
+            <div class="page-header">
+
+                <a href="{% url 'dashboard' %}" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </a>
+
+                <h2>Expense Reports</h2>
+
+                <div class="header-icons">
+                    <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+                    <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
+
+                    <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+                        {% if profile.profile_photo %}
+                            <img src="{{ profile.profile_photo.url }}">
+                        {% else %}
+                            👤
+                        {% endif %}
+                    </a>
+
+                    <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
+                </div>
+
+            </div>
+
+            <!-- SELECT PERIOD -->
+            <div class="period-section">
+              <div class="period-title">
+                <span>📅</span>
+                <span>Select Period</span>
+              </div>
+
+              <div class="select-box">
+                <select id="monthSelect">
+                  {% for m in months %}
+                  <option value="{{ m }}">{{ m }}</option>
+                  {% endfor %}
+                </select>
+
+                <select id="yearSelect">
+                  {% for y in years %}
+                  <option value="{{ y }}">{{ y }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="buttons">
+              <button id="downloadBtn" class="btn download">Download</button>
+              <button id="shareBtn" class="btn share">Share</button>
+            </div>
+
+            <!-- INCOME -->
+            <div class="card income">
+                <h3>Income Summary</h3>
+
+                {% for income in incomes %}
+                <div class="row">
+                  <span>{{ income.income_source|default:"Unknown" }}</span>
+                  <span>₹{{ income.amount|default:0 }}</span>
+                </div>
+                {% empty %}
+                <div>No income records</div>
+                {% endfor %}
+
+                <div class="row total">
+                  <span>Total Income</span>
+                  <span>₹{{ total_income|default:0 }}</span>
+                </div>
+            </div>
+
+            <!-- EXPENSE -->
+            <div class="card expense">
+                <h3>Expense Summary</h3>
+
+                {% for expense in expenses %}
+                <div class="row">
+                  <span>
+                    {% if expense.category and expense.category|lower == "custom" and expense.notes %}
+                        {{ expense.notes }}
+                    {% else %}
+                        {{ expense.category|default:"Other" }}
+                    {% endif %}
+                  </span>
+                  <span>₹{{ expense.expense_amount|default:0 }}</span>
+                </div>
+                {% empty %}
+                <div>No expense records</div>
+                {% endfor %}
+
+                <div class="row total">
+                  <span>Total Expense</span>
+                  <span>₹{{ total_expense|default:0 }}</span>
+                </div>
+            </div>
+
+            <!-- BALANCE -->
+            <div class="card balance">
+                <div>Net Balance</div>
+                <div class="big">₹{{ balance|default:0 }}</div>
+                <div>
+                    {% if balance >= 0 %}Surplus{% else %}Deficit{% endif %}
+                </div>
+            </div>
+
+            <!-- CATEGORY -->
+            <div class="card">
+                <h3>Category Breakdown</h3>
+                {% if total_income|add:total_expense > 0 %}
+
+                {% for income in incomes %}
+                <div class="row">
+                  <span>{{ income.income_source }}</span>
+                  <span>{{ income.percent|floatformat:1 }}%</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" style="width:{{ income.percent }}%"></div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <div>No transactions</div>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% include "menu.html" %}
+
+<script src="{% static 'js/menu.js' %}"></script>
+
+<!-- PASS DJANGO DATA -->
+<script>
+window.reportData = {
+    incomes: [
+        {% for income in incomes %}
+        {
+            income_source: "{{ income.income_source|default:''|escapejs }}",
+            amount: {{ income.amount|default:0 }}
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+
+    expenses: [
+        {% for expense in expenses %}
+        {
+            category: "{% if expense.category and expense.category|lower == 'custom' and expense.notes %}{{ expense.notes|escapejs }}{% else %}{{ expense.category|default:''|escapejs }}{% endif %}",
+            expense_amount: {{ expense.expense_amount|default:0 }}
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+
+    totalIncome: {{ total_income|default:0 }},
+    totalExpense: {{ total_expense|default:0 }},
+    balance: {{ balance|default:0 }}
+};
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="{% static 'js/expensereport.js' %}"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const monthSelect = document.getElementById("monthSelect");
+const yearSelect = document.getElementById("yearSelect");
+
+const selectedMonth = "{{ selected_month|default:'' }}";
+
+if(selectedMonth){
+
+const parts = selectedMonth.split("-");
+const year = parts[0];
+const month = parseInt(parts[1]);
+
+if(monthSelect){
+monthSelect.selectedIndex = month - 1;
+}
+
+if(yearSelect){
+yearSelect.value = year;
+}
+
+}
+
+function updateReport(){
+
+const month = monthSelect.selectedIndex + 1;
+const year = yearSelect.value;
+
+const formattedMonth = month.toString().padStart(2,"0");
+
+window.location.href = `?month=${year}-${formattedMonth}`;
+
+}
+
+monthSelect.addEventListener("change", updateReport);
+yearSelect.addEventListener("change", updateReport);
+
+});
+
+</script>
+<script src="{% static 'js/menu.js' %}"></script>
+</body>
+</html>

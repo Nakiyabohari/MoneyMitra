@@ -1,0 +1,57 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'dark/menu.css' %}">
+<div class="menu-overlay" id="menu-overlay" onclick="close_menu()"></div>
+
+<div class="drawer-panel" id="drawer-panel">
+
+    <div class="drawer-header">
+        <h2>Menu</h2>
+        <span class="close-button" onclick="close_menu()">✕</span>
+    </div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'transaction_history' %}')">
+    <div class="menu-left">
+        <div class="menu-icon">🔄</div>
+        <span>Transaction History</span>
+    </div>
+</div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'budget_analysis' %}')">
+        <div class="menu-left">
+            <div class="menu-icon">📊</div>
+            <span>Budget Analytics</span>
+        </div>
+
+    </div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'monthly_summary' %}')">
+        <div class="menu-left">
+            <div class="menu-icon">📈</div>
+            <span>Monthly Summary</span>
+        </div>
+
+    </div>
+
+    <div class="menu-card" onclick="redirect_page('{% url 'expensereport' %}')">
+        <div class="menu-left">
+            <div class="menu-icon">📄</div>
+            <span>Expense Reports</span>
+        </div>
+    </div>
+    
+    <div class="menu-card theme-switch">
+
+    <div class="menu-left">
+        <div class="menu-icon">🌙</div>
+        <span>Theme</span>
+    </div>
+
+    <label class="theme-toggle">
+        <input type="checkbox" id="theme-switch">
+        <span class="slider"></span>
+    </label>
+
+</div>
+
+</div>

@@ -1,0 +1,186 @@
+/* ===============================
+   BACKGROUND
+================================ */
+
+.welcome-body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#e6e2ff,#f4f1ff);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===============================
+   SCREEN WRAPPER
+================================ */
+
+.screen {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px;
+}
+
+/* ===============================
+   HERO LAYOUT
+================================ */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+/* ===============================
+   LEFT SIDE
+================================ */
+
+.hero-left {
+    flex: 1;
+}
+
+/* ===============================
+   LOGO (MERGED WITH BACKGROUND)
+================================ */
+
+.logo {
+    display: inline-block;
+    padding: 6px;
+    background: linear-gradient(135deg,#e6e2ff,#f4f1ff);
+    margin-bottom: 25px;
+}
+
+.logo img {
+    width: 110px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+/* ===============================
+   TITLE & TAGLINE
+================================ */
+
+h1 {
+    font-size: 64px;
+    margin: 10px 0;
+    color: #2d1e5f;
+}
+
+.tagline {
+    font-size: 20px;
+    color: #6c63ff;
+    margin-bottom: 40px;
+}
+
+/* ===============================
+   FEATURES
+================================ */
+
+.features {
+    margin-bottom: 40px;
+}
+
+.feature {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.tick {
+    color: #6c63ff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.feature strong {
+    color: #2d1e5f;
+}
+
+.feature small {
+    display: block;
+    font-size: 14px;
+    color: #777;
+}
+
+/* ===============================
+BUTTON
+================================ */
+
+.cta {
+    padding: 16px 40px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg,#7c6af2,#6a5ae0);
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(124,106,242,0.4);
+    transition: 0.3s ease;
+}
+
+.cta:hover {
+    transform: translateY(-3px);
+}
+
+.trusted {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #999;
+}
+
+/* ===============================
+   RIGHT SIDE
+================================ */
+
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.illustration-box {
+    width: 420px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-box img {
+    width: 700px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media(max-width: 900px){
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .feature {
+        justify-content: center;
+    }
+
+    .illustration-box {
+        width: 280px;
+        height: 280px;
+    }
+
+    .illustration-box img {
+        width: 200px;
+    }
+}
