@@ -8,7 +8,7 @@ function loadDashboard(){
     const investment = Number(localStorage.getItem("investmentAmount")) || 0;
     const emi = Number(localStorage.getItem("emi")) || 0;
     const addincome = Number(localStorage.getItem("addincome")) || 0;
-
+    const income = Number(localStorage.getItem("income")) || 0;
     const balance = addincome +income - savings - investment - emi;
 
     document.getElementById("salaryDisplay").innerText = "₹" + income.toLocaleString();
@@ -16,6 +16,8 @@ function loadDashboard(){
     document.getElementById("investmentDisplay").innerText = "₹" + investment.toLocaleString();
     document.getElementById("emiDisplay").innerText = "₹" + emi.toLocaleString();
     document.getElementById("balance").innerText = "₹" + balance.toLocaleString();
+
+    loadExpenseGraph();
 }
 
 function openQuickAdd(){
@@ -103,3 +105,82 @@ document.getElementById("quick-sheet").classList.remove("active");
 document.getElementById("quick-overlay").classList.remove("active");
 }
 
+
+function loadExpenseGraph() {
+
+    let canvas = document.getElementById('expenseChart');
+    if (!canvas) return; // 🔥 prevent error
+
+    let expenses = expensesData || [];
+
+    let dailyData = {};
+
+    expenses.forEach(exp => {
+        if (dailyData[exp.date]) {
+            dailyData[exp.date] += exp.amount;
+        } else {
+            dailyData[exp.date] = exp.amount;
+        }
+    });
+
+    let labels = Object.keys(dailyData);
+    let data = Object.values(dailyData);
+
+    const ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Daily Expense',
+            data: data,
+
+            borderColor: "#6c63ff",
+            backgroundColor: "rgba(108,99,255,0.15)",
+            borderWidth: 3,
+
+            tension: 0.4,
+            fill: true,
+
+            pointBackgroundColor: "#ffffff",
+            pointBorderColor: "#6c63ff",
+            pointRadius: 5,
+            pointHoverRadius: 7
+        }]
+    },
+
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: "#1f1f3d",
+                    font: {
+                        size: 14,
+                        weight: "600"
+                    }
+                }
+            }
+        },
+
+        scales: {
+            x: {
+                ticks: {
+                    color: "#6f6f9f"
+                },
+                grid: {
+                    color: "rgba(0,0,0,0.05)"
+                }
+            },
+            y: {
+                ticks: {
+                    color: "#6f6f9f"
+                },
+                grid: {
+                    color: "rgba(0,0,0,0.05)"
+                }
+            }
+        }
+    }
+});
+}
