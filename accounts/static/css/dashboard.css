@@ -1,21 +1,11 @@
 /* ================= BODY ================= */
 
 body{
-    margin:0;
-    font-family:'Poppins', sans-serif;
-    min-height:100vh;
-
-    /* SAME DESKTOP COLOR */
-    background-color:#d1baff40;
-
-    /* IMAGE */
-    background-image:url("../images/bg.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    /* MERGE IMAGE WITH COLOR */
-    background-blend-mode:overlay;
+    background-image:url("/static/images/bg.png") !important;
+    background-size:cover !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    filter:saturate(1.2) contrast(1.05);
 }
 
 
@@ -26,7 +16,9 @@ body{
     width:100%;
     min-height:100vh;
 
-    background:#d1baff40;
+    background:rgba(255,255,255,0.04);   /* less white */
+    backdrop-filter:blur(10px);          /* less blur */
+    -webkit-backdrop-filter:blur(10px);
 
     border-radius:35px 35px 0 0;
     padding:60px 80px 110px;
@@ -128,7 +120,10 @@ body{
 }
 
 .balance-card{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    background-image:url("/static/images/cbg.jpeg") !important;
+    background-size:cover !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
     padding:45px 60px;
     border-radius:30px;
     color:white;
@@ -188,7 +183,8 @@ body{
 }
 
 .overview-card{
-    background:#f8f8ff;
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
     padding:30px;
     border-radius:25px;
     box-shadow:0 15px 35px rgba(0,0,0,0.05);
@@ -215,7 +211,9 @@ body{
 /* ================= QUICK ACTION PANEL ================= */
 
 .right-side{
-    background:#f8f8ff;
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+
     padding:35px;
     border-radius:30px;
     box-shadow:0 20px 40px rgba(0,0,0,0.05);
@@ -603,4 +601,224 @@ body:not(.dark-mode) .circle-icon:hover::before{
 /* ===== MAIN LAYOUT ===== */
 .main-layout{
     display:flex;
+}
+/* ===== SIDEBAR FIXED ===== */
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:#ffffff;
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-right:1px solid #eee;
+
+    /* 🔥 ADD THIS */
+    overflow-y:auto;
+}
+
+/* LOGO */
+.sidebar-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.sidebar-logo img{
+    width:35px;
+}
+
+.sidebar-logo h2{
+    font-size:20px;
+    color:#6c63ff;
+    font-weight:700;
+}
+
+/* MENU */
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+/* LINKS */
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    text-decoration:none;
+    padding:12px 14px;
+    border-radius:12px;
+
+    color:#444;
+    font-size:15px;
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+/* HOVER EFFECT */
+.sidebar-menu a:hover{
+    background:#f3f1ff;
+    color:#6c63ff;
+    transform:translateX(4px);
+}
+
+/* ACTIVE (OPTIONAL) */
+.sidebar-menu a.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* DIVIDER */
+.menu-divider{
+    margin:20px 0 10px;
+    font-size:13px;
+    color:#999;
+    padding-left:5px;
+}
+
+
+.theme-switch{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.switch{
+    width:50px;
+    height:26px;
+}
+
+.slider::before{
+    height:20px;
+    width:20px;
+    font-size:12px;
+}
+
+.switch input:checked + .slider::before{
+    transform:translateX(24px);
+}
+
+/* ===== THEME TOGGLE (MAKE IT LIKE EXPENSE CARD) ===== */
+
+.theme-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    width:100%;
+    background:#e9e6f2;        /* 🔥 ONE BIG CONTAINER */
+    padding:12px 14px;
+    border-radius:14px;
+
+    transition:0.25s ease;
+}
+
+.theme-toggle:hover{
+    background:#dedbfb;
+}
+
+/* KEEP LEFT SIMPLE */
+.theme-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+/* FIX TEXT */
+.theme-left p{
+    margin:0;
+}
+
+/* SWITCH NORMAL */
+.switch{
+    flex-shrink:0;
+}
+
+/* ===== FIX CONTENT SHIFT ===== */
+.app-container{
+    margin-left:260px;
+    width:calc(100% - 260px);
+}
+
+/* FIX RIGHT SIDE ALIGNMENT */
+.content-row > div:last-child{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+/* MAKE BOTH SIDES SAME HEIGHT ALIGN */
+.content-row{
+    align-items:stretch;
+}
+
+/* OPTIONAL: MAKE CARD WIDTH PERFECT */
+.content-row > div:last-child .overview-card{
+    width:100%;
+}
+
+/* ===== SIDEBAR MENU CARD STYLE (LIKE IMAGE 1) ===== */
+
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+/* EACH MENU ITEM AS CARD */
+.sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:#e9e6f2;
+    padding:12px 14px;   /* 🔥 smaller */
+    border-radius:14px;  /* 🔥 smaller */
+
+    text-decoration:none;
+    color:#3b3b6d;
+    font-size:14px;      /* 🔥 smaller text */
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+/* ICON CIRCLE (IMPORTANT 🔥) */
+.sidebar-menu a span{
+    width:34px;
+    height:34px;
+    font-size:16px;
+}
+
+/* HOVER EFFECT */
+.sidebar-menu a:hover{
+    transform:translateY(-3px);
+    background:#dedbfb;
+}
+
+/* ACTIVE */
+.sidebar-menu a.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* FIX TEXT ALIGN */
+.sidebar-menu a p{
+    margin:0;
+}
+
+.graph-container {
+    background: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
 }
