@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Transaction History</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{% static 'css/transactions_history.css' %}">
+<link rel="stylesheet" href="{% static 'dark/history.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+</head>
+
+<body>
+{% include "menu.html" %}
+<div class="main-layout">
+
+    <!-- YOUR SIDEBAR (NO CHANGE) -->
+    
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-container">
+
+        <div class="container">
+
+<!-- HEADER -->
+<div class="page-header">
+    <h2>Transaction History</h2>
+
+    <div class="header-icons">
+        <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+        <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
+        <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+
+            {% if profile.profile_photo %}
+                <img src="{{ profile.profile_photo.url }}">
+            {% else %}
+                👤
+            {% endif %}
+
+        </a>
+    </div>
+
+</div>
+
+<!-- SUMMARY -->
+
+<div class="summary-section">
+
+<div class="summary-card income-card">
+<p>↙ Income</p>
+<h3>₹{{ total_income }}</h3>
+</div>
+
+<div class="summary-card expense-card">
+<p>↗ Expenses</p>
+<h3>₹{{ total_expense }}</h3>
+</div>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+<span>🔍</span>
+<input type="text" id="search" placeholder="Search transactions...">
+</div>
+<br>
+
+<!-- FILTER -->
+
+<div class="filter-section">
+
+<select id="typeFilter">
+<option value="all">All Types</option>
+<option value="income">Income</option>
+<option value="expense">Expense</option>
+</select>
+
+</div>
+
+<!-- TRANSACTIONS -->
+
+<div class="transaction-scroll">
+<div id="transactionList"></div>
+</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{{ transactions|json_script:"transactions-data" }}
+
+<script src="{% static 'js/transactions_history.js' %}"></script>
+
+<div id="editModal" class="edit-modal">
+
+    <div class="edit-box">
+
+        <span class="close-edit">&times;</span>
+
+        <h3>Edit Transaction</h3>
+
+        <input type="hidden" id="editId">
+        <input type="hidden" id="editModel">
+
+        <label>Amount</label>
+        <input type="number" id="editAmount">
+
+        <label>Category</label>
+        <input type="text" id="editCategory">
+
+        <label>Notes</label>
+        <textarea id="editNotes"></textarea>
+
+        <button id="saveEdit">Save Changes</button>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/menu.js' %}"></script>
+
+</body>
+</html>

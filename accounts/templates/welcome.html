@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoneyMitra</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+<link rel="stylesheet" href="{% static 'dark/welcome.css' %}">
+</head>
+
+<body class="welcome-body">
+    <!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+
+<div class="screen">
+
+    <div class="hero">
+
+        <!-- ================= LEFT SIDE ================= -->
+        <div class="hero-left">
+
+            <!-- Logo -->
+
+            <!-- Title -->
+            <h1>MoneyMitra</h1>
+
+            <!-- Tagline -->
+            <p class="tagline">
+                Manage your money,<br>
+                stress free
+            </p>
+
+            <!-- Features -->
+            <div class="features">
+
+                <div class="feature">
+                    <span class="tick">✓</span>
+                    <div>
+                        <strong>Smart Budget Tracking</strong>
+                        <small>Track expenses effortlessly</small>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <span class="tick">✓</span>
+                    <div>
+                        <strong>Detailed Analytics</strong>
+                        <small>Visualize spending patterns</small>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <span class="tick">✓</span>
+                    <div>
+                        <strong>Secure & Private</strong>
+                        <small>Your data stays protected</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Button -->
+            <a href="{% url 'login' %}">
+                <button class="cta">Get Started →</button>
+            </a>
+
+
+        </div>
+
+
+        <!-- ================= RIGHT SIDE ================= -->
+        <div class="hero-right">
+
+            <div class="illustration-box">
+                <img src="{% static 'images/MM3.png' %}" alt="Finance Illustration">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="{% static 'js/menu.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/* ================= MENU OVERLAY ================= */
+
+body.dark-mode .menu-overlay{
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+}
+
+
+/* ================= DRAWER PANEL ================= */
+
+body.dark-mode .drawer-panel{
+    background:#12122a;
+    color:white;
+
+    box-shadow:
+        -10px 0 30px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .drawer-header h2{
+    color:white;
+}
+
+body.dark-mode .close-button{
+    color:#8a8aff;
+    cursor:pointer;
+    transition:0.25s;
+}
+
+body.dark-mode .close-button:hover{
+    color:white;
+}
+
+
+/* ================= MENU CARDS ================= */
+
+body.dark-mode .menu-card{
+    background:#1a1a2e;
+    border-radius:18px;
+    padding:16px 18px;
+    margin-bottom:15px;
+
+    box-shadow:
+        0 6px 14px rgba(0,0,0,0.6),
+        inset 0 0 6px rgba(108,99,255,0.15);
+
+    cursor:pointer;
+    transition:0.25s;
+}
+
+
+/* ================= CARD HOVER ================= */
+
+body.dark-mode .menu-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 22px rgba(0,0,0,0.7),
+        0 0 16px rgba(108,99,255,0.45);
+}
+
+
+/* ================= MENU LEFT ================= */
+
+body.dark-mode .menu-left span{
+    color:white;
+    font-weight:500;
+}
+
+
+/* ================= ICON ================= */
+
+body.dark-mode .menu-icon{
+    background:#252542;
+    color:#6c63ff;
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    box-shadow:0 0 8px rgba(108,99,255,0.25);
+}
+
+
+/* ================= THEME SWITCH ================= */
+
+body.dark-mode .theme-toggle .slider{
+    background:#2c2c4f;
+}
+
+body.dark-mode .theme-toggle input:checked + .slider{
+    background:#6c63ff;
+}
+
+body.dark-mode .theme-toggle .slider:before{
+    background:white;
+}

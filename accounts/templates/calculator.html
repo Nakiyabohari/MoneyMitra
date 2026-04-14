@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator - MoneyMitra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'dark/calculator.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{% static 'css/calculator.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+
+
+</head>
+<body>
+<!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+
+<div class="container calc-page">
+    <div class="back-btn"
+            onclick="window.location.href='{% url 'dashboard' %}'">
+            ←
+        </div>
+
+    <div class="calc-display" id="display">0</div>
+
+    <div class="calc-grid">
+
+        <button class="calc-btn op" onclick="clearDisplay()">C</button>
+        <button class="calc-btn op" onclick="deleteLast()">⌫</button>
+        <button class="calc-btn op" onclick="append('/')">÷</button>
+        <button class="calc-btn op" onclick="append('*')">×</button>
+
+        <button class="calc-btn" onclick="append('7')">7</button>
+        <button class="calc-btn" onclick="append('8')">8</button>
+        <button class="calc-btn" onclick="append('9')">9</button>
+        <button class="calc-btn op" onclick="append('-')">−</button>
+
+        <button class="calc-btn" onclick="append('4')">4</button>
+        <button class="calc-btn" onclick="append('5')">5</button>
+        <button class="calc-btn" onclick="append('6')">6</button>
+        <button class="calc-btn op" onclick="append('+')">+</button>
+
+        <button class="calc-btn" onclick="append('1')">1</button>
+        <button class="calc-btn" onclick="append('2')">2</button>
+        <button class="calc-btn" onclick="append('3')">3</button>
+        <button class="calc-btn op" onclick="calculate()">=</button>
+
+        <button class="calc-btn zero" onclick="append('0')">0</button>
+        <button class="calc-btn" onclick="append('.')">.</button>
+
+    </div>
+
+</div>
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/calculator.js' %}"></script>
+
+</body>
+</html>
