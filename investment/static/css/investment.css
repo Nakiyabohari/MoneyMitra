@@ -24,6 +24,17 @@ body {
     background: linear-gradient(135deg, #f6f4ff, #eceaff);
 }
 
+.bg-image{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;        /* ✅ FIX */
+    object-fit: cover;   /* ✅ FIX */
+
+    z-index: -1;
+}
 /* =========================================
    CENTER WRAPPER
 ========================================= */
