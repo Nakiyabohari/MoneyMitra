@@ -4,8 +4,23 @@ body.dark-mode{
     background: radial-gradient(circle at top,#0f0f1a,#050514);
     color:white;
     font-family:'Poppins',sans-serif;
-}
+    
 
+}
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        linear-gradient(rgba(5,5,15,0.3), rgba(5,5,15,0.7)),
+        url("../images/image.png");
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-2;
+}
 
 /* ================= WRAPPER ================= */
 

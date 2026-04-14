@@ -1,62 +1,76 @@
-/* ================= PAGE BACKGROUND ================= */
-
+/* ===============================
+   GLOBAL DARK BACKGROUND
+================================ */
 body.dark-mode{
-    background: radial-gradient(circle at top,#0f0f1a,#050514);
-    color:white;
-    font-family:'Poppins',sans-serif;
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    color:#ffffff;
 }
 
-
-/* ================= CONTAINER ================= */
-
-body.dark-mode .mobile-container{
-    background:#12122a;
-    border-radius:30px;
-    padding:30px;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.7),
-        0 0 25px rgba(108,99,255,0.25);
+/* hide light bg */
+body.dark-mode .bg-image{
+    opacity:0;
 }
 
+/* main bg */
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    inset:0;
 
-/* ================= HEADER ================= */
+    background:
+        linear-gradient(rgba(5,5,15,0.3), rgba(5,5,15,0.8)),
+        url("../images/image.png");
 
+    background-size:cover;
+    background-position:center;
+
+    z-index:-2;
+}
+
+/* glow overlay */
+body.dark-mode::after{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(108,99,255,0.25), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(139,124,255,0.2), transparent 60%);
+
+    z-index:-1;
+}
+
+/* ===============================
+   HEADER
+================================ */
 body.dark-mode .page-header{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 
-    padding:14px 20px;
+    padding:16px 22px;
     margin-bottom:25px;
 
-    background:#1a1a2e;   /* 🔥 dark instead of grey */
+    background:rgba(20,20,45,0.75);
+    backdrop-filter:blur(12px);
+
     border-radius:20px;
 
     box-shadow:
-        0 0 12px rgba(108,99,255,0.25),
-        0 8px 20px rgba(0,0,0,0.6);
-
-    backdrop-filter: blur(10px);
+        0 10px 30px rgba(0,0,0,0.8),
+        0 0 20px rgba(108,99,255,0.3);
 }
 
-/* title */
 body.dark-mode .page-header h2{
-    color:white;
-    font-weight:600;
+    color:#fff;
+    text-shadow:0 0 10px rgba(108,99,255,0.6);
 }
 
-/* icons container */
-body.dark-mode .header-icons{
-    display:flex;
-    gap:10px;
-    align-items:center;
-}
-
-/* ================= HEADER ICONS ================= */
-
+/* ===============================
+   ICONS
+================================ */
 body.dark-mode .circle-icon,
-body.dark-mode .menu-circle,
 body.dark-mode .icon-btn{
     width:42px;
     height:42px;
@@ -66,46 +80,49 @@ body.dark-mode .icon-btn{
     justify-content:center;
 
     border-radius:50%;
-    background:#1a1a2e;
-    color:white;
+    background:rgba(25,25,60,0.8);
 
-    box-shadow:
-        0 0 10px rgba(108,99,255,0.3),
-        inset 0 0 5px rgba(108,99,255,0.2);
+    color:#fff;
 
-    transition:0.25s;
+    box-shadow:0 0 10px rgba(108,99,255,0.4);
+    transition:0.3s;
 }
 
-/* plus button special */
 body.dark-mode .icon-btn.plus{
     background:linear-gradient(135deg,#6c63ff,#7b72f5);
 }
 
-/* hover */
 body.dark-mode .circle-icon:hover,
-body.dark-mode .menu-circle:hover,
 body.dark-mode .icon-btn:hover{
-    transform:translateY(-2px) scale(1.05);
+    transform:translateY(-3px) scale(1.1);
 
     box-shadow:
-        0 0 12px rgba(108,99,255,0.8),
-        0 0 25px rgba(108,99,255,0.6);
+        0 0 25px rgba(108,99,255,1),
+        0 0 50px rgba(108,99,255,0.6);
 }
 
-/* ================= TOTAL CARD ================= */
-
+/* ===============================
+   TOTAL CARD
+================================ */
 body.dark-mode .total-card{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
     color:white;
 
-    border-radius:20px;
+    border-radius:22px;
     padding:25px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.6),
-        0 0 25px rgba(108,99,255,0.5);
+        0 15px 40px rgba(0,0,0,0.8),
+        0 0 30px rgba(108,99,255,0.5);
+
+    transition:0.3s;
 }
 
+body.dark-mode .total-card:hover{
+    transform:translateY(-4px);
+}
+
+/* progress */
 body.dark-mode .total-bar{
     height:8px;
     background:rgba(255,255,255,0.2);
@@ -115,51 +132,55 @@ body.dark-mode .total-bar{
 body.dark-mode .total-fill{
     background:white;
     border-radius:10px;
+
+    box-shadow:0 0 12px rgba(255,255,255,0.8);
 }
 
-
-/* ================= GOAL CARDS ================= */
-
+/* ===============================
+   GOAL CARD
+================================ */
 body.dark-mode .goal-card{
-    background:#1a1a2e;
+    background:rgba(18,18,40,0.85);
+    backdrop-filter:blur(12px);
+
     border-radius:20px;
     padding:20px;
 
     margin-top:20px;
 
     box-shadow:
-        0 8px 18px rgba(0,0,0,0.6),
-        0 0 12px rgba(108,99,255,0.25);
+        0 10px 30px rgba(0,0,0,0.9),
+        0 0 15px rgba(108,99,255,0.25);
 
-    transition:0.25s;
+    transition:0.3s;
 }
 
 body.dark-mode .goal-card:hover{
-    transform:translateY(-3px);
+    transform:translateY(-4px);
 
     box-shadow:
-        0 0 18px rgba(108,99,255,0.45),
-        0 8px 20px rgba(0,0,0,0.6);
+        0 0 25px rgba(108,99,255,0.4),
+        0 15px 40px rgba(0,0,0,0.9);
 }
 
-
-/* ================= GOAL TEXT ================= */
-
+/* ===============================
+   TEXT
+================================ */
 body.dark-mode .goal-name{
     color:white;
 }
 
 body.dark-mode .goal-date{
-    color:#8a8aff;
+    color:#a0a0ff;
 }
 
 body.dark-mode .amount-row span{
-    color:#b3b3ff;
+    color:#c0c0ff;
 }
 
-
-/* ================= PROGRESS BAR ================= */
-
+/* ===============================
+   PROGRESS BAR
+================================ */
 body.dark-mode .goal-bar{
     height:8px;
     background:#111122;
@@ -169,12 +190,12 @@ body.dark-mode .goal-bar{
 body.dark-mode .goal-fill{
     border-radius:10px;
 
-    box-shadow:0 0 10px rgba(108,99,255,0.6);
+    box-shadow:0 0 12px rgba(108,99,255,0.7);
 }
 
-
-/* ================= INPUT ================= */
-
+/* ===============================
+   INPUTS
+================================ */
 body.dark-mode .amount-input{
     background:#12122a;
     border:none;
@@ -196,9 +217,9 @@ body.dark-mode .amount-input:focus{
         0 0 15px rgba(108,99,255,0.6);
 }
 
-
-/* ================= BUTTONS ================= */
-
+/* ===============================
+   BUTTONS
+================================ */
 body.dark-mode .add-btn{
     background:linear-gradient(135deg,#6c63ff,#7b72f5);
     color:white;
@@ -207,6 +228,12 @@ body.dark-mode .add-btn{
     border-radius:12px;
 
     box-shadow:0 0 10px rgba(108,99,255,0.6);
+    transition:0.3s;
+}
+
+body.dark-mode .add-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(108,99,255,0.9);
 }
 
 body.dark-mode .remove-btn{
@@ -217,231 +244,197 @@ body.dark-mode .remove-btn{
     border-radius:12px;
 }
 
+body.dark-mode .remove-btn:hover{
+    box-shadow:0 0 15px rgba(255,77,109,0.6);
+}
 
-/* ================= MODAL ================= */
-
+/* ===============================
+   MODAL
+================================ */
 body.dark-mode .modal-overlay{
     background:rgba(0,0,0,0.6);
-    backdrop-filter:blur(6px);
+    backdrop-filter:blur(8px);
 }
 
 body.dark-mode .modal{
-    background:#12122a;
+    background:rgba(18,18,40,0.95);
+    backdrop-filter:blur(14px);
+
     border-radius:20px;
+    padding:25px;
 
     box-shadow:
-        0 15px 40px rgba(0,0,0,0.7),
-        0 0 20px rgba(108,99,255,0.35);
+        0 20px 60px rgba(0,0,0,0.9),
+        0 0 25px rgba(108,99,255,0.35);
+
+    animation:fadeInScale 0.3s ease;
 }
 
-body.dark-mode .modal h3{
-    color:white;
-}
-
-body.dark-mode .modal input{
+/* modal inputs */
+body.dark-mode .modal input,
+body.dark-mode .modal textarea{
+    width:100%;
     background:#1a1a2e;
+    color:#fff;
+
     border:none;
+    padding:12px;
     border-radius:12px;
-    color:white;
+
+    box-shadow:
+        inset 0 0 6px rgba(108,99,255,0.25);
 }
 
+/* focus */
+body.dark-mode .modal input:focus{
+    box-shadow:
+        inset 0 0 10px rgba(108,99,255,0.5),
+        0 0 15px rgba(108,99,255,0.6);
+}
+
+/* date fix */
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+    filter:invert(1);
+}
+
+/* button */
 body.dark-mode .create-btn{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    width:100%;
+    padding:12px;
+
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
     color:white;
 
     border:none;
     border-radius:14px;
+
+    box-shadow:0 0 15px rgba(108,99,255,0.6);
+}
+
+body.dark-mode .create-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 25px rgba(108,99,255,1),
+        0 0 50px rgba(108,99,255,0.6);
+}
+
+/* ===============================
+   TOOLTIP
+================================ */
+body.dark-mode [data-title]{
+    position:relative;
+}
+
+body.dark-mode [data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:120%;
+    left:50%;
+    transform:translateX(-50%) scale(0.9);
+
+    background:#1a1a2e;
+    color:white;
+
+    padding:8px 16px;
+    border-radius:20px;
+
+    opacity:0;
+    transition:0.3s;
 
     box-shadow:0 0 12px rgba(108,99,255,0.6);
 }
 
-/* fix number input */
-
-body.dark-mode input[type="number"]{
-    background:#1a1a2e;
-    color:white;
-
-    border:none;
-    outline:none;
-
-    width:100%;
-    padding:12px 14px;
-
-    border-radius:14px;
-
-    appearance:none;
-    -moz-appearance:textfield;
-
-    box-shadow:
-        inset 0 0 8px rgba(108,99,255,0.25),
-        0 6px 12px rgba(0,0,0,0.6);
+body.dark-mode [data-title]:hover::after{
+    opacity:1;
+    transform:translateX(-50%) translateY(5px) scale(1);
 }
 
-/* remove arrows */
-
-body.dark-mode input[type="number"]::-webkit-inner-spin-button,
-body.dark-mode input[type="number"]::-webkit-outer-spin-button{
-    -webkit-appearance:none;
-    margin:0;
+/* ===============================
+   ANIMATION
+================================ */
+@keyframes fadeInScale{
+    from{
+        opacity:0;
+        transform:scale(0.9);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
+/* ===============================
+   RUPEE INPUT FINAL FIX
+================================ */
 
-/* rupee input container */
-
+/* wrapper FIX */
 body.dark-mode .input-rupee{
     display:flex;
     align-items:center;
 
-    background:#1a1a2e;
-    border-radius:18px;
-    padding:14px 18px;
-
-    /* removed glow */
-    box-shadow:none;
-
-    /* optional soft border so it doesn't look flat */
-    border:1px solid rgba(255,255,255,0.05);
-}
-
-/* rupee symbol */
-
-body.dark-mode .input-rupee span{
-    color:#8a8aff;
-    font-size:18px;
-    margin-right:10px;
-}
-
-/* input field */
-
-body.dark-mode .input-rupee input{
-    background:transparent;
-    border:none;
-    outline:none;
-
-    color:white;
-    font-size:16px;
+    background:#1a1a2e !important;
+    border-radius:14px;
+    padding:10px 14px;
 
     width:100%;
-}
-
-/* make date picker icon white in dark mode */
-
-body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
-    filter: invert(1);
-    cursor: pointer;
-}
-
-body.dark-mode .back-btn{
-    background:#1a1a2e;
-
-    border-radius:50%;
 
     box-shadow:
-        0 0 10px rgba(108,99,255,0.3),
-        inset 0 0 6px rgba(108,99,255,0.15);
+        inset 0 0 8px rgba(108,99,255,0.25),
+        0 5px 12px rgba(0,0,0,0.6);
+
+    overflow:hidden; /* 🔥 VERY IMPORTANT */
 }
 
-body.dark-mode .back-btn svg{
-    stroke:#8a8aff;
+/* ₹ symbol */
+body.dark-mode .input-rupee span{
+    color:#8a8aff;
+    font-weight:500;
+    margin-right:8px;
 }
 
-/* ================= MOBILE HEADER FIX ================= */
+/* actual input */
+body.dark-mode .input-rupee input{
+    flex:1;
 
-@media (max-width:768px){
+    background:transparent !important;
+    border:none !important;
+    outline:none;
 
-    body.dark-mode .page-header{
-        padding:10px 12px;
-        border-radius:16px;
-        gap:8px;
-    }
+    color:#fff !important;
+    font-size:14px;
 
-    /* reduce title size */
-    body.dark-mode .page-header h2{
-        font-size:16px;
-        line-height:1.2;
-    }
-
-    /* make icons smaller */
-    body.dark-mode .circle-icon,
-    body.dark-mode .menu-circle,
-    body.dark-mode .icon-btn,
-    body.dark-mode .back-btn{
-        width:36px;
-        height:36px;
-        font-size:14px;
-    }
-
-    /* fix spacing */
-    body.dark-mode .header-icons{
-        gap:6px;
-    }
-
-    /* prevent title breaking layout */
-    body.dark-mode .page-header h2{
-        flex:1;
-        text-align:center;
-    }
-
-    /* keep back button left */
-    body.dark-mode .back-btn{
-        flex-shrink:0;
-    }
-
-    /* keep icons right */
-    body.dark-mode .header-icons{
-        flex-shrink:0;
-    }
+    padding:6px 4px;
 }
 
+/* REMOVE browser white autofill */
+body.dark-mode input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 1000px #1a1a2e inset !important;
+    -webkit-text-fill-color:#fff !important;
+}
 
-   /* ================= TOOLTIP DARK ================= */
+/* ===============================
+   DATE FIELD FIX
+================================ */
+body.dark-mode input[type="date"]{
+    background:#1a1a2e !important;
+    color:#fff !important;
+}
 
-   body.dark-mode [data-title]{
-      position:relative;
-   }
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+    filter:invert(1);
+}
 
-   body.dark-mode [data-title]::after{
-      content:attr(data-title);
+/* ===============================
+   EXTRA SAFETY FIX
+================================ */
 
-      position:absolute;
-      top:130%;
-      left:50%;
-      transform:translateX(-50%) scale(0.9);
+/* sometimes parent gives white bg */
+body.dark-mode .modal input{
+    background:#1a1a2e !important;
+}
 
-      background:#12122a;
-      color:#ffffff;
-
-      padding:10px 16px;
-      border-radius:25px;
-
-      font-size:13px;
-
-      box-shadow:
-         0 0 12px rgba(108,99,255,0.6),
-         0 10px 25px rgba(0,0,0,0.7);
-
-      opacity:0;
-      transition:0.25s;
-   }
-
-   body.dark-mode [data-title]::before{
-      content:"";
-
-      position:absolute;
-      top:105%;
-      left:50%;
-      transform:translateX(-50%);
-
-      border-width:7px;
-      border-style:solid;
-
-      border-color:transparent transparent #12122a transparent;
-
-      opacity:0;
-      transition:0.25s;
-   }
-
-   body.dark-mode [data-title]:hover::after,
-   body.dark-mode [data-title]:hover::before{
-      opacity:1;
-      transform:translateX(-50%) translateY(6px) scale(1);
-   }
+/* remove any white border */
+body.dark-mode input{
+    border:none !important;
+}

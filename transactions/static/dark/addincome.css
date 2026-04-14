@@ -1,42 +1,105 @@
-/* ================= PAGE BACKGROUND ================= */
-
+/* ================= BODY ================= */
 body.dark-mode{
-    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    background:#050514;
     color:white;
-    font-family:'Plus Jakarta Sans',sans-serif;
+    font-family:'Poppins',sans-serif;
+    margin:0;
 }
 
+/* ================= BACKGROUND IMAGE ================= */
+.bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-10;
+}
 
-/* ================= MAIN CONTAINER ================= */
+body.dark-mode .bg-image{
+    content: url("/static/images/image.png");
+}
+
+/* ================= LAYOUT ================= */
+body.dark-mode{
+    display:flex;
+}
+
+body.dark-mode .page-wrapper{
+    width:100%;
+}
 
 body.dark-mode .container{
-    background:#12122a;
-    border-radius:25px;
-    padding:30px;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.7),
-        0 0 25px rgba(108,99,255,0.25);
+    margin-left:260px;
 }
 
+/* ================= MAIN CARD (🔥 FIXED BEAUTY) ================= */
+body.dark-mode .container{
+
+    max-width:650px;
+    margin:70px auto;
+    padding:40px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(145deg,
+        rgba(25,25,60,0.7),
+        rgba(10,10,30,0.85));
+
+    backdrop-filter: blur(20px);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.9),
+        0 0 60px rgba(108,99,255,0.25);
+
+    transition:0.3s;
+}
+
+/* hover */
+body.dark-mode .container:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,0.95),
+        0 0 80px rgba(108,99,255,0.4);
+}
 
 /* ================= HEADER ================= */
-
 body.dark-mode .header{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    margin-bottom:25px;
+    position:relative;
+    text-align:center;
+    margin-bottom:30px;
 }
 
 body.dark-mode .header h2{
-    color:white;
+    font-size:26px;
+    color:#dcdcff;
 }
 
+/* underline glow */
+body.dark-mode .header h2::after{
+    content:"";
+    display:block;
+    width:60%;
+    height:3px;
+    margin:8px auto;
+
+    background:linear-gradient(90deg,#6c63ff,#b39cff);
+    border-radius:10px;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.8);
+}
 
 /* ================= BACK BUTTON ================= */
-
 body.dark-mode .back-btn{
+    position:absolute;
+    left:0;
+    top:0;
+
     width:42px;
     height:42px;
 
@@ -46,180 +109,159 @@ body.dark-mode .back-btn{
 
     border-radius:50%;
 
-    background:#1a1a2e;
-    color:#6c63ff;
+    background:rgba(255,255,255,0.08);
+    color:#cfcfff;
 
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
+    backdrop-filter:blur(10px);
+
+    box-shadow:0 0 12px rgba(108,99,255,0.4);
+
     cursor:pointer;
     transition:0.25s;
 }
 
 body.dark-mode .back-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 0 15px rgba(108,99,255,0.6);
-}
+    transform:scale(1.1);
 
-
-/* ================= AMOUNT CARD ================= */
-
-body.dark-mode .amount-card{
-    background:linear-gradient(135deg,#00c896,#16a085);
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:25px;
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
     color:white;
 
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.6),
-        0 0 15px rgba(0,200,150,0.4);
+    box-shadow:0 0 20px rgba(108,99,255,0.8);
 }
 
+/* ================= AMOUNT CARD (🔥 UPGRADED) ================= */
+body.dark-mode .amount-card{
+
+    background:linear-gradient(135deg,#00c896,#16a085);
+
+    border-radius:20px;
+    padding:25px;
+
+    margin-bottom:30px;
+
+    position:relative;
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.6),
+        0 0 20px rgba(0,200,150,0.5);
+}
+
+/* glow overlay */
+body.dark-mode .amount-card::after{
+    content:"";
+    position:absolute;
+    top:-40%;
+    right:-20%;
+
+    width:200px;
+    height:200px;
+
+    background:rgba(255,255,255,0.1);
+    border-radius:50%;
+
+    filter:blur(40px);
+}
+
+/* text */
 body.dark-mode .amount-card small{
     opacity:0.9;
 }
 
 body.dark-mode .amount-card h1{
-    font-size:32px;
-    margin-top:5px;
+    font-size:34px;
+    margin-top:6px;
 }
 
+/* ================= LABEL ================= */
+body.dark-mode label{
+    display:block;
+    margin-bottom:6px;
+    color:#bdbdff;
+    font-size:14px;
+}
 
-/* ================= INPUT FIELDS ================= */
-
+/* ================= INPUT ================= */
 body.dark-mode input,
 body.dark-mode select{
-    width:100%;
-    padding:14px 16px;
 
-    background:#1a1a2e;
-    border:none;
-    border-radius:12px;
+    width:100%;
+    padding:15px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    background:rgba(255,255,255,0.04);
 
     color:white;
     font-size:15px;
 
-    box-shadow:
-        inset 0 0 6px rgba(108,99,255,0.15),
-        0 5px 10px rgba(0,0,0,0.5);
+    backdrop-filter:blur(8px);
+
+    margin-bottom:18px;
 
     transition:0.25s;
 }
 
-
-/* focus glow */
-
-body.dark-mode input:focus,
-body.dark-mode select:focus{
-    outline:none;
-
-    box-shadow:
-        0 0 12px rgba(108,99,255,0.5),
-        inset 0 0 8px rgba(108,99,255,0.25);
-}
-
-
-/* placeholder */
-
-body.dark-mode input::placeholder{
-    color:#8a8aff;
-}
-
-
-/* ================= LABEL ================= */
-
-body.dark-mode label{
-    color:#cfcfff;
-    font-weight:500;
-}
-
-
-/* ================= BUTTON ================= */
-
-body.dark-mode button{
-    margin-top:25px;
-    padding:14px;
-
-    border:none;
-    border-radius:25px;
-
-    background:linear-gradient(135deg,#00c896,#16a085);
-    color:white;
-
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-
-    transition:0.25s;
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.6),
-        0 0 12px rgba(0,200,150,0.4);
-}
-
-body.dark-mode button:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 12px 25px rgba(0,0,0,0.7),
-        0 0 18px rgba(0,200,150,0.6);
-}
-
-/* ================= INPUT HOVER ================= */
-
+/* hover */
 body.dark-mode input:hover,
 body.dark-mode select:hover{
-    box-shadow:
-        0 0 10px rgba(108,99,255,0.35),
-        inset 0 0 6px rgba(108,99,255,0.15);
+    background:rgba(255,255,255,0.06);
 }
 
+/* focus */
+body.dark-mode input:focus,
+body.dark-mode select:focus{
 
-/* ================= BUTTON HOVER ================= */
+    outline:none;
 
-body.dark-mode button{
-    transition:0.25s ease;
-}
-
-body.dark-mode button:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 0 18px rgba(0,200,150,0.6),
-        0 10px 20px rgba(0,0,0,0.6);
-}
-
-
-/* ================= AMOUNT CARD HOVER ================= */
-
-body.dark-mode .amount-card{
-    transition:0.25s ease;
-}
-
-body.dark-mode .amount-card:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 0 18px rgba(0,200,150,0.5),
-        0 12px 25px rgba(0,0,0,0.7);
-}
-
-
-/* ================= BACK BUTTON HOVER ================= */
-
-body.dark-mode .back-btn{
-    transition:0.25s;
-}
-
-body.dark-mode .back-btn:hover{
-    transform:translateY(-2px);
+    border:1px solid #6c63ff;
 
     box-shadow:
         0 0 15px rgba(108,99,255,0.6);
 }
-/* ================= DATE ICON WHITE (FIX) ================= */
 
+/* placeholder */
+body.dark-mode input::placeholder{
+    color:#8a8aff;
+}
+
+/* ================= DATE FIX ================= */
 body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
-    filter: invert(1) brightness(2);
-    opacity: 1;
-    cursor: pointer;
+    filter:invert(1);
+}
+
+/* ================= BUTTON ================= */
+body.dark-mode button{
+
+    display:block;
+    margin:30px auto 0;
+
+    padding:14px 40px;
+
+    border:none;
+    border-radius:30px;
+
+    background:linear-gradient(135deg,#00c896,#16a085);
+
+    color:white;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.6),
+        0 0 15px rgba(0,200,150,0.5);
+
+    transition:0.25s;
+}
+
+/* hover */
+body.dark-mode button:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(0,200,150,0.9);
 }

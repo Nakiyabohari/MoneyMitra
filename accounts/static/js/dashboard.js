@@ -106,10 +106,18 @@ document.getElementById("quick-overlay").classList.remove("active");
 }
 
 
+/* ================= THEME TOGGLE (IMPORTANT) ================= */
+function toggleTheme(){
+    document.body.classList.toggle("dark-mode");
+
+    // 🔥 THIS FIXES EVERYTHING
+    loadExpenseGraph();
+}
+
 function loadExpenseGraph() {
 
     let canvas = document.getElementById('expenseChart');
-    if (!canvas) return; // 🔥 prevent error
+    if (!canvas) return;
 
     let expenses = expensesData || [];
 
@@ -128,59 +136,69 @@ function loadExpenseGraph() {
 
     const ctx = canvas.getContext('2d');
 
-    new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Daily Expense',
-            data: data,
+    // ✅ DETECT MODE
+    const isDark = document.body.classList.contains("dark-mode");
 
-            borderColor: "#6c63ff",
-            backgroundColor: "rgba(108,99,255,0.15)",
-            borderWidth: 3,
+    // ✅ COLORS (FINAL CORRECT)
+    const textColor = isDark ? "#ffffff" : "#000000";   // 🔥 THIS IS MAIN
+    const gridColor = isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.1)";
+    const lineColor = isDark ? "#a78bfa" : "#6c63ff";  // 💜 purple glow
+    const fillColor = isDark 
+        ? "rgba(167,139,250,0.25)" 
+        : "rgba(108,99,255,0.1)";
 
-            tension: 0.4,
-            fill: true,
+    // ✅ DESTROY OLD CHART
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
 
-            pointBackgroundColor: "#ffffff",
-            pointBorderColor: "#6c63ff",
-            pointRadius: 5,
-            pointHoverRadius: 7
-        }]
-    },
+    window.myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Daily Expense',
+                data: data,
+                borderColor: lineColor,
+                backgroundColor: fillColor,
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true,
 
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: "#1f1f3d",
-                    font: {
-                        size: 14,
-                        weight: "600"
+                pointBackgroundColor: isDark ? "#ffffff" : "#000000",
+                pointBorderColor: isDark ? "#000000" : "#6c63ff",
+                pointBorderWidth: 2,
+                pointRadius: 5
+            }]
+        },
+
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: textColor   // ✅ FIXED
+                    }
+                }
+            },
+
+            scales: {
+                x: {
+                    ticks: {
+                        color: textColor   // ✅ FIXED
+                    },
+                    grid: {
+                        color: gridColor
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: textColor   // ✅ FIXED
+                    },
+                    grid: {
+                        color: gridColor
                     }
                 }
             }
-        },
-
-        scales: {
-            x: {
-                ticks: {
-                    color: "#6f6f9f"
-                },
-                grid: {
-                    color: "rgba(0,0,0,0.05)"
-                }
-            },
-            y: {
-                ticks: {
-                    color: "#6f6f9f"
-                },
-                grid: {
-                    color: "rgba(0,0,0,0.05)"
-                }
-            }
         }
-    }
-});
+    });
 }

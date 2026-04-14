@@ -4,7 +4,25 @@ body.dark-mode{
 background: radial-gradient(circle at top,#0f0f1a,#050514);
 color:white;
 }
+/* ================= BACKGROUND IMAGE FIX ================= */
 
+/* Light mode (default) */
+.bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-10;
+
+    content: url("/static/images/bg.png"); /* LIGHT IMAGE */
+}
+
+/* Dark mode image */
+body.dark-mode .bg-image{
+    content: url("/static/images/image.png"); /* DARK IMAGE */
+}
 /* main container */
 
 body.dark-mode .profile-container{

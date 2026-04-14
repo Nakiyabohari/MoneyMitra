@@ -1,418 +1,291 @@
+/* ===============================
+   ROOT
+================================ */
+:root{
+    --primary:#6C63FF;
+    --secondary:#8B7CFF;
+}
 
+/* ===============================
+   BODY
+================================ */
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    min-height:100vh;
+}
 
-/* ================= EMI PAGE ================= */
+/* ===============================
+   LIGHT BACKGROUND IMAGE
+================================ */
+.bg-image{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-1;
+    transition:0.4s;
+}
 
+/* ===============================
+   DARK MODE BACKGROUND (FIXED VISIBILITY)
+================================ */
+body.dark-mode .bg-image{
+    opacity:0;
+}
+
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    /* 🔥 lighter overlay so image is visible */
+    background:
+        linear-gradient(rgba(10,10,30,0.3), rgba(10,10,30,0.5)),
+        url("../images/image.png");
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-2;
+}
+
+/* subtle glow layer */
+body.dark-mode::after{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(circle at 60% 20%, rgba(108,99,255,0.25), transparent 60%);
+
+    z-index:-1;
+}
+
+/* ===============================
+   CONTENT WRAPPER
+================================ */
+.content-wrapper{
+    margin-left:260px;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:60px 40px;
+}
+
+/* ===============================
+   CONTAINER (LIGHT)
+================================ */
+.container{
+    width:100%;
+    max-width:1100px;
+
+    padding:45px 50px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(10px);
+
+    box-shadow:0 20px 60px rgba(0,0,0,0.2);
+}
+
+/* ===============================
+   CONTAINER (DARK)
+================================ */
 body.dark-mode .container{
-    background:#0f0f1a;
+    max-width:1300px;
+    padding:60px 70px;
+
+    background:rgba(25,25,55,0.65);
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.8),
+        0 0 40px rgba(108,99,255,0.2);
 }
 
-body.dark-mode .header{
-    color:white;
+/* ===============================
+   HEADER
+================================ */
+.page-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    padding:18px 25px;
+    margin-bottom:35px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.6);
 }
-
-body.dark-mode .header h2{
-    color:white;
-}
-
-body.dark-mode .icon-btn{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
-}
-
-body.dark-mode .icon-btn:hover{
-    box-shadow:0 0 20px rgba(108,99,255,0.8);
-}
-
-
-/* ================= TOTAL EMI CARD ================= */
-
-body.dark-mode .total-card{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
-    color:white;
-    box-shadow:0 0 25px rgba(108,99,255,0.6);
-}
-
-
-/* ================= EMI CARDS ================= */
-
-body.dark-mode .emi-card{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 12px rgba(108,99,255,0.25);
-    transition:0.3s;
-}
-
-body.dark-mode .emi-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 25px rgba(108,99,255,0.6);
-}
-
-body.dark-mode .emi-card h4,
-body.dark-mode .emi-card p{
-    color:white;
-}
-
-
-/* ================= EMI AMOUNT ================= */
-
-body.dark-mode .emi-amount{
-    color:#8a8aff;
-}
-
-
-/* ================= PROGRESS BAR ================= */
-
-body.dark-mode .progress-bar{
-    background:#2b2b45;
-}
-
-body.dark-mode .progress{
-    background:#6c63ff;
-    box-shadow:0 0 10px rgba(108,99,255,0.9);
-}
-
-
-/* ================= DELETE BUTTON ================= */
-
-body.dark-mode .delete-btn{
-    background:#2b2b45;
-    color:white;
-    border:none;
-}
-
-body.dark-mode .delete-btn:hover{
-    box-shadow:0 0 10px rgba(108,99,255,0.7);
-}
-
-/* ================= BUTTON GLOW ================= */
-
-body.dark-mode .plus,
-body.dark-mode button{
-    background:#6c63ff;
-    color:white;
-    box-shadow:0 0 12px rgba(108,99,255,0.6);
-    transition:0.3s;
-}
-
-body.dark-mode .plus:hover,
-body.dark-mode button:hover{
-    box-shadow:0 0 20px rgba(108,99,255,1);
-}
-
-/* ================= ADD EMI PAGE DARK MODE ================= */
-
-/* ===== DARK MODE BODY FIX ===== */
-
-body.dark-mode{
-    background: radial-gradient(circle at top,#0f0f1a,#050514) !important;
-    color:white;
-}
-
-/* remove light background from addemi.css */
-
-body.dark-mode{
-    background-color:#0f0f1a !important;
-}
-
-/* container fix */
-body.dark-mode .container{
-    background: transparent;
-}
-
-/* form card */
-body.dark-mode .form-card{
-    background:#12122a !important;
-    color:white;
-    box-shadow:0 0 25px rgba(108,99,255,0.35);
-}
-
-/* labels */
-body.dark-mode .form-card label{
-    color:#cfcfff;
-}
-
-/* inputs */
-body.dark-mode .form-card input,
-body.dark-mode .form-card select,
-body.dark-mode .form-card textarea{
-    background:#1a1a2e !important;
-    color:white !important;
-    border:1px solid rgba(108,99,255,0.3);
-}
-
-/* placeholder */
-body.dark-mode .form-card input::placeholder{
-    color:#9a9aff;
-}
-
-/* focus glow */
-body.dark-mode .form-card input:focus{
-    border:1px solid #6c63ff;
-    box-shadow:0 0 10px rgba(108,99,255,0.8);
-}
-
-/* back button */
-body.dark-mode .circle-btn{
-    background:#1a1a2e !important;
-    color:#8a8aff;
-    box-shadow:0 0 10px rgba(108,99,255,0.6);
-}
-
-/* button */
-body.dark-mode .btn{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
-    box-shadow:0 0 15px rgba(108,99,255,0.6);
-}
-
-body.dark-mode .btn:hover{
-    box-shadow:0 0 30px rgba(108,99,255,1);
-}
-/* ================= ADD EMI PAGE ================= */
-
-body.dark-mode .form-card{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 15px rgba(108,99,255,0.3);
-}
-
-body.dark-mode .form-card h3{
-    color:white;
-}
-
-/* labels */
-
-body.dark-mode label{
-    color:#cfcfff;
-}
-
-/* inputs */
-
-body.dark-mode input,
-body.dark-mode select,
-body.dark-mode textarea{
-    background:#23234a;
-    color:white;
-    border:1px solid rgba(255,255,255,0.1);
-}
-
-/* input focus glow */
-
-body.dark-mode input:focus,
-body.dark-mode select:focus,
-body.dark-mode textarea:focus{
-    outline:none;
-    border:1px solid #6c63ff;
-    box-shadow:0 0 10px rgba(108,99,255,0.6);
-}
-
-/* double field */
-
-body.dark-mode .double-field input{
-    background:#23234a;
-}
-
-/* back button */
-
-body.dark-mode .circle-btn{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
-}
-
-body.dark-mode .circle-btn:hover{
-    box-shadow:0 0 20px rgba(108,99,255,0.9);
-}
-
-/* submit button */
-
-body.dark-mode .btn{
-    background:#6c63ff;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.5);
-}
-
-body.dark-mode .btn:hover{
-    box-shadow:0 0 20px rgba(108,99,255,0.9);
-}
-
-/* ===== DATE INPUT DARK MODE FIX ===== */
-
-body.dark-mode input[type="date"]{
-    color:white;
-}
-
-/* invert the calendar icon */
-
-body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
-    filter: invert(1);
-    cursor: pointer;
-}
-
-/* ================= HEADER DARK MODE ================= */
 
 body.dark-mode .page-header{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 20px rgba(108,99,255,0.35);
+    background:rgba(30,30,65,0.7);
 }
 
-/* EMI Manager text */
+/* ✅ FIX: HEADING WHITE */
+.page-header h2{
+    font-size:28px;
+}
 
 body.dark-mode .page-header h2{
-    color:white;
-}
-
-/* back button */
-
-body.dark-mode .back-btn{
-    background:#23234a;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
-}
-
-body.dark-mode .back-btn:hover{
-    box-shadow:0 0 20px rgba(108,99,255,0.8);
-}
-
-/* header icons */
-
-body.dark-mode .circle-icon,
-body.dark-mode .menu-circle{
-    background:#23234a;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
-}
-
-body.dark-mode .circle-icon:hover,
-body.dark-mode .menu-circle:hover{
-    box-shadow:0 0 20px rgba(108,99,255,0.8);
-}
-
-/* plus button */
-
-body.dark-mode .plus{
-    background:#6c63ff;
-    color:white;
-    box-shadow:0 0 15px rgba(108,99,255,0.7);
-}
-/* ================= TOOLTIP DARK ================= */
-
-body.dark-mode [data-title]{
-    position:relative;
-}
-
-/* TEXT */
-body.dark-mode [data-title]::after{
-    content:attr(data-title);
-
-    position:absolute;
-    top:130%;
-    left:50%;
-    transform:translateX(-50%) scale(0.85);
-
-    background:#12122a;
     color:#ffffff;
+}
 
-    padding:10px 18px;
-    border-radius:30px;
+/* ===============================
+   TOTAL CARD
+================================ */
+.total-card{
+    padding:25px 30px;
+    margin-bottom:30px;
 
-    font-size:14px;
-    font-weight:500;
+    border-radius:22px;
 
-    white-space:nowrap;
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
+    color:white;
+
+    box-shadow:0 10px 30px rgba(108,99,255,0.5);
+}
+
+.total-card h1{
+    font-size:32px;
+}
+
+/* ===============================
+   EMI SECTION
+================================ */
+.emi-section h3{
+    margin-bottom:15px;
+}
+
+/* ✅ FIX: "Active EMIs" WHITE */
+body.dark-mode .emi-section h3{
+    color:#ffffff;
+}
+
+/* ===============================
+   EMI CARD (LIGHT)
+================================ */
+.emi-card{
+    width:420px;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    background:white;
+    color:#333;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===============================
+   EMI CARD (DARK)
+================================ */
+body.dark-mode .emi-card{
+    background:rgba(20,20,45,0.85);
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
 
     box-shadow:
-        0 0 12px rgba(108,99,255,0.6),
-        0 10px 25px rgba(0,0,0,0.7);
+        0 10px 30px rgba(0,0,0,0.8),
+        0 0 20px rgba(108,99,255,0.15);
 
-    opacity:0;
-    pointer-events:none;
-
-    transition:all 0.25s ease;
+    transition:0.3s;
 }
 
-/* ARROW */
-body.dark-mode [data-title]::before{
-    content:"";
-
-    position:absolute;
-    top:105%;
-    left:50%;
-    transform:translateX(-50%) scale(0.85);
-
-    border-width:8px;
-    border-style:solid;
-
-    border-color:transparent transparent #12122a transparent;
-
-    opacity:0;
-    transition:all 0.25s ease;
+/* TEXT FIX */
+body.dark-mode .emi-card small{
+    color:#bbb;
 }
 
-/* SHOW */
-body.dark-mode [data-title]:hover::after,
-body.dark-mode [data-title]:hover::before{
-    opacity:1;
-    transform:translateX(-50%) translateY(6px) scale(1);
-}
-/* ================= DARK TOOLTIP ================= */
-
-body.dark-mode [data-title]{
-    position:relative;
+body.dark-mode .emi-card .active{
+    color:#00ff9d;
+    font-weight:600;
 }
 
-/* TEXT */
-body.dark-mode [data-title]::after{
-    content:attr(data-title);
+body.dark-mode .emi-card .amount{
+    color:#8b7cff;
+    font-weight:600;
+}
 
-    position:absolute;
-    top:130%;
-    left:50%;
-    transform:translateX(-50%) translateY(0) scale(0.9);
-
-    background:#12122a;
-    color:#ffffff;
-
-    padding:10px 16px;
-    border-radius:25px;
-
-    font-size:13px;
-    font-weight:500;
-
-    white-space:nowrap;
+/* ===============================
+   HOVER EFFECT (GLOW)
+================================ */
+body.dark-mode .emi-card:hover{
+    transform:translateY(-5px) scale(1.01);
 
     box-shadow:
-        0 0 12px rgba(108,99,255,0.6),
-        0 10px 25px rgba(0,0,0,0.7);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:all 0.25s ease;
+        0 20px 60px rgba(0,0,0,0.9),
+        0 0 35px rgba(108,99,255,0.4);
 }
 
-/* ARROW */
-body.dark-mode [data-title]::before{
-    content:"";
+/* ===============================
+   ICON BUTTON GLOW
+================================ */
+body.dark-mode .circle-icon{
+    background:rgba(25,25,60,0.7);
+    color:white;
 
-    position:absolute;
-    top:105%;
-    left:50%;
-    transform:translateX(-50%);
-
-    border-width:7px;
-    border-style:solid;
-
-    border-color:transparent transparent #12122a transparent;
-
-    opacity:0;
-    transition:all 0.25s ease;
+    box-shadow:0 0 10px rgba(108,99,255,0.3);
+    transition:0.3s;
 }
 
-/* SHOW */
-body.dark-mode [data-title]:hover::after,
-body.dark-mode [data-title]:hover::before{
-    opacity:1;
-    transform:translateX(-50%) translateY(6px) scale(1);
+body.dark-mode .circle-icon:hover{
+    transform:scale(1.1);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.8),
+        0 0 35px rgba(108,99,255,0.6);
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media(max-width:768px){
+
+    .content-wrapper{
+        margin-left:0;
+        padding:20px;
+        align-items:flex-start;
+    }
+
+    .container{
+        padding:25px;
+    }
+
+    body.dark-mode .container{
+        padding:30px;
+        max-width:100%;
+    }
+
+    .emi-card{
+        width:100%;
+    }
+}
+/* 🔥 FIX: Active EMIs text white */
+body.dark-mode .emi-section h3{
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* In case it's using another class */
+body.dark-mode h3{
+    color: #ffffff;
 }

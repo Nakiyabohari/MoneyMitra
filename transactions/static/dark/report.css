@@ -1,340 +1,217 @@
-/* ================= PAGE BACKGROUND ================= */
-
-body.dark-mode{
-    background: radial-gradient(circle at top,#0f0f1a,#050514);
-    color:white;
+/* ===============================
+   DARK BACKGROUND
+================================ */
+body.dark-mode {
+    color: white;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-
-/* ================= MAIN CONTAINER ================= */
-
-body.dark-mode .container{
-    background:#12122a;
-    border-radius:25px;
-    padding:25px;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.7),
-        0 0 25px rgba(108,99,255,0.25);
+/* hide light bg */
+body.dark-mode .bg-image {
+    opacity: 0;
 }
 
+/* dark bg image */
+body.dark-mode::before {
+    content: "";
+    position: fixed;
+    inset: 0;
 
-/* ================= HEADER ================= */
+    background:
+        linear-gradient(
+            rgba(8,8,25,0.55),   /* lighter */
+            rgba(5,5,15,0.75)    /* less dark */
+        ),
+        url("../images/image.png");
 
-body.dark-mode .page-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-    padding:14px 20px;
-    margin-bottom:25px;
+    z-index: -2;
+}
 
-    background:#1a1a2e;
-    border-radius:20px;
+/* ===============================
+   MAIN CONTENT (FULL WIDTH LIKE LIGHT MODE)
+================================ */
+body.dark-mode .main-content {
+    margin-left: 260px;
+    padding: 20px 30px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+body.dark-mode .page-header {
+    background: rgba(25,25,60,0.6);
+    backdrop-filter: blur(10px);
+
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
 
     box-shadow:
-        0 0 12px rgba(108,99,255,0.25),
-        0 8px 20px rgba(0,0,0,0.6);
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.15);
+}
+
+/* ===============================
+   PERIOD SECTION
+================================ */
+body.dark-mode .period-section {
+    background: rgba(25,25,60,0.5);
+    border-radius: 12px;
+    padding: 12px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+body.dark-mode select {
+    background: #12122a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* ===============================
+   BUTTONS (GLOW)
+================================ */
+body.dark-mode .buttons {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+body.dark-mode .btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+body.dark-mode .btn.download {
+    background: linear-gradient(135deg,#6c63ff,#7b72f5);
+}
+
+body.dark-mode .btn.share {
+    background: linear-gradient(135deg,#00c896,#00a67d);
+}
+
+/* 🔥 glow hover */
+body.dark-mode .btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(108,99,255,0.7),
+        0 0 35px rgba(108,99,255,0.4);
+}
+
+/* ===============================
+   CARDS
+================================ */
+body.dark-mode .card {
+    background: rgba(20,20,45,0.75);
+
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.6);
+
+    transition: 0.3s;
+}
+
+body.dark-mode .card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.8),
+        0 0 12px rgba(108,99,255,0.2);
+}
+
+/* ===============================
+   INCOME / EXPENSE
+================================ */
+body.dark-mode .card.income {
+    border: 1px solid #00c896;
+}
+
+body.dark-mode .card.expense {
+    border: 1px solid #ff4d4d;
+}
+
+/* ===============================
+   BALANCE
+================================ */
+body.dark-mode .card.balance {
+    background: linear-gradient(135deg,#6c63ff,#7b72f5);
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.8),
+        0 0 20px rgba(108,99,255,0.3);
+}
+
+body.dark-mode .card.balance .big {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* ===============================
+   TEXT
+================================ */
+body.dark-mode .row span {
+    color: #e5e5ff;
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width:768px){
+    body.dark-mode .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    body.dark-mode .buttons {
+        flex-direction: column;
+    }
+}
+/* ===============================
+   FIX HEADER ICON CIRCLES (FINAL)
+================================ */
+
+body.dark-mode .header-icons .circle-icon{
+    background: rgba(255,255,255,0.08) !important;
 
     backdrop-filter: blur(10px);
-}
 
-/* title */
-body.dark-mode .page-header h2{
-    color:white;
-    font-weight:600;
-    font-size:20px;
-    white-space:nowrap;
-}
-
-/* back button */
-body.dark-mode .back-btn{
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-    background:#1a1a2e;
-
-    flex-shrink:0;
+    border: 1px solid rgba(255,255,255,0.1);
 
     box-shadow:
-        0 0 10px rgba(108,99,255,0.3),
-        inset 0 0 6px rgba(108,99,255,0.15);
+        0 5px 15px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.2);
 
-    transition:0.25s;
-}
-
-body.dark-mode .back-btn svg{
-    stroke:#8a8aff;
-}
-
-/* icons */
-body.dark-mode .header-icons{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-shrink:0;
-}
-
-body.dark-mode .circle-icon,
-body.dark-mode .menu-circle{
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-    background:#1a1a2e;
-    color:white;
-
-    box-shadow:
-        0 0 10px rgba(108,99,255,0.3),
-        inset 0 0 5px rgba(108,99,255,0.2);
-
-    transition:0.25s;
+    transition: 0.3s;
 }
 
 /* hover */
-body.dark-mode .circle-icon:hover,
-body.dark-mode .menu-circle:hover,
-body.dark-mode .back-btn:hover{
-    transform:translateY(-2px) scale(1.05);
-
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+body.dark-mode .header-icons .circle-icon:hover{
+    transform: translateY(-4px) scale(1.1);
 
     box-shadow:
-        0 0 12px rgba(108,99,255,0.8),
-        0 0 25px rgba(108,99,255,0.6);
+        0 0 25px rgba(108,99,255,0.6),
+        0 0 50px rgba(108,99,255,0.3);
 }
 
-
-/* ================= PERIOD SECTION ================= */
-
-body.dark-mode .period-section{
-    background:#1a1a2e;
-    border-radius:15px;
-    padding:12px;
-
-    box-shadow:
-        inset 0 0 8px rgba(108,99,255,0.2),
-        0 6px 12px rgba(0,0,0,0.6);
-}
-
-body.dark-mode select{
-    background:#12122a;
-    border:none;
-    border-radius:10px;
-    padding:10px 12px;
-    color:white;
-}
-
-
-/* ================= BUTTONS ================= */
-
-body.dark-mode .btn{
-    border:none;
-    border-radius:12px;
-    color:white;
-    font-weight:500;
-    padding:12px;
-}
-
-body.dark-mode .btn.download{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
-    box-shadow:0 0 12px rgba(108,99,255,0.6);
-}
-
-body.dark-mode .btn.share{
-    background:#00c896;
-}
-
-
-/* ================= CARDS ================= */
-
-body.dark-mode .card{
-    background:#1a1a2e;
-    border-radius:18px;
-    padding:18px;
-
-    box-shadow:
-        0 8px 18px rgba(0,0,0,0.6),
-        0 0 10px rgba(108,99,255,0.25);
-
-    transition:0.25s;
-}
-
-body.dark-mode .card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 12px 25px rgba(0,0,0,0.7),
-        0 0 18px rgba(108,99,255,0.45);
-}
-
-body.dark-mode .card h3{
-    color:white;
-}
-
-
-/* ================= INCOME ================= */
-
-body.dark-mode .card.income{
-    border:1px solid #00c896;
-
-    box-shadow:
-        0 0 12px rgba(0,200,150,0.35),
-        0 8px 18px rgba(0,0,0,0.6);
-}
-
-
-/* ================= EXPENSE ================= */
-
-body.dark-mode .card.expense{
-    border:1px solid #ff4d4d;
-
-    box-shadow:
-        0 0 12px rgba(255,77,77,0.35),
-        0 8px 18px rgba(0,0,0,0.6);
-}
-
-
-/* ================= TEXT ================= */
-
-body.dark-mode .row span{
-    color:white;
-}
-
-body.dark-mode .row.total{
-    font-weight:600;
-}
-
-
-/* ================= BALANCE ================= */
-
-body.dark-mode .card.balance{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
-    color:white;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.6),
-        0 0 20px rgba(108,99,255,0.45);
-}
-
-body.dark-mode .card.balance .big{
-    font-size:28px;
-    font-weight:600;
-}
-
-
-/* ================= PROGRESS ================= */
-
-body.dark-mode .progress{
-    background:#111122;
-    height:8px;
-    border-radius:10px;
-}
-
-body.dark-mode .progress-bar{
-    background:linear-gradient(90deg,#6c63ff,#7b72f5);
-    height:8px;
-    border-radius:10px;
-
-    box-shadow:0 0 10px rgba(108,99,255,0.6);
-}
-
-
-/* ================= MOBILE FIX ================= */
-
-@media (max-width:768px){
-
-    body.dark-mode .page-header{
-        padding:10px 12px;
-        border-radius:16px;
-        gap:8px;
-    }
-
-    body.dark-mode .page-header h2{
-        font-size:15px;
-        flex:1;
-        text-align:center;
-
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
-    }
-
-    body.dark-mode .back-btn,
-    body.dark-mode .circle-icon,
-    body.dark-mode .menu-circle{
-        width:34px;
-        height:34px;
-        font-size:13px;
-    }
-
-    body.dark-mode .header-icons{
-        gap:6px;
-    }
-}
-
-/* ================= SELECT PERIOD TEXT FIX ================= */
-
-body.dark-mode .period-title{
-    color: white;
-}
-
-body.dark-mode .period-title span{
-    color: white;
-}
-body.dark-mode [data-title]{
-    position:relative;
-}
-
-body.dark-mode [data-title]::after{
-    content:attr(data-title);
-
-    position:absolute;
-    top:125%;
-    left:50%;
-    transform:translateX(-50%) scale(0.85);
-
-    background:#12122a;
-    color:white;
-
-    padding:10px 18px;
-    border-radius:25px;
-
-    box-shadow:
-        0 0 12px rgba(108,99,255,0.6),
-        0 10px 25px rgba(0,0,0,0.7);
-
-    opacity:0;
-    transition:0.25s;
-}
-
-body.dark-mode [data-title]::before{
-    content:"";
-    position:absolute;
-    top:100%;
-    left:50%;
-    transform:translateX(-50%);
-
-    border-width:8px;
-    border-style:solid;
-    border-color:transparent transparent #12122a transparent;
-
-    opacity:0;
-    transition:0.25s;
-}
-
-body.dark-mode [data-title]:hover::after,
-body.dark-mode [data-title]:hover::before{
-    opacity:1;
-    transform:translateX(-50%) translateY(6px);
+/* icon inside */
+body.dark-mode .header-icons .circle-icon img{
+    filter: brightness(1.2);
 }

@@ -301,16 +301,18 @@ margin-right:6px;
 
 /* COLORS */
 
-.investment{ background:#B76DF7; }
-.expense{ background:#26982a; }
-.saving{ background:#9370db; }
-.emi{ background:#9400d3; }
-.available{ background:#800080; }
+.investment{ background:#6C5CE7; }
+.expense{ background:#A29BFE; }
+.saving{ background:#8E7CFF; }
+.emi{ background:#7B6CF6; }
+.available{ background:#5A4FCF; }
 
 /* ===============================
    HOVER EFFECT
 ================================ */
-
+a{
+    text-decoration: none;
+}
 .hoverable{
 transition:0.3s;
 cursor:pointer;

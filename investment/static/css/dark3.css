@@ -1,345 +1,259 @@
-/* ================= GLOBAL DARK MODE ================= */
+/* ===============================
+   DARK BASE
+================================ */
 
 body.dark-mode{
-    background:#0f0f1a;
-    color:white;
+    margin:0;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    color:#ffffff;
+
+    background:
+        linear-gradient(rgba(5,5,20,0.3), rgba(5,5,20,0.6)),
+        url("../images/image.png");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 }
 
-/* ================= MAIN CONTAINER ================= */
 
-body.dark-mode .main-wrapper,
-body.dark-mode .container{
-    background:#0f0f1a;
+/* ===============================
+   REMOVE IMAGE TAG EFFECT
+================================ */
+
+body.dark-mode .bg-image{
+    display:none;
 }
 
-/* ================= MAIN CARD ================= */
+
+/* ===============================
+   MAIN CARD (GLASS FIXED ✅)
+================================ */
 
 body.dark-mode .main-card{
-    background:#12122a;
-    box-shadow:0 0 30px rgba(108,99,255,0.35);
+    background:transparent;   /* 🔥 FIXED */
+
+    backdrop-filter:blur(12px);
+
     border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.7),
+        0 0 30px rgba(108,99,255,0.2);
 }
 
-/* ================= HEADINGS ================= */
 
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4{
-    color:white;
+/* ===============================
+   HEADER
+================================ */
+
+body.dark-mode .page-header{
+    background:transparent;  /* 🔥 FIX */
+
+    backdrop-filter:blur(10px);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.6),
+        0 0 15px rgba(108,99,255,0.2);
 }
 
-/* ================= BALANCE CARD ================= */
+body.dark-mode .page-header h2{
+    color:#ffffff;
+}
+
+
+/* ===============================
+   ICONS
+================================ */
+
+body.dark-mode .circle-icon{
+    background:#23234a;
+    color:#fff;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.5);
+    transition:0.3s;
+}
+
+body.dark-mode .circle-icon:hover{
+    transform:scale(1.1);
+    box-shadow:
+        0 0 25px rgba(108,99,255,0.9),
+        0 0 40px rgba(108,99,255,0.7);
+}
+
+
+/* ===============================
+   BALANCE CARD (KEEP COLOR)
+================================ */
 
 body.dark-mode .balance-card{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
-    color:white;
-    box-shadow:0 0 25px rgba(108,99,255,0.7);
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
+    border-radius:22px;
+
+    box-shadow:
+        0 15px 40px rgba(108,99,255,0.5),
+        0 0 30px rgba(108,99,255,0.4);
 }
 
-/* ================= INVESTMENT CARDS ================= */
+
+/* ===============================
+   INVEST CARDS (LIGHT GLASS)
+================================ */
 
 body.dark-mode .invest-card{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.25);
+    background:rgba(255,255,255,0.05);  /* 🔥 LIGHT */
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:18px;
+
+    transition:0.3s;
+}
+
+body.dark-mode .invest-card:hover{
+    transform:translateY(-4px);
+
+    background:rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 0 20px rgba(108,99,255,0.6),
+        0 0 35px rgba(108,99,255,0.4);
 }
 
 body.dark-mode .invest-card.active{
     border:1px solid #6c63ff;
-    box-shadow:0 0 20px rgba(108,99,255,0.6);
+    box-shadow:0 0 25px rgba(108,99,255,0.8);
 }
 
-/* ================= SUGGESTION BUTTONS ================= */
+
+/* ===============================
+   SUGGEST BUTTONS
+================================ */
 
 body.dark-mode .suggest-btn{
-    background:#1a1a2e;
-    color:white;
-    border:1px solid rgba(108,99,255,0.35);
-    transition:all 0.3s ease;
-}
+    background:rgba(255,255,255,0.05);
 
-/* REMOVE default glow */
-body.dark-mode .suggest-btn.active{
-    background:#1a1a2e;
-    box-shadow:none;
-}
+    border:1px solid rgba(255,255,255,0.08);
 
-/* glow only on hover */
+    border-radius:16px;
+
+    transition:0.3s;
+}
 
 body.dark-mode .suggest-btn:hover{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
+
     box-shadow:
-        0 0 10px rgba(108,99,255,0.7),
-        0 0 20px rgba(108,99,255,0.6),
-        0 0 35px rgba(108,99,255,0.4);
-    transform:translateY(-3px);
+        0 0 20px rgba(108,99,255,0.8),
+        0 0 30px rgba(108,99,255,0.6);
 }
-/* ================= INPUT AREA ================= */
+
+
+/* ===============================
+   INPUT
+================================ */
 
 body.dark-mode input{
-    background:#1a1a2e;
-    color:white;
-    border:1px solid rgba(108,99,255,0.3);
+    background:rgba(255,255,255,0.06) !important;
+    color:#fff !important;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:12px;
+    padding:12px;
 }
 
 body.dark-mode input::placeholder{
-    color:#9a9aff;
+    color:#b0b0ff;
 }
 
 body.dark-mode input:focus{
     border:1px solid #6c63ff;
-    box-shadow:0 0 10px rgba(108,99,255,0.7);
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.6);
 }
 
-/* ================= AMOUNT CARD ================= */
 
-body.dark-mode .amount-card{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 12px rgba(108,99,255,0.25);
-}
-
-/* ================= BUTTONS ================= */
+/* ===============================
+   BUTTON
+================================ */
 
 body.dark-mode .btn{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
-    color:white;
-    box-shadow:0 0 15px rgba(108,99,255,0.7);
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
+
+    border-radius:30px;
+    padding:12px;
+
+    box-shadow:0 10px 25px rgba(108,99,255,0.5);
+
+    transition:0.3s;
 }
 
 body.dark-mode .btn:hover{
-    box-shadow:0 0 25px rgba(108,99,255,1);
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 15px 40px rgba(108,99,255,0.9),
+        0 0 25px rgba(108,99,255,0.6);
 }
 
-body.dark-mode .outline-btn{
-    background:#1a1a2e;
-    color:white;
-    border:1px solid rgba(108,99,255,0.4);
-}
 
-/* ================= HEADER ICONS ================= */
-
-body.dark-mode .circle-icon,
-body.dark-mode .menu-circle,
-body.dark-mode .back-btn{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
-}
-
-/* ================= AI CHAT PANEL ================= */
+/* ===============================
+   RIGHT PANEL (FIXED)
+================================ */
 
 body.dark-mode .right-section{
-    background:#12122a;
-    color:white;
+    background:rgba(255,255,255,0.04); /* 🔥 LIGHT */
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.8);
 }
 
-body.dark-mode .bot-card{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.25);
+
+/* ===============================
+   CHAT
+================================ */
+
+body.dark-mode #chatInput{
+    background:rgba(255,255,255,0.05);
+    color:#fff;
 }
-
-body.dark-mode .mitra-input-area input{
-    background:#1a1a2e;
-}
-
-/* ================= TABLE PAGE ================= */
-
-body.dark-mode table{
-    background:#12122a;
-    color:white;
-    border-collapse:collapse;
-    box-shadow:0 0 20px rgba(108,99,255,0.3);
-}
-
-body.dark-mode th{
-    background:#1a1a2e;
-    color:#8a8aff;
-}
-
-body.dark-mode td{
-    border-bottom:1px solid rgba(108,99,255,0.2);
-}
-
-body.dark-mode tr:hover{
-    background:#1a1a2e;
-}
-
-/* ================= CHAT INPUT DARK ================= */
-
-body.dark-mode .mitra-input-area{
-    background:#12122a;
-    border-top:1px solid rgba(108,99,255,0.2);
-}
-
-body.dark-mode .mitra-input-area input{
-    background:#1a1a2e;
-    color:white;
-    border:none;
+#chatInput{
+    color: #23234a;
 }
 
 body.dark-mode .mitra-input-area button{
-    background:linear-gradient(135deg,#6c63ff,#7b72f5);
-    color:white;
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
 }
+/* ================= MAKE "AVAILABLE TO INVEST" WHITE ================= */
 
-/* ================= HEADER DARK ================= */
-
-body.dark-mode .page-header{
-    background:#1a1a2e;
-    color:white;
-    box-shadow:0 0 20px rgba(108,99,255,0.3);
-}
-
-body.dark-mode .page-header h2{
-    color:white;
-}
-
-/* back button */
-
-body.dark-mode .back-btn{
-    background:#23234a;
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
-}
-/* ===== BACK ARROW WHITE ===== */
-
-body.dark-mode .back-btn svg{
-    stroke:white;
-}
-/* header icons */
-
-body.dark-mode .circle-icon,
-body.dark-mode .menu-circle{
-    background:#23234a;
-    color:white;
-    box-shadow:0 0 10px rgba(108,99,255,0.4);
-}
-
-/* ================= AI PANEL FIX ================= */
-
-body.dark-mode .right-section{
-    background:#12122a;
-    box-shadow:0 0 20px rgba(108,99,255,0.25);
-}
-
-/* AI title */
-
-body.dark-mode .ai-title h3{
-    color:white;
-}
-
-body.dark-mode .ai-status{
-    color:#8a8aff;
-}
-
-/* divider line */
-
-body.dark-mode hr{
-    border-color:rgba(108,99,255,0.2);
-}
-
-/* AI intro */
-
-body.dark-mode .ai-intro h3{
-    color:white;
-}
-
-body.dark-mode .ai-intro p{
-    color:#cfcfff;
-}
-
-/* bot message */
-
-body.dark-mode .bot-card{
-    background:#1a1a2e;
-    color:white;
-    border:1px solid rgba(108,99,255,0.2);
-}
-
-/* chat input */
-
-body.dark-mode #chatInput{
-    background:#1a1a2e;
-    color:white;
-}
-
-body.dark-mode #chatInput::placeholder{
-    color:#9a9aff;
-}
-
-/* ===== INVEST CARD HOVER GLOW ===== */
-
-body.dark-mode .invest-card{
-    border:1px solid rgba(108,99,255,0.4);
-    transition:all 0.3s ease;
-}
-
-body.dark-mode .invest-card:hover{
-    box-shadow:
-        0 0 10px rgba(108,99,255,0.7),
-        0 0 20px rgba(108,99,255,0.5),
-        0 0 35px rgba(108,99,255,0.4);
-    transform:translateY(-3px);
-}
-
-/* ================= TOOLTIP DARK ================= */
-
-body.dark-mode [data-title]{
-    position:relative;
-}
-
-/* TEXT */
-body.dark-mode [data-title]::after{
-    content:attr(data-title);
-
-    position:absolute;
-    top:125%;
-    left:50%;
-    transform:translateX(-50%) scale(0.85);
-
-    background:#12122a;
-    color:#ffffff;
-
-    padding:12px 22px;
-    border-radius:30px;
-
-    font-size:15px;
+body.dark-mode .balance-subtext{
+    color:#ffffff !important;
+    opacity:0.95;
     font-weight:500;
+}
+/* ================= AI CHAT TEXT FIX ================= */
 
-    white-space:nowrap;
-
-    box-shadow:
-        0 0 15px rgba(108,99,255,0.6),
-        0 12px 28px rgba(0,0,0,0.7);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:all 0.25s ease;
+/* Bot message (white bubble → black text) */
+body.dark-mode .bot-card{
+    background:#ffffff;   /* keep bubble light */
+    color:#000000;        /* 🔥 text BLACK */
 }
 
-/* ARROW */
-body.dark-mode [data-title]::before{
-    content:"";
-
-    position:absolute;
-    top:100%;
-    left:50%;
-    transform:translateX(-50%) scale(0.85);
-
-    border-width:8px;
-    border-style:solid;
-
-    border-color:transparent transparent #12122a transparent;
-
-    opacity:0;
-    transition:all 0.25s ease;
-}
-
-/* SHOW */
-body.dark-mode [data-title]:hover::after,
-body.dark-mode [data-title]:hover::before{
-    opacity:1;
-    transform:translateX(-50%) translateY(6px) scale(1);
+/* Any text inside bot message */
+body.dark-mode .bot-card p,
+body.dark-mode .bot-card span,
+body.dark-mode .bot-card div{
+    color:#000000 !important;
 }

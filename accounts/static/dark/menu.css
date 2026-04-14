@@ -1,105 +1,202 @@
-/* ================= MENU OVERLAY ================= */
+/* ================= SIDEBAR BASE ================= */
 
-body.dark-mode .menu-overlay{
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(4px);
-}
+body.dark-mode .sidebar{
+    width:260px;
+    height:100vh;
 
-
-/* ================= DRAWER PANEL ================= */
-
-body.dark-mode .drawer-panel{
-    background:#12122a;
-    color:white;
-
-    box-shadow:
-        -10px 0 30px rgba(0,0,0,0.7),
-        0 0 25px rgba(108,99,255,0.25);
-}
-
-
-/* ================= HEADER ================= */
-
-body.dark-mode .drawer-header h2{
-    color:white;
-}
-
-body.dark-mode .close-button{
-    color:#8a8aff;
-    cursor:pointer;
-    transition:0.25s;
-}
-
-body.dark-mode .close-button:hover{
-    color:white;
-}
-
-
-/* ================= MENU CARDS ================= */
-
-body.dark-mode .menu-card{
-    background:#1a1a2e;
-    border-radius:18px;
-    padding:16px 18px;
-    margin-bottom:15px;
-
-    box-shadow:
-        0 6px 14px rgba(0,0,0,0.6),
-        inset 0 0 6px rgba(108,99,255,0.15);
-
-    cursor:pointer;
-    transition:0.25s;
-}
-
-
-/* ================= CARD HOVER ================= */
-
-body.dark-mode .menu-card:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 10px 22px rgba(0,0,0,0.7),
-        0 0 16px rgba(108,99,255,0.45);
-}
-
-
-/* ================= MENU LEFT ================= */
-
-body.dark-mode .menu-left span{
-    color:white;
-    font-weight:500;
-}
-
-
-/* ================= ICON ================= */
-
-body.dark-mode .menu-icon{
-    background:#252542;
-    color:#6c63ff;
-
-    width:38px;
-    height:38px;
+    padding:20px 15px;
 
     display:flex;
-    align-items:center;
-    justify-content:center;
+    flex-direction:column;
 
+    background: rgba(18,18,42,0.85);
+    backdrop-filter: blur(12px);
+
+    border-right:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        4px 0 25px rgba(0,0,0,0.7),
+        0 0 30px rgba(108,99,255,0.15);
+}
+
+
+/* ================= LOGO ================= */
+
+body.dark-mode .sidebar-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+body.dark-mode .sidebar-logo img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+}
+
+body.dark-mode .sidebar-logo h2{
+    font-size:20px;
+    color:#7a73ff;
+    font-weight:600;
+}
+
+
+/* ================= MENU ================= */
+
+body.dark-mode .sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+
+/* ================= MENU ITEM ================= */
+
+body.dark-mode .sidebar-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px 14px;
+    border-radius:14px;
+
+    text-decoration:none;
+
+    background: rgba(255,255,255,0.05);
+    color:#cfcfff;
+
+    transition:0.25s;
+}
+
+
+/* ICON */
+body.dark-mode .sidebar-menu a span{
+    font-size:18px;
+}
+
+/* TEXT */
+body.dark-mode .sidebar-menu a p{
+    margin:0;
+    font-size:14px;
+}
+
+
+/* ================= HOVER ================= */
+
+body.dark-mode .sidebar-menu a:hover{
+    transform:translateX(5px);
+
+    background: rgba(108,99,255,0.2);
+    color:white;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.3);
+}
+
+
+/* ================= ACTIVE ================= */
+
+body.dark-mode .sidebar-menu a.active{
+    background: linear-gradient(135deg,#6c63ff,#8f88ff);
+    color:white;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.7),
+        0 0 15px rgba(108,99,255,0.6);
+}
+
+
+/* ================= THEME TOGGLE ================= */
+
+body.dark-mode .theme-toggle{
+    margin-top:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px 14px;
+
+    border-radius:14px;
+
+    background: rgba(255,255,255,0.06);
+}
+
+
+/* LEFT SIDE */
+body.dark-mode .theme-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+body.dark-mode .theme-left span{
+    font-size:16px;
+}
+
+body.dark-mode .theme-left p{
+    margin:0;
+    font-size:14px;
+    color:#cfcfff;
+}
+
+
+/* ================= SWITCH ================= */
+
+body.dark-mode .switch{
+    position:relative;
+    display:inline-block;
+    width:45px;
+    height:24px;
+}
+
+body.dark-mode .switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+
+/* SLIDER */
+body.dark-mode .slider{
+    position:absolute;
+    cursor:pointer;
+
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    background:#2a2a4a;
+    border-radius:30px;
+
+    transition:0.3s;
+}
+
+/* CIRCLE */
+body.dark-mode .slider:before{
+    position:absolute;
+    content:"";
+
+    height:18px;
+    width:18px;
+
+    left:3px;
+    bottom:3px;
+
+    background:white;
     border-radius:50%;
 
-    box-shadow:0 0 8px rgba(108,99,255,0.25);
+    transition:0.3s;
 }
 
-
-/* ================= THEME SWITCH ================= */
-
-body.dark-mode .theme-toggle .slider{
-    background:#2c2c4f;
-}
-
-body.dark-mode .theme-toggle input:checked + .slider{
+/* ACTIVE SWITCH */
+body.dark-mode .switch input:checked + .slider{
     background:#6c63ff;
 }
 
-body.dark-mode .theme-toggle .slider:before{
-    background:white;
+body.dark-mode .switch input:checked + .slider:before{
+    transform:translateX(20px);
 }
