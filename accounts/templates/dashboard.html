@@ -123,7 +123,7 @@
 
                 <!-- OTHER INCOME -->
                 <div class="overview-card big-card">
-                    <p>Other Income</p>
+                    <b><p>Other Income</p></b>
                     <div class="mini-scroll">
 
                         {% for income in incomes|slice:":5" %}
@@ -132,7 +132,7 @@
                             <span>₹{{ income.amount }}</span>
                         </div>
                         {% empty %}
-                        <div class="progress-text">No income added</div>
+                        <div class="progress-text"><b>No income added</b></div>
                         {% endfor %}
 
                     </div>
@@ -140,7 +140,7 @@
 
                 <!-- EXPENSE -->
                 <div class="overview-card big-card">
-                    <p>Expense</p>
+                    <b><p>Expense</p></b>
                     <div class="mini-scroll">
 
                         {% for expense in expenses|slice:":5" %}
@@ -149,7 +149,7 @@
                             <span>₹{{ expense.amount }}</span>
                         </div>
                         {% empty %}
-                        <div class="progress-text">No expense added</div>
+                        <div class="progress-text"><b>No expense added</b> </div>
                         {% endfor %}
 
                     </div>
