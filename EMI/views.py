@@ -1,0 +1,126 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
+from .forms import EmiManagerForm
+from .models import EmiManager
+from accounts.models import Profile
+
+# ==============================
+# EMI LIST PAGE
+# ==============================
+from datetime import date
+
+@login_required
+def emimanager(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+    emis = EmiManager.objects.filter(user=request.user)
+
+    emi_data = []
+
+    for emi in emis:
+        today = date.today()
+
+        # total months
+        total_months = emi.duration
+
+        # months passed
+        months_passed = (today.year - emi.start_date.year) * 12 + (today.month - emi.start_date.month)
+
+        if months_passed < 0:
+            months_passed = 0
+
+        if months_passed > total_months:
+            months_passed = total_months
+
+        # months left
+        months_left = total_months - months_passed
+
+        # progress %
+        progress = (months_passed / total_months) * 100 if total_months else 0
+
+        # status
+        status = "Completed" if months_left == 0 else "Active"
+
+        emi_data.append({
+            "obj": emi,
+            "passed": months_passed,
+            "left": months_left,
+            "progress": progress,
+            "status": status
+        })
+
+    total = emis.aggregate(Sum('monthly_amount'))['monthly_amount__sum'] or 0
+
+    return render(request, 'emimanager.html', {
+        "profile": profile,
+        'emis': emi_data,
+        'total': total
+    })
+
+# ==============================
+# ADD EMI
+# ==============================
+from django.contrib import messages
+from django.db.models import Sum
+from budget.models import MonthlyIncome
+
+@login_required
+def addemi(request):
+
+    monthly_income = MonthlyIncome.objects.filter(user=request.user).aggregate(
+        total=Sum('salary')
+    )['total']
+
+    existing_emi = EmiManager.objects.filter(user=request.user).aggregate(
+        total=Sum('monthly_amount')
+    )['total'] or 0
+
+    if request.method == 'POST':
+        e = EmiManagerForm(request.POST)
+
+        if e.is_valid():
+
+            # ❌ NO INCOME CASE
+            if not monthly_income:
+                messages.error(request, "⚠️ Please add your monthly income first")
+            
+            else:
+                new_emi = e.cleaned_data['monthly_amount']
+                total_emi = existing_emi + new_emi
+
+                # ❌ EMI > INCOME
+                if total_emi > monthly_income:
+                    deficit = total_emi - monthly_income
+
+                    messages.error(
+                        request,
+                        f"⚠️ EMI exceeds income by ₹{deficit}"
+                    )
+                else:
+                    # ✅ SAVE EMI
+                    emi = e.save(commit=False)
+                    emi.user = request.user
+                    emi.save()
+
+                    messages.success(request, "✅ EMI added successfully")
+                    return redirect("emimanager")  # only success redirect
+
+    else:
+        e = EmiManagerForm()
+
+    return render(request, 'addemi.html', {
+        "e": e,
+        "total": existing_emi
+    })
+
+# ==============================
+# DELETE EMI (PERMANENT)
+# ==============================
+@login_required
+def delete_emi(request, id):
+
+    if request.method == "POST":
+        emi = get_object_or_404(EmiManager, id=id, user=request.user)
+        emi.delete()
+
+    return redirect("emimanager")

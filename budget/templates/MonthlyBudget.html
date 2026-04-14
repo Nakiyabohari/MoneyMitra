@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Category Budgets</title>
+
+<link rel="stylesheet" href="{% static 'css/MonthlyBudgetPc.css' %}">
+<link rel="stylesheet" href="{% static 'css/MonthlyBudgetMobile.css' %}">
+<link rel="stylesheet" href="{% static 'dark/monthlybudget.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+
+</head>
+
+<body>
+    
+
+<div class="budget-page">
+
+    <!-- HEADER -->
+    <div class="page-header">
+
+        <div class="header-left">
+            
+
+            <div class="header-text">
+                <h1>Set Category</h1>
+                <p>Set limits to track your spending effectively</p>
+            </div>
+        </div>
+
+        <div class="header-icons">
+            <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+            <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
+            <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+
+                {% if profile.profile_photo %}
+                    <img src="{{ profile.profile_photo.url }}">
+                {% else %}
+                    👤
+                {% endif %}
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="budget-container">
+
+        <!-- LEFT FORM -->
+        <div class="budget-form-card">
+
+            <h2>Add New Budget</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Category</label>
+                {{ form.name }}
+
+                <div id="customCategoryField">
+                    <label>Custom Category</label>
+                    {{ form.custom_name }}
+                </div>
+
+                <label>Monthly Limit</label>
+                {{ form.budget_amount }}
+
+                <label>Month</label>
+                {{ form.month }}
+
+                <button type="submit" class="add-budget-btn">
+                    + Add Budget Rule
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="budget-list">
+
+            {% if categories %}
+
+                {% for cat in categories %}
+
+                <div class="budget-card">
+
+                    <!-- CARD HEADER -->
+                    <div class="budget-card-header">
+
+                        <div class="card-title">
+                            <h3>{{ cat.name }}</h3>
+                            <span class="status">On Track</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <span class="edit-icon"
+                                  onclick="toggleEdit({{ cat.id }})">✏️</span>
+
+                            <span class="delete-icon"
+                                  onclick="deleteBudget({{ cat.id }})">🗑</span>
+                        </div>
+
+                    </div>
+
+                    <!-- INFO -->
+                    <div class="budget-info">
+
+                        <div>
+                            <p>Spent</p>
+                            <h4>₹0</h4>
+                        </div>
+
+                        <!-- EDIT BOX -->
+                        <div class="edit-box"
+                             id="editBox{{ cat.id }}"
+                             style="display:none;">
+
+                            <input type="number"
+                                   id="editAmount{{ cat.id }}"
+                                   value="{{ cat.budget_amount }}">
+
+                            <button onclick="saveEdit({{ cat.id }})">
+                                Save
+                            </button>
+                        </div>
+
+                        <div>
+                            <p>Limit</p>
+                            <h4>₹{{ cat.budget_amount }}</h4>
+                        </div>
+
+                    </div>
+
+                    <!-- PROGRESS -->
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="no-budget">
+                    <h3>No Budgets Set</h3>
+                    <p>Add your first budget category</p>
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- SAVE BUTTON -->
+    <div class="save-container">
+        <a href="/dashboard/" class="save-btn">
+            Save Changes
+        </a>
+    </div>
+
+</div>
+
+{% include "menu.html" %}
+<!-- JS -->
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/MonthlyBudget.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* ================= CALCULATOR DARK UI ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+}
+
+/* ================= CALCULATOR CARD ================= */
+
+body.dark-mode .calc-page{
+    background:#12122a;
+    padding:35px;
+    border-radius:35px;
+
+    box-shadow:
+        0 0 25px rgba(108,99,255,0.35),
+        0 0 50px rgba(108,99,255,0.15);
+
+    width:340px;
+    position:relative;
+}
+
+/* ================= DISPLAY ================= */
+
+body.dark-mode .calc-display{
+    background:#1a1a2e;
+    color:white;
+    font-size:34px;
+    text-align:right;
+    padding:20px;
+    border-radius:20px;
+    margin-bottom:25px;
+
+    box-shadow: inset 0 0 10px rgba(108,99,255,0.3);
+}
+
+/* ================= GRID ================= */
+
+body.dark-mode .calc-grid{
+    display:grid;
+
+    /* responsive grid */
+    grid-template-columns:repeat(4,1fr);
+
+    gap:16px;
+}
+
+/* ================= BUTTONS ================= */
+
+body.dark-mode .calc-btn{
+    height:60px;
+    border-radius:18px;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+
+    background:#1a1a2e;
+    color:white;
+
+    transition:all 0.25s ease;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.6);
+}
+
+/* hover glow */
+
+body.dark-mode .calc-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.4),
+        0 6px 12px rgba(0,0,0,0.6);
+}
+
+/* ================= OPERATORS ================= */
+
+body.dark-mode .calc-btn.op{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.6),
+        0 4px 10px rgba(0,0,0,0.6);
+}
+
+/* ================= ZERO BUTTON ================= */
+
+body.dark-mode .calc-btn.zero{
+    grid-column:span 2;
+}
+
+/* ================= BACK BUTTON FIX (LIKE CALENDAR) ================= */
+
+body.dark-mode .back-btn{
+
+    position:fixed;     /* attach to screen */
+
+    top:25px;
+    left:25px;
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#1a1a2e;
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.45);
+
+    transition:0.25s;
+}
+
+/* hover glow */
+
+body.dark-mode .back-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 18px rgba(108,99,255,0.65);
+}
+/* ================= MOBILE ================= */
+
+@media(max-width:480px){
+
+body.dark-mode .calc-page{
+    width:90%;
+    padding:25px;
+}
+
+body.dark-mode .calc-btn{
+    height:55px;
+}
+
+body.dark-mode .calc-display{
+    font-size:28px;
+}
+
+}

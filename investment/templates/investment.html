@@ -1,0 +1,248 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Investments - MoneyMitra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/investment-desktop.css' %}">
+  <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/investment-mobile.css' %}" media="(max-width: 768px)">
+<link rel="stylesheet" href="{% static 'css/dark3.css' %}">
+
+</head>
+
+<body>
+<!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+
+
+<div class="app-container">
+    <div class="main-wrapper">
+
+<div class="page-header">
+
+    <h2>Investment Planning</h2>
+    <div class="header-icons">
+        <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+        <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
+        <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+
+            {% if profile.profile_photo %}
+                <img src="{{ profile.profile_photo.url }}">
+            {% else %}
+                👤
+            {% endif %}
+
+        </a>
+
+
+    </div>
+
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="main-card">
+<!-- LEFT SECTION -->
+
+<div class="left-section">
+
+
+<!-- CURRENT BALANCE CARD -->
+
+<div class="balance-card">
+    <p class="balance-label">Current Balance</p>
+    <h2 class="balance-amount">₹{{ available_balance }}</h2>
+    <span class="balance-subtext">Available to invest</span>
+</div>
+
+<h3>Choose Investment Type</h3>
+
+<div class="investment-types">
+
+    <div class="invest-card active" onclick="selectType('Mutual Funds', this)">
+        <div class="invest-icon">📈</div>
+        <h4>Mutual Funds</h4>
+        <p>Diversified portfolio</p>
+    </div>
+
+    <div class="invest-card" onclick="selectType('ETFs', this)">
+        <div class="invest-icon">💲</div>
+        <h4>ETFs</h4>
+        <p>Index tracking</p>
+    </div>
+
+</div>
+
+<!-- INVESTMENT SUGGESTIONS -->
+
+<h3>Investment Suggestions</h3>
+
+<div class="suggestions">
+
+    <div class="suggest-btn active" onclick="setInvestment({{ suggest_20 }}, this)">
+        <span>20%</span>
+        <p>₹{{ suggest_20 }}</p>
+    </div>
+
+    <div class="suggest-btn" onclick="setInvestment({{ suggest_30 }}, this)">
+        <span>30%</span>
+        <p>₹{{ suggest_30 }}</p>
+    </div>
+
+    <div class="suggest-btn" onclick="setInvestment({{ suggest_50 }}, this)">
+        <span>50%</span>
+        <p>₹{{ suggest_50 }}</p>
+    </div>
+
+</div>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="hidden"
+        id="investmentType"
+        name="investment_type"
+        value="Mutual Funds">
+
+    <div class="amount-card">
+
+        <p>Monthly Investment Amount</p>
+
+        <div class="amount-input">
+            ₹ <input type="number"
+                    id="investmentAmount"
+                    name="amount"
+                    placeholder="Enter amount"
+                    required>
+        </div>
+
+    </div>
+
+<!-- MOBILE BUTTON -->
+<button type="button"
+        class="outline-btn"
+        onclick="toggleMitraChat()">
+    ✨ Ask Mitra AI
+</button>
+
+<button type="submit" class="btn">
+    Save Investment Plan
+</button>
+
+</form>
+
+</div>
+
+
+<!-- RIGHT SECTION -->
+<div class="right-section">
+
+    <!-- AI HEADER -->
+    <div class="ai-top">
+        <div class="ai-title">
+            <div class="ai-icon">🤖</div>
+            <div>
+                <h3>MoneyMitra AI</h3>
+                <span class="ai-status">● Online & Ready to help</span>
+            </div>
+        </div>
+        <!-- CLOSE BUTTON (MOBILE ONLY) -->
+    <button class="chat-close-btn" onclick="closeMitraChat()">✕</button>
+    </div>
+
+    <hr>
+
+    <!-- AI INTRO -->
+    <div class="ai-intro">
+        <h3>AI Investment Assistant</h3>
+        <p>Get personalized investment recommendations</p>
+    </div>
+
+    <div id="chatBox" class="chat-container">
+
+<!-- <div class="chat-row">
+    <div class="bot-icon">🤖</div>
+
+    <div class="bot-card">
+        Hi! I'm your AI Investment Assistant. I can help you choose the best investment options based on your financial goals and risk tolerance. Just ask me anything about investments!
+    </div>
+</div> -->
+
+    </div>
+
+    <!-- INPUT -->
+    <div class="mitra-input-area">
+
+        <input type="text"
+            id="chatInput"
+            placeholder="Ask about investments...">
+
+        <button type="button"
+                onclick="sendChatMessage()">
+            Send
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+{% include "menu.html" %}
+<script src="{% static 'js/investment.js' %}"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+
+<script>
+
+function goBack() {
+    window.history.back();
+}
+
+function toggleMitraChat() {
+
+    if (window.innerWidth <= 768) {
+
+        document
+        .querySelector(".right-section")
+        .classList.add("show-chat");
+
+    }
+
+}
+
+function closeMitraChat() {
+
+    document
+    .querySelector(".right-section")
+    .classList.remove("show-chat");
+
+}
+
+</script>
+
+<script>
+setTimeout(() => {
+    const alert = document.querySelector('.alert');
+    if(alert){
+        alert.style.opacity = '0';
+        alert.style.transition = '0.5s';
+    }
+}, 3000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - MoneyMitra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'dark/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/addbutton.css' %}">
+</head>
+
+<body>
+    <!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+
+<div class="main-layout">
+
+
+    <!-- ===== MAIN APP ===== -->
+    <div class="app-container">
+
+        <div class="mesh-bg">
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+<div class="blob b4"></div>
+</div>
+
+        {% if messages %}
+        <div class="popup-container">
+            {% for message in messages %}
+                <div class="popup-message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- ===== TOP SECTION ===== -->
+            <div class="top-section">
+
+        <div class="top-left">
+            <div class="app-logo">
+                <img src="{% static 'images/MM3.png' %}" alt="MoneyMitra Logo">
+            </div>
+
+            <div class="welcome-text">
+                <p class="welcome-small">Welcome back,</p>
+                <h2 class="welcome-name">{{ profile.full_name }}</h2>
+            </div>
+        </div>
+            
+
+            <div class="top-icons">
+                <a href="{% url 'calculator' %}" class="circle-icon" data-title="Calculator">🧮</a>
+                <a href="{% url 'calendar' %}" class="circle-icon" data-title="Calendar">📅</a>
+
+                <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+                    {% if profile.profile_photo %}
+                        <img src="{{ profile.profile_photo.url }}">
+                    {% else %}
+                        👤
+                    {% endif %}
+                </a>
+
+                </div>
+
+        </div>
+
+        <!-- ===== BALANCE ===== -->
+        <div class="balance-wrapper">
+            <div class="balance-card">
+                <button class="floating-button">{% include 'addbutton.html' %}</button>
+                <p>Available Balance</p>
+                <h1>₹{{ available_balance }}</h1>
+                <span>• After All Deduction</span>
+            </div>
+        </div>
+
+        <!-- ===== CONTENT ===== -->
+        <div class="content-row">
+
+            <!-- LEFT -->
+            <div class="left-side">
+                <h3 class="section-title">Overview</h3>
+
+                <div class="overview-grid">
+
+                    <a href="{% url 'income' %}" class="card-link">
+                        <div class="overview-card">
+                            <p>Monthly Salary</p>
+                            <h4>₹{{ salary }}</h4><br>
+                            <p>Click for add income</p> 
+                        </div>
+                    </a>
+
+                    <div class="overview-card">
+                        <p>Savings</p>
+                        <h4>₹{{ total_savings }}</h4>
+                    </div>
+
+                    <a href="{% url 'investment_details' %}" class="card-link">
+                        <div class="overview-card">
+                            <p>Investment</p>
+                            <h4>₹{{ investment_total }}</h4><br>
+                            <p>Click for more details</p> 
+                        </div>
+                    </a>
+
+                    <div class="overview-card">
+                        <p>EMI</p>
+                        <h4>₹{{ total_emi }}</h4>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT (NO EXTRA CONTAINER STYLE) -->
+            <div style="display:flex; flex-direction:column; gap:25px;">
+
+                <!-- OTHER INCOME -->
+                <div class="overview-card big-card">
+                    <b><p>Other Income</p></b>
+                    <div class="mini-scroll">
+
+                        {% for income in incomes|slice:":5" %}
+                        <div class="transaction-row">
+                            <span>{{ income.emoji }} {{ income.name }}</span>
+                            <span>₹{{ income.amount }}</span>
+                        </div>
+                        {% empty %}
+                        <div class="progress-text"><b>No income added</b></div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <!-- EXPENSE -->
+                <div class="overview-card big-card">
+                    <b><p>Expense</p></b>
+                    <div class="mini-scroll">
+
+                        {% for expense in expenses|slice:":5" %}
+                        <div class="transaction-row">
+                            <span>{{ expense.emoji }} {{ expense.name }}</span>
+                            <span>₹{{ expense.amount }}</span>
+                        </div>
+                        {% empty %}
+                        <div class="progress-text"><b>No expense added</b> </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="graph-container">
+            <div style="display:none;">
+    <span id="salaryDisplay"></span>
+    <span id="savingsDisplay"></span>
+    <span id="investmentDisplay"></span>
+    <span id="emiDisplay"></span>
+    <span id="balance"></span>
+</div>
+    <br><br>
+    <h3>Daily Expense Graph</h3>
+    <canvas id="expenseChart"></canvas>
+    </div>
+    </div>
+
+    
+</div>
+
+{% include 'menu.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const expensesData = JSON.parse('{{ expense_json|escapejs }}');
+</script>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/addbutton.js' %}"></script>
+
+<script>
+setTimeout(function () {
+    const popups = document.querySelectorAll('.popup-message');
+    popups.forEach(function (popup) {
+        popup.style.opacity = '0';
+        popup.style.transition = '0.5s';
+        setTimeout(function () {
+            popup.remove();
+        }, 500);
+    });
+}, 3000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+/* ================= PAGE BACKGROUND ================= */
+
+body.dark-mode{
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+}
+
+
+/* ================= APP CONTAINER ================= */
+
+body.dark-mode .app{
+    background:#12122a;
+    border-radius:28px;
+    padding:30px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+
+/* ================= HEADER ================= */
+
+body.dark-mode .page-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:14px 20px;
+    margin-bottom:30px;
+
+    background:#1a1a2e;
+    border-radius:20px;
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.25),
+        0 8px 20px rgba(0,0,0,0.6);
+
+    backdrop-filter: blur(10px);
+}
+
+/* Title fix (YOU USED h2 not h1) */
+body.dark-mode .page-header h2{
+    color:white;
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:0.5px;
+}
+
+/* icons container */
+body.dark-mode .header-icons{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+/* menu button fix */
+body.dark-mode .menu-circle{
+    background:#1a1a2e;
+    color:white;
+
+    width:42px;
+    height:42px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.3),
+        inset 0 0 5px rgba(108,99,255,0.2);
+
+    transition:0.3s;
+}
+
+body.dark-mode .menu-circle:hover{
+    transform:translateY(-2px) scale(1.05);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.8),
+        0 0 25px rgba(108,99,255,0.6);
+}
+
+/* Fix SVG color inside back button */
+body.dark-mode .back-btn svg{
+    stroke:#6c63ff;
+}
+
+
+/* ================= MONTH SELECT ================= */
+
+body.dark-mode .month{
+    background:#1a1a2e;
+    border-radius:14px;
+    padding:10px 14px;
+
+    box-shadow:
+        inset 0 0 8px rgba(108,99,255,0.2),
+        0 6px 12px rgba(0,0,0,0.6);
+}
+
+body.dark-mode input[type="month"]{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+}
+
+
+/* ================= CARDS ================= */
+
+body.dark-mode .card{
+    background:#1a1a2e;
+    border-radius:20px;
+    padding:20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.25);
+}
+
+body.dark-mode .card.small{
+    background:#1a1a2e;
+}
+
+
+/* ================= TEXT ================= */
+
+body.dark-mode .label{
+    color:#8a8aff;
+}
+
+body.dark-mode .row span{
+    color:white;
+}
+
+
+/* ================= BALANCE CARD ================= */
+
+body.dark-mode .balance-card{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    border-radius:20px;
+    padding:22px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.6),
+        0 0 25px rgba(108,99,255,0.5);
+}
+
+
+/* ================= DAILY LIMIT ================= */
+
+body.dark-mode #dailyLimit{
+    color:white;
+}
+
+body.dark-mode #dailyLimit span{
+    color:#b3b3ff;
+}
+
+
+/* ================= SECTION TITLE ================= */
+
+body.dark-mode .section{
+    color:white;
+}
+
+
+/* ================= DONUT CARD ================= */
+
+body.dark-mode .center{
+    background:#1a1a2e;
+}
+
+
+/* ================= LEGEND ================= */
+
+body.dark-mode .legend-item{
+    color:white;
+}
+
+body.dark-mode .legend-item b{
+    color:white;
+}
+
+
+/* ================= DOT COLORS ================= */
+
+body.dark-mode .dot.investment{
+    background:#6c63ff;
+}
+
+body.dark-mode .dot.expense{
+    background:#ff4d4d;
+}
+
+body.dark-mode .dot.saving{
+    background:#00c896;
+}
+
+body.dark-mode .dot.emi{
+    background:#ff9f43;
+}
+
+body.dark-mode .dot.available{
+    background:#8a8aff;
+}
+
+
+/* ================= HOVER EFFECT ================= */
+
+body.dark-mode .hoverable:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.45),
+        0 10px 25px rgba(0,0,0,0.6);
+}
+
+body.dark-mode input[type="month"]::-webkit-calendar-picker-indicator{
+    filter: invert(1) brightness(2);
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/* ================= BACK BUTTON DARK FIX ================= */
+
+body.dark-mode .back-btn{
+    width:44px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#1a1a2e;   /* dark instead of white */
+    border:1px solid rgba(108,99,255,0.2);
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.3),
+        inset 0 0 6px rgba(108,99,255,0.15);
+
+    transition:all 0.25s ease;
+}
+
+/* arrow color */
+body.dark-mode .back-btn svg{
+    stroke:#8a8aff;   /* softer purple */
+}
+
+/* hover effect */
+body.dark-mode .back-btn:hover{
+    transform:translateY(-2px) scale(1.05);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.8),
+        0 0 25px rgba(108,99,255,0.6);
+}
+
+/* hover arrow */
+body.dark-mode .back-btn:hover svg{
+    stroke:white;
+}
+
+/* click feel */
+body.dark-mode .back-btn:active{
+    transform:scale(0.95);
+}
+
+/* ================= TOOLTIP DARK ================= */
+
+body.dark-mode [data-title]{
+    position:relative;
+}
+
+/* TEXT */
+body.dark-mode [data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:125%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    background:#12122a; /* matches your cards */
+    color:#ffffff;
+
+    padding:12px 22px;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6),
+        0 12px 28px rgba(0,0,0,0.7);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:all 0.25s ease;
+}
+
+/* ARROW */
+body.dark-mode [data-title]::before{
+    content:"";
+
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%) scale(0.85);
+
+    border-width:8px;
+    border-style:solid;
+
+    border-color:transparent transparent #12122a transparent;
+
+    opacity:0;
+    transition:all 0.25s ease;
+}
+
+/* SHOW */
+body.dark-mode [data-title]:hover::after,
+body.dark-mode [data-title]:hover::before{
+    opacity:1;
+    transform:translateX(-50%) translateY(6px) scale(1);
+}
