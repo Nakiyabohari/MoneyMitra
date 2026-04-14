@@ -9,6 +9,14 @@ font-family:'Poppins',sans-serif;
 background:linear-gradient(145deg,#e9e6ff,#f5f4ff);
 }
 
+body{
+    background-image:url("/static/images/bg.png") !important;
+    background-size:cover !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    filter:saturate(1.2) contrast(1.05);
+}
+
 /* CENTER WRAPPER */
 
 .main-wrapper{
