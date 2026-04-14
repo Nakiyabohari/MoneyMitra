@@ -36,14 +36,13 @@ body{
 /* ===== DESKTOP SOFT BOX ===== */
 @media (min-width: 768px) {
     .register-container {
-        background: #f0f0ff;
-        padding: 55px 45px;
-        border-radius: 30px;
+    background: #f0f0ff;
+    padding: 55px 45px;
+    border-radius: 30px;
 
-        box-shadow:
-            20px 20px 40px rgba(166, 159, 255, 0.25),
-            -20px -20px 40px rgba(255, 255, 255, 0.9);
-    }
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.08);  /* simple clean shadow */
+}
 
     /* 🔥 GLOW EFFECT ON HOVER */
     .register-container:hover {
