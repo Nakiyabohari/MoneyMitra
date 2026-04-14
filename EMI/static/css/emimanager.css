@@ -126,11 +126,18 @@ body {
    CONTAINER (MAIN FIX 🔥)
 ================================ */
 
+/* ===============================
+   CONTAINER (CENTER FIXED 🔥)
+================================ */
 .container {
-    width: calc(100% - 240px);   /* ✅ IMPORTANT */
-    margin-left: 280px;          /* ✅ IMPORTANT */
+    width: calc(100% - 240px);   /* sidebar width */
+    margin-left: 240px;          /* EXACT match */
 
-    max-width: 1200px;
+    max-width: 1100px;
+
+    /* 🔥 CENTER INSIDE SPACE */
+    margin-right: auto;
+    margin-left: calc(240px + (100% - 240px - 1100px)/2);
 
     height: 90vh;
     overflow-y: auto;
