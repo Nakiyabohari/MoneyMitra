@@ -9,13 +9,14 @@
 
     <link rel="stylesheet" href="{% static 'dark/expense.css' %}">
     <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 
     <title>Add Expense</title>
 
     </head>
 
     <body>
-
+        {% include "menu.html" %}
     <div class="card">
 
     <form method="POST">
@@ -125,7 +126,7 @@
 
     </div>
 
-
+    <script src="{% static 'js/menu.js' %}"></script>
     <script>
 
     const categoryField = document.getElementById("categoryField");

@@ -1,14 +1,16 @@
 body{
+    margin:0;
     font-family:'Poppins',sans-serif;
     background:#f6f7fb;
 }
 
 .container{
-    width:80%;
-    margin:auto;
-    padding:40px;
-}
+    margin-left:280px;   /* ✅ FIX */
+    padding:30px;
 
+    width:auto;
+    max-width:100%;
+}
 .page-header{
 display:flex;
 justify-content:space-between;
@@ -392,3 +394,5 @@ grid-template-columns:1fr;
     border-radius:50%;
     object-fit:cover;
 }
+
+

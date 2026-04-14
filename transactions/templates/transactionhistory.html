@@ -15,32 +15,11 @@
 </head>
 
 <body>
-
+{% include "menu.html" %}
 <div class="main-layout">
 
     <!-- YOUR SIDEBAR (NO CHANGE) -->
-    <div class="sidebar">
-
-        <div class="sidebar-menu">
-            <a href='{% url 'investment' %}'><span>📊</span><p>Investment Options</p></a>
-            <a href='{% url 'emimanager' %}'><span>💳</span><p>Manage EMIs</p></a>
-            <a href='{% url 'savings_goal' %}'><span>💰</span><p>Savings Goals</p></a>
-            <a href='{% url 'monthly_budget' %}'><span>📂</span><p>Category Budgets</p></a>
-            <a href='{% url 'transaction_history' %}'><span>📜</span><p>Transaction History</p></a>
-            <a href='{% url 'budget_analysis' %}'><span>📊</span><p>Budget Analytics</p></a>
-            <a href='{% url 'monthly_summary' %}'><span>📅</span><p>Monthly Summary</p></a>
-            <a href='{% url 'expensereport' %}'><span>📄</span><p>Expense Reports</p></a>
-
-            <div class="theme-toggle">
-                <div class="theme-left">
-                    <span>🌙</span><p>Theme</p>
-                    <label class="switch">
-                        <input type="checkbox" onclick="toggleTheme()">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
+    
 
     </div>
 
@@ -51,14 +30,6 @@
 
 <!-- HEADER -->
 <div class="page-header">
-
-    <a href="{% url 'dashboard' %}" class="back-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-        stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6"/>
-        </svg>
-    </a>
-
     <h2>Transaction History</h2>
 
     <div class="header-icons">
@@ -73,7 +44,6 @@
             {% endif %}
 
         </a>
-        <div class="menu-circle" onclick="open_menu()" data-title="Menu">☰</div>
     </div>
 
 </div>

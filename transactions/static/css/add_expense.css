@@ -28,6 +28,8 @@ body {
    PAGE WRAPPER
 ========================= */
 .page-wrapper {
+   margin-left:260px;   /* sidebar width */
+    padding-left:40px; 
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -41,11 +43,11 @@ body {
 ========================= */
 .container,
 .card {
+  margin-left:390px;
   width: 100%;
   max-width: 430px;
   min-width: 0;
   position: relative;
-  margin: 0 auto;
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
