@@ -7,13 +7,22 @@
     left:0;
     top:0;
 
-    background:#ffffff;
     padding:25px 18px;
-
     display:flex;
     flex-direction:column;
 
-    border-right:1px solid #eee;
+    /* ✅ REAL GLASS (VISIBLE BUT NOT TOO MUCH) */
+    background:rgba(255,255,255,0.35);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-right:1px solid rgba(255,255,255,0.4);
+
+    border-radius:0 25px 25px 0;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
     overflow-y:auto;
 }
 
@@ -49,16 +58,19 @@
     align-items:center;
     gap:12px;
 
-    background:#e9e6f2;
     padding:12px 14px;
     border-radius:14px;
 
     text-decoration:none;
-    color:#3b3b6d;
     font-size:14px;
     font-weight:500;
 
-    transition:0.25s ease;
+    color:#2d2d5a;
+
+    /* 🔥 SOFT CARD (NOT GLASSY, NOT FLAT) */
+    background:rgba(255,255,255,0.5);
+
+    transition:all 0.25s ease;
 }
 
 /* ICON */
@@ -68,7 +80,10 @@
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:10px;
+
+    background:rgba(255,255,255,0.6);
 }
 
 /* HOVER */
