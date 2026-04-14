@@ -8,6 +8,14 @@ justify-content: center;
 padding: 40px 15px;
 }
 
+body{
+    background-image:url("/static/images/bg.png") !important;
+    background-size:cover !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    filter:saturate(1.2) contrast(1.05);
+}
+
 /* ===== MAIN CONTAINER ===== */
 .profile-container {
 width: 100%;

@@ -12,6 +12,14 @@
     justify-content: center;
 }
 
+body{
+    background-image:url("/static/images/bg.png") !important;
+    background-size:cover !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    filter:saturate(1.2) contrast(1.05);
+}
+
 /* ===============================
    SCREEN WRAPPER
 ================================ */
