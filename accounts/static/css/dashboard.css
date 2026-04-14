@@ -818,11 +818,20 @@ body:not(.dark-mode) .circle-icon:hover::before{
     margin:0;
 }
 
-.graph-container {
-    background: #fff;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
+.graph-container{
+    margin:20px;
+    padding:25px;
+
+    border-radius:20px;
+
+    /* 🔥 GLASS */
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.4);
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 
