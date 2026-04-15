@@ -33,31 +33,37 @@ body {
 /* ===============================
    CONTAINER (CENTER FIXED 🔥)
 ================================ */
-.container {
-    width: calc(100% - 240px);
-    max-width: 1300px;   /* 🔥 BIGGER */
+/* ===============================
+   CONTAINER (FIXED PERFECT 🔥)
+================================ */
 
-    /* CENTER PERFECT */
-    margin-left: calc(240px + (100% - 240px - 1300px)/2);
+/* ===============================
+   CONTAINER (CENTER PERFECT 🔥)
+================================ */
+
+.container {
+    width: calc(100% - 260px); /* remaining space after sidebar */
+    max-width: 1100px;
+
+    margin-left: 260px;   /* push after sidebar */
     margin-right: auto;
 
-    height: 92vh;
+    /* 🔥 THIS LINE CENTERS IT */
+    margin-left: calc(260px + (100% - 260px - 1100px)/2);
+
+    padding: 25px;
+    min-height: calc(100vh - 40px);
+
     overflow-y: auto;
     overflow-x: hidden;
 
-    padding: 30px;   /* 🔥 IMPORTANT */
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
 
-    /* 🔥 GLASS LIGHT MODE */
-    background: rgba(255,255,255,0.65);
-    backdrop-filter: blur(12px);
-
-    border-radius: 28px;
-
+    border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.4);
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.12),
-        0 0 30px rgba(108,99,255,0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 /* Scrollbar */
 
