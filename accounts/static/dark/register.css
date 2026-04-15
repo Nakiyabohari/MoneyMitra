@@ -1,16 +1,21 @@
-/* ================= PAGE BACKGROUND ================= */
+/* ===============================
+   DARK MODE ONLY (SAFE)
+================================ */
 
 body.dark-mode{
     background: radial-gradient(circle at top,#0f0f1a,#050514);
-    color:white;
+    color:#ffffff;
     font-family:'Poppins',sans-serif;
-    
-
 }
+
+/* 🔥 FIX: background layer safe */
 body.dark-mode::before{
     content:"";
     position:fixed;
-    inset:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
 
     background:
         linear-gradient(rgba(5,5,15,0.3), rgba(5,5,15,0.7)),
@@ -19,7 +24,8 @@ body.dark-mode::before{
     background-size:cover;
     background-position:center;
 
-    z-index:-2;
+    z-index:-1; /* 🔥 FIXED */
+    pointer-events:none; /* 🔥 IMPORTANT */
 }
 
 /* ================= WRAPPER ================= */
@@ -30,7 +36,6 @@ body.dark-mode .main-wrapper{
     align-items:center;
     min-height:100vh;
 }
-
 
 /* ================= REGISTER CARD ================= */
 
@@ -55,39 +60,34 @@ body.dark-mode .register-container:hover{
         0 0 30px rgba(108,99,255,0.45);
 }
 
-
 /* ================= TITLE ================= */
 
 body.dark-mode .register-container h1{
-    color:white;
-    margin-bottom:5px;
+    color:#ffffff;
 }
 
 body.dark-mode .subtitle{
     color:#8a8aff;
-    margin-bottom:25px;
 }
-
 
 /* ================= LABEL ================= */
 
 body.dark-mode label{
     color:#cfcfff;
-    font-weight:500;
 }
-
 
 /* ================= INPUT ================= */
 
 body.dark-mode input{
     width:100%;
     padding:12px 14px;
+
     border-radius:14px;
-    border:none;
+    border:none !important;
     outline:none;
 
-    background:#1a1a2e;
-    color:white;
+    background:#1a1a2e !important;
+    color:#ffffff;
 
     margin-bottom:18px;
 
@@ -102,24 +102,26 @@ body.dark-mode input::placeholder{
     color:#8a8aff;
 }
 
-
-/* ================= INPUT HOVER ================= */
-
+/* hover */
 body.dark-mode input:hover{
     box-shadow:
         0 0 12px rgba(108,99,255,0.35),
         inset 0 0 8px rgba(108,99,255,0.25);
 }
 
-
-/* ================= INPUT FOCUS ================= */
-
+/* focus */
 body.dark-mode input:focus{
     box-shadow:
         0 0 16px rgba(108,99,255,0.6),
         inset 0 0 10px rgba(108,99,255,0.3);
 }
 
+/* ================= AUTOFILL FIX ================= */
+
+body.dark-mode input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 1000px #1a1a2e inset !important;
+    -webkit-text-fill-color:white !important;
+}
 
 /* ================= BUTTON ================= */
 
@@ -152,7 +154,6 @@ body.dark-mode .btn:hover{
         0 0 18px rgba(108,99,255,0.6);
 }
 
-
 /* ================= BOTTOM TEXT ================= */
 
 body.dark-mode .bottom-text{
@@ -163,109 +164,8 @@ body.dark-mode .bottom-text{
 
 body.dark-mode .bottom-text a{
     color:#6c63ff;
-    font-weight:500;
 }
 
 body.dark-mode .bottom-text a:hover{
     text-decoration:underline;
 }
-/* ================= INPUT ================= */
-
-body.dark-mode input{
-    width:100%;
-    padding:12px 14px;
-
-    border-radius:14px;
-    border:none !important;
-    outline:none;
-
-    background:#1a1a2e !important;
-    color:white;
-
-    margin-bottom:18px;
-
-    box-shadow:
-        inset 0 0 6px rgba(108,99,255,0.15),
-        0 5px 12px rgba(0,0,0,0.6);
-
-    transition:0.25s;
-}
-
-
-/* ================= INPUT HOVER ================= */
-
-body.dark-mode input:hover{
-    box-shadow:
-        0 0 12px rgba(108,99,255,0.35),
-        inset 0 0 8px rgba(108,99,255,0.25);
-}
-
-
-/* ================= INPUT FOCUS ================= */
-
-body.dark-mode input:focus{
-    border:none !important;
-
-    box-shadow:
-        0 0 16px rgba(108,99,255,0.6),
-        inset 0 0 10px rgba(108,99,255,0.3);
-}
-
-/* ================= AUTOFILL FIX ================= */
-
-body.dark-mode input:-webkit-autofill,
-body.dark-mode input:-webkit-autofill:hover,
-body.dark-mode input:-webkit-autofill:focus{
-
-    -webkit-box-shadow: 0 0 0 1000px #1a1a2e inset !important;
-    box-shadow: 0 0 0 1000px #1a1a2e inset !important;
-
-    -webkit-text-fill-color:white !important;
-
-    border-radius:14px;
-
-    transition: background-color 5000s ease-in-out 0s;
-}
-
-/* ================= INPUT ================= */
-
-body.dark-mode input{
-    width:100%;
-    padding:12px 14px;
-
-    border-radius:14px;
-    border:none !important;
-    outline:none;
-
-    background:#1a1a2e !important;
-    color:white;
-
-    margin-bottom:18px;
-
-    box-shadow:
-        inset 0 0 6px rgba(108,99,255,0.15),
-        0 5px 12px rgba(0,0,0,0.6);
-
-    transition:0.25s;
-}
-
-
-/* ================= INPUT HOVER ================= */
-
-body.dark-mode input:hover{
-    box-shadow:
-        0 0 12px rgba(108,99,255,0.35),
-        inset 0 0 8px rgba(108,99,255,0.25);
-}
-
-
-/* ================= INPUT FOCUS ================= */
-
-body.dark-mode input:focus{
-    border:none !important;
-
-    box-shadow:
-        0 0 16px rgba(108,99,255,0.6),
-        inset 0 0 10px rgba(108,99,255,0.3);
-}
-

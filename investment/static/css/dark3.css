@@ -257,3 +257,32 @@ body.dark-mode .bot-card span,
 body.dark-mode .bot-card div{
     color:#000000 !important;
 }
+/* ================= BALANCE AMOUNT WHITE ================= */
+
+body.dark-mode .balance-card h1,
+body.dark-mode .balance-card h2,
+body.dark-mode .balance-card h3,
+body.dark-mode .balance-card .amount,
+body.dark-mode .balance-card .balance-amount{
+    color:#ffffff !important;
+    font-weight:600;
+}
+/* force all text white inside AI section */
+body.dark-mode .ai-section *,
+body.dark-mode .ai-header *{
+    color:#ffffff !important;
+}
+/* ================= FORCE AI TEXT WHITE (FINAL FIX) ================= */
+
+/* main heading */
+body.dark-mode h1,
+body.dark-mode h2{
+    color:#ffffff !important;
+}
+
+/* subtitles / small text */
+body.dark-mode p,
+body.dark-mode span{
+    color:#ffffff !important;
+    opacity:0.95;
+}
