@@ -281,3 +281,26 @@ body {
     border-radius:50%;
     object-fit:cover;
 }
+
+/* ================= SCROLLBAR ================= */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* track (background) */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* thumb (the moving part 🔥) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6c63ff, #7b72f5); /* purple */
+    border-radius: 10px;
+}
+
+/* hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background: #5a52e0;
+}

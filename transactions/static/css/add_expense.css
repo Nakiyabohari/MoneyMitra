@@ -143,6 +143,8 @@ body {
   position: relative;
   overflow: hidden;
   z-index: 2;
+  position: absolute;
+  left: 0;
 }
 
 .back-btn:hover {
@@ -174,33 +176,20 @@ body {
 ========================= */
 .header h2,
 .header .title {
-  flex: 1;
-  margin: 0;
   text-align: center;
-  font-size: 1.85rem;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -0.8px;
-  line-height: 1.1;
-  background: linear-gradient(90deg, #6d28d9, #a855f7, #d8b4fe, #8b5cf6, #6d28d9);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: titleFlow 6s linear infinite;
-  position: relative;
-  z-index: 1;
-  padding-right: 42px;
+  color: #6d28d9;   /* solid purple */
+  letter-spacing: 0.5px;
 }
 
+/* underline */
 .header h2::after,
 .header .title::after {
-  content: "";
-  display: block;
-  width: 54px;
-  height: 4px;
-  border-radius: 999px;
-  margin: 8px auto 0;
-  background: linear-gradient(135deg, #d8b4fe, #a855f7, #8b5cf6);
-  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.28);
+  width: 60px;
+  height: 3px;
+  background: #a855f7;
+  margin-top: 6px;
 }
 
 @keyframes titleFlow {
@@ -224,10 +213,9 @@ form {
 }
 
 label {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: #6d28d9;
-  margin-top: 2px;
+  color: #5b21b6;
 }
 
 /* =========================
@@ -435,71 +423,32 @@ input[type="date"] {
    BUTTON
 ========================= */
 button {
-  position: relative;
-  overflow: hidden;
-  margin-top: 14px;
-  align-self: center;
-  width: 100%;
-  max-width: 250px;
-  padding: 15px 18px;
+  display: block;
+  margin: 20px auto;
+  padding: 14px 22px;
+  width: 230px;
+
+  background: #7c3aed;
+  color: white;
+
   border: none;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #e0c3fc 0%, #c084fc 42%, #a855f7 76%, #8b5cf6 100%);
-  color: #ffffff;
-  font-family: 'Poppins', sans-serif;
+  border-radius: 50px;   /* 🔥 MORE CURVE */
+
   font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.2px;
+  font-weight: 600;
+
   cursor: pointer;
-  box-shadow:
-    0 18px 32px rgba(139, 92, 246, 0.18),
-    inset 0 1px 0 rgba(255,255,255,0.24);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  transition: 0.2s ease;
 }
 
+/* hover */
 button:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 24px 38px rgba(139, 92, 246, 0.25),
-    inset 0 1px 0 rgba(255,255,255,0.24);
-  filter: brightness(1.03);
+  background: #6d28d9;
 }
 
+/* click */
 button:active {
   transform: scale(0.98);
-}
-
-button::before {
-  content: "";
-  position: absolute;
-  top: -120%;
-  left: -20%;
-  width: 50%;
-  height: 300%;
-  transform: rotate(25deg);
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.38), transparent);
-  transition: left 0.6s ease;
-}
-
-button:hover::before {
-  left: 120%;
-}
-
-button::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 60%);
-  opacity: 0;
-  transform: scale(0.7);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
-}
-
-button:active::after {
-  opacity: 1;
-  transform: scale(1.1);
 }
 
 /* =========================
@@ -547,8 +496,11 @@ button:active::after {
   }
 
   .header {
-    margin-bottom: 24px;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* center everything */
+}
 
   .header::before {
     width: 240px;
@@ -734,4 +686,27 @@ button:active::after {
   box-shadow:
     0 0 0 3px #d1baff40,
     0 12px 24px rgba(139, 92, 246, 0.10);
+}
+
+/* ================= SCROLLBAR ================= */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* track (background) */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* thumb (the moving part 🔥) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6c63ff, #7b72f5); /* purple */
+    border-radius: 10px;
+}
+
+/* hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background: #5a52e0;
 }

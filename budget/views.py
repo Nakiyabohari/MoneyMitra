@@ -179,20 +179,33 @@ def delete_goal(request, goal_id):
 # =============================
 # MONTHLY BUDGET
 # =============================
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.db.models import Sum
+from accounts.models import Profile
+from .forms import CategoryForm
+from budget.models import Category
+
+# 🔥 IMPORTANT: use correct expense model
+from transactions.models import Expense_model
+
+
 @login_required
 def monthly_budget(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
-    if request.method == "POST":
 
+    # =============================
+    # ADD NEW CATEGORY
+    # =============================
+    if request.method == "POST":
         form = CategoryForm(request.POST)
 
         if form.is_valid():
-
             category = form.save(commit=False)
 
+            # Custom category support
             if form.cleaned_data['name'] == "Custom":
                 custom_name = form.cleaned_data.get('custom_name')
-
                 if custom_name:
                     category.name = custom_name
 
@@ -201,23 +214,44 @@ def monthly_budget(request):
             category.save()
 
             return redirect('monthly_budget')
-
     else:
         form = CategoryForm()
 
+    # =============================
+    # GET CATEGORIES
+    # =============================
     categories = Category.objects.filter(
         user=request.user,
         type='expense'
     )
-    
 
+    # =============================
+    # CALCULATE SPENT + PERCENT
+    # =============================
+    for cat in categories:
+
+        # 🔥 total spent from transactions
+        total = Expense_model.objects.filter(
+            user=request.user,
+            category__name=cat.name   # match by name
+        ).aggregate(total=Sum('expense_amount'))['total']
+
+        cat.spent = total if total else 0
+
+        # 🔥 progress %
+        if cat.budget_amount and cat.budget_amount > 0:
+            cat.percent = (cat.spent / cat.budget_amount) * 100
+        else:
+            cat.percent = 0
+
+    # =============================
+    # RENDER
+    # =============================
     return render(request, 'MonthlyBudget.html', {
         "profile": profile,
-        'form': form,
-        'categories': categories
+        "form": form,
+        "categories": categories
     })
-    
-
 
 
 from django.http import JsonResponse
