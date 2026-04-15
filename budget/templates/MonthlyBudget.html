@@ -116,7 +116,7 @@
 
                         <div>
                             <p>Spent</p>
-                            <h4>₹0</h4>
+                            <h4>₹{{ cat.spent|default:0 }}</h4>
                         </div>
 
                         <!-- EDIT BOX -->
@@ -142,7 +142,7 @@
 
                     <!-- PROGRESS -->
                     <div class="progress-bar">
-                        <div class="progress"></div>
+                     <div class="progress" style="width: {{ cat.percent|default:0 }}%"></div>
                     </div>
 
                 </div>

@@ -389,7 +389,7 @@ cursor:pointer;
 }
 
 .progress{
-    width:30%;
+    width:0%;   /* ✅ start empty */
     height:100%;
     background:linear-gradient(90deg,#6C5CE7,#7E6BFF);
     border-radius:10px;
@@ -493,3 +493,25 @@ cursor:pointer;
     object-fit:cover;
 }
 
+/* ================= SCROLLBAR ================= */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* track (background) */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* thumb (the moving part 🔥) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6c63ff, #7b72f5); /* purple */
+    border-radius: 10px;
+}
+
+/* hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background: #5a52e0;
+}
