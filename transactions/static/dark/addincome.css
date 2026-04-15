@@ -40,9 +40,7 @@ body.dark-mode .container{
 
     width: 100%;
     max-width: 900px; /* same feel as light mode */
-
-    margin: 70px auto; /* center properly */
-
+    margin-left: 290px;
     padding: 40px;
 
     border-radius: 28px;
