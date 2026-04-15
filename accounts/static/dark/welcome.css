@@ -1,5 +1,5 @@
 /* ===============================
-   BACKGROUND (🔥 YOUR IMAGE)
+   DARK MODE BACKGROUND
 ================================ */
 
 body.dark-mode.welcome-body{
@@ -9,15 +9,15 @@ body.dark-mode.welcome-body{
 
     background:
         linear-gradient(rgba(5,5,20,0.55), rgba(5,5,20,0.75)),
-        url("../images/image.png");   /* 👈 YOUR IMAGE */
+        url("../images/image.png");
 
     background-size:cover;
     background-position:center;
     background-attachment:fixed;
 }
 
-/* REMOVE HTML IMAGE */
-.bg-image{
+/* ✅ ONLY hide bg image in dark mode */
+body.dark-mode .bg-image{
     display:none !important;
 }
 
@@ -26,7 +26,7 @@ body.dark-mode.welcome-body{
    MAIN SCREEN
 ================================ */
 
-.screen{
+body.dark-mode .screen{
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -39,7 +39,7 @@ body.dark-mode.welcome-body{
    HERO LAYOUT
 ================================ */
 
-.hero{
+body.dark-mode .hero{
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -54,7 +54,7 @@ body.dark-mode.welcome-body{
    LEFT SIDE
 ================================ */
 
-.hero-left h1{
+body.dark-mode .hero-left h1{
     font-size:48px;
     font-weight:700;
 
@@ -65,7 +65,7 @@ body.dark-mode.welcome-body{
         0 0 25px rgba(108,99,255,0.4);
 }
 
-.tagline{
+body.dark-mode .tagline{
     color:#b0b0ff;
     margin-top:10px;
     font-size:18px;
@@ -76,22 +76,22 @@ body.dark-mode.welcome-body{
    FEATURES
 ================================ */
 
-.features{
+body.dark-mode .features{
     margin-top:25px;
 }
 
-.feature{
+body.dark-mode .feature{
     display:flex;
     align-items:flex-start;
     gap:12px;
     margin-bottom:18px;
 }
 
-.feature strong{
+body.dark-mode .feature strong{
     color:#ffffff;
 }
 
-.feature small{
+body.dark-mode .feature small{
     color:#9c9cff;
 }
 
@@ -100,7 +100,7 @@ body.dark-mode.welcome-body{
    TICK ICON
 ================================ */
 
-.tick{
+body.dark-mode .tick{
     color:#6c63ff;
     font-size:18px;
 
@@ -110,10 +110,10 @@ body.dark-mode.welcome-body{
 
 
 /* ===============================
-   CTA BUTTON (GLOW)
+   CTA BUTTON (ONLY DARK MODE SHADOW)
 ================================ */
 
-.cta{
+body.dark-mode .cta{
     margin-top:25px;
     padding:14px 30px;
 
@@ -130,12 +130,13 @@ body.dark-mode.welcome-body{
 
     transition:0.3s;
 
+    /* ✅ ONLY DARK MODE SHADOW */
     box-shadow:
         0 8px 20px rgba(0,0,0,0.6),
         0 0 15px rgba(108,99,255,0.5);
 }
 
-.cta:hover{
+body.dark-mode .cta:hover{
     transform:translateY(-3px);
 
     box-shadow:
@@ -148,32 +149,30 @@ body.dark-mode.welcome-body{
    RIGHT SIDE IMAGE
 ================================ */
 
-.illustration-box{
+body.dark-mode .illustration-box{
     background:transparent;
     padding:0;
     border-radius:0;
     box-shadow:none;
 }
 
+
 /* ===============================
-   LOGO SIZE FIX
-================================ */
-/* ===============================
-   BIG LOGO (MAX IMPACT)
+   BIG LOGO
 ================================ */
 
-.hero-right{
+body.dark-mode .hero-right{
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
-.illustration-box img{
+body.dark-mode .illustration-box img{
     width:100%;
-    max-width:850px;   /* 🔥 BIG SIZE */
-    
-    transform:scale(1.65);  /* 🔥 EXTRA ZOOM */
-    
+    max-width:850px;
+
+    transform:scale(1.65);
+
     transition:0.4s ease;
 
     filter:
@@ -181,21 +180,23 @@ body.dark-mode.welcome-body{
         drop-shadow(0 0 80px rgba(108,99,255,0.4));
 }
 
+
 /* ===============================
    RESPONSIVE
 ================================ */
 
 @media(max-width:900px){
-    .hero{
+
+    body.dark-mode .hero{
         flex-direction:column;
         text-align:center;
     }
 
-    .hero-left h1{
+    body.dark-mode .hero-left h1{
         font-size:36px;
     }
 
-    .illustration-box img{
+    body.dark-mode .illustration-box img{
         max-width:350px;
     }
 }
