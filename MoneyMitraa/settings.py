@@ -11,24 +11,40 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+load_dotenv()
+
+# ============================================================
+# BASE DIRECTORY
+# ============================================================
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+# ============================================================
+# SECURITY
+# ============================================================
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j$p-@ye=xpo7au+t==fe$7egeks2ctb2_42&_az7#u+29obr#u'
+# Secret key is taken from environment variable
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# Development mode
+# Change to False when deploying to Vercel
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Hosts allowed to access the application
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".vercel.app",
+]
 
 
-# Application definition
+# ============================================================
+# APPLICATIONS
+# ============================================================
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,12 +53,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # MoneyMitra Apps
     'accounts',
     'transactions',
     'budget',
     'investment',
     'EMI',
 ]
+
+
+# ============================================================
+# MIDDLEWARE
+# ============================================================
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,13 +77,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+# ============================================================
+# URL CONFIGURATION
+# ============================================================
+
 ROOT_URLCONF = 'MoneyMitraa.urls'
+
+
+# ============================================================
+# TEMPLATES
+# ============================================================
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+
         'DIRS': [],
+
         'APP_DIRS': True,
+
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -71,11 +107,17 @@ TEMPLATES = [
     },
 ]
 
+
+# ============================================================
+# WSGI
+# ============================================================
+
 WSGI_APPLICATION = 'MoneyMitraa.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+# ============================================================
+# DATABASE
+# ============================================================
 
 DATABASES = {
     'default': {
@@ -85,8 +127,9 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
+# ============================================================
+# PASSWORD VALIDATION
+# ============================================================
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -104,8 +147,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/6.0/topics/i18n/
+# ============================================================
+# INTERNATIONALIZATION
+# ============================================================
 
 LANGUAGE_CODE = 'en-us'
 
@@ -116,15 +160,11 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
+# ============================================================
+# STATIC FILES
+# ============================================================
 
 STATIC_URL = '/static/'
-import os
-
-# Static Files
-STATIC_URL = 'static/'
-
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
@@ -132,17 +172,18 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# ============================================================
+# MEDIA FILES
+# ============================================================
 
-
-# Media Files
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# ==============================
-# Gemini AI Configuration
-# ==============================
 
-const apiKey = process.env.GROK_API_KEY;
+# ============================================================
+# GEMINI AI CONFIGURATION
+# ============================================================
+
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")

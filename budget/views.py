@@ -1,21 +1,18 @@
-from calendar import month
 from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Sum
 from datetime import date
-
 from accounts.models import Profile
-from httpx import request
-from .models import SavingsGoal, Category, Expense, MonthlyIncome
+from .models import SavingsGoal, Category, MonthlyIncome
 from .forms import MonthlySavingsForm, SavingsGoalForm, CategoryForm
 from EMI.models import EmiManager
 from investment.models import InvestmentPlan
 from budget.models import Category
 from transactions.models import Income_model
 from .models import Category
-from budget.models import Expense
+
 
 # =============================
 # MONTHLY INCOME
@@ -28,7 +25,7 @@ def income(request):
     if request.method == "POST":
         salary = request.POST.get("salary")
 
-        print("SALARY RECEIVED:", salary)  # 🔥 DEBUG
+        print("SALARY RECEIVED:", salary) 
 
         MonthlyIncome.objects.update_or_create(
             user=request.user,
@@ -144,8 +141,6 @@ def add_money(request, goal_id, amount):
 
     return JsonResponse({"success": True})
 
-from decimal import Decimal
-from django.http import JsonResponse
 
 def remove_money(request, goal_id, amount):
 

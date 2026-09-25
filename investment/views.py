@@ -9,7 +9,7 @@ from django.contrib import messages
 from decimal import Decimal
 from django.db.models import Sum
 
-from openai import OpenAI
+# from openai import OpenAI
 
 from .forms import InvestmentForm
 from .models import InvestmentPlan

@@ -9,7 +9,9 @@ function loadDashboard(){
     const emi = Number(localStorage.getItem("emi")) || 0;
     const addincome = Number(localStorage.getItem("addincome")) || 0;
     const income = Number(localStorage.getItem("income")) || 0;
-    const balance = addincome +income - savings - investment - emi;
+    const expence  = Number(localStorage.getItem("add_expense")) || 0;
+
+    const balance = addincome +income - savings - investment - emi- expence;
 
     document.getElementById("salaryDisplay").innerText = "₹" + income.toLocaleString();
     document.getElementById("savingsDisplay").innerText = "₹" + savings.toLocaleString();

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from httpx import request
+
 
 from transactions.models import Expense_model, Income_model
 from .models import Profile
@@ -12,8 +12,7 @@ from budget.models import MonthlyIncome,SavingsGoal,Category
 from investment.models import InvestmentPlan
 from EMI.models import EmiManager
 from budget.forms import CategoryForm
-from transactions.forms import add_expense_Form
-from budget.models import Expense
+
 
 
 
@@ -61,7 +60,7 @@ def user_login(request):
 
     return render(request, 'login.html')
 
-from django.shortcuts import render, redirect
+
 
 #Income
 @login_required
@@ -90,11 +89,6 @@ def income(request):
 def add_income(request):
     if request.method == "POST":
         salary = request.POST.get("salary")
-
-        # save income here if you have model
-        # example:
-        # Income.objects.create(user=request.user, amount=salary)
-
         return redirect('dashboard')   # go to saving page
 
     return render(request, "income.html")
@@ -224,8 +218,8 @@ def dashboard(request):
         'total_savings': total_savings,
         'total_emi': total_emi,
         'investment_total': investment_total,
-        'incomes': incomes_with_emoji,     # ✅ UPDATED
-        'expenses': expenses_with_emoji,    # ✅ UPDATED
+        'incomes': incomes_with_emoji,     
+        'expenses': expenses_with_emoji,    
         'expense_json': json.dumps(expense_chart_data)
     }
 
