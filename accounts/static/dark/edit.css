@@ -1,0 +1,173 @@
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ================= BACKGROUND ================= */
+.bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-10;
+}
+
+/* Dark mode image */
+body.dark-mode .bg-image{
+    content:url("/static/images/image.png");
+}
+
+/* light overlay */
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(10,10,30,0.25);
+    z-index:-5;
+}
+
+/* ================= BODY ================= */
+body.dark-mode{
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    justify-content:center;   /* 🔥 CENTER FIX */
+    align-items:center;       /* 🔥 CENTER FIX */
+    min-height:100vh;
+}
+
+/* ================= CONTAINER ================= */
+body.dark-mode .container{
+    width:100%;
+    max-width:420px;
+
+    background:rgba(20,20,45,0.85);
+
+    padding:30px;
+    border-radius:25px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.8),
+        0 0 25px rgba(108,99,255,0.3);
+
+    margin:auto; /* 🔥 IMPORTANT */
+}
+
+/* ================= TITLE ================= */
+body.dark-mode h2{
+    text-align:center;
+    color:white;
+    margin-bottom:20px;
+}
+
+/* ================= BACK BUTTON ================= */
+body.dark-mode .back-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:#1a1a2e;
+    color:white;
+
+    text-decoration:none;
+    font-size:18px;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.4);
+}
+
+body.dark-mode .back-btn:hover{
+    box-shadow:0 0 18px rgba(108,99,255,0.7);
+}
+
+/* ================= PROFILE IMAGE ================= */
+body.dark-mode .profile-preview{
+    display:flex;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+body.dark-mode .profile-preview img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.6);
+}
+
+/* ================= FORM ================= */
+body.dark-mode form{
+    display:flex;
+    flex-direction:column;
+}
+
+/* labels */
+body.dark-mode label{
+    color:#a0a0ff;
+    margin-top:12px;
+    margin-bottom:5px;
+    font-size:14px;
+}
+
+/* inputs */
+body.dark-mode input{
+    padding:12px;
+    border-radius:12px;
+    border:none;
+
+    background:#1a1a2e;
+    color:white;
+
+    outline:none;
+
+    box-shadow: inset 0 0 6px rgba(108,99,255,0.2);
+}
+
+/* file input */
+body.dark-mode input[type="file"]{
+    background:#1a1a2e;
+    padding:8px;
+}
+
+/* ================= BUTTON ================= */
+body.dark-mode button{
+    margin-top:20px;
+    padding:14px;
+
+    border:none;
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#6c63ff,#8b7cff);
+    color:white;
+
+    font-weight:600;
+    cursor:pointer;
+
+    transition:0.25s;
+}
+
+body.dark-mode button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 15px rgba(108,99,255,0.7);
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:480px){
+
+body.dark-mode .container{
+    width:90%;
+    padding:25px;
+}
+
+}

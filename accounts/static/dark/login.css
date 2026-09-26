@@ -1,0 +1,215 @@
+/* ================= BACKGROUND IMAGE ================= */
+
+body.dark-mode{
+    font-family:'Poppins',sans-serif;
+    color:white;
+    margin:0;
+    overflow:hidden;
+}
+
+/* BACKGROUND IMAGE FIX */
+.bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+/* DARK OVERLAY (IMPORTANT) */
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:
+        linear-gradient(rgba(5,5,15,0.3), rgba(5,5,15,0.7)),
+        url("../images/image.png");
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-1;
+}
+
+
+/* ================= MAIN WRAPPER ================= */
+
+body.dark-mode .main-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+
+/* ================= LOGIN CARD ================= */
+
+body.dark-mode .login-container{
+    background: rgba(18,18,42,0.75); /* 🔥 glass effect */
+    backdrop-filter: blur(12px);
+
+    padding:40px;
+    border-radius:25px;
+    width:360px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.8),
+        0 0 30px rgba(108,99,255,0.3);
+
+    transition:0.3s ease;
+}
+
+body.dark-mode .login-container:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.9),
+        0 0 40px rgba(108,99,255,0.5);
+}
+
+
+/* ================= TITLE ================= */
+
+body.dark-mode .login-container h1{
+    color:white;
+    margin-bottom:5px;
+}
+
+body.dark-mode .subtitle{
+    color:#8a8aff;
+    margin-bottom:25px;
+}
+
+
+/* ================= LABEL ================= */
+
+body.dark-mode label{
+    color:#cfcfff;
+    font-weight:500;
+}
+
+
+/* ================= INPUT BOX ================= */
+
+body.dark-mode .input-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background: rgba(26,26,46,0.7);
+    border-radius:14px;
+    padding:12px 14px;
+    margin-bottom:18px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        inset 0 0 8px rgba(108,99,255,0.15),
+        0 6px 14px rgba(0,0,0,0.7);
+
+    transition:0.25s;
+}
+
+body.dark-mode .input-box:hover{
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.4),
+        inset 0 0 10px rgba(108,99,255,0.25);
+}
+
+body.dark-mode .input-box:focus-within{
+    box-shadow:
+        0 0 20px rgba(108,99,255,0.7),
+        inset 0 0 12px rgba(108,99,255,0.35);
+}
+
+
+/* ================= INPUT ================= */
+
+body.dark-mode input{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+    font-size:14px;
+    width:100%;
+}
+
+body.dark-mode input::placeholder{
+    color:#8a8aff;
+}
+
+
+/* ================= ICON ================= */
+
+body.dark-mode .input-box i{
+    color:#8a8aff;
+}
+
+
+/* ================= BUTTON ================= */
+
+body.dark-mode .login-btn{
+    width:100%;
+    padding:14px;
+
+    border:none;
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#6c63ff,#9b8cff);
+    color:white;
+    font-weight:600;
+    font-size:15px;
+
+    cursor:pointer;
+    transition:0.3s;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.7),
+        0 0 15px rgba(108,99,255,0.4);
+}
+
+body.dark-mode .login-btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.8),
+        0 0 25px rgba(108,99,255,0.7);
+}
+
+
+/* ================= SIGNUP ================= */
+
+body.dark-mode .signup-text{
+    margin-top:18px;
+    color:#cfcfff;
+    text-align:center;
+}
+
+body.dark-mode .signup-text a{
+    color:#6c63ff;
+    font-weight:500;
+}
+
+body.dark-mode .signup-text a:hover{
+    text-decoration:underline;
+}
+
+
+/* ================= AUTOFILL FIX ================= */
+
+body.dark-mode input:-webkit-autofill,
+body.dark-mode input:-webkit-autofill:hover,
+body.dark-mode input:-webkit-autofill:focus{
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+
+    -webkit-text-fill-color: white !important;
+}

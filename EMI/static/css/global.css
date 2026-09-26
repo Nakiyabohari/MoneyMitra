@@ -1,0 +1,52 @@
+/* ===============================
+   GLOBAL RESET + VARIABLES
+================================ */
+/* <link rel="stylesheet" href="{% static 'css/global.css' %}"> */
+:root{
+    --primary:#6C5CE7;
+    --primary-light:#ECEAFF;
+    --dark:#2D1E5F;
+    --gray:#777;
+    --bg:#f2f2f7;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:var(--bg);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+
+}
+
+/* MAIN MOBILE WRAPPER */
+.container{
+    width:380px;
+    height:800px;
+    background:white;
+    border-radius:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    padding:30px 25px;
+}
+
+/* COMMON BUTTON */
+.btn{
+    margin-top:30px;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(90deg,var(--primary),#7E6BFF);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+

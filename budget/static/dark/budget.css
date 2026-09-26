@@ -1,0 +1,316 @@
+/* ===============================
+   GLOBAL DARK BACKGROUND
+================================ */
+body.dark-mode{
+    color:#ffffff;
+    font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+/* HIDE LIGHT BG */
+body.dark-mode .bg-image{
+    opacity:0;
+}
+
+/* MAIN BACKGROUND IMAGE */
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        linear-gradient(rgba(5,5,15,0.25), rgba(5,5,15,0.6)),
+        url("../images/image.png");
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-2;
+}
+
+/* EXTRA GLOW LAYER */
+body.dark-mode::after{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(circle at 30% 20%, rgba(108,99,255,0.25), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(139,124,255,0.2), transparent 60%);
+
+    z-index:-1;
+}
+
+/* ===============================
+   TEXT FIX (IMPORTANT)
+================================ */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3{
+    color:#ffffff !important;
+
+    text-shadow:
+        0 0 10px rgba(108,99,255,0.6),
+        0 0 20px rgba(108,99,255,0.3);
+}
+
+body.dark-mode p{
+    color:#bcbcff;
+}
+
+/* ===============================
+   HEADER
+================================ */
+body.dark-mode .page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:16px 22px;
+    margin-bottom:30px;
+
+    background:rgba(20,20,45,0.75);
+    backdrop-filter:blur(12px);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.8),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+/* ===============================
+   ICONS
+================================ */
+body.dark-mode .circle-icon{
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:rgba(25,25,60,0.8);
+
+    color:#fff;
+
+    box-shadow:0 0 12px rgba(108,99,255,0.4);
+    transition:0.3s;
+}
+
+body.dark-mode .circle-icon:hover{
+    transform:translateY(-3px) scale(1.1);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 25px rgba(108,99,255,1),
+        0 0 60px rgba(108,99,255,0.6);
+}
+
+/* ===============================
+   SUMMARY CARDS
+================================ */
+body.dark-mode .summary-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-bottom:35px;
+}
+
+body.dark-mode .card{
+    background:rgba(18,18,40,0.8);
+    backdrop-filter:blur(12px);
+
+    padding:25px;
+    border-radius:20px;
+
+    transition:0.3s;
+}
+
+/* hover glow */
+body.dark-mode .card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.9),
+        0 0 25px rgba(108,99,255,0.4);
+}
+
+/* income */
+body.dark-mode .income-card{
+    border:1px solid #00ffb3;
+
+    box-shadow:
+        0 0 15px rgba(0,255,179,0.5);
+}
+
+body.dark-mode .income-card .card-title,
+body.dark-mode .income-card .card-value{
+    color:#00ffb3;
+}
+
+/* expense */
+body.dark-mode .expense-card{
+    border:1px solid #ff4d6d;
+
+    box-shadow:
+        0 0 15px rgba(255,77,109,0.5);
+}
+
+body.dark-mode .expense-card .card-title,
+body.dark-mode .expense-card .card-value{
+    color:#ff4d6d;
+}
+
+/* ===============================
+   GRID
+================================ */
+body.dark-mode .analytics-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+/* ===============================
+   CHART CARD
+================================ */
+body.dark-mode .chart-card{
+    background:rgba(18,18,40,0.8);
+    backdrop-filter:blur(12px);
+
+    padding:25px;
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.8),
+        0 0 20px rgba(108,99,255,0.25);
+
+    transition:0.3s;
+}
+
+body.dark-mode .chart-card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.9),
+        0 0 30px rgba(108,99,255,0.4);
+}
+
+/* ===============================
+   TOP CARDS
+================================ */
+body.dark-mode .top-card{
+    background:rgba(18,18,40,0.85);
+    backdrop-filter:blur(12px);
+
+    padding:18px;
+    border-radius:18px;
+
+    margin-bottom:18px;
+
+    transition:0.3s;
+}
+
+body.dark-mode .top-card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.9),
+        0 0 20px rgba(108,99,255,0.4);
+}
+
+/* ===============================
+   RANK
+================================ */
+body.dark-mode .rank{
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    box-shadow:0 0 10px rgba(108,99,255,0.8);
+}
+
+/* ===============================
+   TEXT
+================================ */
+body.dark-mode .category-name{
+    color:#ffffff;
+}
+
+body.dark-mode .amount{
+    color:#8b7cff;
+}
+
+/* ===============================
+   PROGRESS
+================================ */
+body.dark-mode .progress-bar{
+    height:8px;
+    background:#111122;
+    border-radius:10px;
+    margin-top:8px;
+}
+
+body.dark-mode .progress{
+    background:linear-gradient(90deg,#6c63ff,#7b72f5);
+
+    box-shadow:0 0 12px rgba(108,99,255,0.7);
+}
+
+/* ===============================
+   TOOLTIP
+================================ */
+body.dark-mode [data-title]{
+    position:relative;
+}
+
+body.dark-mode [data-title]::after{
+    content:attr(data-title);
+
+    position:absolute;
+    top:120%;
+    left:50%;
+    transform:translateX(-50%) scale(0.9);
+
+    background:#1a1a2e;
+    color:#fff;
+
+    padding:8px 16px;
+    border-radius:20px;
+
+    font-size:13px;
+
+    opacity:0;
+    transition:0.3s;
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6),
+        0 10px 25px rgba(0,0,0,0.6);
+}
+
+body.dark-mode [data-title]:hover::after{
+    opacity:1;
+    transform:translateX(-50%) translateY(5px) scale(1);
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media(max-width:768px){
+    body.dark-mode .summary-cards{
+        grid-template-columns:1fr;
+    }
+
+    body.dark-mode .analytics-grid{
+        grid-template-columns:1fr;
+    }
+}

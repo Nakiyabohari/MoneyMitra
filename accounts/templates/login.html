@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'dark/login.css' %}">
+
+</head>
+
+<body>
+    <!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+
+<div class="main-wrapper">
+
+<div class="login-container">
+
+<h1>Welcome Back</h1>
+<p class="subtitle">Sign in to continue</p>
+
+<form method="POST" id="loginForm">
+{% csrf_token %}
+
+<label>Email</label>
+<div class="input-box">
+<i class="fa-regular fa-envelope"></i>
+<input 
+type="email" 
+id="email"
+name="email"
+placeholder="your.email@example.com"
+required>
+</div>
+
+<label>Password</label>
+<div class="input-box">
+<i class="fa-solid fa-lock"></i>
+<input 
+type="password"
+id="password"
+name="password"
+placeholder="••••••••"
+required>
+</div>
+
+<button type="submit" id="loginBtn" class="login-btn">
+Sign In <i class="fa-solid fa-arrow-right"></i>
+</button>
+
+</form>
+
+<p class="signup-text">
+Don't have an account?
+<a href="{% url 'register' %}">Sign Up</a>
+</p>
+
+</div>
+
+</div>
+
+<script src="{% static 'js/login.js' %}"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+</body>
+</html>

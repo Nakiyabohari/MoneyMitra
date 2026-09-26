@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Monthly Summary</title>
+
+<link rel="stylesheet" href="{% static 'css/monthly_summary.css' %}">
+<link rel="stylesheet" href="{% static 'dark/summary.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+
+</head>
+
+<body>
+    <!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+    
+{% include "menu.html" %}
+<div class="main-layout">
+
+    
+    <!-- CONTENT -->
+    <div class="app-container">
+
+        <div class="mobile-container">
+
+            <!-- HEADER -->
+            <div class="page-header">
+
+                
+
+                <h2>Monthly Summary</h2>
+
+                <div class="header-icons">
+                    <a href="/calculator/" class="circle-icon" data-title="Calculator">🧮</a>
+                    <a href="/calendar/" class="circle-icon" data-title="Calendar">📅</a>
+                    <a href="{% url 'profile' %}" class="circle-icon profile-icon" data-title="Profile">
+                
+                        {% if profile.profile_photo %}
+                            <img src="{{ profile.profile_photo.url }}" alt="Profile">
+                        {% else %}
+                            👤
+                        {% endif %}
+
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- MONTH -->
+            <div class="month hoverable">
+                📅
+                <input type="month" id="monthPicker" value="{{ selected_month }}">
+            </div>
+
+            <!-- DASHBOARD -->
+            <div class="dashboard">
+
+                <div class="left">
+
+                    <div class="card hoverable">
+                        <p class="label">Total Income</p>
+                        <h1 id="totalIncome">₹{{ total_income }}</h1>
+                    </div>
+
+                    <div class="card small hoverable">
+
+                        <div class="row">
+                            <span>Savings</span>
+                            <span id="savings">₹{{ savings }}</span>
+                        </div>
+
+                        <div class="row">
+                            <span>Expenses</span>
+                            <span id="expense">₹{{ expense }}</span>
+                        </div>
+
+                        <div class="row">
+                            <span>Investments</span>
+                            <span id="investments">₹{{ investments }}</span>
+                        </div>
+
+                        <div class="row">
+                            <span>EMI</span>
+                            <span id="emi">₹{{ emi }}</span>
+                        </div>
+
+                        <div class="row">
+                            <span>Total Deductions</span>
+                            <span id="deductions">₹{{ deductions }}</span>
+                        </div>
+
+                    </div>
+
+                    <h3 class="section">Expense Distribution</h3>
+
+                    <div class="card center hoverable">
+
+                        <canvas id="donutChart" width="200" height="200"></canvas>
+
+                        <div class="legend">
+
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot investment"></span> Investments
+                                </div>
+                                <div>
+                                    <b id="invAmount">₹{{ investments }}</b>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot expense"></span> Expenses
+                                </div>
+                                <div>
+                                    <b id="expAmount">₹{{ expense }}</b>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot saving"></span> Savings
+                                </div>
+                                <div>
+                                    <b id="savAmount">₹{{ savings }}</b>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot emi"></span> EMI
+                                </div>
+                                <div>
+                                    <b id="emiAmount">₹{{ emi }}</b>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <div>
+                                    <span class="dot available"></span> Available
+                                </div>
+                                <div>
+                                    <b id="availAmount">₹{{ balance }}</b>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="right">
+
+                    <div class="balance-card hoverable">
+                        <p>Available Balance</p>
+                        <h2 id="balance">₹{{ balance }}</h2>
+                        <small>After all deductions</small>
+                    </div>
+
+                    <div class="card hoverable">
+                        <p class="label">Suggested Daily Spending</p>
+                        <h2 id="dailyLimit">
+                            ₹{{ daily|floatformat:0 }} <span>/ day</span>
+                        </h2>
+                        <small>
+                            Stay within this limit to manage expenses comfortably
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="{% static 'js/menu.js' %}"></script>
+
+<script>
+const summaryData = {
+    income: {{ total_income }},
+    savings: {{ savings }},
+    expense: {{ expense }},
+    investments: {{ investments }},
+    emi: {{ emi }},
+    balance: {{ balance }}
+};
+</script>
+
+<script src="{% static 'js/monthly_summary.js' %}"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+
+</body>
+</html>

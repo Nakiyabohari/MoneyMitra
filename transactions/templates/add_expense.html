@@ -1,0 +1,154 @@
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'dark/expense.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add_expense.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+    <title>Add Expense</title>
+
+    </head>
+
+    <body>
+        <!-- 🔥 BACKGROUND IMAGE -->
+    <img src="{% static 'images/bg.png' %}" class="bg-image">
+    
+        {% include "menu.html" %}
+    <div class="card">
+
+    <form method="POST">
+    {% csrf_token %}
+
+    <div class="header">
+    <div class="back-btn" onclick="history.back()">←</div>
+    <div class="title">Add Expense</div>
+    </div>
+
+    <!-- SUCCESS / ERROR MESSAGES -->
+
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="message-{{ message.tags }}">
+    {{ message }}
+    </div>
+
+    {% endfor %}
+    {% endif %}
+
+
+    <label>Amount</label>
+<div class="input-icon-wrap">
+    <span class="left-icon">₹</span>
+    <input
+        type="number"
+        name="expense_amount"
+        placeholder="0.00"
+        step="0.01"
+        min="0"
+        required
+    >
+</div>
+
+
+    <label>Category</label>
+
+    <div class="category-wrapper">
+
+    <select 
+    name="category" 
+    id="categoryField" 
+    class="field hoverable"
+    required>
+
+    <option value="">Select Category</option>
+
+    {% for cat in categories %}
+    <option value="{{ cat.id }}">{{ cat.name }}</option>
+    {% endfor %}
+
+    <option value="custom">➕ Custom Category</option>
+
+    </select>
+
+
+    <input
+    type="text"
+    id="categoryInput"
+    name="custom_category"
+    class="field hoverable hidden"
+    placeholder="Enter custom category"
+    />
+
+    </div>
+
+
+    <label>Date</label>
+
+    <div class="input-box date-box">
+    <span class="icon">📅</span>
+    <input
+        type="date" 
+        name="date"
+        id="expenseDate"
+        required
+    >
+    </div>
+
+
+    <label>Payment Type</label>
+
+    <div class="input-box">
+
+    <select name="expense_payment_method" required>
+
+    <option value="">Select Payment Type</option>
+
+    <option value="Cash">Cash</option>
+    <option value="UPI">UPI</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Debit Card">Debit Card</option>
+    <option value="Net Banking">Net Banking</option>
+
+    </select>
+
+    </div>
+
+
+    <button type="submit">
+    Save Expense
+    </button>
+
+    </form>
+
+    </div>
+
+    <script src="{% static 'js/menu.js' %}"></script>
+    <script>
+
+    const categoryField = document.getElementById("categoryField");
+    const categoryInput = document.getElementById("categoryInput");
+
+    categoryField.addEventListener("change", function(){
+
+    if(this.value === "custom"){
+
+    categoryField.classList.add("hidden");
+    categoryInput.classList.remove("hidden");
+    categoryInput.focus();
+
+    }
+
+    });
+
+    </script>
+    <script src="{% static 'js/menu.js' %}"></script>
+
+    </body>
+    </html>

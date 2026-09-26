@@ -1,0 +1,190 @@
+/* ================= BODY ================= */
+body.dark-mode{
+    font-family:'Poppins',sans-serif;
+    background: radial-gradient(circle at top,#0f0f1a,#050514);
+    color:white;
+}
+
+/* ================= BACKGROUND IMAGE ================= */
+.bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-10;
+
+    content: url("/static/images/bg.png"); /* LIGHT */
+}
+
+body.dark-mode .bg-image{
+    content: url("/static/images/image.png"); /* DARK */
+}
+
+/* ================= MAIN CARD ================= */
+body.dark-mode .app-card{
+    position:relative; /* 🔥 IMPORTANT FIX */
+    background:#12122a;
+    border-radius:30px;
+
+    padding:40px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.7),
+        0 0 25px rgba(108,99,255,0.25);
+}
+
+/* ================= BACK BUTTON ================= */
+body.dark-mode .back-btn{
+    position:absolute;  /* 🔥 FIXED */
+    top:20px;
+    left:20px;
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#2a2a45;   /* 🔥 NO WHITE */
+    color:#ffffff;
+
+    font-size:20px;
+    text-decoration:none;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.4);
+
+    transition:0.25s;
+}
+
+/* hover */
+body.dark-mode .back-btn:hover{
+    transform:scale(1.1);
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 20px rgba(108,99,255,0.9);
+}
+
+/* ================= TITLE ================= */
+body.dark-mode h1{
+    color:white;
+}
+
+/* ================= SUBTITLE ================= */
+body.dark-mode .subtitle{
+    color:#8a8aff;
+}
+
+/* ================= SALARY CARD ================= */
+body.dark-mode .salary-card{
+    background:#1a1a2e;
+    border-radius:20px;
+    padding:25px;
+
+    margin-top:25px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.6),
+        0 0 18px rgba(108,99,255,0.25);
+
+    transition:0.3s;
+}
+
+body.dark-mode .salary-card:hover{
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.7),
+        0 0 28px rgba(108,99,255,0.5);
+}
+
+/* ================= LABEL ================= */
+body.dark-mode .salary-card label{
+    color:#8a8aff;
+}
+
+/* ================= INPUT ================= */
+body.dark-mode .salary-input{
+    background:transparent;
+    border:none;
+    outline:none;
+
+    color:white;
+    font-size:26px;
+    font-weight:600;
+
+    width:100%;
+}
+
+/* remove arrows */
+body.dark-mode input[type=number]::-webkit-inner-spin-button,
+body.dark-mode input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+}
+
+/* ================= RUPEE ================= */
+body.dark-mode .rupee{
+    color:#8a8aff;
+    font-size:22px;
+}
+
+/* ================= INFO BOX ================= */
+body.dark-mode .info-box{
+    background:#1a1a2e;
+    border-radius:16px;
+    padding:15px;
+
+    margin-top:20px;
+
+    box-shadow:
+        0 6px 12px rgba(0,0,0,0.6),
+        inset 0 0 10px rgba(108,99,255,0.15);
+}
+
+body.dark-mode .info-box p{
+    color:#b3b3ff;
+}
+
+body.dark-mode .info-icon{
+    background:#6c63ff;
+    color:white;
+}
+
+/* ================= BUTTON ================= */
+body.dark-mode .add-income-btn{
+    margin-top:25px;
+
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    color:white;
+
+    padding:14px;
+    border:none;
+    border-radius:12px;
+
+    box-shadow:0 0 15px rgba(108,99,255,0.6);
+    transition:0.3s;
+}
+
+body.dark-mode .add-income-btn:hover{
+    box-shadow:0 0 25px rgba(108,99,255,0.9);
+}
+
+/* ================= SKIP ================= */
+body.dark-mode .skip-btn{
+    display:block;
+    margin-top:15px;
+
+    color:#8a8aff;
+    text-align:center;
+}
+
+body.dark-mode .skip-btn:hover{
+    color:#b3b3ff;
+}

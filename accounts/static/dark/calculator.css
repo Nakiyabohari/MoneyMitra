@@ -1,0 +1,168 @@
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ================= BACKGROUND IMAGE ================= */
+.bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-10;
+}
+
+/* ================= BODY ================= */
+body.dark-mode{
+    font-family:'Poppins',sans-serif;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+/* 🔥 LIGHT OVERLAY (VERY LIGHT so image visible) */
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(10,10,30,0.25); /* keep background visible */
+    z-index:-5;
+}
+/* LIGHT MODE DEFAULT IMAGE */
+.bg-image{
+    content: url("/static/images/bg.png"); /* light image */
+}
+
+/* 🔥 DARK MODE IMAGE */
+body.dark-mode .bg-image{
+    content: url("/static/images/image.png"); /* dark image */
+}
+/* ================= CALCULATOR CARD ================= */
+body.dark-mode .calc-page{
+    background:rgba(15,15,35,0.85); /* 🔥 no blur, only transparency */
+    padding:35px;
+    border-radius:35px;
+    width:340px;
+    position:relative;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.8),
+        0 0 25px rgba(108,99,255,0.4);
+}
+
+/* ================= DISPLAY ================= */
+body.dark-mode .calc-display{
+    background:#14142b;
+    color:#ffffff;
+    font-size:34px;
+    text-align:right;
+    padding:20px;
+    border-radius:20px;
+    margin-bottom:25px;
+
+    box-shadow:
+        inset 0 0 12px rgba(108,99,255,0.35);
+}
+
+/* ================= GRID ================= */
+body.dark-mode .calc-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+/* ================= BUTTONS ================= */
+body.dark-mode .calc-btn{
+    height:60px;
+    border-radius:18px;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+
+    background:#181833;
+    color:#ffffff;
+
+    transition:all 0.25s ease;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.7);
+}
+
+/* 🔥 HOVER */
+body.dark-mode .calc-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 0 12px rgba(108,99,255,0.5),
+        0 6px 15px rgba(0,0,0,0.8);
+}
+
+/* ================= OPERATORS ================= */
+body.dark-mode .calc-btn.op{
+    background:linear-gradient(135deg,#6c63ff,#8b7cff);
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.7),
+        0 4px 12px rgba(0,0,0,0.8);
+}
+
+/* ================= ZERO ================= */
+body.dark-mode .calc-btn.zero{
+    grid-column:span 2;
+}
+
+/* ================= BACK BUTTON ================= */
+body.dark-mode .back-btn{
+    position:fixed;
+    top:25px;
+    left:25px;
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#181833;
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.6);
+
+    transition:0.25s;
+}
+
+body.dark-mode .back-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px rgba(108,99,255,0.8);
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:480px){
+
+body.dark-mode .calc-page{
+    width:90%;
+    padding:25px;
+}
+
+body.dark-mode .calc-btn{
+    height:55px;
+}
+
+body.dark-mode .calc-display{
+    font-size:28px;
+}
+
+}

@@ -1,0 +1,317 @@
+/* ===============================
+   DARK BACKGROUND (VISIBLE IMAGE)
+================================ */
+body.dark-mode {
+    color: white;
+}
+
+/* hide light bg image */
+body.dark-mode .bg-image {
+    opacity: 0;
+}
+
+/* dark bg with image */
+body.dark-mode::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 30% 40%, rgba(120,100,255,0.2), transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(0,200,150,0.12), transparent 60%),
+        linear-gradient(rgba(10,10,30,0.5), rgba(5,5,15,0.7)),
+        url("../images/image.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -2;
+}
+
+
+/* ===============================
+   FULL WIDTH LAYOUT (FIXED)
+================================ */
+body.dark-mode .app-container {
+    margin-left: 260px;
+    padding: 20px 30px;
+}
+
+body.dark-mode .mobile-container {
+    width: 100%;
+}
+
+
+/* ===============================
+   HEADER
+================================ */
+body.dark-mode .page-header {
+    background: rgba(20,20,45,0.6);
+    backdrop-filter: blur(10px);
+
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6),
+        0 0 10px rgba(108,99,255,0.2);
+}
+
+body.dark-mode .page-header h2 {
+    color: #ffffff;
+}
+
+
+/* ===============================
+   MONTH SELECT
+================================ */
+body.dark-mode .month {
+    background: rgba(20,20,45,0.6);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+
+    color: white;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+body.dark-mode input[type="month"] {
+    background: transparent;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+/* calendar icon */
+body.dark-mode input[type="month"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+
+/* ===============================
+   GRID LAYOUT
+================================ */
+body.dark-mode .dashboard {
+    display: flex;
+    gap: 20px;
+}
+
+body.dark-mode .left { flex: 2; }
+body.dark-mode .right { flex: 1; }
+
+
+/* ===============================
+   CARDS
+================================ */
+body.dark-mode .card {
+    background: rgba(18,18,40,0.65);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.6);
+
+    transition: 0.3s;
+}
+
+/* hover glow */
+body.dark-mode .card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.8),
+        0 0 12px rgba(108,99,255,0.25);
+}
+
+
+/* ===============================
+   SMALL CARD
+================================ */
+body.dark-mode .card.small {
+    background: rgba(18,18,40,0.6);
+}
+
+
+/* ===============================
+   BALANCE CARD (GLOW)
+================================ */
+body.dark-mode .balance-card {
+    background: linear-gradient(135deg,#6c63ff,#7b72f5);
+    border-radius: 16px;
+    padding: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.7),
+        0 0 20px rgba(108,99,255,0.4);
+
+    transition: 0.3s;
+}
+
+body.dark-mode .balance-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 30px rgba(108,99,255,0.8),
+        0 0 50px rgba(108,99,255,0.4);
+}
+
+
+/* ===============================
+   TEXT COLORS (FIXED WHITE)
+================================ */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+    color: #ffffff;
+}
+
+body.dark-mode .section {
+    color: #ffffff;
+}
+
+body.dark-mode .label {
+    color: #a5a5ff;
+}
+
+body.dark-mode .row span {
+    color: #e5e5ff;
+}
+
+body.dark-mode small {
+    color: #aaa;
+}
+
+
+/* ===============================
+   DONUT CARD
+================================ */
+body.dark-mode .center {
+    background: rgba(18,18,40,0.7);
+}
+
+
+/* ===============================
+   LEGEND
+================================ */
+body.dark-mode .legend-item {
+    color: white;
+}
+
+
+/* ===============================
+   DOT COLORS
+================================ */
+body.dark-mode .dot.investment { background:#6c63ff; }
+body.dark-mode .dot.expense { background:#A29BFE; }
+body.dark-mode .dot.saving { background:#8E7CFF; }
+body.dark-mode .dot.emi { background:#7B6CF6; }
+body.dark-mode .dot.available { background:#5A4FCF; }
+
+
+/* ===============================
+   ICON BUTTONS (GLOW)
+================================ */
+body.dark-mode .circle-icon {
+    background: rgba(25,25,60,0.7);
+    border-radius: 50%;
+    padding: 10px;
+
+    color: white;
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.3);
+
+    transition: 0.3s;
+}
+
+body.dark-mode .circle-icon:hover {
+    transform: translateY(-2px) scale(1.1);
+
+    background: linear-gradient(135deg,#6c63ff,#7b72f5);
+
+    box-shadow:
+        0 0 15px rgba(108,99,255,0.8),
+        0 0 30px rgba(108,99,255,0.5);
+}
+
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    body.dark-mode .dashboard {
+        flex-direction: column;
+    }
+
+    body.dark-mode .app-container {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
+body.dark-mode [data-title]::before{
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(108,99,255,0.6);
+}
+/* ===============================
+   🔥 DATA-TITLE TOOLTIP FIX
+================================ */
+
+/* parent */
+.circle-icon{
+    position: relative;
+}
+
+/* tooltip text */
+.circle-icon::after{
+    content: attr(data-title);
+
+    position: absolute;
+    bottom: -38px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    font-size: 12px;
+    white-space: nowrap;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: 0.25s;
+}
+
+/* LIGHT MODE */
+.circle-icon::after{
+    background: rgba(255,255,255,0.9);
+    color: #333;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* DARK MODE FIX ✅ */
+body.dark-mode .circle-icon::after{
+    background: rgba(20,20,50,0.95);
+    color: #ffffff;
+
+    box-shadow:
+        0 0 10px rgba(108,99,255,0.4),
+        0 0 25px rgba(108,99,255,0.2);
+}
+
+/* show on hover */
+.circle-icon:hover::after{
+    opacity: 1;
+    bottom: -45px;
+}
+a{
+    text-decoration: none;
+}

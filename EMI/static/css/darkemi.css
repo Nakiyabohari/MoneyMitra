@@ -1,0 +1,312 @@
+/* ===============================
+   DARK MODE BASE
+================================ */
+body.dark-mode{
+    background:#050514;
+    color:#ffffff;
+    font-family:'Poppins', sans-serif;
+}
+
+
+/* ===============================
+   BACKGROUND IMAGE (VISIBLE + PREMIUM)
+================================ */
+body.dark-mode .bg-image{
+    opacity:0;
+}
+
+body.dark-mode::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        linear-gradient(rgba(5,5,20,0.45), rgba(5,5,20,0.75)),
+        url("../images/image.png");
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-2;
+}
+
+body.dark-mode::after{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(circle at 70% 20%, rgba(108,99,255,0.25), transparent 60%);
+
+    z-index:-1;
+}
+
+
+/* ===============================
+   WRAPPER
+================================ */
+body.dark-mode .content-wrapper{
+    margin-left:260px;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:60px 40px;
+}
+
+
+/* ===============================
+   MAIN CONTAINER
+================================ */
+body.dark-mode .container{
+    width:100%;
+    max-width:1100px;
+
+    padding:50px;
+
+    border-radius:28px;
+
+    background:rgba(20,20,45,0.65);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.9),
+        0 0 40px rgba(108,99,255,0.25);
+}
+
+
+/* ===============================
+   HEADER
+================================ */
+body.dark-mode .header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+body.dark-mode .header h2{
+    color:#ffffff;
+    font-weight:600;
+}
+
+
+/* BACK BUTTON */
+body.dark-mode .circle-btn{
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    text-decoration:none;
+
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
+    color:#fff;
+
+    box-shadow:0 0 15px rgba(108,99,255,0.6);
+
+    transition:0.3s;
+}
+
+body.dark-mode .circle-btn:hover{
+    transform:scale(1.1);
+
+    box-shadow:
+        0 0 25px rgba(108,99,255,0.9),
+        0 0 40px rgba(108,99,255,0.7);
+}
+
+
+/* ===============================
+   ALERT BOX
+================================ */
+body.dark-mode .alert-box{
+    background:#1a1a2e;
+    color:#fff;
+
+    padding:12px 15px;
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+    border-left:4px solid #6c63ff;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.6);
+}
+
+
+/* ===============================
+   TOTAL CARD
+================================ */
+body.dark-mode .total-card{
+    margin-bottom:25px;
+
+    padding:25px;
+    border-radius:22px;
+
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
+    color:#fff;
+
+    box-shadow:
+        0 10px 40px rgba(108,99,255,0.6);
+}
+
+body.dark-mode .total-card h1{
+    font-size:32px;
+    margin-top:5px;
+}
+
+
+/* ===============================
+   FORM CARD
+================================ */
+body.dark-mode .form-card{
+    background:rgba(18,18,40,0.9);
+    padding:25px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.8),
+        0 0 20px rgba(108,99,255,0.15);
+}
+
+body.dark-mode .form-card h3{
+    color:#ffffff;
+    margin-bottom:15px;
+}
+
+
+/* ===============================
+   LABELS
+================================ */
+body.dark-mode label{
+    color:#cfcfff;
+    font-size:14px;
+    margin-bottom:5px;
+    display:block;
+}
+
+
+/* ===============================
+   INPUTS (MAIN FIX 🔥)
+================================ */
+body.dark-mode input{
+    width:100%;
+
+    background:#14142f !important;
+    color:#ffffff !important;
+
+    border:none;
+    border-radius:14px;
+
+    padding:14px;
+
+    outline:none;
+
+    box-shadow:
+        inset 0 0 8px rgba(108,99,255,0.25),
+        0 5px 12px rgba(0,0,0,0.6);
+
+    transition:0.25s;
+}
+
+/* placeholder */
+body.dark-mode input::placeholder{
+    color:#8a8ab5;
+}
+
+/* focus */
+body.dark-mode input:focus{
+    box-shadow:
+        0 0 0 2px rgba(108,99,255,0.5),
+        0 0 20px rgba(108,99,255,0.7);
+}
+
+
+/* ===============================
+   DATE INPUT FIX
+================================ */
+body.dark-mode input[type="date"]{
+    color:#fff;
+}
+
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+    filter:invert(1);
+}
+
+
+/* ===============================
+   DOUBLE FIELD
+================================ */
+body.dark-mode .double-field{
+    display:flex;
+    gap:15px;
+    margin-bottom:10px;
+}
+
+body.dark-mode .double-field > div{
+    flex:1;
+}
+
+
+/* ===============================
+   BUTTON (GLOW)
+================================ */
+body.dark-mode .btn{
+    width:100%;
+
+    background:linear-gradient(135deg,#6c63ff,#8577ff);
+    color:#fff;
+
+    padding:14px;
+
+    border:none;
+    border-radius:30px;
+
+    font-weight:600;
+
+    margin-top:15px;
+
+    box-shadow:
+        0 10px 25px rgba(108,99,255,0.5);
+
+    transition:0.3s;
+}
+
+body.dark-mode .btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 15px 40px rgba(108,99,255,0.9),
+        0 0 30px rgba(108,99,255,0.7);
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+@media(max-width:768px){
+
+    body.dark-mode .content-wrapper{
+        margin-left:0;
+        padding:20px;
+    }
+
+    body.dark-mode .container{
+        padding:25px;
+    }
+
+    body.dark-mode .double-field{
+        flex-direction:column;
+    }
+}

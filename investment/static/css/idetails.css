@@ -1,0 +1,259 @@
+/* ================= BODY ================= */
+body.dark-mode{
+    font-family:'Poppins',sans-serif;
+    color:white;
+
+    background:
+        linear-gradient(rgba(5,5,20,0.55), rgba(5,5,20,0.65)),
+        url("/static/images/image.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    min-height:100vh;
+    display:flex;
+}
+
+/* ================= LAYOUT ================= */
+body.dark-mode .container{
+    margin-left:280px;
+    padding:30px;
+    width:100%;
+    position:relative;
+    z-index:2;
+}
+
+/* ================= HEADER ================= */
+body.dark-mode .page-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:18px 25px;
+    margin-bottom:25px;
+    border-radius:20px;
+
+    /* 🔥 LIGHTER GLASS */
+    background:rgba(20,20,50,0.25);
+    backdrop-filter:blur(8px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.5),
+        0 0 15px rgba(108,99,255,0.15);
+}
+
+body.dark-mode .page-header h2{
+    font-size:20px;
+    color:#eaeaff;
+}
+
+/* ================= ICONS ================= */
+body.dark-mode .header-icons{
+    display:flex;
+    gap:10px;
+}
+
+body.dark-mode .circle-icon{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(6px);
+
+    transition:0.25s;
+}
+
+body.dark-mode .circle-icon:hover{
+    background:linear-gradient(135deg,#6c63ff,#7b72f5);
+    transform:scale(1.1);
+}
+
+/* ================= CARDS ================= */
+body.dark-mode .summary-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+body.dark-mode .card{
+    padding:25px;
+    border-radius:20px;
+
+    /* 🔥 MAIN FIX */
+    background:rgba(25,25,60,0.25);
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    text-align:center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.5),
+        0 0 20px rgba(108,99,255,0.15);
+
+    transition:0.3s;
+}
+
+body.dark-mode .card:hover{
+    transform:translateY(-5px);
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 30px rgba(108,99,255,0.25);
+}
+
+/* Highlight card */
+body.dark-mode .summary-cards .card:first-child{
+    background:linear-gradient(135deg,rgba(108,99,255,0.6),rgba(155,140,255,0.6));
+    backdrop-filter:blur(10px);
+}
+
+body.dark-mode .card p{
+    color:#cfcfff;
+}
+
+body.dark-mode .card h3{
+    margin-top:10px;
+    font-size:24px;
+}
+
+/* ================= PROGRESS ================= */
+body.dark-mode .progress-section{
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:20px;
+
+    background:rgba(25,25,60,0.25);
+    backdrop-filter:blur(8px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .section-title{
+    margin-bottom:15px;
+    color:#eaeaff;
+}
+
+body.dark-mode .progress-bar{
+    height:10px;
+    background:#1a1a2e;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+body.dark-mode .progress-fill{
+    height:10px;
+    border-radius:20px;
+}
+
+body.dark-mode .progress-fill.etf{
+    background:linear-gradient(90deg,#6c63ff,#9b8cff);
+}
+
+body.dark-mode .progress-fill.mf{
+    background:linear-gradient(90deg,#00c896,#1abc9c);
+}
+
+/* ================= INSIGHT ================= */
+body.dark-mode .insight{
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:20px;
+
+    background:rgba(25,25,60,0.25);
+    backdrop-filter:blur(6px);
+
+    border-left:4px solid #6c63ff;
+
+    color:#eaeaff;
+}
+
+/* ================= TABLE ================= */
+body.dark-mode .table-wrapper{
+    overflow-x:auto;
+}
+
+body.dark-mode table{
+    width:100%;
+    border-collapse:collapse;
+
+    background:rgba(25,25,60,0.25);
+    backdrop-filter:blur(8px);
+
+    border-radius:15px;
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+body.dark-mode th{
+    padding:14px;
+    background:#14172a;
+    color:#9c9cff;
+}
+
+body.dark-mode td{
+    padding:14px;
+    color:white;
+}
+
+body.dark-mode tr{
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+body.dark-mode tr:hover{
+    background:rgba(108,99,255,0.12);
+}
+/* ================= FORCE TEXT WHITE ================= */
+
+/* All main text */
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6{
+    color:#ffffff !important;
+}
+
+/* Card values (₹0 etc) */
+body.dark-mode .card h3{
+    color:#ffffff !important;
+    font-weight:600;
+}
+
+/* Labels like ETFs (0%) */
+body.dark-mode .progress-header span{
+    color:#ffffff !important;
+    font-weight:500;
+}
+
+/* Table text */
+body.dark-mode td,
+body.dark-mode th{
+    color:#ffffff !important;
+}
+
+/* Insight text */
+body.dark-mode .insight{
+    color:#ffffff !important;
+}
+
+/* Fix faded paragraph text */
+body.dark-mode .card p{
+    color:#ffffff !important;
+    opacity:0.9;
+}

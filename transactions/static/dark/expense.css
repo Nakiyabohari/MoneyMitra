@@ -1,0 +1,334 @@
+/* ===============================
+   ROOT
+================================ */
+:root{
+    --primary:#6c63ff;
+}
+
+/* ===============================
+   BODY
+================================ */
+body.dark-mode{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* ===============================
+   BACKGROUND IMAGE (FIXED ✅)
+================================ */
+body.dark-mode .bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    z-index:-1;
+
+    opacity:1; /* 🔥 ensure visible */
+}
+
+/* ❌ REMOVE OVERLAY (IMPORTANT) */
+body.dark-mode::before,
+body.dark-mode::after{
+    content:none;
+}
+
+/* ===============================
+   MAIN CARD (GLASS - NO SHADE)
+================================ */
+body.dark-mode .card{
+    width:100%;
+    max-width:900px;
+
+    margin:40px auto;
+
+    /* CENTER WITH SIDEBAR */
+    margin-left:calc(260px + (100% - 260px - 900px)/2);
+
+    padding:40px;
+
+    border-radius:25px;
+
+    /* 🔥 CLEAN GLASS */
+    background:rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+body.dark-mode .bg-image{
+    content: url("/static/images/image.png");
+}
+/* ===============================
+   HEADER
+================================ */
+body.dark-mode .header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    margin-bottom:25px;
+}
+
+body.dark-mode .title{
+    font-size:28px;
+    font-weight:600;
+    color:#ffffff;
+}
+
+body.dark-mode .back-btn{
+    position:absolute;
+    left:0;
+
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,0.1);
+    color:#fff;
+    cursor:pointer;
+}
+
+/* ===============================
+   LABELS
+================================ */
+body.dark-mode label{
+    color:#e0e0e0;
+    font-size:14px;
+    margin-bottom:6px;
+    display:block;
+}
+
+/* ===============================
+   INPUT FIELDS (NO HOVER EFFECT)
+================================ */
+body.dark-mode input,
+body.dark-mode select{
+    width:100%;
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,0.12);
+    color:#fff;
+
+    outline:none;
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    /* ❌ REMOVE ANIMATION */
+    transition:none;
+}
+
+/* REMOVE FOCUS GLOW */
+body.dark-mode input:focus,
+body.dark-mode select:focus{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:none;
+}
+
+/* REMOVE HOVER EFFECT */
+body.dark-mode input:hover,
+body.dark-mode select:hover{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:none;
+}
+
+/* PLACEHOLDER */
+body.dark-mode input::placeholder{
+    color:#bbb;
+}
+/* ===============================
+   ICON INPUT
+================================ */
+body.dark-mode .input-icon-wrap{
+    position:relative;
+}
+
+body.dark-mode .left-icon{
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#ccc;
+}
+
+body.dark-mode .input-icon-wrap input{
+    padding-left:30px;
+}
+
+/* ===============================
+   DATE INPUT
+================================ */
+body.dark-mode .date-box{
+    position:relative;
+}
+
+body.dark-mode .date-box .icon{
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#ccc;
+}
+
+body.dark-mode .date-box input{
+    padding-left:35px;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+body.dark-mode button{
+    width:220px;
+    margin:30px auto 0;
+
+    display:block;
+
+    padding:14px;
+
+    border:none;
+    border-radius:30px;
+
+    background:#6c63ff;
+    color:white;
+
+    font-weight:600;
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+body.dark-mode button:hover{
+    transform:scale(1.05);
+    background:#7b72f5;
+}
+
+/* ===============================
+   MESSAGES
+================================ */
+body.dark-mode .message-success{
+    background:#00c85320;
+    color:#00ff9d;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+body.dark-mode .message-error{
+    background:#ff525220;
+    color:#ff6b6b;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media(max-width:768px){
+
+    body.dark-mode .card{
+        margin-left:0;
+        max-width:100%;
+        border-radius:0;
+        padding:25px;
+    }
+}
+/* ===============================
+   FORCE ALL TEXT WHITE (DARK MODE)
+================================ */
+body.dark-mode,
+body.dark-mode *{
+    color:#ffffff !important;
+}
+
+/* FIX PLACEHOLDER TEXT */
+body.dark-mode input::placeholder{
+    color:#dddddd !important;
+}
+
+/* FIX SELECT DROPDOWN TEXT */
+body.dark-mode select{
+    color:#ffffff !important;
+}
+
+/* FIX OPTION TEXT (dropdown items) */
+body.dark-mode select option{
+    color:#000 !important; /* keep readable in dropdown */
+}
+
+/* FIX INPUT DATE TEXT */
+body.dark-mode input[type="date"]{
+    color:#ffffff !important;
+}
+
+/* FIX CALENDAR ICON (Chrome issue) */
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+}
+
+/* FIX ICON COLORS */
+body.dark-mode i,
+body.dark-mode svg{
+    color:#ffffff !important;
+    fill:#ffffff !important;
+}
+/* ===============================
+   FULL HOVER BLACK FIX
+================================ */
+
+/* INPUT + SELECT */
+body.dark-mode input:hover,
+body.dark-mode select:hover{
+    color:#000 !important;
+    background:#ffffff !important;
+}
+
+/* ₹ ICON (inside input) */
+body.dark-mode .input-icon-wrap:hover .left-icon{
+    color:#000 !important;
+}
+
+/* DATE ICON */
+body.dark-mode .date-box:hover .icon{
+    color:#000 !important;
+}
+
+/* SVG ICON FIX */
+body.dark-mode .input-icon-wrap:hover svg,
+body.dark-mode .date-box:hover svg{
+    fill:#000 !important;
+    color:#000 !important;
+}
+
+/* ICON BOX BACKGROUND (IMPORTANT 🔥) */
+body.dark-mode .input-icon-wrap:hover,
+body.dark-mode .date-box:hover{
+    background:#ffffff !important;
+    border-radius:14px;
+}
+
+/* PLACEHOLDER ON HOVER */
+body.dark-mode input:hover::placeholder{
+    color:#555 !important;
+}
+
+/* DATE PICKER ICON (CHROME FIX) */
+body.dark-mode input[type="date"]:hover::-webkit-calendar-picker-indicator{
+    filter: invert(0);
+}
