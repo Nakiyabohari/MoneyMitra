@@ -6,7 +6,8 @@ dependencies = [
     "Django==6.0.3",
     "dj-database-url",
     "psycopg[binary]",
+    "python-dotenv",
 ]
 
 [tool.vercel.scripts]
-build = 'if [ -n "$DATABASE_URL" ]; then python manage.py migrate --noinput; fi'
+build = 'python manage.py migrate --noinput'
