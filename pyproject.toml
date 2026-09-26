@@ -7,7 +7,9 @@ dependencies = [
     "dj-database-url",
     "psycopg[binary]",
     "python-dotenv",
+    "Pillow",
 ]
 
 [tool.vercel.scripts]
 build = 'python manage.py migrate --noinput'
+
