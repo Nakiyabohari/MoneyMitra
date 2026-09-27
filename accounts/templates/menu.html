@@ -1,73 +1,182 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/menu.css' %}">
-<link rel="stylesheet" href="{% static 'dark/menu.css' %}">
-<div class="sidebar">
 
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+<!-- ================= MOBILE MENU BUTTON ================= -->
+
+<button
+    type="button"
+    class="mobile-menu-btn"
+    onclick="openSidebar()"
+    aria-label="Open menu"
+>
+    ☰
+</button>
+
+
+<!-- ================= SIDEBAR OVERLAY ================= -->
+
+<div
+    class="sidebar-overlay"
+    onclick="closeSidebar()"
+></div>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar" id="sidebar">
+
+    <!-- LOGO -->
     <div class="sidebar-logo">
-        <img src="{% static 'images/MM3.png' %}">
+
+        <img
+            src="{% static 'images/MM3.png' %}"
+            alt="MoneyMitra"
+        >
+
         <h2>MoneyMitra</h2>
+
+        <!-- MOBILE CLOSE -->
+        <button
+            type="button"
+            class="sidebar-close"
+            onclick="closeSidebar()"
+            aria-label="Close menu"
+        >
+            ✕
+        </button>
+
     </div>
+
+
+    <!-- ================= MENU ================= -->
 
     <div class="sidebar-menu">
 
-    <a href="{% url 'dashboard' %}" 
-       class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
-        <span>🏠</span><p>Dashboard</p>
-    </a>
+        <a href="{% url 'dashboard' %}"
+           class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+            <span>🏠</span>
+            <p>Dashboard</p>
+        </a>
 
-    <a href="{% url 'investment' %}" 
-       class="{% if request.resolver_match.url_name == 'investment' %}active{% endif %}">
-        <span>📊</span><p>Investment Options</p>
-    </a>
 
-    <a href="{% url 'emimanager' %}" 
-       class="{% if request.resolver_match.url_name == 'emimanager' %}active{% endif %}">
-        <span>💳</span><p>Manage EMIs</p>
-    </a>
+        <a href="{% url 'investment' %}"
+           class="{% if request.resolver_match.url_name == 'investment' %}active{% endif %}">
+            <span>📊</span>
+            <p>Investment Options</p>
+        </a>
 
-    <a href="{% url 'savings_goal' %}" 
-       class="{% if request.resolver_match.url_name == 'savings_goal' %}active{% endif %}">
-        <span>💰</span><p>Savings Goals</p>
-    </a>
 
-    <a href="{% url 'monthly_budget' %}" 
-       class="{% if request.resolver_match.url_name == 'monthly_budget' %}active{% endif %}">
-        <span>📂</span><p>Category Budgets</p>
-    </a>
+        <a href="{% url 'emimanager' %}"
+           class="{% if request.resolver_match.url_name == 'emimanager' %}active{% endif %}">
+            <span>💳</span>
+            <p>Manage EMIs</p>
+        </a>
 
-    <a href="{% url 'transaction_history' %}" 
-       class="{% if request.resolver_match.url_name == 'transaction_history' %}active{% endif %}">
-        <span>📜</span><p>Transaction History</p>
-    </a>
 
-    <a href="{% url 'budget_analysis' %}" 
-       class="{% if request.resolver_match.url_name == 'budget_analysis' %}active{% endif %}">
-        <span>📊</span><p>Budget Analytics</p>
-    </a>
+        <a href="{% url 'savings_goal' %}"
+           class="{% if request.resolver_match.url_name == 'savings_goal' %}active{% endif %}">
+            <span>💰</span>
+            <p>Savings Goals</p>
+        </a>
 
-    <a href="{% url 'monthly_summary' %}" 
-       class="{% if request.resolver_match.url_name == 'monthly_summary' %}active{% endif %}">
-        <span>📅</span><p>Monthly Summary</p>
-    </a>
 
-    <a href="{% url 'expensereport' %}" 
-       class="{% if request.resolver_match.url_name == 'expensereport' %}active{% endif %}">
-        <span>📄</span><p>Expense Reports</p>
-    </a>
+        <a href="{% url 'monthly_budget' %}"
+           class="{% if request.resolver_match.url_name == 'monthly_budget' %}active{% endif %}">
+            <span>📂</span>
+            <p>Category Budgets</p>
+        </a>
 
-        <!-- THEME -->
+
+        <a href="{% url 'transaction_history' %}"
+           class="{% if request.resolver_match.url_name == 'transaction_history' %}active{% endif %}">
+            <span>📜</span>
+            <p>Transaction History</p>
+        </a>
+
+
+        <a href="{% url 'budget_analysis' %}"
+           class="{% if request.resolver_match.url_name == 'budget_analysis' %}active{% endif %}">
+            <span>📊</span>
+            <p>Budget Analytics</p>
+        </a>
+
+
+        <a href="{% url 'monthly_summary' %}"
+           class="{% if request.resolver_match.url_name == 'monthly_summary' %}active{% endif %}">
+            <span>📅</span>
+            <p>Monthly Summary</p>
+        </a>
+
+
+        <a href="{% url 'expensereport' %}"
+           class="{% if request.resolver_match.url_name == 'expensereport' %}active{% endif %}">
+            <span>📄</span>
+            <p>Expense Reports</p>
+        </a>
+
+
+        <!-- ================= THEME ================= -->
+
         <div class="theme-toggle">
-    <div class="theme-left">
-        <span>🌙</span>
-        <p>Theme</p>
+
+            <div class="theme-left">
+                <span>🌙</span>
+                <p>Theme</p>
+            </div>
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="themeSwitch"
+                    onchange="toggleTheme()"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
     </div>
 
-    <label class="switch">
-        <input type="checkbox" id="themeSwitch" onchange="toggleTheme()">
-        <span class="slider"></span>
-    </label>
 </div>
 
-    </div>
 
-</div>
+<!-- ================= SIDEBAR JAVASCRIPT ================= -->
+
+<script>
+
+function openSidebar() {
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.querySelector(".sidebar-overlay");
+
+    if (sidebar) {
+        sidebar.classList.add("sidebar-open");
+    }
+
+    if (overlay) {
+        overlay.classList.add("overlay-show");
+    }
+
+}
+
+
+function closeSidebar() {
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.querySelector(".sidebar-overlay");
+
+    if (sidebar) {
+        sidebar.classList.remove("sidebar-open");
+    }
+
+    if (overlay) {
+        overlay.classList.remove("overlay-show");
+    }
+
+}
+
+</script>

@@ -1,0 +1,506 @@
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    padding: 25px 18px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0 25px 25px 0;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 1000;
+
+    transition: left 0.3s ease;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 35px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.sidebar-logo img {
+    width: 50px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-logo h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #6c63ff;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+
+/* =====================================================
+   MENU ITEM
+===================================================== */
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 14px;
+    width: 100%;
+    box-sizing: border-box;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #2d2d5a;
+
+    background: rgba(255,255,255,0.5);
+
+    transition: all 0.25s ease;
+}
+
+.sidebar-menu a:hover {
+    transform: translateY(-2px);
+    background: #dedbfb;
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.sidebar-menu a span {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.6);
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.sidebar-menu a p {
+    margin: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.sidebar-menu a.active {
+    background: #6c63ff;
+    color: white;
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+.theme-toggle {
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #e9e6f2;
+
+    padding: 12px 14px;
+    border-radius: 14px;
+
+    flex-shrink: 0;
+}
+
+.theme-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-left p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   SWITCH
+===================================================== */
+
+.switch {
+    position: relative;
+
+    display: inline-block;
+
+    width: 46px;
+    height: 24px;
+
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+
+    cursor: pointer;
+
+    inset: 0;
+
+    background: #d1d1d1;
+
+    border-radius: 30px;
+
+    transition: 0.3s;
+}
+
+.slider:before {
+    position: absolute;
+
+    content: "☀️";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+
+    height: 18px;
+    width: 18px;
+
+    left: 3px;
+    top: 3px;
+
+    background: white;
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+    background: #6c63ff;
+}
+
+.switch input:checked + .slider:before {
+    content: "🌙";
+    transform: translateX(22px);
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.mobile-menu-btn {
+    display: none;
+
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: #6c63ff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+
+    position: relative;
+    z-index: 900;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.sidebar-close {
+    display: none;
+
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+
+    margin-left: auto;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.9);
+
+    color: #6c63ff;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   OVERLAY
+===================================================== */
+
+.sidebar-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.25);
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    z-index: 999;
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.overlay-show {
+    display: block;
+    opacity: 1;
+}
+
+
+/* =====================================================
+   DESKTOP LAYOUT
+===================================================== */
+
+.app-container {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    /* SIDEBAR HIDDEN */
+
+    .sidebar {
+        width: 260px;
+
+        left: -280px;
+        top: 0;
+
+        height: 100vh;
+
+        padding: 22px 18px;
+
+        border-radius: 0 25px 25px 0;
+
+        z-index: 1000;
+
+        transition: left 0.3s ease;
+    }
+
+    /* SIDEBAR OPEN */
+
+    .sidebar.sidebar-open {
+        left: 0;
+    }
+
+    /* LOGO */
+
+    .sidebar-logo {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .sidebar-logo img {
+        width: 45px;
+    }
+
+    .sidebar-logo h2 {
+        display: block;
+        font-size: 19px;
+    }
+
+    /* CLOSE */
+
+    .sidebar-close {
+        display: flex;
+    }
+
+    /* MENU */
+
+    .sidebar-menu {
+        gap: 12px;
+    }
+
+    .sidebar-menu a {
+        width: 100%;
+        padding: 11px 12px;
+
+        font-size: 14px;
+    }
+
+    .sidebar-menu a p {
+        display: block;
+    }
+
+    /* THEME */
+
+    .theme-toggle {
+        width: 100%;
+        margin-top: auto;
+    }
+
+    /* HAMBURGER */
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    /* MAIN */
+
+    .app-container {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .sidebar {
+        width: 250px;
+        left: -270px;
+    }
+
+    .sidebar.sidebar-open {
+        left: 0;
+    }
+
+    .sidebar-logo img {
+        width: 43px;
+    }
+
+    .sidebar-logo h2 {
+        font-size: 18px;
+    }
+
+    .sidebar-menu {
+        gap: 10px;
+    }
+
+    .sidebar-menu a {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .mobile-menu-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+    }
+
+    .sidebar-close {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+
+/* =====================================================
+   SIDEBAR SCROLLBAR
+===================================================== */
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(108,99,255,0.4);
+    border-radius: 10px;
+}

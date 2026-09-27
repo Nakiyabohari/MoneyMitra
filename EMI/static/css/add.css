@@ -1,0 +1,845 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #30275f;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.bg-image {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -2;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.addemi-page {
+    width: calc(100% - 300px);
+
+    min-height: 100vh;
+
+    margin-left: 300px;
+
+    padding: 24px 28px 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.addemi-header {
+    width: 100%;
+    max-width: none;
+
+    min-height: 72px;
+
+    padding: 12px 15px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(76, 58, 150, 0.14);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #6252f5;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    box-shadow:
+        0 6px 14px rgba(98, 82, 245, 0.22);
+
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 17px rgba(98, 82, 245, 0.28);
+}
+
+/* =========================================================
+   HEADER CENTER
+========================================================= */
+
+.header-center {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.header-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #efedff;
+
+    font-size: 18px;
+}
+
+.header-text {
+    min-width: 0;
+}
+
+.header-text h1 {
+    font-size: 21px;
+
+    font-weight: 700;
+
+    color: #30275f;
+
+    margin-bottom: 2px;
+}
+
+.header-text p {
+    font-size: 11px;
+
+    color: #7d76a5;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-btn {
+    display: none;
+
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   MAIN FORM CARD
+========================================================= */
+
+.addemi-card {
+    width: 100%;
+    max-width: none;
+
+    margin-top: 15px;
+
+    padding: 24px 28px;
+
+    background: rgba(255, 255, 255, 0.91);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(76, 58, 150, 0.14);
+
+    /* Keep card compact */
+    flex: none;
+}
+
+
+/* =========================================================
+   FORM HEADING
+========================================================= */
+
+.form-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 14px;
+
+    margin-bottom: 16px;
+
+    border-bottom: 1px solid #e6def8;
+}
+
+.form-heading h2 {
+    font-size: 23px;
+
+    color: #30275f;
+
+    margin-bottom: 4px;
+}
+
+.form-heading p {
+    font-size: 11px;
+
+    color: #8179a7;
+}
+
+.money-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #efedff;
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert-box {
+    width: 100%;
+
+    padding: 10px 13px;
+
+    margin-bottom: 15px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 12px;
+
+    transition: opacity 0.4s ease;
+}
+
+.alert-box.success {
+    background: #e9f9ef;
+
+    color: #20834a;
+}
+
+.alert-box.error {
+    background: #fff0f0;
+
+    color: #d33c3c;
+}
+
+.alert-box.warning {
+    background: #fff7df;
+
+    color: #9a7110;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.addemi-form {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.field {
+    width: 100%;
+}
+
+.full-field {
+    width: 100%;
+}
+
+.field label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #30275f;
+}
+
+
+/* =========================================================
+   TWO FIELDS
+========================================================= */
+
+.two-fields {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   INPUT BOX
+========================================================= */
+
+.input-box {
+    width: 100%;
+
+    min-height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 5px 10px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid #ded5f8;
+
+    border-radius: 11px;
+
+    transition: 0.2s ease;
+}
+
+.input-box:focus-within {
+    border-color: #6252f5;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 82, 245, 0.10);
+}
+
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
+
+.input-icon {
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f0eeff;
+
+    font-size: 13px;
+
+    color: #6252f5;
+}
+
+.input-icon.rupee {
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DJANGO INPUTS
+========================================================= */
+
+.input-box input {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 34px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #30275f;
+
+    font-size: 12px;
+
+    font-family: inherit;
+}
+
+.input-box input::placeholder {
+    color: #aaa5c4;
+
+    opacity: 1;
+}
+
+.input-box input:focus {
+    outline: none;
+}
+
+
+/* =========================================================
+   DATE INPUT
+========================================================= */
+
+.input-box input[type="date"] {
+    color: #30275f;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   SMALL TEXT
+========================================================= */
+
+.field small {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 9px;
+
+    color: #8982a8;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.addemi-btn {
+    width: 100%;
+
+    min-height: 46px;
+
+    margin-top: 1px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #6252f5;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 16px rgba(98, 82, 245, 0.20);
+
+    transition: 0.2s ease;
+}
+
+.addemi-btn span {
+    margin-right: 5px;
+
+    font-size: 15px;
+}
+
+.addemi-btn:hover {
+    background: #5646e8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 19px rgba(98, 82, 245, 0.27);
+}
+
+.addemi-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .addemi-page {
+        width: calc(100% - 260px);
+
+        margin-left: 260px;
+
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .addemi-page {
+        width: 100%;
+
+        min-height: 100vh;
+
+        margin-left: 0;
+
+        padding: 18px 14px 25px;
+    }
+
+
+    /* HEADER */
+
+    .addemi-header {
+        width: 100%;
+
+        min-height: 64px;
+
+        padding: 9px 11px;
+
+        border-radius: 16px;
+
+        gap: 9px;
+    }
+
+
+    /* BACK BUTTON */
+
+    .back-btn {
+        width: 40px;
+        height: 40px;
+
+        font-size: 24px;
+    }
+
+
+    /* HEADER ICON */
+
+    .header-icon {
+        width: 35px;
+        height: 35px;
+
+        border-radius: 9px;
+
+        font-size: 16px;
+    }
+
+
+    /* HEADER TEXT */
+
+    .header-text h1 {
+        font-size: 18px;
+    }
+
+    .header-text p {
+        font-size: 8px;
+    }
+
+
+    /* MOBILE MENU */
+
+    .mobile-menu-btn {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 40px;
+        height: 40px;
+
+        flex-shrink: 0;
+
+        margin-left: auto;
+
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.95);
+
+        color: #6252f5;
+
+        font-size: 22px;
+
+        line-height: 1;
+
+        box-shadow:
+            0 5px 13px rgba(76, 58, 150, 0.15);
+    }
+
+
+    /* FORM CARD */
+
+    .addemi-card {
+        width: 100%;
+
+        min-height: auto;
+
+        margin-top: 13px;
+
+        padding: 17px 13px;
+
+        border-radius: 17px;
+
+        flex: none;
+    }
+
+
+    /* FORM HEADING */
+
+    .form-heading {
+        padding-bottom: 12px;
+
+        margin-bottom: 14px;
+    }
+
+    .form-heading h2 {
+        font-size: 20px;
+    }
+
+    .form-heading p {
+        font-size: 9px;
+    }
+
+    .money-icon {
+        width: 38px;
+        height: 38px;
+
+        border-radius: 10px;
+
+        font-size: 18px;
+    }
+
+
+    /* TWO FIELDS */
+
+    .two-fields {
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+    }
+
+
+    /* INPUTS */
+
+    .input-box {
+        min-height: 45px;
+
+        border-radius: 10px;
+    }
+
+
+    /* BUTTON */
+
+    .addemi-btn {
+        min-height: 45px;
+
+        border-radius: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .addemi-page {
+        padding: 11px 9px 22px;
+    }
+
+    .addemi-header {
+        min-height: 60px;
+
+        padding: 8px 9px;
+
+        border-radius: 15px;
+    }
+
+    .back-btn {
+        width: 38px;
+        height: 38px;
+
+        font-size: 22px;
+    }
+
+    .header-icon {
+        width: 32px;
+        height: 32px;
+
+        font-size: 14px;
+    }
+
+    .header-text h1 {
+        font-size: 16px;
+    }
+
+    .header-text p {
+        font-size: 7px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 21px;
+    }
+
+    .addemi-card {
+        padding: 15px 11px;
+
+        border-radius: 15px;
+
+        flex: none;
+    }
+
+    .form-heading h2 {
+        font-size: 19px;
+    }
+
+    .field label {
+        font-size: 11px;
+    }
+
+    .input-box {
+        min-height: 44px;
+    }
+
+    .input-box input {
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .back-btn {
+
+        width: 30px !important;
+        height: 30px !important;
+
+        min-width: 30px !important;
+        min-height: 30px !important;
+
+        font-size: 17px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        border-radius: 50% !important;
+
+    }
+
+}

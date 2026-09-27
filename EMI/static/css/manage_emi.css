@@ -1,0 +1,1048 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    align-items: flex-start !important;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -2;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   NO BIG CONTAINER
+========================================================= */
+
+.container {
+    width: calc(100% - 310px);
+    max-width: 1160px;
+
+    margin-left: 285px;
+    margin-right: auto;
+
+    padding: 28px 25px 50px;
+
+    min-height: 100vh;
+
+    box-sizing: border-box;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.page-header {
+    width: 100%;
+    min-height: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 14px;
+
+    margin-bottom: 24px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.75);
+
+    border-radius: 19px;
+
+    box-shadow:
+        0 8px 25px rgba(62, 44, 130, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.page-header h2 {
+    flex: 1;
+
+    margin: 0;
+
+    text-align: center;
+
+    color: #30285f;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   HEADER ICONS
+========================================================= */
+
+.header-icons {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   HEADER CIRCLE ICONS
+========================================================= */
+
+.circle-icon,
+.icon-btn {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Normal buttons */
+
+.circle-icon {
+    background: #efecff;
+
+    color: #51468f;
+
+    border: 1px solid rgba(108, 99, 255, 0.08);
+}
+
+
+/* Plus button */
+
+.icon-btn {
+    background: linear-gradient(
+        135deg,
+        #6658ed,
+        #7869ff
+    );
+
+    color: white;
+
+    font-size: 21px;
+    font-weight: 500;
+
+    box-shadow:
+        0 7px 17px rgba(108, 99, 255, 0.25);
+}
+
+
+/* Hover */
+
+.circle-icon:hover,
+.icon-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(73, 58, 150, 0.15);
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-icon {
+    overflow: hidden;
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   TOTAL EMI CARD
+========================================================= */
+
+.total-card {
+    width: 100%;
+
+    min-height: 112px;
+
+    padding: 23px 28px;
+
+    margin-bottom: 28px;
+
+    box-sizing: border-box;
+
+    border-radius: 22px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6658ed 0%,
+            #7160f3 55%,
+            #806fff 100%
+        );
+
+    box-shadow:
+        0 15px 30px rgba(91, 73, 205, 0.22);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DECORATIVE CIRCLES
+========================================================= */
+
+.total-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -55px;
+    top: -80px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    pointer-events: none;
+}
+
+
+.total-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    right: 80px;
+    bottom: -55px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TOTAL TEXT
+========================================================= */
+
+.total-card p {
+    position: relative;
+    z-index: 2;
+
+    margin: 0 0 5px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    opacity: 0.95;
+}
+
+
+.total-card h1 {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    font-size: 32px;
+
+    font-weight: 750;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+    margin: 0 0 15px;
+
+    color: #30285f;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   EMPTY EMI STATE
+========================================================= */
+
+.container > p {
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 25px 25px 25px 65px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.68);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+        0 8px 22px rgba(67, 48, 135, 0.07);
+
+    color: #5d5777;
+
+    font-size: 15px;
+}
+
+
+/* Empty-state icon */
+
+.container > p::before {
+    content: "💳";
+
+    position: absolute;
+
+    left: 20px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eeeaff;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   EMI CARD
+========================================================= */
+
+.emi-card {
+    display: inline-block;
+
+    vertical-align: top;
+
+    width: 48%;
+
+    margin-right: 2%;
+    margin-bottom: 20px;
+
+    padding: 21px;
+
+    box-sizing: border-box;
+
+    border-radius: 21px;
+
+    background: rgba(255, 255, 255, 0.84);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    box-shadow:
+        0 9px 24px rgba(72, 55, 140, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.emi-card:nth-of-type(2n) {
+    margin-right: 0;
+}
+
+
+/* EMI hover */
+
+.emi-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(72, 55, 140, 0.13);
+}
+
+
+/* =========================================================
+   EMI TOP
+========================================================= */
+
+.emi-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   EMI NAME
+========================================================= */
+
+.emi-top h4 {
+    margin: 0 0 5px;
+
+    color: #30285f;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+.emi-top p {
+    margin: 0 0 7px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status {
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+.delete-btn {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f0edff;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.delete-btn:hover {
+    transform: scale(1.08);
+
+    background: #e3defd;
+}
+
+
+/* =========================================================
+   EMI AMOUNT
+========================================================= */
+
+.emi-amount {
+    margin: 18px 0 12px;
+
+    color: #6558dc;
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-bar {
+    width: 100%;
+
+    height: 7px;
+
+    background: #e7e4f5;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.progress {
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6759ed,
+            #877aff
+        );
+
+    transition: width 0.4s ease;
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 1200px) {
+
+    .container {
+        width: calc(100% - 320px);
+
+        max-width: 1190px;
+
+        margin-left: 290px;
+
+        padding: 30px 35px 50px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .container {
+        width: calc(100% - 290px);
+
+        margin-left: 275px;
+
+        padding: 24px 20px 40px;
+    }
+
+
+    .page-header {
+        min-height: 62px;
+    }
+
+
+    .page-header h2 {
+        font-size: 19px;
+    }
+
+
+    .emi-card {
+        width: 100%;
+
+        margin-right: 0;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+
+        padding: 10px 12px 35px;
+
+        min-height: 100vh;
+    }
+
+
+    /* HEADER */
+
+    .page-header {
+        min-height: 57px;
+
+        padding: 8px 9px;
+
+        margin-bottom: 17px;
+
+        border-radius: 17px;
+
+        gap: 6px;
+    }
+
+
+    .page-header h2 {
+        font-size: 17px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    /* HEADER ICONS */
+
+    .header-icons {
+        gap: 5px;
+    }
+
+
+    .circle-icon,
+    .icon-btn {
+        width: 34px;
+        height: 34px;
+
+        min-width: 34px;
+    }
+
+
+    .icon-btn {
+        font-size: 18px;
+    }
+
+
+    /* TOTAL */
+
+    .total-card {
+        min-height: 112px;
+
+        padding: 21px;
+
+        margin-bottom: 23px;
+
+        border-radius: 19px;
+    }
+
+
+    .total-card p {
+        font-size: 13px;
+    }
+
+
+    .total-card h1 {
+        font-size: 28px;
+    }
+
+
+    /* SECTION */
+
+    .section-title {
+        font-size: 19px;
+
+        margin-bottom: 13px;
+    }
+
+
+    /* EMPTY */
+
+    .container > p {
+        padding: 21px 18px 21px 58px;
+
+        font-size: 14px;
+
+        border-radius: 17px;
+    }
+
+
+    .container > p::before {
+        left: 17px;
+    }
+
+
+    /* EMI */
+
+    .emi-card {
+        display: block;
+
+        width: 100%;
+
+        margin-right: 0;
+
+        margin-bottom: 15px;
+
+        padding: 18px;
+
+        border-radius: 18px;
+    }
+
+
+    .emi-amount {
+        font-size: 19px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 7px 8px 30px;
+    }
+
+
+    .page-header {
+        min-height: 53px;
+
+        padding: 7px 8px;
+
+        margin-bottom: 14px;
+
+        border-radius: 15px;
+    }
+
+
+    .page-header h2 {
+        font-size: 15px;
+    }
+
+
+    .header-icons {
+        gap: 3px;
+    }
+
+
+    .circle-icon,
+    .icon-btn {
+        width: 31px;
+        height: 31px;
+
+        min-width: 31px;
+    }
+
+
+    .icon-btn {
+        font-size: 17px;
+    }
+
+
+    /* TOTAL */
+
+    .total-card {
+        min-height: 105px;
+
+        padding: 18px;
+
+        border-radius: 17px;
+
+        margin-bottom: 19px;
+    }
+
+
+    .total-card p {
+        font-size: 12px;
+    }
+
+
+    .total-card h1 {
+        font-size: 25px;
+    }
+
+
+    /* SECTION */
+
+    .section-title {
+        font-size: 18px;
+    }
+
+
+    /* EMPTY */
+
+    .container > p {
+        padding: 19px 15px 19px 53px;
+
+        font-size: 13px;
+    }
+
+
+    .container > p::before {
+        left: 15px;
+
+        width: 30px;
+        height: 30px;
+    }
+
+
+    /* EMI */
+
+    .emi-card {
+        padding: 16px;
+
+        border-radius: 16px;
+    }
+
+
+    .emi-top h4 {
+        font-size: 16px;
+    }
+
+
+    .emi-top p {
+        font-size: 12px;
+    }
+
+
+    .emi-amount {
+        font-size: 18px;
+    }
+
+
+    .delete-btn {
+        width: 33px;
+        height: 33px;
+
+        min-width: 33px;
+    }
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: rgba(108, 99, 255, 0.55);
+
+    border-radius: 20px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5d53dd;
+}
+
+
+/* =========================================================
+   EMI SCROLL AREA
+   Scroll starts after 4 EMI cards
+========================================================= */
+
+.emi-scroll-area {
+    max-height: 450px;
+
+    overflow-y: auto;
+
+    padding-right: 8px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.emi-scroll-area::-webkit-scrollbar {
+    width: 7px;
+}
+
+.emi-scroll-area::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.25);
+
+    border-radius: 10px;
+}
+
+.emi-scroll-area::-webkit-scrollbar-thumb {
+    background: rgba(98, 82, 245, 0.55);
+
+    border-radius: 10px;
+}
+
+.emi-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(98, 82, 245, 0.75);
+}
+
+/* =========================================================
+   MOBILE MENU
+   KEEP HEADER MENU
+   HIDE BOTTOM FLOATING MENU
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Hide all mobile menu buttons by default */
+    .mobile-menu-btn {
+        display: none !important;
+    }
+
+    /* Keep ONLY the menu button inside the header */
+    .header-icons .mobile-menu-btn {
+        display: flex !important;
+    }
+
+}
+
+/* =========================================================
+   MOBILE HEADER FIX — EMI MANAGER
+   Only fixes the header on small screens
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .page-header {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 10px 8px;
+        min-height: 52px;
+        box-sizing: border-box;
+    }
+
+    .page-header h2 {
+        font-size: 15px !important;
+        line-height: 1;
+        margin: 0;
+        white-space: nowrap;
+        flex: 1;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        flex-shrink: 0;
+    }
+
+    .header-icons .icon-btn,
+    .header-icons .circle-icon,
+    .header-icons .mobile-menu-btn {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 13px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-icons .profile-icon img {
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .page-header h2 {
+        margin-right: 8px !important;
+    }
+}
